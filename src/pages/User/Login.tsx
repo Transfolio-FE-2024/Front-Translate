@@ -1,9 +1,11 @@
-import KakaoBtn from "@/components/Oauth/KakaoBtn";
+import AuthLoginForm from "@/components/Auth/AuthLoginForm";
+import SNSAuthList from "@/components/Oauth/SNSAuthList";
 
 export default function Login() {
   return (
     <div>
-      <KakaoBtn />
+      <AuthLoginForm />
+      <SNSAuthList />
     </div>
   );
 }
