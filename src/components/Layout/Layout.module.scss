@@ -1,0 +1,8 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/variables.scss';
+
+.container {
+  @include flex;
+  justify-content: center;
+  min-height: calc($size-100vh - $size-88);
+}

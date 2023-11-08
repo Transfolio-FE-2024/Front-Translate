@@ -1,9 +1,13 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from 'react-router-dom';
+import { Layout } from '@/components/Layout/Layout';
+import Home from './Home/Home';
 
 export default function Router() {
   return (
-    <Routes>
-      <Route path="/" element={<div>라우터</div>} />
-    </Routes>
+    <Layout>
+      <Routes>
+        <Route path='/' element={<Home />} />
+      </Routes>
+    </Layout>
   );
 }
