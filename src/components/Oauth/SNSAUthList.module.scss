@@ -1,0 +1,11 @@
+@import "../../styles//mixin.scss";
+
+.snsAuth {
+  @include flex-column-center;
+}
+
+.snsAuthTitle {
+  color: var(--color-light-gray);
+  @include extra-large-semi-bold;
+  margin-bottom: 16px;
+}
