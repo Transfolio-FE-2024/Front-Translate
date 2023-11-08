@@ -1,0 +1,27 @@
+@function pixelToRem($pixel) {
+  @return ($pixel / 16) + rem;
+}
+
+$size-88: pixelToRem(88);
+$size-84: pixelToRem(84);
+$size-40: pixelToRem(40);
+$size-30: pixelToRem(30);
+$size-20: pixelToRem(20);
+
+$size-100vh: 100vh;
+
+$font-size-35: pixelToRem(35);
+$font-size-24: pixelToRem(24);
+$font-size-22: pixelToRem(22);
+$font-size-20: pixelToRem(20);
+$font-size-18: pixelToRem(18);
+$font-size-16: pixelToRem(16);
+$font-size-14: pixelToRem(14);
+$font-size-12: pixelToRem(12);
+$font-size-10: pixelToRem(10);
+
+$button-large: pixelToRem(485);
+$button-medium: pixelToRem(330);
+$button-small: pixelToRem(108);
+
+$radius: pixelToRem(100);

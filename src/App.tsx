@@ -1,5 +1,11 @@
-import Router from "@pages/Router";
+import Router from '@pages/Router';
+import { Header } from './components/Header/Header';
 
 export default function App() {
-  return <Router />;
+  return (
+    <>
+      <Header />
+      <Router />
+    </>
+  );
 }

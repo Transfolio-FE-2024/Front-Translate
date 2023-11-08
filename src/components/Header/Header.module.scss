@@ -1,0 +1,18 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/variables.scss';
+
+.container {
+  @include flex;
+  align-items: center;
+  gap: $size-20;
+  height: $size-88;
+  padding: 0 $size-40;
+}
+
+.menuIcon {
+  @include cursor-pointer;
+}
+
+.logoIcon {
+  @include cursor-pointer;
+}

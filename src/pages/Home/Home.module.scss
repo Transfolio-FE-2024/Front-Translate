@@ -1,0 +1,39 @@
+@import '../../styles/global.scss';
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.container {
+  @include flex-column-center;
+
+  .subTitle {
+    display: block;
+    margin-bottom: $size-30;
+  }
+
+  .logo {
+    margin-bottom: $size-84;
+  }
+
+  .grayButton {
+    @include flex-center;
+    @include button;
+
+    width: $button-medium;
+    margin-bottom: $size-20;
+    color: var(--color-white);
+    font-size: $font-size-22;
+    background-color: var(--color-light-gray);
+    border-radius: $radius;
+  }
+
+  .orangeButton {
+    @include flex-center;
+    @include button;
+
+    width: $button-medium;
+    color: var(--color-white);
+    font-size: $font-size-22;
+    background-color: var(--color-orange);
+    border-radius: $radius;
+  }
+}
