@@ -1,8 +1,13 @@
 import { useEffect } from "react";
 
+import { issuedAuthCode } from "@/api/kakao";
+
 export default function KCallback() {
   useEffect(() => {
-    console.log("kakao callback");
+    const data = async () => {
+      await issuedAuthCode();
+    };
+    data();
   }, []);
 
   return null;
