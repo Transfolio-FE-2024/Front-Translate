@@ -31,7 +31,8 @@
       "@pages/*": ["src/pages/*"],
       "@store/*": ["src/store/*"],
       "@types/*": ["src/types/*"],
-      "@util/*": ["src/util/*"]
+      "@util/*": ["src/util/*"],
+      "@styles/*": ["src/styles/*"]
     }
   },
   "include": ["src", "**/*.ts", "**/*.tsx", "vite.config.ts", "styled.d.ts"],
