@@ -1,0 +1,79 @@
+@import '../../styles/global.scss';
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.container {
+  .titleBanner {
+    .title {
+    }
+
+    .subTitle {
+    }
+  }
+
+  .portfolioContainer {
+    .penmanshipContainer {
+      .colorBadge {
+      }
+
+      .penmanshipSelector {
+      }
+      .penmanshipTextarea {
+      }
+      .penmanshipFooter {
+        .username {
+        }
+        .userNumber {
+        }
+      }
+    }
+  }
+
+  .portfolioInfoContainer {
+    .portfolioTitleContainer {
+      .portfolioTitle {
+      }
+      .createdAt {
+      }
+    }
+
+    .languageSelectContainer {
+      .originalLanguageSelector {
+      }
+      .translatedLanguageSelector {
+      }
+    }
+
+    .descriptionContainer {
+      .descriptionTextarea {
+      }
+    }
+
+    .categoryContainer {
+    }
+  }
+
+  .translateContainer {
+    .fontSizeSelector {
+    }
+
+    .penmanshipSelector {
+    }
+
+    .translateArea {
+      .translateBox {
+        .beforeTranslate {
+        }
+        .afterTranslate {
+        }
+      }
+    }
+  }
+
+  .actionButtonGroup {
+    .saveButton {
+    }
+    .submitButton {
+    }
+  }
+}
