@@ -1,0 +1,60 @@
+@import "../../styles/mixin.scss";
+
+.authSection {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.authForm {
+  @include flex-column;
+  padding-top: 80px;
+}
+
+.authContainer {
+  @include flex;
+  width: 100%;
+  max-width: 600px;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 36px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.authLabelId,
+.authLabelPw {
+  @include medium-bold;
+  @include flex;
+  width: 50px;
+  justify-content: center;
+  color: var(--color-green-2);
+  padding-left: 8px;
+  box-sizing: border-box;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.authInputId,
+.authInputPw {
+  width: 100%;
+  max-width: 70%;
+  height: 32px;
+  outline: none;
+  border: none;
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-light-gray);
+}
+
+.authSubmitBtn {
+  width: 300px;
+  height: 62px;
+  @include flex-center;
+  margin: 44px auto;
+  background-color: var(--color-orange);
+  border-radius: 100px;
+  color: white;
+  @include medium-medium;
+}
