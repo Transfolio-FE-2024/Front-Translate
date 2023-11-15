@@ -2,8 +2,19 @@
 @import '../../styles/variables.scss';
 @import '../../styles/mixins.scss';
 
+@mixin home-button {
+  width: $button-medium;
+  color: var(--color-white);
+  font-size: $font-size-22;
+  font-weight: var(--font-bold);
+  line-height: 117.5%; /* 25.85px */
+  letter-spacing: 2.64px;
+  border-radius: $radius-100;
+}
+
 .container {
   @include flex-column-center;
+  padding: 5rem 0;
 
   .subTitle {
     display: block;
@@ -16,24 +27,18 @@
 
   .grayButton {
     @include flex-center;
-    @include button;
+    @include global-button;
+    @include home-button;
 
-    width: $button-medium;
-    margin-bottom: $size-20;
-    color: var(--color-white);
-    font-size: $font-size-22;
     background-color: var(--color-light-gray);
-    border-radius: $radius;
+    margin-bottom: $size-20;
   }
 
   .orangeButton {
     @include flex-center;
-    @include button;
+    @include global-button;
+    @include home-button;
 
-    width: $button-medium;
-    color: var(--color-white);
-    font-size: $font-size-22;
     background-color: var(--color-orange);
-    border-radius: $radius;
   }
 }

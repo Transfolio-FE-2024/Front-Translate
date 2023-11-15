@@ -28,7 +28,7 @@
 }
 
 /* 개별 속성 */
-@mixin button {
+@mixin global-button {
   padding: 20px 0;
   @include cursor-pointer;
 }
