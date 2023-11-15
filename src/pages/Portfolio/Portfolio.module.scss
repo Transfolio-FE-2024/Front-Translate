@@ -4,10 +4,35 @@
 
 .container {
   .titleBanner {
+    @include flex-column;
+    justify-content: flex-end;
+    max-width: 821px;
+    height: 177px;
+    margin: 0 auto;
+    margin-top: auto;
+    padding: 22px 0;
+    background-color: var(--color-white);
+
     .title {
+      color: #5b635e;
+      text-align: center;
+      font-family: Pretendard;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 117.5%; /* 21.15px */
+      letter-spacing: 10.71px;
+      margin-bottom: 12px;
     }
 
     .subTitle {
+      color: var(--1, #003d2b);
+      text-align: center;
+      font-family: NanumMyeongjo;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 117.5%; /* 16.45px */
+      letter-spacing: 1.68px;
     }
   }
 
