@@ -1,4 +1,5 @@
 import styles from './Portfolio.module.scss';
+import DownArrow from '../../assets/icons/portfolio/ico_down_arrow.svg';
 
 function Portfolio() {
   return (
@@ -10,8 +11,15 @@ function Portfolio() {
 
       <div className={styles.portfolioContainer}>
         <div className={styles.penmanshipContainer}>
-          <div className={styles.colorBadge}></div>
-          <div className={styles.penmanshipSelector}></div>
+          <div className={styles.flexbox}>
+            <div className={styles.colorBadge}></div>
+            <div className={styles.penmanshipSelector}>
+              <div className={styles.downArrowIcon}>
+                <img src={DownArrow} alt='select-down-arrow' />
+              </div>
+              <span>서체설정</span>
+            </div>
+          </div>
           <textarea
             className={styles.penmanshipTextarea}
             name='penmanship-create'
