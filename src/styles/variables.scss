@@ -1,5 +1,5 @@
 @function pixelToRem($pixel) {
-  @return ($pixel / 16) + rem;
+  @return calc($pixel / 16) + rem;
 }
 
 $size-88: pixelToRem(88);
