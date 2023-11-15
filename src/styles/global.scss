@@ -139,32 +139,42 @@ input:focus {
   outline: none;
 }
 
+textarea {
+  border: none;
+  resize: none;
+}
+
+textarea:active,
+textarea:focus {
+  outline: none;
+}
+
 button {
   border: none;
   background: none;
 }
 
 @font-face {
-  font-family: "Nanum Myeongjo";
+  font-family: 'Nanum Myeongjo';
   font-style: normal;
   font-weight: 400;
-  src: local("Nanum-Myeongjo"),
-    url("./styles/fonts/NanumMyeongjo.otf") format("otf"),
-    url("./styles/fonts/NanumMyeongjo.ttf") format("truetype");
+  src: local('Nanum-Myeongjo'),
+    url('./styles/fonts/NanumMyeongjo.otf') format('otf'),
+    url('./styles/fonts/NanumMyeongjo.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "Nanum Myeongjo";
+  font-family: 'Nanum Myeongjo';
   font-style: normal;
   font-weight: 700;
-  src: url("./styles/fonts/NanumMyeongjoBold.otf") format("otf"),
-    url("./styles/fonts/NanumMyeongjoBold.ttf") format("truetype");
+  src: url('./styles/fonts/NanumMyeongjoBold.otf') format('otf'),
+    url('./styles/fonts/NanumMyeongjoBold.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "Nanum Myeongjo";
+  font-family: 'Nanum Myeongjo';
   font-style: normal;
   font-weight: 800;
-  src: url("./styles/fonts/NanumMyeongjoExtraBold.otf") format("otf"),
-    url("./styles/fonts/NanumMyeongjoExtraBold.ttf") format("truetype");
+  src: url('./styles/fonts/NanumMyeongjoExtraBold.otf') format('otf'),
+    url('./styles/fonts/NanumMyeongjoExtraBold.ttf') format('truetype');
 }
