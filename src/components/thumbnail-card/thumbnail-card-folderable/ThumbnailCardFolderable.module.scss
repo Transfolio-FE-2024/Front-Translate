@@ -1,0 +1,57 @@
+@import "@styles/mixins";
+@import "@styles/mixin";
+@import "@styles/variables";
+
+.container {
+  @include flex-column;
+  width: 200px;
+  height: 250px;
+  background-color: var(--color-white);
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.indexSection {
+  @include flex;
+  width: 100%;
+  height: 10px;
+  align-items: center;
+  justify-content: start;
+}
+
+.index {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+}
+
+.indexActive {
+  background-color: var(--color-orange);
+}
+
+.indexInActive {
+  background-color: var(--color-green-1);
+}
+
+.contentSection {
+  width: 100%;
+  height: 90%;
+}
+
+.originalSection {
+  @include base-regular;
+  width: 100%;
+  margin-bottom: 10px;
+  font-family: var(--font-pretend);
+  line-height: var(--line-height-27);
+}
+
+.translatedSection {
+  @include base-regular;
+  width: 100%;
+  margin-bottom: 10px;
+  font-family: var(--font-nanum);
+  line-height: var(--line-height-27);
+}

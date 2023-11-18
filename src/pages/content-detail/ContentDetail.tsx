@@ -1,28 +1,22 @@
-import styles from "./Detail.module.scss";
+import styles from "./ContentDetail.module.scss";
 import { GoArrowSwitch } from "react-icons/go";
-const Detail = () => {
+import PageTitle from "../../components/page-title/PageTitle";
+import ThumbnailCardUnfolderable from "../../components/thumbnail-card/thumbnail-card-unfolderable/ThumbnailCardUnfolderable";
+
+const ContentDetail = () => {
   return (
     <>
       <div className={styles.container}>
         <div className={styles.content}>
-          <div className={styles.pageTitleSection}>
-            <div className={styles.pageTitle}>Translator</div>
-            <div className={styles.pageSubTitle}>고전시 번역 프리랜서</div>
-          </div>
+          <PageTitle
+            mainTitle={"Translator"}
+            subTitle={"고전시 번역 프리랜서"}
+          />
           <div className={styles.thumbnailSection}>
-            <div className={styles.thumbnailCardSection}>
-              <div className={styles.thumbnailCardIndexSection}>
-                <div className={styles.thumbnailCardIndex}></div>
-              </div>
-              <div className={styles.thumbnailCardContentSection}>
-                <div className={styles.thumbnailCardContentOriginalSection}>
-                  たら堪らないという気を よく起した。
-                </div>
-                <div className={styles.thumbnailCardContentTranslationSection}>
-                  내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다.
-                </div>
-              </div>
-            </div>
+            <ThumbnailCardUnfolderable
+              original="たら堪らないという気を よく起した。"
+              translated="내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다."
+            />
             <div className={styles.thumbnailContentSection}>
               <div className={styles.thumbnailContentTitleDateSection}>
                 <div className={styles.thumbnailConentTitleSection}>
@@ -127,4 +121,4 @@ const Detail = () => {
   );
 };
 
-export default Detail;
+export default ContentDetail;

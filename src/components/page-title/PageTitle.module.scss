@@ -1,0 +1,32 @@
+@import "@styles/mixins";
+@import "@styles/mixin";
+@import "@styles/variables";
+
+.container {
+  @include flex-column;
+  width: 100%;
+  height: 150px;
+  align-items: center;
+  justify-content: end;
+  padding-bottom: 20px;
+  background-color: var(--color-white);
+}
+
+.title {
+  color: var(--color-gray);
+  font-family: var(--font-pretend);
+  font-weight: var(--font-bold);
+  line-height: var(--line-height-21-15);
+  letter-spacing: var(--letter-spacing-10-71);
+  font-size: $font-size-18;
+  margin-bottom: 10px;
+}
+
+.subTitle {
+  font-size: $font-size-14;
+  font-weight: var(--font-bold);
+  line-height: var(--line-height-16-45);
+  letter-spacing: var(--letter-spacing-1-68);
+  font-family: var(--font-nanum);
+  color: var(--color-green-1);
+}

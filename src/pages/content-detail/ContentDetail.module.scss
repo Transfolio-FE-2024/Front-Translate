@@ -21,35 +21,6 @@
   display: none;
 }
 
-.pageTitleSection {
-  @include flex-column;
-  width: 100%;
-  height: 150px;
-  align-items: center;
-  justify-content: end;
-  padding-bottom: 20px;
-  background-color: var(--color-white);
-}
-
-.pageTitle {
-  color: var(--color-gray);
-  font-family: var(--font-pretend);
-  font-weight: var(--font-bold);
-  line-height: var(--line-height-21-15);
-  letter-spacing: var(--letter-spacing-10-71);
-  font-size: $font-size-18;
-  margin-bottom: 10px;
-}
-
-.pageSubTitle {
-  font-size: $font-size-14;
-  font-weight: var(--font-bold);
-  line-height: var(--line-height-16-45);
-  letter-spacing: var(--letter-spacing-1-68);
-  font-family: var(--font-nanum);
-  color: var(--color-green-1);
-}
-
 .thumbnailSection {
   @include flex;
   width: 100%;
@@ -59,51 +30,51 @@
   justify-content: space-between;
 }
 
-.thumbnailCardSection {
-  @include flex-column;
-  width: 300px;
-  height: 100%;
-  background-color: var(--color-white);
-  padding: 10px;
-  align-items: center;
-  justify-content: space-between;
-}
+// .thumbnailCardSection {
+//   @include flex-column;
+//   width: 300px;
+//   height: 100%;
+//   background-color: var(--color-white);
+//   padding: 10px;
+//   align-items: center;
+//   justify-content: space-between;
+// }
 
-.thumbnailCardIndexSection {
-  @include flex;
-  width: 100%;
-  height: 10px;
-  align-items: center;
-  justify-content: start;
-}
+// .thumbnailCardIndexSection {
+//   @include flex;
+//   width: 100%;
+//   height: 10px;
+//   align-items: center;
+//   justify-content: start;
+// }
 
-.thumbnailCardIndex {
-  width: 10px;
-  height: 10px;
-  background-color: var(--color-orange);
-  border-radius: 100%;
-}
+// .thumbnailCardIndex {
+//   width: 10px;
+//   height: 10px;
+//   background-color: var(--color-orange);
+//   border-radius: 100%;
+// }
 
-.thumbnailCardContentSection {
-  width: 100%;
-  height: 90%;
-}
+// .thumbnailCardContentSection {
+//   width: 100%;
+//   height: 90%;
+// }
 
-.thumbnailCardContentOriginalSection {
-  @include base-regular;
-  width: 100%;
-  margin-bottom: 10px;
-  font-family: var(--font-pretend);
-  line-height: var(--line-height-27);
-}
+// .thumbnailCardContentOriginalSection {
+//   @include base-regular;
+//   width: 100%;
+//   margin-bottom: 10px;
+//   font-family: var(--font-pretend);
+//   line-height: var(--line-height-27);
+// }
 
-.thumbnailCardContentTranslationSection {
-  @include base-regular;
-  width: 100%;
-  margin-bottom: 10px;
-  font-family: var(--font-nanum);
-  line-height: var(--line-height-27);
-}
+// .thumbnailCardContentTranslationSection {
+//   @include base-regular;
+//   width: 100%;
+//   margin-bottom: 10px;
+//   font-family: var(--font-nanum);
+//   line-height: var(--line-height-27);
+// }
 
 .thumbnailContentSection {
   @include flex-column;
