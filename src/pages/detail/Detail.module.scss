@@ -1,0 +1,246 @@
+@import "@styles/mixins";
+@import "@styles/mixin";
+@import "@styles/variables";
+
+.container {
+  width: 100%;
+  height: 85vh;
+  padding: 10px 350px;
+  overflow: hidden;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.content::-webkit-scrollbar {
+  display: none;
+}
+
+.pageTitleSection {
+  @include flex-column;
+  width: 100%;
+  height: 150px;
+  align-items: center;
+  justify-content: end;
+  padding-bottom: 20px;
+  background-color: var(--color-white);
+}
+
+.pageTitle {
+  color: var(--color-gray);
+  font-family: var(--font-pretend);
+  font-weight: var(--font-bold);
+  line-height: var(--line-height-21-15);
+  letter-spacing: var(--letter-spacing-10-71);
+  font-size: $font-size-18;
+  margin-bottom: 10px;
+}
+
+.pageSubTitle {
+  font-size: $font-size-14;
+  font-weight: var(--font-bold);
+  line-height: var(--line-height-16-45);
+  letter-spacing: var(--letter-spacing-1-68);
+  font-family: var(--font-nanum);
+  color: var(--color-green-1);
+}
+
+.thumbnailSection {
+  @include flex;
+  width: 100%;
+  height: 350px;
+  padding: 50px 0px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.thumbnailCardSection {
+  @include flex-column;
+  width: 300px;
+  height: 100%;
+  background-color: var(--color-white);
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.thumbnailCardIndexSection {
+  @include flex;
+  width: 100%;
+  height: 10px;
+  align-items: center;
+  justify-content: start;
+}
+
+.thumbnailCardIndex {
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-orange);
+  border-radius: 100%;
+}
+
+.thumbnailCardContentSection {
+  width: 100%;
+  height: 90%;
+}
+
+.thumbnailCardContentOriginalSection {
+  @include base-regular;
+  width: 100%;
+  margin-bottom: 10px;
+  font-family: var(--font-pretend);
+  line-height: var(--line-height-27);
+}
+
+.thumbnailCardContentTranslationSection {
+  @include base-regular;
+  width: 100%;
+  margin-bottom: 10px;
+  font-family: var(--font-nanum);
+  line-height: var(--line-height-27);
+}
+
+.thumbnailContentSection {
+  @include flex-column;
+  margin-left: 20px;
+  width: 100%;
+  height: 100%;
+}
+
+.thumbnailContentTitleDateSection {
+  @include flex;
+  width: 100%;
+  height: 40px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.thumbnailConentTitleSection {
+  @include flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.thumbnailContentTitle {
+  @include base-bold;
+  color: var(--color-orange);
+  font-family: var(--font-pretend);
+  line-height: var(--line-height-27);
+}
+
+.thumbnailContentPage {
+  margin-left: 10px;
+  font-family: var(--font-pretend);
+  color: var(--color-light-gray);
+}
+
+.thumbnailContentDateSection {
+  font-size: $font-size-14;
+  font-family: var(--font-pretend);
+  color: var(--color-light-gray);
+}
+
+.thumbnailContentTranslationDirectionSection {
+  @include flex;
+  width: 100%;
+  height: 40px;
+  align-items: center;
+  justify-content: start;
+  margin-top: 10px;
+}
+
+.thumbnailContentTranslationTarget {
+  font-size: $font-size-14;
+  font-family: var(--font-pretend);
+  color: var(--color-gray);
+}
+
+.thumbnailContentTranslationArrow {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.thumbnailContentIntroSection {
+  width: 100%;
+  height: 100%;
+  padding: 10px 0px;
+}
+
+.thumbnailContentIntro {
+  width: 100%;
+  height: 100%;
+  border-top: 0.5px solid var(--color-light-gray);
+  border-bottom: 0.5px solid var(--color-light-gray);
+  padding: 10px 0px;
+  font-size: $font-size-14;
+  font-family: var(--font-pretend);
+  color: var(--color-gray);
+  letter-spacing: var(--letter-spacing-1-92);
+  line-height: var(--line-height-normal);
+}
+
+.thumbnailContentDetailSection {
+  width: 100%;
+}
+
+.thumbnailContentDetail {
+  @include flex;
+  width: 100%;
+  height: 30px;
+  align-items: center;
+  justify-content: start;
+}
+
+.thumbnailContentDetailTitle {
+  @include flex;
+  width: 100px;
+  height: 100%;
+  font-size: $font-size-14;
+  font-family: var(--font-pretend);
+  color: var(--color-light-gray);
+  align-items: center;
+  justify-content: start;
+}
+
+.thumbnailContentDetailContent {
+  @include flex;
+  width: 100%;
+  height: 100%;
+  font-size: $font-size-14;
+  font-family: var(--font-pretend);
+  color: var(--color-light-gray);
+  align-items: center;
+  justify-content: start;
+}
+
+.mainContentSection {
+  width: 100%;
+  padding: 20px;
+  background-color: var(--color-white);
+}
+
+.mainContent {
+  width: 100%;
+  height: 100%;
+}
+
+.mainContentRow {
+  width: 100%;
+  border-bottom: 0.5px solid var(--color-light-gray);
+  margin-bottom: 20px;
+}
+
+.mainContentRowOriginal {
+  color: var(--color-green-1);
+  font-family: var(--font-pretend);
+}
+
+.mainContentRowTranslation {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
