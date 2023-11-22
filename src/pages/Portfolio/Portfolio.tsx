@@ -1,5 +1,6 @@
 import styles from './Portfolio.module.scss';
 import DownArrow from '../../assets/icons/portfolio/ico_down_arrow.svg';
+import TranslateIcon from '../../assets/icons/portfolio/translate_icon.svg';
 
 function Portfolio() {
   return (
@@ -36,14 +37,19 @@ function Portfolio() {
 
         <div className={styles.portfolioInfoContainer}>
           <div className={styles.portfolioTitleContainer}>
-            <input className={styles.portfolioTitle} />
+            <input
+              className={styles.portfolioTitleInput}
+              placeholder='제목을 입력해주세요'
+            />
             <span className={styles.createdAt}>2022.01.20</span>
           </div>
 
           <div className={styles.languageSelectContainer}>
-            <div className={styles.originalLanguageSelector}></div>
-            {/* 번역할 언어 선택 아이콘  */}
-            <div className={styles.translatedLanguageSelector}></div>
+            <span className={styles.languageSelector}>언어 선택</span>
+            <div className={styles.translateIcon}>
+              <img src={TranslateIcon} alt='translate-bidirectional-arrows' />
+            </div>
+            <span className={styles.languageSelector}>언어 선택</span>
           </div>
 
           <div className={styles.descriptionContainer}>
@@ -57,7 +63,16 @@ function Portfolio() {
             ></textarea>
           </div>
 
-          <div className={styles.categoryContainer}></div>
+          <div className={styles.subInfoContainer}>
+            <dl className={styles.categoryDataList}>
+              <dt className={styles.categoryDataTitle}>카테고리</dt>
+              <dd className={styles.categoryData}>______</dd>
+            </dl>
+            <dl className={styles.categoryDataList}>
+              <dt className={styles.categoryDataTitle}>작가</dt>
+              <dd className={styles.categoryData}>______</dd>
+            </dl>
+          </div>
         </div>
       </div>
 
