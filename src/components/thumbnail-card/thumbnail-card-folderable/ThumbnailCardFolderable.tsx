@@ -22,6 +22,13 @@ const ThumbnailCardFolderable: React.FC<{
           <div className={styles.originalSection}>{original}</div>
           <div className={styles.translatedSection}>{translated}</div>
         </div>
+        <div className={styles.footerSection}>
+          <div className={styles.nameSection}>@Kimhim</div>
+          <div className={styles.foldSection}>
+            <div className={styles.pickedNumberContainer}>109</div>
+            <div className={styles.foldContainer}></div>
+          </div>
+        </div>
       </div>
     </>
   );

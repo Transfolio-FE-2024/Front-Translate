@@ -7,18 +7,21 @@
   width: 200px;
   height: 250px;
   background-color: var(--color-white);
-  padding: 10px;
+  padding-top: 10px;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .indexSection {
   @include flex;
   width: 100%;
   height: 10px;
+  padding: 0 10px;
   align-items: center;
   justify-content: start;
+  margin-bottom: 10px;
 }
 
 .index {
@@ -38,6 +41,7 @@
 .contentSection {
   width: 100%;
   height: 90%;
+  padding: 0 10px;
 }
 
 .originalSection {
@@ -54,4 +58,48 @@
   margin-bottom: 10px;
   font-family: var(--font-nanum);
   line-height: var(--line-height-27);
+}
+
+.footerSection {
+  @include flex;
+  width: 100%;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.nameSection {
+  font-size: $font-size-12;
+  font-family: var(--font-pretend);
+  color: var(--color-light-gray);
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.foldSection {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+.pickedNumberContainer {
+  @include flex;
+  position: absolute;
+  align-items: end;
+  justify-content: end;
+  font-size: $font-size-12;
+  font-family: var(--font-pretend);
+  color: var(--color-light-gray);
+  width: 40px;
+  height: 40px;
+  padding: 0 3px 3px 0;
+  z-index: 3;
+}
+
+.foldContainer {
+  position: relative;
+  width: 0;
+  height: 0;
+  border-top: 40px solid var(--color-orange);
+  border-right: 40px solid transparent;
+  z-index: 2;
 }
