@@ -130,12 +130,17 @@ h3,
 h4,
 h5,
 h6,
-p {
+p,
+dl,
+dt,
+dd {
   margin: 0;
 }
 
+input,
 input:active,
 input:focus {
+  border: none;
   outline: none;
 }
 
