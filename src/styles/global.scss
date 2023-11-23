@@ -140,12 +140,29 @@ h3,
 h4,
 h5,
 h6,
-p {
+p,
+dl,
+dt,
+dd {
   margin: 0;
 }
 
+input,
 input:active,
 input:focus {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+textarea {
+  border: none;
+  resize: none;
+  background-color: transparent;
+}
+
+textarea:active,
+textarea:focus {
   outline: none;
 }
 
@@ -155,7 +172,7 @@ button {
 }
 
 @font-face {
-  font-family: "Nanum Myeongjo";
+  font-family: 'Nanum Myeongjo';
   font-style: normal;
   font-weight: 400;
   src:
@@ -165,7 +182,7 @@ button {
 }
 
 @font-face {
-  font-family: "Nanum Myeongjo";
+  font-family: 'Nanum Myeongjo';
   font-style: normal;
   font-weight: 700;
   src:
@@ -174,7 +191,7 @@ button {
 }
 
 @font-face {
-  font-family: "Nanum Myeongjo";
+  font-family: 'Nanum Myeongjo';
   font-style: normal;
   font-weight: 800;
   src:

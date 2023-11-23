@@ -1,6 +1,7 @@
 import styles from "./Header.module.scss";
 import { logoIcon, menuIcon } from "./icons";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import MenuBar from "./components/menu-bar/MenuBar";
 
 export const Header = () => {
@@ -17,7 +18,7 @@ export const Header = () => {
         <div className={styles.menuIconSection} onClick={menuIconClickHandler}>
           <img src={menuIcon} className={menuIcon} />
         </div>
-        <div className={styles.logoIcon}>
+        <div className={styles.logoIcon} onClick={() => navigate('/')}>
           <img src={logoIcon} />
         </div>
       </div>
