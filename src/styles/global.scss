@@ -142,11 +142,13 @@ input:active,
 input:focus {
   border: none;
   outline: none;
+  background-color: transparent;
 }
 
 textarea {
   border: none;
   resize: none;
+  background-color: transparent;
 }
 
 textarea:active,
