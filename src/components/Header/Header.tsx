@@ -1,18 +1,27 @@
+import styles from "./Header.module.scss";
+import { logoIcon, menuIcon } from "./icons";
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import styles from './Header.module.scss';
-import { logoIcon, menuIcon } from './icons';
+import MenuBar from "./components/menu-bar/MenuBar";
 
 export const Header = () => {
-  const navigate = useNavigate();
+  const [showMenu, setShowMenu] = useState<boolean>(false);
+
+  const menuIconClickHandler = () => {
+    setShowMenu(!showMenu);
+  };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.menuIcon}>
-        <img src={menuIcon} />
+    <>
+      {showMenu && <MenuBar setOpen={setShowMenu} />}
+      <div className={styles.container}>
+        <div className={styles.menuIconSection} onClick={menuIconClickHandler}>
+          <img src={menuIcon} className={menuIcon} />
+        </div>
+        <div className={styles.logoIcon} onClick={() => navigate('/')}>
+          <img src={logoIcon} />
+        </div>
       </div>
-      <div className={styles.logoIcon} onClick={() => navigate('/')}>
-        <img src={logoIcon} />
-      </div>
-    </div>
+    </>
   );
 };

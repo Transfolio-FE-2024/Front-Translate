@@ -1,16 +1,28 @@
-@import '../../styles/mixins.scss';
-@import '../../styles/variables.scss';
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
 
 .container {
   @include flex;
   align-items: center;
   gap: $size-20;
-  height: $size-88;
+  height: $size-84;
   padding: 0 $size-40;
 }
 
-.menuIcon {
+.menuIconSection {
   @include cursor-pointer;
+  @include flex-center;
+  width: 50px;
+  height: 50px;
+}
+
+.menuIconSection:hover {
+  opacity: 0.8;
+}
+
+.menuIcon {
+  width: 100%;
+  height: 100%;
 }
 
 .logoIcon {
