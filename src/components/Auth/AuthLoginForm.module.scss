@@ -1,4 +1,4 @@
-@import "../../styles/mixin.scss";
+@import "@styles/mixins";
 
 .authSection {
   width: 100%;
@@ -26,7 +26,6 @@
 
 .authLabelId,
 .authLabelPw {
-  @include medium-bold;
   @include flex;
   width: 50px;
   justify-content: center;
@@ -35,6 +34,7 @@
   box-sizing: border-box;
   text-align: center;
   white-space: nowrap;
+  font-weight: var(--font-semi-bold);
 }
 
 .authInputId,
@@ -56,5 +56,4 @@
   background-color: var(--color-orange);
   border-radius: 100px;
   color: white;
-  @include medium-medium;
 }

@@ -1,5 +1,4 @@
 @import "@styles/mixins";
-@import "@styles/mixin";
 @import "@styles/variables";
 
 .container {
@@ -45,7 +44,6 @@
 }
 
 .originalSection {
-  @include base-regular;
   @include full-width;
   margin-bottom: 10px;
   font-family: var(--font-pretend);
@@ -53,7 +51,6 @@
 }
 
 .translatedSection {
-  @include base-regular;
   @include full-width;
   margin-bottom: 10px;
   font-family: var(--font-nanum);
