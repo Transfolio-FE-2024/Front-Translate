@@ -1,5 +1,5 @@
 import styles from "./ThumbnailCardFolderable.module.scss";
-import { React } from "react";
+import React from "react";
 
 const ThumbnailCardFolderable: React.FC<{
   original: string;
@@ -23,9 +23,9 @@ const ThumbnailCardFolderable: React.FC<{
           <div className={styles.translatedSection}>{translated}</div>
         </div>
         <div className={styles.footerSection}>
-          <div className={styles.nameSection}>@Kimhim</div>
+          <div className={styles.nameSection}>{writer}</div>
           <div className={styles.foldSection}>
-            <div className={styles.pickedNumberContainer}>109</div>
+            <div className={styles.pickedNumberContainer}>{picked}</div>
             <div className={styles.foldContainer}></div>
           </div>
         </div>

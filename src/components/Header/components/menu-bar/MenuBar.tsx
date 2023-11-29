@@ -1,6 +1,5 @@
 import styles from "./MenuBar.module.scss";
-import { React } from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { CiSettings } from "react-icons/ci";
 import { IoPersonCircleOutline } from "react-icons/io5";
 

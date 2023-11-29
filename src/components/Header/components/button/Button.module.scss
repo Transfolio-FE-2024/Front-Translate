@@ -1,0 +1,17 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.container {
+  @include full-container;
+  @include flex-center;
+  @include cursor-pointer;
+  border: 1px solid var(--color-gray);
+  color: var(--color-gray);
+  font-size: $font-size-14;
+  font-family: var(--font-pretend);
+  border-radius: 30px;
+}
+
+.container:hover {
+  opacity: 0.8;
+}

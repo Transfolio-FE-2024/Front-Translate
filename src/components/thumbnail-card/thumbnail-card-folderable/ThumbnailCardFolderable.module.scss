@@ -16,7 +16,7 @@
 
 .indexSection {
   @include flex;
-  width: 100%;
+  @include full-width;
   height: 10px;
   padding: 0 10px;
   align-items: center;
@@ -39,14 +39,14 @@
 }
 
 .contentSection {
-  width: 100%;
+  @include full-width;
   height: 90%;
   padding: 0 10px;
 }
 
 .originalSection {
   @include base-regular;
-  width: 100%;
+  @include full-width;
   margin-bottom: 10px;
   font-family: var(--font-pretend);
   line-height: var(--line-height-27);
@@ -54,7 +54,7 @@
 
 .translatedSection {
   @include base-regular;
-  width: 100%;
+  @include full-width;
   margin-bottom: 10px;
   font-family: var(--font-nanum);
   line-height: var(--line-height-27);
@@ -62,7 +62,7 @@
 
 .footerSection {
   @include flex;
-  width: 100%;
+  @include full-width;
   align-items: end;
   justify-content: space-between;
 }

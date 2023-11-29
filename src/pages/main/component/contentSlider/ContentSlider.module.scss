@@ -1,0 +1,49 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.container {
+  @include flex-column;
+}
+
+.titleSection {
+  @include full-width;
+  @include flex;
+  align-items: center;
+  justify-content: start;
+  color: var(--color-gray);
+  letter-spacing: var(--letter-spacing-0-72);
+  margin-bottom: 20px;
+}
+
+.bodySection {
+  @include full-width;
+}
+
+.sliderTitle {
+  @include full-width;
+  @include flex-center;
+  height: 30px;
+}
+
+.thumbnailSection {
+  @include full-width;
+  @include flex-center;
+}
+
+.thumbnailContainer {
+  @include full-width;
+  @include flex-column-center;
+}
+
+.customDot {
+  flex: 1;
+  height: 2px;
+}
+
+.active {
+  background-color: var(--color-orange);
+}
+
+.inActive {
+  background-color: var(--color-light-gray);
+}

@@ -4,9 +4,16 @@
 .container {
   @include flex;
   align-items: center;
+  justify-content: space-between;
   gap: $size-20;
   height: $size-84;
   padding: 0 $size-40;
+}
+
+.menuSection {
+  @include flex;
+  align-items: center;
+  justify-content: start;
 }
 
 .menuIconSection {
@@ -27,4 +34,37 @@
 
 .logoIcon {
   @include cursor-pointer;
+}
+
+.buttonsSection {
+  @include flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.writeButtonSection {
+  width: 70px;
+  height: 25px;
+  margin-right: 10px;
+}
+
+.searchButtonSection {
+  width: 30px;
+  height: 30px;
+}
+
+.searchIcon {
+  @include full-container;
+  @include cursor-pointer;
+  color: var(--color-gray);
+}
+
+.searchIcon:hover {
+  opacity: 0.8;
+}
+
+.searchInputSection {
+  width: 150px;
+  height: 30px;
+  border-radius: 30px;
 }
