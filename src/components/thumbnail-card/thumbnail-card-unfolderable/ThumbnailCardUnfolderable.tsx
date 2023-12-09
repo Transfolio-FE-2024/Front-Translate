@@ -1,5 +1,5 @@
 import styles from "./ThumbnailCardUnfolderable.module.scss";
-import { React } from "react";
+import React from "react";
 
 const ThumbnailCardUnfolderable: React.FC<{
   original: string;

@@ -1,7 +1,6 @@
 import styles from "./Header.module.scss";
 import { logoIcon, menuIcon } from "./icons";
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
 import MenuBar from "./components/menu-bar/MenuBar";
 import Button from "./components/button/Button";
 import { IoMdSearch } from "react-icons/io";

@@ -668,7 +668,6 @@
   dependencies:
     "@types/react" "*"
 
-shed changes
 "@types/react@*", "@types/react@^18.2.15":
   version "18.2.33"
   resolved "https://registry.npmjs.org/@types/react/-/react-18.2.33.tgz"

@@ -1,5 +1,5 @@
 import styles from "./Button.module.scss";
-import { React } from "react";
+import React from "react";
 
 const Button: React.FC<{
   title: string;

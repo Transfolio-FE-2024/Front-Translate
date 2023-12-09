@@ -24,7 +24,7 @@ const Main = () => {
               {thumbnailContents.map((thumbnail) => {
                 return (
                   <>
-                    <div className={styles.thumbnailContainer}>
+                    <div className={styles.thumbnailContainer} key={thumbnail}>
                       <div className={styles.thumbnailTitle}>
                         <span>번역도</span>&ensp;
                         <span className={styles.textHighlight}>감-성</span>

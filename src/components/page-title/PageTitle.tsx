@@ -1,5 +1,5 @@
 import styles from "./PageTitle.module.scss";
-import { React } from "react";
+import React from "react";
 
 const PageTitle: React.FC<{ mainTitle: string; subTitle: string }> = ({
   mainTitle,

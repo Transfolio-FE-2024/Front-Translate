@@ -51,7 +51,7 @@ const ContentSlider = () => {
             {sliderContents.map((slider) => {
               return (
                 <>
-                  <div className={styles.thumbnailContainer}>
+                  <div className={styles.thumbnailContainer} key={slider}>
                     <div className={styles.sliderTitle}>번역도 감-성 으로</div>
                     <div className={styles.thumbnailSection}>
                       <ThumbnailCardFolderable

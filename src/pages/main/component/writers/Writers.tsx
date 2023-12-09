@@ -33,7 +33,7 @@ const Writers = () => {
         </div>
         <div className={styles.writersSection}>
           {writers.map((writer) => (
-            <WriterThumbnail />
+            <WriterThumbnail key={writer} />
           ))}
         </div>
       </div>
