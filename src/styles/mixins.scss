@@ -41,12 +41,20 @@
   cursor: pointer;
 }
 
+@mixin cursor-default {
+  cursor: pointer;
+}
+
 @mixin overflow-hidden {
   overflow: hidden;
 }
 
 @mixin overflow-scroll {
   overflow: scroll;
+}
+
+@mixin opacity-0-8 {
+  opacity: 0.8;
 }
 
 /* 개별 속성 */

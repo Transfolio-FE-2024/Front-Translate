@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./InputBasic.module.scss";
+import styles from "./TextField.module.scss";
 
-const InputBasic: React.FC<{
+const TextField: React.FC<{
   value: string;
   onChange: (value: string) => void;
   hide?: boolean;
@@ -20,4 +20,4 @@ const InputBasic: React.FC<{
   );
 };
 
-export default InputBasic;
+export default TextField;

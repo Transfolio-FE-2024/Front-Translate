@@ -16,14 +16,14 @@
 
 .enable {
   @include cursor-pointer;
-  background-color: var(--color-orange);
-
-  &:hover {
-    @include opacity-0-8;
-  }
+  background-color: var(--color-light-gray);
 }
 
 .disable {
-  @include cursor-default;
   background-color: var(--color-light-gray);
+  cursor: default;
+}
+
+.enable:hover {
+  opacity: 0.8;
 }

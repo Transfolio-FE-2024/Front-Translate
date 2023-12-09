@@ -1,0 +1,84 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.container {
+  @include full-width;
+  @include flex-center;
+  height: 100vh;
+  background-color: var(--color-background);
+}
+
+.content {
+  @include full-height;
+  @include flex-column-center;
+  width: 40%;
+}
+
+.pageTitleSection {
+  @include full-width;
+  @include flex-column-center;
+  margin-bottom: 30px;
+}
+
+.pageTitle {
+  font-size: $font-size-18;
+  font-weight: var(--font-bold);
+  line-height: var(--line-height-21-15);
+  letter-spacing: var(--letter-spacing-10-71);
+  font-family: var(--font-pretend);
+  color: var(--color-gray);
+  margin-bottom: 20px;
+}
+
+.pageSubTitle {
+  font-size: $font-size-14;
+  font-weight: var(--font-bold);
+  line-height: var(--line-height-16-45);
+  letter-spacing: var(--letter-spacing-1-68);
+  font-family: var(--font-nanum);
+  color: var(--color-green-1);
+  text-align: center;
+}
+
+.inputSection {
+  @include flex;
+  height: 30px;
+  align-items: center;
+  justify-content: start;
+  margin-bottom: 10px;
+}
+
+.inputTitle {
+  @include flex;
+  width: 100px;
+  height: 100%;
+  font-size: $font-size-16;
+  font-weight: var(--font-bold);
+  font-family: var(--font-work);
+  align-items: end;
+  justify-content: start;
+  color: var(--color-green-2);
+}
+
+.input {
+  width: 200px;
+  height: 100%;
+}
+
+.divider {
+  height: 20px;
+}
+
+.buttonSection {
+  width: 200px;
+  height: 40px;
+}
+
+.snsSignInTitle {
+  color: var(--color-light-gray);
+}
+
+.snsButtonSection {
+  width: 250px;
+  height: 45px;
+}

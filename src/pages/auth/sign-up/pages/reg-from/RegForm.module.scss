@@ -3,13 +3,13 @@
 
 .container {
   @include flex-center;
-  width: 100%;
+  @include full-width;
   height: 100vh;
 }
 
 .content {
   @include flex-column;
-  width: 100%;
+  @include full-width;
   height: 70%;
   align-items: center;
   justify-content: space-around;

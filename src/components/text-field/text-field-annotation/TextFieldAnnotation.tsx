@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import styles from "./InputSubtitle.module.scss";
+import styles from "./TextFieldAnnotation.module.scss";
 
-const InputSubtitle: React.FC<{
+const TextFieldAnnotation: React.FC<{
   value: string;
   onChange: (value: string) => void;
   text: string;
@@ -30,4 +30,4 @@ const InputSubtitle: React.FC<{
   );
 };
 
-export default InputSubtitle;
+export default TextFieldAnnotation;

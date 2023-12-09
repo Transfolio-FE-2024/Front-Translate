@@ -1,7 +1,7 @@
 import MainButtonRound from "@/components/button/main-button-round/MainButtonRound";
 import { useState } from "react";
-import InputBasic from "../../component/input-basic/InputBasic";
-import InputSubtitle from "../../component/input-subtitle/InputSubtitle";
+import TextField from "../../../../../components/text-field/TextField";
+import TextFieldAnnotation from "../../../../../components/text-field/text-field-annotation/TextFieldAnnotation";
 import SubButton from "../../component/sub-button/SubButton";
 import styles from "./RegForm.module.scss";
 
@@ -17,19 +17,18 @@ const RegForm = () => {
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.pageTitleSection}>
-            <div className={styles.pageTitle}>Login</div>
+            <div className={styles.pageTitle}>Register</div>
             <div>
               <div className={styles.pageSubTitle}>프리랜서 번역가님!</div>
               <div className={styles.pageSubTitle}>회원가입 해주세요</div>
             </div>
           </div>
-
           <div className={styles.inputSection}>
             <div className={styles.inputTitle}>1. 아이디를 설정해주세요.</div>
             <div className={styles.inputContainer}>
               <div className={styles.inputSubTitle}>아이디</div>
               <div className={styles.input}>
-                <InputBasic value={id} onChange={(value) => setId(value)} />
+                <TextField value={id} onChange={(value) => setId(value)} />
               </div>
               <div className={styles.subButton}>
                 <SubButton title="중복확인" onClick={() => {}} />
@@ -41,7 +40,7 @@ const RegForm = () => {
             <div className={styles.inputContainer}>
               <div className={styles.inputSubTitle}>비밀번호 설정</div>
               <div className={styles.input}>
-                <InputBasic
+                <TextField
                   value={password}
                   onChange={(value) => setPassword(value)}
                   hide={true}
@@ -52,7 +51,7 @@ const RegForm = () => {
             <div className={styles.inputContainer}>
               <div className={styles.inputSubTitle}>비밀번호 확인</div>
               <div className={styles.input}>
-                <InputSubtitle
+                <TextFieldAnnotation
                   value={confirmPassword}
                   onChange={(value: string) => setConfirmPassword(value)}
                   text={
@@ -72,7 +71,7 @@ const RegForm = () => {
             <div className={styles.inputContainer}>
               <div className={styles.inputSubTitle}>이메일</div>
               <div className={styles.input}>
-                <InputBasic
+                <TextField
                   value={email}
                   onChange={(value) => setEmail(value)}
                 />
@@ -84,7 +83,7 @@ const RegForm = () => {
             <div className={styles.inputContainer}>
               <div className={styles.inputSubTitle}>이메일 인증</div>
               <div className={styles.input}>
-                <InputBasic
+                <TextField
                   value={certificationNumber}
                   onChange={(value) => setCertificationNumber(value)}
                 />
