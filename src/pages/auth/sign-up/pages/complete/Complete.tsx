@@ -1,7 +1,9 @@
 import MainButtonRound from "@/components/button/main-button-round/MainButtonRound";
 import styles from "./Complete.module.scss";
+import { useNavigate } from "react-router-dom";
 
 const Complete = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className={styles.container}>
@@ -17,7 +19,12 @@ const Complete = () => {
             />
           </div>
           <div className={styles.mainButton}>
-            <MainButtonRound title="회원가입 완료하기" onClicked={() => {}} />
+            <MainButtonRound
+              title="시작하기"
+              onClicked={() => {
+                navigate("/main");
+              }}
+            />
           </div>
         </div>
       </div>

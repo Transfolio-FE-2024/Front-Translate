@@ -5,8 +5,10 @@ import MenuBar from "./components/menu-bar/MenuBar";
 import Button from "./components/button/Button";
 import { IoMdSearch } from "react-icons/io";
 import TextField from "./components/text-field/TextField";
+import { useNavigate } from "react-router-dom";
 
 export const Header = () => {
+  const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const [showSearchInput, setShowSearchInput] = useState<boolean>(false);
 
@@ -29,7 +31,7 @@ export const Header = () => {
           >
             <img src={menuIcon} className={menuIcon} />
           </div>
-          <div className={styles.logoIcon}>
+          <div className={styles.logoIcon} onClick={() => navigate("/home")}>
             <img src={logoIcon} />
           </div>
         </div>

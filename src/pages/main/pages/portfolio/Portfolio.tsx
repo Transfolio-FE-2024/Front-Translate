@@ -1,11 +1,11 @@
-import styles from './Portfolio.module.scss';
-import DownArrow from '../../assets/icons/portfolio/ico_down_arrow.svg';
-import TranslateIcon from '../../assets/icons/portfolio/translate_icon.svg';
-import AddTranslateButton from '../../assets/icons/portfolio/add_translate_button.svg';
-import { useState } from 'react';
+import styles from "./Portfolio.module.scss";
+import DownArrow from "../../../../assets/icons/portfolio/ico_down_arrow.svg";
+import TranslateIcon from "../../../../assets/icons/portfolio/translate_icon.svg";
+import AddTranslateButton from "../../../../assets/icons/portfolio/add_translate_button.svg";
+import { useState } from "react";
 
 function Portfolio() {
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
   const [isOriginalModalOpen, setIsOriginalModalOpen] = useState(false);
   const [isTranslateModalOpen, setIsTranslateModalOpen] = useState(false);
 
@@ -56,19 +56,19 @@ function Portfolio() {
               <div className={styles.colorBadge}></div>
               <div className={styles.penmanshipSelector}>
                 <div className={styles.downArrowIcon}>
-                  <img src={DownArrow} alt='select-down-arrow' />
+                  <img src={DownArrow} alt="select-down-arrow" />
                 </div>
                 <span>서체설정</span>
               </div>
             </div>
             <textarea
-              id='penmanship-create'
-              name='penmanship-create'
+              id="penmanship-create"
+              name="penmanship-create"
               className={styles.penmanshipTextarea}
               value={title}
               cols={10}
               rows={30}
-              placeholder='제목 작성하기'
+              placeholder="제목 작성하기"
             ></textarea>
             <div className={styles.penmanshipFooter}>
               <span className={styles.username}>@Kimhim00</span>
@@ -82,7 +82,7 @@ function Portfolio() {
                 className={styles.portfolioTitleInput}
                 value={title}
                 onChange={onChangeTitle}
-                placeholder='제목을 입력해주세요'
+                placeholder="제목을 입력해주세요"
               />
               <span className={styles.createdAt}>2022.01.20</span>
             </div>
@@ -95,7 +95,7 @@ function Portfolio() {
                 언어 선택
               </span>
               <div className={styles.translateIcon}>
-                <img src={TranslateIcon} alt='translate-bidirectional-arrows' />
+                <img src={TranslateIcon} alt="translate-bidirectional-arrows" />
               </div>
               <span
                 className={styles.languageSelector}
@@ -122,11 +122,11 @@ function Portfolio() {
             <div className={styles.descriptionContainer}>
               <textarea
                 className={styles.descriptionTextarea}
-                name='description-textarea'
-                id='description-textarea'
+                name="description-textarea"
+                id="description-textarea"
                 cols={30}
                 rows={10}
-                placeholder='작품 설명 (200자)'
+                placeholder="작품 설명 (200자)"
               ></textarea>
             </div>
 
@@ -151,7 +151,7 @@ function Portfolio() {
 
           <div className={styles.translateArea}>
             <div className={styles.addTranslateButton}>
-              <img src={AddTranslateButton} alt='add-translate-button' />
+              <img src={AddTranslateButton} alt="add-translate-button" />
             </div>
             <div className={styles.translateBox}>
               <p className={styles.beforeTranslate}></p>

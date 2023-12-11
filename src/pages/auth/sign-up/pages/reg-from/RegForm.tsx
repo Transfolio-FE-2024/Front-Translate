@@ -4,8 +4,10 @@ import TextField from "../../../../../components/text-field/TextField";
 import TextFieldAnnotation from "../../../../../components/text-field/text-field-annotation/TextFieldAnnotation";
 import SubButton from "../../component/sub-button/SubButton";
 import styles from "./RegForm.module.scss";
+import { useNavigate } from "react-router-dom";
 
 const RegForm = () => {
+  const navigate = useNavigate();
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
@@ -94,7 +96,12 @@ const RegForm = () => {
             </div>
           </div>
           <div className={styles.mainButton}>
-            <MainButtonRound title="회원가입 완료하기" onClicked={() => {}} />
+            <MainButtonRound
+              title="회원가입 완료하기"
+              onClicked={() => {
+                navigate("/signup/interests");
+              }}
+            />
           </div>
         </div>
       </div>

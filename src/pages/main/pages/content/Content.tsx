@@ -1,9 +1,9 @@
-import styles from "./ContentDetail.module.scss";
+import styles from "./Content.module.scss";
 import { GoArrowSwitch } from "react-icons/go";
-import PageTitle from "../../components/page-title/PageTitle";
-import ThumbnailCardUnfolderable from "../../components/thumbnail-card/thumbnail-card-unfolderable/ThumbnailCardUnfolderable";
+import PageTitle from "../../../../components/page-title/PageTitle";
+import ThumbnailCardUnfolderable from "../../../../components/thumbnail-card/thumbnail-card-unfolderable/ThumbnailCardUnfolderable";
 
-const ContentDetail = () => {
+const Content = () => {
   return (
     <>
       <div className={styles.container}>
@@ -121,4 +121,4 @@ const ContentDetail = () => {
   );
 };
 
-export default ContentDetail;
+export default Content;

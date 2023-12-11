@@ -1,11 +1,11 @@
-import styles from "./WriterDetail.module.scss";
-import PageTitle from "../../components/page-title/PageTitle";
+import styles from "./Writer.module.scss";
+import PageTitle from "../../../../components/page-title/PageTitle";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { useState } from "react";
-import ThumbnailCardFolderable from "../../components/thumbnail-card/thumbnail-card-folderable/ThumbnailCardFolderable";
+import ThumbnailCardFolderable from "../../../../components/thumbnail-card/thumbnail-card-folderable/ThumbnailCardFolderable";
 
 let buttonTitles = ["포트폴리오", "경력", "접음"];
-const WriterDetail = () => {
+const Writer = () => {
   const [selectedButtonIndex, setSelectedButtonIndex] = useState<number>(0);
 
   const buttonClickHandler = (index: number) => {
@@ -96,4 +96,4 @@ const WriterDetail = () => {
   );
 };
 
-export default WriterDetail;
+export default Writer;

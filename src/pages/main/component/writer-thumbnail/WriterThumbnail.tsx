@@ -1,10 +1,13 @@
+import React from "react";
 import styles from "./WriterThumbnail.module.scss";
 import { IoPersonCircleOutline } from "react-icons/io5";
 
-const WriterThumbnail = () => {
+const WriterThumbnail: React.FC<{ onClicked: () => void }> = ({
+  onClicked,
+}) => {
   return (
     <>
-      <div className={styles.container}>
+      <div className={styles.container} onClick={onClicked}>
         <div className={styles.content}>
           <div className={styles.bodySection}>
             <div className={styles.profileImgSection}>

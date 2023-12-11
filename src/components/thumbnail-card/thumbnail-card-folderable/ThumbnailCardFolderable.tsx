@@ -7,10 +7,27 @@ const ThumbnailCardFolderable: React.FC<{
   writer: string;
   picked: number;
   active?: boolean;
-}> = ({ original, translated, writer, picked, active = true }) => {
+  onClicked?: () => void;
+}> = ({
+  original,
+  translated,
+  writer,
+  picked,
+  active = true,
+  onClicked = null,
+}) => {
   return (
     <>
-      <div className={styles.container}>
+      <div
+        className={`${styles.container} ${
+          onClicked !== null ? styles.clickable : null
+        }`}
+        onClick={() => {
+          if (onClicked !== null) {
+            onClicked();
+          }
+        }}
+      >
         <div className={styles.indexSection}>
           <div
             className={`${styles.index} ${

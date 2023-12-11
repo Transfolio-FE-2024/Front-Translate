@@ -2,10 +2,12 @@ import styles from "./MenuBar.module.scss";
 import React, { useState } from "react";
 import { CiSettings } from "react-icons/ci";
 import { IoPersonCircleOutline } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 const MenuBar: React.FC<{
   setOpen: (value: boolean) => void;
 }> = ({ setOpen }) => {
+  const navigate = useNavigate();
   const [easeout, setEaseout] = useState<boolean>(false);
   const overlayClickHandler = () => {
     setEaseout(true);
@@ -32,7 +34,13 @@ const MenuBar: React.FC<{
             </div>
             <div className={styles.profileNameSection}>@ Kimhim</div>
             <div className={styles.portfolioSection}>
-              <div className={styles.portfolioButton}>
+              <div
+                className={styles.portfolioButton}
+                onClick={() => {
+                  navigate("/home/portfolio");
+                  setOpen(false);
+                }}
+              >
                 <div className={styles.portfolioButtonTitle}>포트폴리오</div>
                 <div className={styles.portfolioButtonNumber}>4개</div>
               </div>

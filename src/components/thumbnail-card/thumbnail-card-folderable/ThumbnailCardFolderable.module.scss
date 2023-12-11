@@ -13,6 +13,14 @@
   position: relative;
 }
 
+.clickable {
+  @include cursor-pointer;
+
+  &:hover {
+    @include opacity-0-8;
+  }
+}
+
 .indexSection {
   @include flex;
   @include full-width;

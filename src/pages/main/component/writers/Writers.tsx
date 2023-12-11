@@ -1,10 +1,12 @@
 import { useState } from "react";
 import styles from "./Writers.module.scss";
 import WriterThumbnail from "../writer-thumbnail/WriterThumbnail";
+import { useNavigate } from "react-router-dom";
 
 const buttons = ["언어", "전공", "문학", "기업"];
 const writers = [1, 2, 3, 4, 5, 6];
 const Writers = () => {
+  const navigate = useNavigate();
   const [selectedButtonIndex, setSelectedButtonIndex] = useState<number>(0);
   return (
     <>
@@ -33,7 +35,10 @@ const Writers = () => {
         </div>
         <div className={styles.writersSection}>
           {writers.map((writer) => (
-            <WriterThumbnail key={writer} />
+            <WriterThumbnail
+              key={writer}
+              onClicked={() => navigate("/home/writer")}
+            />
           ))}
         </div>
       </div>

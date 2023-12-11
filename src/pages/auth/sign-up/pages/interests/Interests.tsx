@@ -1,6 +1,7 @@
 import MainButtonRound from "@/components/button/main-button-round/MainButtonRound";
 import { useState } from "react";
 import styles from "./Interests.module.scss";
+import { useNavigate } from "react-router-dom";
 
 const tableTitles = ["언어", "전공", "문학", "기업"];
 const langContents = [
@@ -51,6 +52,7 @@ type Item = {
 };
 
 const Interests = () => {
+  const navigate = useNavigate();
   const [selectedItem, setSelectedItem] = useState<Item[]>([]);
 
   const tableBoxClickHandler = (item: Item) => {
@@ -151,8 +153,10 @@ const Interests = () => {
           </div>
           <div className={styles.mainButton}>
             <MainButtonRound
-              title="트랜스폴리오 시작하기"
-              onClicked={() => {}}
+              title="다음"
+              onClicked={() => {
+                navigate("/signup/complete");
+              }}
               enable={selectedItem.length > 0}
             />
           </div>
