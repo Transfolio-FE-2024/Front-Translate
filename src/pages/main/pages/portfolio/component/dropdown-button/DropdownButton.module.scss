@@ -14,3 +14,8 @@
   font-family: var(--font-pretend);
   color: var(--color-gray);
 }
+
+.active {
+  color: var(--color-orange);
+  font-weight: var(--font-semi-bold);
+}

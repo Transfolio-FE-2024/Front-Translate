@@ -4,8 +4,9 @@ import styles from "./DropdownButton.module.scss";
 const DropdownButton: React.FC<{
   title: string;
   values: string[];
+  selectedValue: string | null;
   onValueClicked: (value: string) => void;
-}> = ({ title, values, onValueClicked }) => {
+}> = ({ title, values, selectedValue, onValueClicked }) => {
   const dropdownContentClickHandler = (value: string) => {
     onValueClicked(value);
   };
@@ -25,7 +26,9 @@ const DropdownButton: React.FC<{
         <ul className="dropdown-menu">
           {values.map((value, index) => (
             <li
-              className={`dropdown-item ${styles.dropdownContent}`}
+              className={`dropdown-item ${styles.dropdownContent} ${
+                selectedValue === value ? styles.active : null
+              }`}
               onClick={() => dropdownContentClickHandler(value)}
               key={index}
             >

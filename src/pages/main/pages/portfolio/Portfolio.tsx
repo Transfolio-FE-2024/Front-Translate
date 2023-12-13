@@ -55,6 +55,7 @@ const Portfolio = () => {
                         : selectedOriginLanguage
                     }
                     values={languageList}
+                    selectedValue={selectedOriginLanguage}
                     onValueClicked={(value) => setSelectedOriginLanguage(value)}
                   />
                 </div>
@@ -67,6 +68,7 @@ const Portfolio = () => {
                         : selectedTranslatedLanguage
                     }
                     values={languageList}
+                    selectedValue={selectedTranslatedLanguage}
                     onValueClicked={(value) =>
                       setSelectedTranslatedLanguage(value)
                     }
@@ -99,6 +101,7 @@ const Portfolio = () => {
                         : selectedMainCatetory
                     }
                     values={languageList}
+                    selectedValue={selectedMainCatetory}
                     onValueClicked={(value) => setSelectedMainCategory(value)}
                   />
                 </div>
@@ -111,6 +114,7 @@ const Portfolio = () => {
                         : selectedSubCatetory
                     }
                     values={languageList}
+                    selectedValue={selectedSubCatetory}
                     onValueClicked={(value) => setSelectedSubCategory(value)}
                   />
                 </div>
