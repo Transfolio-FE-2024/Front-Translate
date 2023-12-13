@@ -97,7 +97,7 @@ const RegForm = () => {
           </div>
           <div className={styles.mainButton}>
             <MainButtonRound
-              title="회원가입 완료하기"
+              title="다음"
               onClicked={() => {
                 navigate("/signup/interests");
               }}
