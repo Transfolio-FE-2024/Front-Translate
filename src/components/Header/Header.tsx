@@ -37,7 +37,12 @@ export const Header = () => {
         </div>
         <div className={styles.buttonsSection}>
           <div className={styles.writeButtonSection}>
-            <Button title={"글쓰기"} onButtonClicked={() => {}} />
+            <Button
+              title={"글쓰기"}
+              onButtonClicked={() => {
+                navigate("/home/portfolio");
+              }}
+            />
           </div>
           {showSearchInput && (
             <div className={styles.searchInputSection}>

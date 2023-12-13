@@ -1,172 +1,131 @@
+import PageTitle from "@/components/page-title/PageTitle";
 import styles from "./Portfolio.module.scss";
-import DownArrow from "../../../../assets/icons/portfolio/ico_down_arrow.svg";
-import TranslateIcon from "../../../../assets/icons/portfolio/translate_icon.svg";
-import AddTranslateButton from "../../../../assets/icons/portfolio/add_translate_button.svg";
+import ThumbnailChangeable from "./component/thumbnail-changeable/ThumbnailChangeable";
 import { useState } from "react";
+import TextField from "@/components/text-field/TextField";
+import { VscArrowSwap } from "react-icons/vsc";
+import DropdownButton from "./component/dropdown-button/DropdownButton";
+import TextFieldLonger from "@/components/text-field/text-field-longer/TextFieldLonger";
+import { RiErrorWarningLine } from "react-icons/ri";
 
-function Portfolio() {
-  const [title, setTitle] = useState("");
-  const [isOriginalModalOpen, setIsOriginalModalOpen] = useState(false);
-  const [isTranslateModalOpen, setIsTranslateModalOpen] = useState(false);
-
-  const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setTitle(value);
-  };
-
-  const closeOriginalModal = () => {
-    setIsOriginalModalOpen(false);
-  };
-  const closeTranslateModal = () => {
-    setIsTranslateModalOpen(false);
-  };
-
-  const openOriginalModal = () => {
-    setIsOriginalModalOpen(true);
-    setIsTranslateModalOpen(false);
-  };
-  const openTranslateModal = () => {
-    setIsTranslateModalOpen(true);
-    setIsOriginalModalOpen(false);
-  };
-
+const languageList = ["한국어", "영어", "일본어", "아랍어", "불어"];
+const Portfolio = () => {
+  const [title, setTitle] = useState<string>("");
+  const [information, setInformation] = useState<string>("");
+  const [selectedOriginLanguage, setSelectedOriginLanguage] = useState<
+    string | null
+  >(null);
+  const [selectedTranslatedLanguage, setSelectedTranslatedLanguage] = useState<
+    string | null
+  >(null);
+  const [selectedMainCatetory, setSelectedMainCategory] = useState<
+    string | null
+  >(null);
+  const [selectedSubCatetory, setSelectedSubCategory] = useState<string | null>(
+    null
+  );
   return (
     <>
-      {isTranslateModalOpen && (
-        <div
-          className={styles.modalBackground}
-          onClick={closeTranslateModal}
-        ></div>
-      )}
-      {isOriginalModalOpen && (
-        <div
-          className={styles.modalBackground}
-          onClick={closeOriginalModal}
-        ></div>
-      )}
       <div className={styles.container}>
-        <div className={styles.titleBanner}>
-          <h1 className={styles.title}>Translator</h1>
-          <h2 className={styles.subTitle}>고전시 번역 프리랜서</h2>
-        </div>
-
-        <div className={styles.portfolioContainer}>
-          <div className={styles.penmanshipContainer}>
-            <div className={styles.flexbox}>
-              <div className={styles.colorBadge}></div>
-              <div className={styles.penmanshipSelector}>
-                <div className={styles.downArrowIcon}>
-                  <img src={DownArrow} alt="select-down-arrow" />
+        <div className={styles.content}>
+          <PageTitle
+            mainTitle={"Translator"}
+            subTitle={"고전시 번역 프리랜서"}
+          />
+          <div className={styles.divider}></div>
+          <div className={styles.thumbnailSection}>
+            <div className={styles.thumbnailCardSection}>
+              <ThumbnailChangeable title={title} />
+            </div>
+            <div className={styles.thumbnailInfoSection}>
+              <div className={styles.titleTextFieldSection}>
+                <TextField
+                  value={title}
+                  onChange={(value) => setTitle(value)}
+                  placeholder="제목을 입력해주세요"
+                />
+                <div className={styles.titleDateSection}>2023.12.12</div>
+              </div>
+              <div className={styles.selectLanguageSection}>
+                <div className={styles.dropdownSection}>
+                  <DropdownButton
+                    title={
+                      selectedOriginLanguage === null
+                        ? "언어 선택"
+                        : selectedOriginLanguage
+                    }
+                    values={languageList}
+                    onValueClicked={(value) => setSelectedOriginLanguage(value)}
+                  />
                 </div>
-                <span>서체설정</span>
+                <VscArrowSwap className={styles.arrowIcon} />
+                <div className={styles.dropdownSection}>
+                  <DropdownButton
+                    title={
+                      selectedTranslatedLanguage === null
+                        ? "언어 선택"
+                        : selectedTranslatedLanguage
+                    }
+                    values={languageList}
+                    onValueClicked={(value) =>
+                      setSelectedTranslatedLanguage(value)
+                    }
+                  />
+                </div>
+                {(selectedOriginLanguage !== null ||
+                  selectedTranslatedLanguage !== null) &&
+                  selectedOriginLanguage === selectedTranslatedLanguage && (
+                    <div className={styles.warnTextSection}>
+                      <RiErrorWarningLine className={styles.warnIcon} />
+                      같은 언어는 선택할 수 없습니다.
+                    </div>
+                  )}
+              </div>
+              <div className={styles.infoTextFieldSection}>
+                <TextFieldLonger
+                  value={information}
+                  onChange={(value) => setInformation(value)}
+                  placeholder="작품 설명을 입력해주세요. (200자)"
+                  maxLength={200}
+                />
+              </div>
+              <div className={styles.etcSection}>
+                <div className={styles.etcTitleSection}>대분류</div>
+                <div className={styles.dropdownSection}>
+                  <DropdownButton
+                    title={
+                      selectedMainCatetory === null
+                        ? "대분류 선택"
+                        : selectedMainCatetory
+                    }
+                    values={languageList}
+                    onValueClicked={(value) => setSelectedMainCategory(value)}
+                  />
+                </div>
+                <div className={styles.etcTitleSection}>소분류</div>
+                <div className={styles.dropdownSection}>
+                  <DropdownButton
+                    title={
+                      selectedSubCatetory === null
+                        ? "소분류 선택"
+                        : selectedSubCatetory
+                    }
+                    values={languageList}
+                    onValueClicked={(value) => setSelectedSubCategory(value)}
+                  />
+                </div>
+              </div>
+              <div className={styles.etcSection}>
+                <div className={styles.etcTitleSection}>작가</div>
+                <div className={styles.divider}></div>
+                <div className={styles.etcTitleSection}>@kimhim</div>
               </div>
             </div>
-            <textarea
-              id="penmanship-create"
-              name="penmanship-create"
-              className={styles.penmanshipTextarea}
-              value={title}
-              cols={10}
-              rows={30}
-              placeholder="제목 작성하기"
-            ></textarea>
-            <div className={styles.penmanshipFooter}>
-              <span className={styles.username}>@Kimhim00</span>
-              <span className={styles.userNumber}>00</span>
-            </div>
           </div>
-
-          <div className={styles.portfolioInfoContainer}>
-            <div className={styles.portfolioTitleContainer}>
-              <input
-                className={styles.portfolioTitleInput}
-                value={title}
-                onChange={onChangeTitle}
-                placeholder="제목을 입력해주세요"
-              />
-              <span className={styles.createdAt}>2022.01.20</span>
-            </div>
-
-            <div className={styles.languageSelectContainer}>
-              <span
-                className={styles.languageSelector}
-                onClick={openOriginalModal}
-              >
-                언어 선택
-              </span>
-              <div className={styles.translateIcon}>
-                <img src={TranslateIcon} alt="translate-bidirectional-arrows" />
-              </div>
-              <span
-                className={styles.languageSelector}
-                onClick={openTranslateModal}
-              >
-                언어 선택
-              </span>
-
-              <div
-                className={`${styles.modalContainer} ${
-                  isTranslateModalOpen && styles.translateModal
-                } ${isOriginalModalOpen && styles.originalModal}
-                }`}
-              >
-                <ul className={styles.modalList}>
-                  <li className={styles.modalListItem}>영어</li>
-                  <li className={styles.modalListItem}>일본어</li>
-                  <li className={styles.modalListItem}>아랍어</li>
-                  <li className={styles.modalListItem}>불어</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className={styles.descriptionContainer}>
-              <textarea
-                className={styles.descriptionTextarea}
-                name="description-textarea"
-                id="description-textarea"
-                cols={30}
-                rows={10}
-                placeholder="작품 설명 (200자)"
-              ></textarea>
-            </div>
-
-            <div className={styles.subInfoContainer}>
-              <dl className={styles.categoryDataList}>
-                <dt className={styles.categoryDataTitle}>카테고리</dt>
-                <dd className={styles.categoryData}>______</dd>
-              </dl>
-              <dl className={styles.categoryDataList}>
-                <dt className={styles.categoryDataTitle}>작가</dt>
-                <dd className={styles.categoryData}>______</dd>
-              </dl>
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.translateContainer}>
-          <div className={styles.selectorContainer}>
-            <div className={styles.fontSelector}>글자 크기</div>
-            <div className={styles.fontSelector}>서체 설정</div>
-          </div>
-
-          <div className={styles.translateArea}>
-            <div className={styles.addTranslateButton}>
-              <img src={AddTranslateButton} alt="add-translate-button" />
-            </div>
-            <div className={styles.translateBox}>
-              <p className={styles.beforeTranslate}></p>
-              <textarea className={styles.afterTranslate} />
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.actionButtonGroup}>
-          <button className={styles.saveButton}>임시저장</button>
-          <button className={styles.submitButton}>제출하기</button>
         </div>
       </div>
     </>
   );
-}
+};
 
 export default Portfolio;

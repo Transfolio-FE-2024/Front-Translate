@@ -1,0 +1,16 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.button {
+  font-family: var(--font-pretend);
+  color: var(--color-gray);
+}
+
+.button:focus {
+  box-shadow: none;
+}
+
+.dropdownContent {
+  font-family: var(--font-pretend);
+  color: var(--color-gray);
+}

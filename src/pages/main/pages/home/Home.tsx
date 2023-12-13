@@ -4,17 +4,29 @@ import HeaderSlider from "../../component/headerSlider/HeaderSlider";
 import Writers from "../../component/writers/Writers";
 import styles from "./Home.module.scss";
 import ThumbnailCardFolderable from "@/components/thumbnail-card/thumbnail-card-folderable/ThumbnailCardFolderable";
+import { useMediaQuery } from "react-responsive";
+import { useEffect } from "react";
 
 let thumbnailContents = [1, 2, 3, 4, 5, 6, 7, 8];
 const Home = () => {
   const navigate = useNavigate();
+  const maxWidth1440 = useMediaQuery({ maxWidth: 1440 });
+
+  useEffect(() => {
+    console.log(maxWidth1440);
+  }, []);
+
   return (
     <>
       <div className={styles.container}>
         <div className={styles.headerSection}>
           <HeaderSlider />
         </div>
-        <div className={styles.content}>
+        <div
+          className={`${styles.content} ${
+            maxWidth1440 ? null : styles.contentLarger
+          }`}
+        >
           <div className={styles.divider}></div>
           <div className={styles.bodySection}>
             <ContentSlider />

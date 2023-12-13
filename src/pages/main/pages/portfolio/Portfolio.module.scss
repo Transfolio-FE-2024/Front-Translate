@@ -1,367 +1,126 @@
 @import "@styles/mixins";
 @import "@styles/variables";
 
-.modalBackground {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: 100;
-  top: 0;
-  left: 0;
+@mixin border-bottom {
+  border-bottom: 1px solid var(--color-light-gray);
 }
 
 .container {
-  width: 821px;
-  margin: 0 auto;
+  width: 100%;
+  height: 85vh;
+  padding: 10px 350px;
+  overflow: hidden;
+}
 
-  .titleBanner {
-    @include flex-column;
-    justify-content: flex-end;
-    width: 100%;
-    height: 177px;
-    margin-bottom: 61px;
-    padding: 22px 0;
-    background: #ffffff;
+.content {
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
-    .title {
-      color: var(--color-gray);
-      text-align: center;
-      font-family: Pretendard;
-      font-size: 18px;
-      font-weight: 700;
-      line-height: 117.5%; /* 21.15px */
-      letter-spacing: 10.71px;
-      margin-bottom: 12px;
-    }
+.content::-webkit-scrollbar {
+  display: none;
+}
 
-    .subTitle {
-      color: var(--color-green-1);
-      text-align: center;
-      font-family: NanumMyeongjo;
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 117.5%; /* 16.45px */
-      letter-spacing: 1.68px;
-    }
-  }
+.divider {
+  height: 20px;
+}
 
-  .portfolioContainer {
-    @include flex;
-    padding-bottom: 34px;
-    margin-bottom: 15px;
-    border-bottom: 1px solid var(--color-light-gray);
+.thumbnailSection {
+  @include full-width;
+  @include flex;
+  height: 300px;
+}
 
-    .penmanshipContainer {
-      position: relative;
-      width: 238px;
-      height: 339px;
-      padding: 15px;
-      background: var(--color-white);
-      box-shadow: 0px 0px 50px 0px rgba(91, 99, 94, 0.1);
+.thumbnailCardSection {
+  @include full-height;
+  width: 200px;
+}
 
-      .flexbox {
-        .colorBadge {
-          position: absolute;
-          top: 14px;
-          left: 15px;
-          width: 14px;
-          height: 14px;
-          border-radius: 50%;
-          background-color: #f45a1e;
-        }
+.thumbnailInfoSection {
+  @include full-height;
+  @include flex-column;
+  flex: 1;
+  padding-left: 20px;
+}
 
-        .penmanshipSelector {
-          @include flex-center;
-          color: #5b635e;
-          text-align: right;
-          font-family: Pretendard;
-          font-size: 16px;
-          font-style: normal;
-          font-weight: 700;
-          line-height: 150%; /* 24px */
-          letter-spacing: 2px;
-          margin-bottom: 9px;
+.titleTextFieldSection {
+  @include flex-center;
+  @include full-width;
+  height: 35px;
+}
 
-          .downArrowIcon {
-            padding-right: 3.5px;
-          }
-        }
-      }
+.titleDateSection {
+  @include full-height;
+  @include flex-center;
+  width: 150px;
+  border-bottom: 1px solid var(--color-light-gray);
+  font-family: var(--font-pretend);
+  color: var(--color-light-gray);
+}
 
-      .penmanshipTextarea {
-        width: 100%;
-        height: 85%;
-        overflow-y: auto;
-      }
+.selectLanguageSection {
+  @include border-bottom();
+  @include full-width;
+  @include flex;
+  height: 50px;
+  align-items: center;
+  justify-content: start;
+}
 
-      .penmanshipFooter {
-        @include flex;
-        justify-content: space-between;
+.dropdownSection {
+  @include full-height;
+  @include flex-center;
+  width: 100px;
+}
 
-        .username {
-          color: var(--color-light-gray);
-          font-family: Pretendard;
-          font-size: 12px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: 172%; /* 20.64px */
-        }
+.arrowIcon {
+  color: var(--color-gray);
+}
 
-        .userNumber {
-          color: var(--color-light-gray);
-          font-family: Pretendard;
-          font-size: 14px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: 172%; /* 24.08px */
-        }
-      }
-    }
-  }
+.warnTextSection {
+  @include full-height;
+  @include flex;
+  flex: 1;
+  align-items: center;
+  justify-content: end;
+  font-size: $font-size-12;
+  color: var(--color-orange);
+  font-family: var(--font-pretend);
+}
 
-  .portfolioInfoContainer {
-    width: 100%;
-    margin-left: 27px;
+.warnIcon {
+  color: var(--color-orange);
+  margin-right: 5px;
+}
 
-    .portfolioTitleContainer {
-      display: flex;
-      justify-content: space-between;
-      height: 60px;
-      margin-bottom: 1rem;
-      border-bottom: 1px solid var(--color-light-gray);
+.infoTextFieldSection {
+  @include border-bottom();
+  @include full-width;
+  flex: 1;
+  padding: 5px 0;
+}
 
-      .portfolioTitleInput {
-        width: 100%;
-        background-color: transparent;
+.etcSection {
+  @include border-bottom();
+  @include full-width;
+  @include flex;
+  height: 40px;
+  align-items: center;
+  justify-content: start;
+}
 
-        &::placeholder {
-          color: #f45a1e;
-          font-family: Pretendard;
-          font-size: 20px;
-          font-style: normal;
-          font-weight: 700;
-          line-height: 150%; /* 30px */
-          letter-spacing: 2.5px;
-        }
-      }
-      .createdAt {
-        margin-top: 20px;
-        color: var(--color-light-gray);
-        text-align: right;
-        font-family: Pretendard;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 150%; /* 24px */
-        letter-spacing: 2px;
-      }
-    }
+.etcTitleSection {
+  @include full-height;
+  @include flex;
+  align-items: center;
+  justify-content: start;
+  color: var(--color-light-gray);
+  font-family: var(--font-pretend);
+}
 
-    .languageSelectContainer {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      padding-bottom: 23px;
-      margin-bottom: 17px;
-      border-bottom: 1px solid var(--color-light-gray);
-
-      .languageSelector {
-        color: var(--color-gray);
-        font-family: Pretendard;
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 150%; /* 27px */
-        letter-spacing: 2.25px;
-        cursor: pointer;
-      }
-
-      .modalContainer {
-        position: absolute;
-        top: 30px;
-        z-index: 200;
-        border-radius: 8px;
-        background-color: var(--color-white);
-        display: none;
-
-        &.translateModal {
-          display: block;
-          left: 160px;
-        }
-
-        &.originalModal {
-          display: block;
-          left: -6px;
-        }
-
-        .modalList {
-          width: 100px;
-
-          .modalListItem {
-            @include flex-center;
-            width: 100%;
-            padding: 10px 20px;
-            border-bottom: 0.5px solid #dfdfdf;
-            color: var(--color-gray);
-            font-family: Pretendard;
-            font-size: 12px;
-            font-style: normal;
-            font-weight: 500;
-            line-height: 14px; /* 116.667% */
-            cursor: pointer;
-
-            &:last-child {
-              border-bottom: none;
-            }
-          }
-        }
-      }
-    }
-
-    .descriptionContainer {
-      .descriptionTextarea {
-        width: 100%;
-        height: 121px;
-        padding-bottom: 24px;
-        margin-bottom: 14px;
-
-        border-bottom: 1px solid var(--color-light-gray);
-
-        &::placeholder {
-          color: rgba(91, 99, 94, 0.87);
-          font-family: Pretendard;
-          font-size: 16px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: 150%; /* 24px */
-          letter-spacing: 2px;
-        }
-      }
-    }
-
-    .subInfoContainer {
-      .categoryDataList {
-        display: flex;
-
-        .categoryDataTitle {
-          min-width: 80px;
-          margin-right: 25px;
-          color: var(--color-light-gray);
-          font-family: Pretendard;
-          font-size: 16px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: 150%; /* 24px */
-          letter-spacing: 2px;
-        }
-
-        .categoryData {
-          color: var(--color-light-gray);
-          font-family: Pretendard;
-          font-size: 16px;
-          font-style: normal;
-          font-weight: 500;
-          line-height: 150%; /* 24px */
-          letter-spacing: 2px;
-        }
-      }
-    }
-  }
-
-  .translateContainer {
-    .selectorContainer {
-      display: flex;
-      gap: 24px;
-      margin-bottom: 15px;
-
-      .fontSelector {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 126px;
-        height: 33px;
-        border-radius: 100px;
-        border: 1px solid var(--color-gray);
-
-        color: var(--color-gray);
-        text-align: right;
-        font-family: Pretendard;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 150%; /* 24px */
-        letter-spacing: 2px;
-        cursor: pointer;
-      }
-    }
-
-    .translateArea {
-      position: relative;
-      width: 100%;
-      margin-bottom: 113px;
-
-      .addTranslateButton {
-        position: absolute;
-        top: 50%;
-        right: -100px;
-        background-color: var(--color-white);
-        padding: 20px;
-        border-radius: 50%;
-        cursor: pointer;
-      }
-
-      .translateBox {
-        background-color: #ffffff;
-        .beforeTranslate {
-        }
-        .afterTranslate {
-        }
-      }
-    }
-  }
-
-  .actionButtonGroup {
-    display: flex;
-    justify-content: space-between;
-
-    .saveButton {
-      display: flex;
-      width: 380px;
-      padding: 31px 0;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      background: #aeaeae;
-
-      color: #fff;
-      text-align: center;
-      font-family: Pretendard;
-      font-size: 22px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 150%; /* 33px */
-      letter-spacing: 2.75px;
-    }
-    .submitButton {
-      display: flex;
-      width: 380px;
-      padding: 31px 0;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      background: #f45a1e;
-
-      color: #fff;
-      text-align: center;
-      font-family: Pretendard;
-      font-size: 22px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 150%; /* 33px */
-      letter-spacing: 2.75px;
-    }
-  }
+.divider {
+  width: 20px;
 }

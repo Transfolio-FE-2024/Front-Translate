@@ -22,7 +22,7 @@ const Complete = () => {
             <MainButtonRound
               title="시작하기"
               onClicked={() => {
-                navigate("/main");
+                navigate("/home");
               }}
             />
           </div>

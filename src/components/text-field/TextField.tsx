@@ -5,7 +5,8 @@ const TextField: React.FC<{
   value: string;
   onChange: (value: string) => void;
   hide?: boolean;
-}> = ({ value, onChange, hide = false }) => {
+  placeholder?: string;
+}> = ({ value, onChange, hide = false, placeholder = "" }) => {
   return (
     <>
       <div className={styles.container}>
@@ -14,6 +15,7 @@ const TextField: React.FC<{
           type={hide ? "password" : "text"}
           defaultValue={value}
           onChange={(e) => onChange(e.target.value)}
+          placeholder={placeholder}
         />
       </div>
     </>
