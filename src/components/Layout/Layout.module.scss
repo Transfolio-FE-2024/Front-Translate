@@ -1,8 +1,31 @@
-@import '../../styles/mixins.scss';
-@import '../../styles/variables.scss';
+@import "@styles/mixins";
+@import "@styles/variables";
+@import "@styles/relative";
 
 .container {
-  @include flex;
-  justify-content: center;
-  min-height: calc($size-100vh - $size-88);
+  @include full-width;
+  @include flex-column-center;
+  height: $size-100vh;
+  background-color: var(--color-background);
+
+  @include tablet {
+    @include overflow-scroll;
+    min-width: 720px;
+  }
+
+  @include laptopToTablet {
+    min-width: 960px;
+  }
+
+  @include laptop {
+    min-width: 1024px;
+  }
+
+  @include desktopToLaptop {
+    min-width: 1500px;
+  }
+
+  @include desktop {
+    min-width: 1800px;
+  }
 }

@@ -4,13 +4,14 @@ import styles from "./SignIn.module.scss";
 import MainButtonRound from "@/components/button/main-button-round/MainButtonRound";
 import SnsButton from "@/components/button/sns-button/SnsButton";
 import kakaoImg from "../../../assets/images/sns_kakaotalk.png";
+import Layout from "@/components/layout/Layout";
 
 const SignIn = () => {
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   return (
     <>
-      <div className={styles.container}>
+      <Layout>
         <div className={styles.content}>
           <div className={styles.pageTitleSection}>
             <div className={styles.pageTitle}>Login</div>
@@ -52,7 +53,7 @@ const SignIn = () => {
             />
           </div>
         </div>
-      </div>
+      </Layout>
     </>
   );
 };

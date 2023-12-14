@@ -3,7 +3,7 @@ import Complete from "./auth/sign-up/pages/complete/Complete";
 import Interests from "./auth/sign-up/pages/interests/Interests";
 import RegForm from "./auth/sign-up/pages/reg-from/RegForm";
 import Start from "./start/Start";
-import KCallback from "@/components/Oauth/KCallback";
+import KCallback from "@/components/oauth/KCallback";
 import Main from "./main/Main";
 import SignIn from "./auth/sign-in/SignIn";
 

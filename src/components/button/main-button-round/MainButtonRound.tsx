@@ -11,7 +11,11 @@ const MainButtonRound: React.FC<{
       className={`${styles.container} ${
         enable ? styles.enable : styles.disable
       }`}
-      onClick={onClicked}
+      onClick={() => {
+        if (enable) {
+          onClicked();
+        }
+      }}
     >
       {title}
     </div>

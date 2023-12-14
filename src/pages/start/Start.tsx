@@ -3,12 +3,13 @@ import logoImage from "../../assets/images/home_logo.png";
 import GreyButtonRound from "@/components/button/grey-button-round/GreyButtonRound";
 import MainButtonRound from "@/components/button/main-button-round/MainButtonRound";
 import { useNavigate } from "react-router-dom";
+import Layout from "@/components/layout/Layout";
 
 const Start = () => {
   const navigate = useNavigate();
 
   return (
-    <div className={styles.container}>
+    <Layout>
       <span className={styles.subTitle}>
         프리랜서 번역가도, 포트폴리오가 있다
       </span>
@@ -39,7 +40,7 @@ const Start = () => {
           }}
         />
       </div>
-    </div>
+    </Layout>
   );
 };
 

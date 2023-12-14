@@ -1,23 +1,16 @@
 @import "@styles/mixins";
 @import "@styles/variables";
 
-.container {
-  @include full-width;
-  @include flex-center;
-  height: 100vh;
-  background-color: var(--color-background);
-}
-
 .content {
   @include full-height;
   @include flex-column-center;
-  width: 40%;
+  width: 50%;
 }
 
 .pageTitleSection {
   @include full-width;
   @include flex-column-center;
-  margin-bottom: 30px;
+  margin-bottom: $size-30;
 }
 
 .pageTitle {
@@ -27,7 +20,7 @@
   letter-spacing: var(--letter-spacing-10-71);
   font-family: var(--font-pretend);
   color: var(--color-gray);
-  margin-bottom: 20px;
+  margin-bottom: $size-20;
 }
 
 .pageSubTitle {
@@ -42,16 +35,16 @@
 
 .inputSection {
   @include flex;
-  height: 30px;
+  height: $size-30;
   align-items: center;
   justify-content: start;
-  margin-bottom: 10px;
+  margin-bottom: $size-10;
 }
 
 .inputTitle {
+  @include full-height;
   @include flex;
-  width: 100px;
-  height: 100%;
+  width: $size-120;
   font-size: $font-size-16;
   font-weight: var(--font-bold);
   font-family: var(--font-work);
@@ -61,17 +54,16 @@
 }
 
 .input {
-  width: 200px;
-  height: 100%;
+  @include full-container;
 }
 
 .divider {
-  height: 20px;
+  height: $size-20;
 }
 
 .buttonSection {
-  width: 200px;
-  height: 40px;
+  width: $size-200;
+  height: $size-40;
 }
 
 .snsSignInTitle {
@@ -79,6 +71,6 @@
 }
 
 .snsButtonSection {
-  width: 250px;
-  height: 45px;
+  width: $size-250;
+  height: $size-45;
 }

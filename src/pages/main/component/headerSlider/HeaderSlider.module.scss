@@ -5,23 +5,12 @@
   @include full-container;
 }
 
-.container1 {
+.sliderContent {
   @include full-width;
   @include flex-center;
   height: 200px;
-  background-color: lightblue;
 }
 
-.container2 {
-  @include full-width;
-  @include flex-center;
-  height: 200px;
-  background-color: lightcoral;
-}
-
-.container3 {
-  @include full-width;
-  @include flex-center;
-  height: 200px;
-  background-color: lightcyan;
+.img {
+  @include full-container;
 }
