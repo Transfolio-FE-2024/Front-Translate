@@ -2,12 +2,12 @@
 @import "../../styles/variables.scss";
 
 .container {
+  @include full-width;
   @include flex;
   align-items: center;
   justify-content: space-between;
-  gap: $size-20;
-  height: $size-84;
-  padding: 0 $size-40;
+  height: 70px;
+  padding: 0 40px;
 }
 
 .menuSection {
@@ -21,15 +21,14 @@
   @include flex-center;
   width: 50px;
   height: 50px;
-}
 
-.menuIconSection:hover {
-  opacity: 0.8;
+  &:hover {
+    @include opacity-0-8;
+  }
 }
 
 .menuIcon {
-  width: 100%;
-  height: 100%;
+  @include full-container;
 }
 
 .logoIcon {
@@ -57,10 +56,10 @@
   @include full-container;
   @include cursor-pointer;
   color: var(--color-gray);
-}
 
-.searchIcon:hover {
-  opacity: 0.8;
+  &:hover {
+    @include opacity-0-8;
+  }
 }
 
 .searchInputSection {

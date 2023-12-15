@@ -2,12 +2,13 @@ import MainButtonRound from "@/components/button/main-button-round/MainButtonRou
 import styles from "./Complete.module.scss";
 import { useNavigate } from "react-router-dom";
 import logoImage from "../../../../../assets/images/home_logo.png";
+import Layout from "@/components/layout/Layout";
 
 const Complete = () => {
   const navigate = useNavigate();
   return (
     <>
-      <div className={styles.container}>
+      <Layout>
         <div className={styles.content}>
           <div>
             <div className={styles.pageSubTitle}>프리랜서 번역가님!</div>
@@ -25,7 +26,7 @@ const Complete = () => {
             />
           </div>
         </div>
-      </div>
+      </Layout>
     </>
   );
 };

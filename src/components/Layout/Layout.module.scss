@@ -1,31 +1,22 @@
 @import "@styles/mixins";
 @import "@styles/variables";
-@import "@styles/relative";
 
 .container {
   @include full-width;
   @include flex-column-center;
-  height: $size-100vh;
-  background-color: var(--color-background);
+  min-height: 720px;
+  padding: 0;
+  margin: 0;
+}
 
-  @include tablet {
-    @include overflow-scroll;
-    min-width: 720px;
-  }
+.minContainer {
+  @include flex-column-center;
+  @include overflow-scroll;
+  width: 1440px;
+  padding: 0;
+  margin: 0;
 
-  @include laptopToTablet {
-    min-width: 960px;
-  }
-
-  @include laptop {
-    min-width: 1024px;
-  }
-
-  @include desktopToLaptop {
-    min-width: 1500px;
-  }
-
-  @include desktop {
-    min-width: 1800px;
+  &::-webkit-scrollbar {
+    display: none;
   }
 }

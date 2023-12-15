@@ -1,15 +1,9 @@
 @import "@styles/mixins";
 @import "@styles/variables";
 
-.container {
-  @include flex-center;
-  @include full-width;
-  height: 100vh;
-}
-
 .content {
   @include flex-column;
-  @include full-width;
+  width: 50%;
   height: 70%;
   align-items: center;
   justify-content: space-around;
@@ -20,7 +14,7 @@
 }
 
 .pageTitle {
-  font-size: $font-size-18;
+  font-size: 18px;
   font-weight: var(--font-bold);
   line-height: var(--line-height-21-15);
   letter-spacing: var(--letter-spacing-10-71);
@@ -30,7 +24,7 @@
 }
 
 .pageSubTitle {
-  font-size: $font-size-14;
+  font-size: 14px;
   font-weight: var(--font-bold);
   line-height: var(--line-height-16-45);
   letter-spacing: var(--letter-spacing-1-68);
@@ -38,8 +32,14 @@
   color: var(--color-green-1);
 }
 
+.inputSection {
+  @include full-width;
+  padding: 0 150px;
+  margin-bottom: 10px;
+}
+
 .inputTitle {
-  font-size: $font-size-14;
+  font-size: 14px;
   font-weight: var(--font-regular);
   font-family: var(--font-work);
   color: var(--color-light-gray);
@@ -55,9 +55,9 @@
 }
 
 .inputSubTitle {
+  @include full-height;
   @include flex;
-  width: 100px;
-  height: 100%;
+  width: 120px;
   font-size: $font-size-16;
   font-weight: var(--font-bold);
   font-family: var(--font-work);
@@ -67,14 +67,14 @@
 }
 
 .input {
-  width: 200px;
-  height: 100%;
+  @include full-height;
+  flex: 1;
 }
 
 .subButton {
+  @include full-height;
   margin-left: 20px;
   width: 80px;
-  height: 100%;
 }
 
 .mainButton {

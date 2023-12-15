@@ -111,12 +111,17 @@ body {
 
   ::-webkit-scrollbar {
     display: block;
-    width: 0.6rem;
+    width: 10px;
+    height: 10px;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--color-gray);
+    background: var(--color-light-gray);
     border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: transparent;
   }
 
   -webkit-font-smoothing: antialiased;

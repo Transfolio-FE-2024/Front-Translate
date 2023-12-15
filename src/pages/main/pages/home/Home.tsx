@@ -10,11 +10,6 @@ import { useEffect } from "react";
 let thumbnailContents = [1, 2, 3, 4, 5, 6, 7, 8];
 const Home = () => {
   const navigate = useNavigate();
-  const maxWidth1440 = useMediaQuery({ maxWidth: 1440 });
-
-  useEffect(() => {
-    console.log(maxWidth1440);
-  }, []);
 
   return (
     <>
@@ -22,11 +17,7 @@ const Home = () => {
         <div className={styles.headerSection}>
           <HeaderSlider />
         </div>
-        <div
-          className={`${styles.content} ${
-            maxWidth1440 ? null : styles.contentLarger
-          }`}
-        >
+        <div className={styles.content}>
           <div className={styles.divider}></div>
           <div className={styles.bodySection}>
             <ContentSlider />

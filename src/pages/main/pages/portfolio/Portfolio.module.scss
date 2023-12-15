@@ -6,22 +6,19 @@
 }
 
 .container {
-  width: 100%;
-  height: 85vh;
+  @include overflow-hidden;
+  @include full-width;
+  max-width: 1440px;
   padding: 10px 350px;
-  overflow: hidden;
 }
 
 .content {
-  width: 100%;
-  height: 100%;
-  overflow: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+  @include full-container;
+  @include overflow-scroll;
 
-.content::-webkit-scrollbar {
-  display: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .divider {

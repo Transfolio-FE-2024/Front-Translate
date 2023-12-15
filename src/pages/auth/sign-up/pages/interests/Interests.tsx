@@ -2,6 +2,7 @@ import MainButtonRound from "@/components/button/main-button-round/MainButtonRou
 import { useState } from "react";
 import styles from "./Interests.module.scss";
 import { useNavigate } from "react-router-dom";
+import Layout from "@/components/layout/Layout";
 
 const tableTitles = ["언어", "전공", "문학", "기업"];
 const langContents = [
@@ -73,7 +74,7 @@ const Interests = () => {
 
   return (
     <>
-      <div className={styles.container}>
+      <Layout>
         <div className={styles.content}>
           <div className={styles.pageTitleSection}>
             <div className={styles.pageTitle}>
@@ -161,7 +162,7 @@ const Interests = () => {
             />
           </div>
         </div>
-      </div>
+      </Layout>
     </>
   );
 };

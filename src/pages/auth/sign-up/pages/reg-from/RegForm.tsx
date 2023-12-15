@@ -5,6 +5,7 @@ import TextFieldAnnotation from "../../../../../components/text-field/text-field
 import SubButton from "../../component/sub-button/SubButton";
 import styles from "./RegForm.module.scss";
 import { useNavigate } from "react-router-dom";
+import Layout from "@/components/layout/Layout";
 
 const RegForm = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const RegForm = () => {
 
   return (
     <>
-      <div className={styles.container}>
+      <Layout>
         <div className={styles.content}>
           <div className={styles.pageTitleSection}>
             <div className={styles.pageTitle}>Register</div>
@@ -64,6 +65,7 @@ const RegForm = () => {
                   hide={true}
                 />
               </div>
+              <div className={styles.subButton}></div>
             </div>
           </div>
           <div className={styles.inputSection}>
@@ -104,7 +106,7 @@ const RegForm = () => {
             />
           </div>
         </div>
-      </div>
+      </Layout>
     </>
   );
 };

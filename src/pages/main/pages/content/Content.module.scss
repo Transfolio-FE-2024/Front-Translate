@@ -2,27 +2,24 @@
 @import "@styles/variables";
 
 .container {
-  width: 100%;
-  height: 85vh;
+  @include overflow-hidden;
+  @include full-container;
+  max-width: 1440px;
   padding: 10px 350px;
-  overflow: hidden;
 }
 
 .content {
-  width: 100%;
-  height: 100%;
-  overflow: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+  @include full-container;
+  @include overflow-scroll;
 
-.content::-webkit-scrollbar {
-  display: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .thumbnailSection {
   @include flex;
-  width: 100%;
+  @include full-width;
   height: 350px;
   padding: 50px 0px;
   align-items: center;
@@ -31,8 +28,8 @@
 
 .thumbnailCardSection {
   @include flex-column;
+  @include full-height;
   width: 300px;
-  height: 100%;
   background-color: var(--color-white);
   padding: 10px;
   align-items: center;
@@ -41,7 +38,7 @@
 
 .thumbnailCardIndexSection {
   @include flex;
-  width: 100%;
+  @include full-width;
   height: 10px;
   align-items: center;
   justify-content: start;
@@ -55,19 +52,19 @@
 }
 
 .thumbnailCardContentSection {
-  width: 100%;
+  @include full-width;
   height: 90%;
 }
 
 .thumbnailCardContentOriginalSection {
-  width: 100%;
+  @include full-width;
   margin-bottom: 10px;
   font-family: var(--font-pretend);
   line-height: var(--line-height-27);
 }
 
 .thumbnailCardContentTranslationSection {
-  width: 100%;
+  @include full-width;
   margin-bottom: 10px;
   font-family: var(--font-nanum);
   line-height: var(--line-height-27);
@@ -75,14 +72,13 @@
 
 .thumbnailContentSection {
   @include flex-column;
+  @include full-container;
   margin-left: 20px;
-  width: 100%;
-  height: 100%;
 }
 
 .thumbnailContentTitleDateSection {
   @include flex;
-  width: 100%;
+  @include full-width;
   height: 40px;
   align-items: center;
   justify-content: space-between;
@@ -108,14 +104,14 @@
 }
 
 .thumbnailContentDateSection {
-  font-size: $font-size-14;
+  font-size: 14px;
   font-family: var(--font-pretend);
   color: var(--color-light-gray);
 }
 
 .thumbnailContentTranslationDirectionSection {
   @include flex;
-  width: 100%;
+  @include full-width;
   height: 40px;
   align-items: center;
   justify-content: start;
@@ -123,7 +119,7 @@
 }
 
 .thumbnailContentTranslationTarget {
-  font-size: $font-size-14;
+  font-size: 14px;
   font-family: var(--font-pretend);
   color: var(--color-gray);
 }
@@ -134,18 +130,16 @@
 }
 
 .thumbnailContentIntroSection {
-  width: 100%;
-  height: 100%;
+  @include full-container;
   padding: 10px 0px;
 }
 
 .thumbnailContentIntro {
-  width: 100%;
-  height: 100%;
+  @include full-container;
   border-top: 0.5px solid var(--color-light-gray);
   border-bottom: 0.5px solid var(--color-light-gray);
   padding: 10px 0px;
-  font-size: $font-size-14;
+  font-size: 14px;
   font-family: var(--font-pretend);
   color: var(--color-gray);
   letter-spacing: var(--letter-spacing-1-92);
@@ -153,12 +147,12 @@
 }
 
 .thumbnailContentDetailSection {
-  width: 100%;
+  @include full-width;
 }
 
 .thumbnailContentDetail {
   @include flex;
-  width: 100%;
+  @include full-width;
   height: 30px;
   align-items: center;
   justify-content: start;
@@ -166,9 +160,9 @@
 
 .thumbnailContentDetailTitle {
   @include flex;
+  @include full-height;
   width: 100px;
-  height: 100%;
-  font-size: $font-size-14;
+  font-size: 14px;
   font-family: var(--font-pretend);
   color: var(--color-light-gray);
   align-items: center;
@@ -177,9 +171,8 @@
 
 .thumbnailContentDetailContent {
   @include flex;
-  width: 100%;
-  height: 100%;
-  font-size: $font-size-14;
+  @include full-container;
+  font-size: 14px;
   font-family: var(--font-pretend);
   color: var(--color-light-gray);
   align-items: center;
@@ -187,18 +180,17 @@
 }
 
 .mainContentSection {
-  width: 100%;
+  @include full-width;
   padding: 20px;
   background-color: var(--color-white);
 }
 
 .mainContent {
-  width: 100%;
-  height: 100%;
+  @include full-container;
 }
 
 .mainContentRow {
-  width: 100%;
+  @include full-width;
   border-bottom: 0.5px solid var(--color-light-gray);
   margin-bottom: 20px;
 }
