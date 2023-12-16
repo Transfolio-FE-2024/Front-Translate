@@ -121,3 +121,29 @@
 .divider {
   width: 20px;
 }
+
+.writingSection {
+  @include full-width;
+}
+
+.buttonsSection {
+  @include full-width;
+  @include flex;
+  height: 50px;
+  align-items: center;
+  justify-content: start;
+}
+
+.buttonSection {
+  @include flex;
+  @include full-height;
+  width: 100px;
+  align-items: center;
+  justify-content: start;
+}
+
+.writingContentSection {
+  @include full-width;
+  height: 500px;
+  background-color: red;
+}

@@ -7,8 +7,16 @@ import { VscArrowSwap } from "react-icons/vsc";
 import DropdownButton from "./component/dropdown-button/DropdownButton";
 import TextFieldLonger from "@/components/text-field/text-field-longer/TextFieldLonger";
 import { RiErrorWarningLine } from "react-icons/ri";
+import ArrowDropdownButton from "./component/arrow-dropdown-button/ArrowDropdownButton";
 
 const languageList = ["한국어", "영어", "일본어", "아랍어", "불어"];
+const fontSizeList = ["14pt", "16pt", "18pt", "20pt"];
+const fontFamilyList = [
+  "Pretendard",
+  "Nanum Myeangjo",
+  "Noto sans",
+  "Nanum Barun Gothic",
+];
 const Portfolio = () => {
   const [title, setTitle] = useState<string>("");
   const [information, setInformation] = useState<string>("");
@@ -24,6 +32,11 @@ const Portfolio = () => {
   const [selectedSubCatetory, setSelectedSubCategory] = useState<string | null>(
     null
   );
+  const [selectedFontSize, setSelectedFontSize] = useState<string | null>(null);
+  const [selectedFontFamily, setSelectedFontFamily] = useState<string | null>(
+    null
+  );
+
   return (
     <>
       <div className={styles.container}>
@@ -125,6 +138,35 @@ const Portfolio = () => {
                 <div className={styles.etcTitleSection}>@kimhim</div>
               </div>
             </div>
+          </div>
+          <div className={styles.divider}></div>
+          <div className={styles.writingSection}>
+            <div className={styles.buttonsSection}>
+              <div className={styles.buttonSection}>
+                <ArrowDropdownButton
+                  title={
+                    selectedFontSize === null ? "글자 크기" : selectedFontSize
+                  }
+                  values={fontSizeList}
+                  selectedValue={selectedFontSize}
+                  onValueClicked={(value) => setSelectedFontSize(value)}
+                  isFontFamily={false}
+                />
+              </div>
+              <div className={styles.buttonSection}>
+                <ArrowDropdownButton
+                  title={
+                    selectedFontFamily === null
+                      ? "설체 설정"
+                      : selectedFontFamily
+                  }
+                  values={fontFamilyList}
+                  selectedValue={selectedFontFamily}
+                  onValueClicked={(value) => setSelectedFontFamily(value)}
+                />
+              </div>
+            </div>
+            <div className={styles.writingContentSection}></div>
           </div>
         </div>
       </div>

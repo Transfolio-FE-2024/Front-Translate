@@ -4,13 +4,14 @@
 .button {
   font-family: var(--font-pretend);
   color: var(--color-gray);
+
+  &:focus {
+    box-shadow: none;
+  }
 }
 
-.button:focus {
-  box-shadow: none;
-}
-
-.dropdownContent {
+.dropdownFontContent {
+  @include cursor-pointer;
   color: var(--color-gray);
   &:first-child {
     font-family: var(--font-pretend);
@@ -24,4 +25,23 @@
   &:last-child {
     font-family: var(--font-variable);
   }
+
+  &:active {
+    background-color: var(--color-light-gray);
+  }
+}
+
+.dropdownContent {
+  @include cursor-pointer;
+  color: var(--color-gray);
+  font-family: var(--font-pretend);
+
+  &:active {
+    background-color: var(--color-light-gray);
+  }
+}
+
+.active {
+  color: var(--color-orange);
+  font-weight: var(--font-semi-bold);
 }

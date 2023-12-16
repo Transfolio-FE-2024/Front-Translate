@@ -5,6 +5,7 @@
   @include full-width;
   @include flex-column-center;
   min-height: 720px;
+  height: 100vh;
   padding: 0;
   margin: 0;
 }
@@ -13,6 +14,7 @@
   @include flex-column-center;
   @include overflow-scroll;
   width: 1440px;
+  height: 98vh;
   padding: 0;
   margin: 0;
 

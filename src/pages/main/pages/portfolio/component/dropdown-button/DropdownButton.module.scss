@@ -4,15 +4,20 @@
 .button {
   font-family: var(--font-pretend);
   color: var(--color-gray);
-}
 
-.button:focus {
-  box-shadow: none;
+  &:focus {
+    box-shadow: none;
+  }
 }
 
 .dropdownContent {
+  @include cursor-pointer;
   font-family: var(--font-pretend);
   color: var(--color-gray);
+
+  &:active {
+    background-color: var(--color-light-gray);
+  }
 }
 
 .active {

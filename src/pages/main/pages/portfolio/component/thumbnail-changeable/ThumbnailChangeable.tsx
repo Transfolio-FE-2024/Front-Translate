@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./ThumbnailChangeable.module.scss";
 import ArrowDropdownButton from "../arrow-dropdown-button/ArrowDropdownButton";
 
+const fontFamilyList = [
+  "Pretendard",
+  "Nanum Myeangjo",
+  "Noto sans",
+  "Nanum Barun Gothic",
+];
 const ThumbnailChangeable: React.FC<{ title: string }> = ({ title }) => {
+  const [selectedFontFamily, setSelectedFontFamily] = useState<string | null>(
+    null
+  );
+
   return (
     <>
       <div className={styles.container}>
@@ -11,7 +21,14 @@ const ThumbnailChangeable: React.FC<{ title: string }> = ({ title }) => {
             <div className={styles.index}></div>
           </div>
           <div className={styles.dropdownSection}>
-            <ArrowDropdownButton title="서체 설정" />
+            <ArrowDropdownButton
+              title={
+                selectedFontFamily === null ? "서체 설정" : selectedFontFamily
+              }
+              values={fontFamilyList}
+              selectedValue={selectedFontFamily}
+              onValueClicked={(value) => setSelectedFontFamily(value)}
+            />
           </div>
           <div className={styles.indexContainer}></div>
         </div>

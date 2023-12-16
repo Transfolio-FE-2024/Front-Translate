@@ -4,7 +4,7 @@
 .content {
   @include full-height;
   @include flex-column-center;
-  width: 50%;
+  width: 350px;
 }
 
 .pageTitleSection {
@@ -40,7 +40,7 @@
   align-items: center;
   justify-content: start;
   margin-bottom: 10px;
-  padding: 0 200px;
+  //   padding: 0 200px;
 }
 
 .inputTitle {
