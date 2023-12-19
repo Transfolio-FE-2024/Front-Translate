@@ -8,6 +8,9 @@ import DropdownButton from "./component/dropdown-button/DropdownButton";
 import TextFieldLonger from "@/components/text-field/text-field-longer/TextFieldLonger";
 import { RiErrorWarningLine } from "react-icons/ri";
 import ArrowDropdownButton from "./component/arrow-dropdown-button/ArrowDropdownButton";
+import GreyButtonSquare from "@/components/button/grey-button-square/GreyButtonSquare";
+import MainButtonSquare from "@/components/button/main-button-square/MainButtonSquare";
+import WritingContent from "./component/writing-content/WritingContent";
 
 const languageList = ["한국어", "영어", "일본어", "아랍어", "불어"];
 const fontSizeList = ["14pt", "16pt", "18pt", "20pt"];
@@ -166,7 +169,16 @@ const Portfolio = () => {
                 />
               </div>
             </div>
-            <div className={styles.writingContentSection}></div>
+            <WritingContent />
+            <div className={styles.mainButtonsSection}>
+              <div className={styles.mainButtonSection}>
+                <GreyButtonSquare title="임시 저장" onClicked={() => {}} />
+              </div>
+              <div className={styles.mainButtonDivider}></div>
+              <div className={styles.mainButtonSection}>
+                <MainButtonSquare title="제출하기" onClicked={() => {}} />
+              </div>
+            </div>
           </div>
         </div>
       </div>

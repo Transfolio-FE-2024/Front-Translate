@@ -1,0 +1,10 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.container {
+  @include full-width;
+  @include flex-column;
+  min-height: 500px;
+  background-color: rgba($color: #ffffff, $alpha: 0.26);
+  padding: 10px;
+}

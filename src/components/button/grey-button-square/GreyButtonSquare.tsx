@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./MainButtonSquare.module.scss";
+import styles from "./GreyButtonSquare.module.scss";
 
-const MainButtonSquare: React.FC<{
+const GreyButtonSquare: React.FC<{
   title: string;
   onClicked: () => void;
   enable?: boolean;
@@ -22,4 +22,4 @@ const MainButtonSquare: React.FC<{
   );
 };
 
-export default MainButtonSquare;
+export default GreyButtonSquare;

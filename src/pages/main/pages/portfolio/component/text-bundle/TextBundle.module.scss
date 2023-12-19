@@ -1,0 +1,22 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.input {
+  min-width: 100px;
+  box-shadow: 0 0 2px var(--color-light-gray);
+  border-radius: 5px;
+  background-color: var(--color-white);
+  padding: 0 5px;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+
+  &:focus {
+    border: 1px solid var(--color-light-gray);
+    background-color: var(--color-white);
+  }
+}
+
+.original {
+  color: var(--color-orange);
+}
