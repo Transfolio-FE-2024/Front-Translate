@@ -8,3 +8,30 @@
   background-color: rgba($color: #ffffff, $alpha: 0.26);
   padding: 10px;
 }
+
+.textBundleContainer {
+  @include flex;
+  @include full-width;
+  margin-bottom: 10px;
+}
+
+.textBundleSection {
+  @include flex-column;
+  flex: 1;
+}
+
+.deleteIconSection {
+  @include flex-center;
+  width: 30px;
+  padding: 5px;
+}
+
+.deleteIcon {
+  @include cursor-pointer;
+  @include full-container;
+  color: #f6b298;
+
+  &:hover {
+    @include opacity-0-8;
+  }
+}

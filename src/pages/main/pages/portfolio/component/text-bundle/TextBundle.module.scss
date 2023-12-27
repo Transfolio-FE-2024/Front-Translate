@@ -1,15 +1,13 @@
 @import "@styles/mixins";
 @import "@styles/variables";
 
-.input {
-  min-width: 100px;
+.textarea {
+  @include overflow-hidden;
   box-shadow: 0 0 2px var(--color-light-gray);
   border-radius: 5px;
   background-color: var(--color-white);
-  padding: 0 5px;
+  resize: none;
   margin-bottom: 5px;
-  white-space: nowrap;
-  overflow: hidden;
 
   &:focus {
     border: 1px solid var(--color-light-gray);
