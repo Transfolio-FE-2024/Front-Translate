@@ -5,8 +5,7 @@ import TextAreaAutoResize from "react-textarea-autosize";
 const TextBundle: React.FC<{
   original?: boolean;
   onEnterPressed?: () => void;
-  onValueDeleted?: () => void;
-}> = ({ original = true, onEnterPressed = null, onValueDeleted = null }) => {
+}> = ({ original = true, onEnterPressed = null }) => {
   const [value, setValue] = useState<string>("");
 
   const keyDownHandler = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -26,6 +25,7 @@ const TextBundle: React.FC<{
         placeholder={
           original ? "원본 문장을 입력해주세요" : "번역된 문장을 입력해주세요"
         }
+        onChange={(e) => setValue(e.target.value)}
         autoFocus={original ? true : false}
         className={`${styles.textarea} ${original ? styles.original : null}`}
         onKeyDown={keyDownHandler}

@@ -4,8 +4,6 @@ import HeaderSlider from "../../component/headerSlider/HeaderSlider";
 import Writers from "../../component/writers/Writers";
 import styles from "./Home.module.scss";
 import ThumbnailCardFolderable from "@/components/thumbnail-card/thumbnail-card-folderable/ThumbnailCardFolderable";
-import { useMediaQuery } from "react-responsive";
-import { useEffect } from "react";
 
 let thumbnailContents = [1, 2, 3, 4, 5, 6, 7, 8];
 const Home = () => {
