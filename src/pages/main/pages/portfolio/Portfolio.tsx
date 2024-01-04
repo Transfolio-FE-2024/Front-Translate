@@ -113,7 +113,7 @@ const Portfolio = () => {
                   <DropdownButton
                     title={
                       selectedMainCatetory === null
-                        ? "대분류 선택"
+                        ? "대분류"
                         : selectedMainCatetory
                     }
                     values={languageList}
@@ -126,7 +126,7 @@ const Portfolio = () => {
                   <DropdownButton
                     title={
                       selectedSubCatetory === null
-                        ? "소분류 선택"
+                        ? "소분류"
                         : selectedSubCatetory
                     }
                     values={languageList}

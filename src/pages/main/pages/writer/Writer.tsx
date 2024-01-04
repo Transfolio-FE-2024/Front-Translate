@@ -4,7 +4,7 @@ import { IoPersonCircleOutline } from "react-icons/io5";
 import { useState } from "react";
 import ThumbnailCardFolderable from "../../../../components/thumbnail-card/thumbnail-card-folderable/ThumbnailCardFolderable";
 
-let buttonTitles = ["포트폴리오", "경력", "접음"];
+const buttonTitles = ["포트폴리오", "경력", "접음"];
 const Writer = () => {
   const [selectedButtonIndex, setSelectedButtonIndex] = useState<number>(0);
 
@@ -58,31 +58,7 @@ const Writer = () => {
             </div>
             <div className={styles.portfolioThumbnailCardSection}>
               <ThumbnailCardFolderable
-                original="たら堪らないという気を よく起した。"
-                translated="내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다."
-                writer="@Kimhim"
-                picked={4}
-              />
-              <ThumbnailCardFolderable
-                original="たら堪らないという気を よく起した。"
-                translated="내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다."
-                writer="@Kimhim"
-                picked={4}
-              />
-              <ThumbnailCardFolderable
-                original="たら堪らないという気を よく起した。"
-                translated="내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다."
-                writer="@Kimhim"
-                picked={4}
-              />
-              <ThumbnailCardFolderable
-                original="たら堪らないという気を よく起した。"
-                translated="내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다."
-                writer="@Kimhim"
-                picked={4}
-              />
-              <ThumbnailCardFolderable
-                original="たら堪らないという気を よく起した。"
+                original="ㅊ"
                 translated="내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다."
                 writer="@Kimhim"
                 picked={4}
