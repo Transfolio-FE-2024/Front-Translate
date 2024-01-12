@@ -2,6 +2,7 @@
 @import "@styles/variables";
 
 .container {
+  @include overflow-hidden;
   @include full-width;
   @include flex-column;
   min-height: 500px;
@@ -34,4 +35,30 @@
   &:hover {
     @include opacity-0-8;
   }
+}
+
+.originalTextInput {
+  @include overflow-hidden;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  min-height: 28px;
+  box-shadow: 0 0 2px var(--color-light-gray);
+  border-radius: 5px;
+  background-color: var(--color-white);
+  margin-bottom: 5px;
+  color: var(--color-orange);
+  padding: 0px 2px;
+}
+
+.translatedTextInput {
+  @include overflow-hidden;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  min-height: 28px;
+  box-shadow: 0 0 2px var(--color-light-gray);
+  border-radius: 5px;
+  background-color: var(--color-white);
+  margin-bottom: 5px;
+  color: var(--color-text);
+  padding: 0px 2px;
 }
