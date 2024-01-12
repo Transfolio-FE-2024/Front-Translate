@@ -4,63 +4,77 @@ import styles from "./WritingContent.module.scss";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 
 const WritingContent = () => {
-  const [rows, setRows] = useState<number>(1);
-  const [children, setChildren] = useState<any[]>([
-    <div className={styles.textBundleContainer}>
-      <div className={styles.textBundleSection}>
-        <TextBundle />
-        <TextBundle
-          original={false}
-          onEnterPressed={() => {
-            setRows((prev) => prev + 1);
-          }}
-        />
-      </div>
-      <div className={styles.deleteIconSection}>
-        <IoMdCloseCircleOutline className={styles.deleteIcon} />
-      </div>
-    </div>,
-  ]);
+  const [origianlContents, setOriginalContents] = useState<string[]>([""]);
+  const [translatedContents, setTranslatedContents] = useState<string[]>([""]);
 
-  const handleDeleteIconClick = (targetIndex: number) => {
-    console.log(targetIndex);
-    setChildren((prev) => {
-      const updatedChildren = [...prev];
-      updatedChildren.splice(targetIndex, 1);
-      return updatedChildren;
+  const deleteIconClickHandler = (targetIndex: number) => {
+    setOriginalContents((prev) => {
+      const updated = [...prev];
+      updated.splice(targetIndex, 1);
+      return updated;
+    });
+    setTranslatedContents((prev) => {
+      const updated = [...prev];
+      updated.splice(targetIndex, 1);
+      return updated;
     });
   };
 
-  useEffect(() => {
-    if (rows === 1) {
-      return;
-    }
-
-    setChildren((prev) => [
-      ...prev,
-      <div className={styles.textBundleContainer}>
-        <div className={styles.textBundleSection}>
-          <TextBundle />
-          <TextBundle
-            original={false}
-            onEnterPressed={() => {
-              setRows((prev) => prev + 1);
-            }}
-          />
-        </div>
-        <div className={styles.deleteIconSection}>
-          <IoMdCloseCircleOutline
-            className={styles.deleteIcon}
-            onClick={() => handleDeleteIconClick(prev.length)}
-          />
-        </div>
-      </div>,
-    ]);
-  }, [rows]);
+  const enterPressHandler = (targetIndex: number) => {
+    setOriginalContents((prev) => {
+      const updated = [...prev];
+      updated.splice(targetIndex + 1, 0, "");
+      return updated;
+    });
+    setTranslatedContents((prev) => {
+      const updated = [...prev];
+      updated.splice(targetIndex + 1, 0, "");
+      return updated;
+    });
+  };
 
   return (
     <>
-      <div className={styles.container}>{children}</div>
+      <div className={styles.container}>
+        {origianlContents.map((content, index) => {
+          return (
+            <div className={styles.textBundleContainer} key={index}>
+              <div className={styles.textBundleSection}>
+                <TextBundle
+                  key={`original-${index}`}
+                  value={content}
+                  setValue={(value) =>
+                    setOriginalContents((prev) => {
+                      const updated = [...prev];
+                      updated[index] = value;
+                      return updated;
+                    })
+                  }
+                />
+                <TextBundle
+                  key={`translated-${index}`}
+                  original={false}
+                  value={translatedContents[index]}
+                  setValue={(value) =>
+                    setTranslatedContents((prev) => {
+                      const updated = [...prev];
+                      updated[index] = value;
+                      return updated;
+                    })
+                  }
+                  onEnterPressed={() => enterPressHandler(index)}
+                />
+              </div>
+              <div className={styles.deleteIconSection}>
+                <IoMdCloseCircleOutline
+                  className={styles.deleteIcon}
+                  onClick={() => deleteIconClickHandler(index)}
+                />
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 };

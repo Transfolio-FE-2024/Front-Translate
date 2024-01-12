@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./TextBundle.module.scss";
 import TextAreaAutoResize from "react-textarea-autosize";
 
 const TextBundle: React.FC<{
   original?: boolean;
   onEnterPressed?: () => void;
-}> = ({ original = true, onEnterPressed = null }) => {
-  const [value, setValue] = useState<string>("");
-
+  value: string;
+  setValue: (value: string) => void;
+}> = ({ original = true, onEnterPressed = null, value, setValue }) => {
   const keyDownHandler = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
