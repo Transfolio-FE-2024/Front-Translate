@@ -151,8 +151,13 @@
 }
 
 .logoutButton {
+  @include cursor-pointer;
   color: var(--color-light-gray);
   font-size: $font-size-16;
   font-family: var(--font-pretend);
   font-weight: var(--font-semi-bold);
+
+  &:hover {
+    @include opacity-0-8;
+  }
 }

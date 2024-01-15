@@ -5,10 +5,17 @@ import MainButtonRound from "@/components/button/main-button-round/MainButtonRou
 import SnsButton from "@/components/button/sns-button/SnsButton";
 import kakaoImg from "../../../assets/images/sns_kakaotalk.png";
 import Layout from "@/components/layout/Layout";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
+  const navigate = useNavigate();
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const loginButtonClickHandler = () => {
+    navigate("/home");
+  };
+
   return (
     <>
       <Layout>
@@ -39,7 +46,10 @@ const SignIn = () => {
           <div className={styles.divider}></div>
           <div className={styles.divider}></div>
           <div className={styles.buttonSection}>
-            <MainButtonRound title="로그인" onClicked={() => {}} />
+            <MainButtonRound
+              title="로그인"
+              onClicked={loginButtonClickHandler}
+            />
           </div>
           <div className={styles.divider}></div>
           <div className={styles.divider}></div>

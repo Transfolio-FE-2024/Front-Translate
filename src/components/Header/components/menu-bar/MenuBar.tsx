@@ -16,6 +16,10 @@ const MenuBar: React.FC<{
     }, 350);
   };
 
+  const logoutButtonClickHandler = () => {
+    navigate("/");
+  };
+
   return (
     <>
       <div className={styles.overlay} onClick={overlayClickHandler}></div>
@@ -59,7 +63,12 @@ const MenuBar: React.FC<{
             </div>
           </div>
           <div className={styles.logoutButtonSection}>
-            <div className={styles.logoutButton}>로그아웃</div>
+            <div
+              className={styles.logoutButton}
+              onClick={logoutButtonClickHandler}
+            >
+              로그아웃
+            </div>
           </div>
         </div>
       </div>
