@@ -18,4 +18,9 @@ export default defineConfig({
     ],
   },
   plugins: [react(), svgrPlugin()],
+  server: {
+    watch: {
+      usePolling: true,
+    },
+  },
 });
