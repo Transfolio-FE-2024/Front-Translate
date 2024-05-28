@@ -1,11 +1,13 @@
 import MainButtonRound from "@/components/button/main-button-round/MainButtonRound";
 import { useState } from "react";
 import TextField from "../../../../../components/text-field/TextField";
-import TextFieldAnnotation from "../../../../../components/text-field/text-field-annotation/TextFieldAnnotation";
 import SubButton from "../../component/sub-button/SubButton";
 import styles from "./RegForm.module.scss";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
+import { SignUpInfo } from "@/interface";
+import { SessionStorageManager, ValidationUtil } from "@/util";
+import { TF } from "@/util/const";
 
 const RegForm = () => {
   const navigate = useNavigate();
@@ -14,6 +16,39 @@ const RegForm = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [certificationNumber, setCertificationNumber] = useState<string>("");
+
+  // 입력값 유효성 검사
+  const validateInput = (): boolean => {
+    const onError = (key: string) => alert(`${key} 값을 입력하세요.`);
+
+    if (
+      !ValidationUtil.isBlank(
+        { value: id, key: "아이디", onError },
+        { value: password, key: "비밀번호", onError },
+        { value: confirmPassword, key: "비밀번호 확인", onError },
+        { value: email, key: "이메일", onError },
+        { value: certificationNumber, key: "이메일 인증", onError }
+      )
+    ) {
+      return false;
+    }
+
+    // TODO 아이디 중복확인 체크
+
+    if (password !== confirmPassword) {
+      alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+      return false;
+    }
+
+    if (!ValidationUtil.validateEmail(email)) {
+      alert("이메일 형식이 유효하지 않습니다.");
+      return false;
+    }
+
+    // TODO 이메일 인증여부 체크
+
+    return true;
+  };
 
   return (
     <>
@@ -54,14 +89,13 @@ const RegForm = () => {
             <div className={styles.inputContainer}>
               <div className={styles.inputSubTitle}>비밀번호 확인</div>
               <div className={styles.input}>
-                <TextFieldAnnotation
+                <TextField
                   value={confirmPassword}
                   onChange={(value: string) => setConfirmPassword(value)}
-                  text={
-                    password === confirmPassword
-                      ? ""
-                      : "비밀번호가 일치하지 않습니다."
+                  validationFn={(value) =>
+                    value && password !== value ? "Error" : "Ok"
                   }
+                  validationFailText="비밀번호가 일치하지 않습니다."
                   hide={true}
                 />
               </div>
@@ -78,6 +112,12 @@ const RegForm = () => {
                 <TextField
                   value={email}
                   onChange={(value) => setEmail(value)}
+                  validationFn={(value) => {
+                    return value && !ValidationUtil.validateEmail(value)
+                      ? "Error"
+                      : "Ok";
+                  }}
+                  validationFailText="올바른 이메일 형식이 아닙니다."
                 />
               </div>
               <div className={styles.subButton}>
@@ -101,6 +141,24 @@ const RegForm = () => {
             <MainButtonRound
               title="다음"
               onClicked={() => {
+                if (!validateInput()) return;
+
+                const signUpInfo: SignUpInfo = {
+                  userId: id,
+                  password: password,
+                  email: email,
+                  userIntrsDto: {
+                    intrsLanguage: "",
+                    intrsMajor: "",
+                    intrsLiterature: "",
+                    intrsCorporation: "",
+                  },
+                };
+                SessionStorageManager.set(
+                  window,
+                  TF.KEY.SESSION_STORAGE.SIGNUPINFO,
+                  JSON.stringify(signUpInfo)
+                );
                 navigate("/signup/interests");
               }}
             />
