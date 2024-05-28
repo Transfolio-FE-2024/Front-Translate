@@ -39,11 +39,13 @@ const Writers = () => {
 				</div>
 				<div className={styles.writersSection}>
 					{writers.map((writer) => (
-						<WriterThumbnail
-							key={writer}
-							isFolded
-							onClicked={() => navigate("/home/writer")}
-						/>
+						<div className={styles.writerThumbnailWrapper}>
+							<WriterThumbnail
+								key={writer}
+								isFolded
+								onClicked={() => navigate("/home/writer")}
+							/>
+						</div>
 					))}
 				</div>
 			</div>
