@@ -19,3 +19,14 @@
   outline: none;
   border-bottom: 1px solid var(--color-light-gray);
 }
+
+.error input,
+.error input:focus {
+  border-bottom-color: var(--color-green-1);
+}
+
+.error .errorText {
+  font-size: $font-size-12;
+  color: var(--color-green-1);
+  font-family: var(--font-pretend);
+}
