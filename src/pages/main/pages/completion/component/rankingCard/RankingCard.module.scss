@@ -1,0 +1,46 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.rank {
+    text-align: center;
+    text-indent: var(--letter-spacing-13-09);
+    font-weight: bold;
+    font-family : var(--font-pretend);
+    line-height : var(--line-height-25-85);
+    letter-spacing: var(--letter-spacing-13-09);
+    margin-bottom: 19px;
+}
+
+.writerThumbnailWrapper{
+    position: relative;
+}
+
+.prizeIcon {
+    position: absolute;
+    fill : black;
+    z-index : 2;
+}
+
+.button {
+    @include flex-center;
+    color : var(--color-white);
+    padding : 10px 10px;
+    font-size: 16px;
+    cursor : pointer;
+    font-family : var(--font-pretend);
+    background-color : var(--color-footer);
+    line-height: var(--line-height-normal);
+    letter-spacing : var(--letter-spacing-0-64);
+}
+
+.colorOrange {
+    color : var(--color-orange);
+}
+
+.bgColorOrange {
+    background-color : var(--color-orange);
+}
+
+.fillColorOrange {
+    fill : var(--color-orange);
+}
