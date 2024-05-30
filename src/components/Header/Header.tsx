@@ -1,5 +1,5 @@
 import styles from "./Header.module.scss";
-import { logoIcon, menuIcon } from "./icons";
+import { logoIcon } from "./icons";
 import { useState } from "react";
 import MenuBar from "./components/menu-bar/MenuBar";
 import Button from "./components/button/Button";
@@ -29,9 +29,17 @@ export const Header = () => {
             className={styles.menuIconSection}
             onClick={menuIconClickHandler}
           >
-            <img src={menuIcon} className={menuIcon} />
+            <div></div>
+            <div></div>
+            <div></div>
           </div>
-          <div className={styles.logoIcon} onClick={() => navigate("/home")}>
+          <div
+            className={styles.logoIcon}
+            onClick={() => {
+              navigate("/home");
+              window.scrollTo(0, 0);
+            }}
+          >
             <img src={logoIcon} />
           </div>
         </div>

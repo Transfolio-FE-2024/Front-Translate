@@ -2,15 +2,15 @@
 @import "@styles/variables";
 
 .container {
-  @include full-container;
-  @include overflow-hidden;
-  max-width: 1440px;
-  padding: 10px 350px;
+  margin-top: var(--header-height);
+  margin-bottom: 55px;
 }
 
 .content {
   @include full-container;
   @include overflow-scroll;
+  max-width: var(--width-content-max);
+  margin: 0 auto;
 
   &::-webkit-scrollbar {
     display: none;

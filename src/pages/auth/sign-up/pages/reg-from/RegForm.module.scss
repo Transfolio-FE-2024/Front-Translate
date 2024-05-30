@@ -1,16 +1,23 @@
 @import "@styles/mixins";
 @import "@styles/variables";
 
+.container {
+  @include flex-column-center;
+  min-height: 100vh;
+  justify-content: space-between;
+  padding: 55px;
+  min-width: fit-content;
+}
+
 .content {
   @include flex-column;
-  width: 800px;
-  height: 70%;
   align-items: center;
   justify-content: space-around;
 }
 
 .pageTitleSection {
   @include flex-column-center;
+  margin-bottom: 60px;
 }
 
 .pageTitle {
@@ -34,8 +41,7 @@
 
 .inputSection {
   @include full-width;
-  padding: 0 150px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .inputTitle {
@@ -80,4 +86,5 @@
 .mainButton {
   width: 200px;
   height: 40px;
+  margin-top: 25px;
 }

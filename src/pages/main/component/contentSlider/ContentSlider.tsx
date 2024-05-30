@@ -6,10 +6,12 @@ import "slick-carousel/slick/slick-theme.css";
 import ThumbnailCardFolderable from "@/components/thumbnail-card/thumbnail-card-folderable/ThumbnailCardFolderable";
 import { useRef, useState } from "react";
 import Arrow from "../arrow/Arrow";
+import { useMediaQuery } from "react-responsive";
 
 const sliderContents = [1, 2, 3, 4, 5, 6, 7, 8];
-const sliderNumber = 3;
 const ContentSlider = () => {
+  const isMobile = useMediaQuery({ maxWidth: "767px" });
+  const sliderNumber = isMobile ? 1 : 3;
   const [pageIndex, setPageIndex] = useState<number>(0);
   const slickRef = useRef<Slider>(null);
   const sliderSettings = {
@@ -55,7 +57,7 @@ const ContentSlider = () => {
                     <div className={styles.sliderTitle}>번역도 감-성 으로</div>
                     <div className={styles.thumbnailSection}>
                       <ThumbnailCardFolderable
-                        original="たら堪らないという気をよく起した。 내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다."
+                        original="たら堪らないという気をよく起した。 내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다. 내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다."
                         translated="번역본"
                         writer="@Kimhim"
                         picked={109}
