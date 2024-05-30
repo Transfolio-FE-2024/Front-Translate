@@ -160,7 +160,7 @@ const Portfolio = () => {
                 <ArrowDropdownButton
                   title={
                     selectedFontFamily === null
-                      ? "설체 설정"
+                      ? "서체 설정"
                       : selectedFontFamily
                   }
                   values={fontFamilyList}

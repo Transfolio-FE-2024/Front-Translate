@@ -1,6 +1,14 @@
 @import "@styles/mixins";
 @import "@styles/variables";
 
+.container {
+  @include flex-column-center;
+  min-height: 100vh;
+  justify-content: space-between;
+  padding: 55px;
+  min-width: fit-content;
+}
+
 .content {
   @include flex-column;
   width: 800px;
@@ -11,6 +19,7 @@
 
 .pageTitleSection {
   @include flex-column-center;
+  margin-bottom: 50px;
 }
 
 .pageTitle {
@@ -120,4 +129,5 @@
 .mainButton {
   width: 200px;
   height: 40px;
+  margin-top: 52px;
 }

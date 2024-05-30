@@ -6,15 +6,15 @@
 }
 
 .container {
-  @include overflow-hidden;
-  @include full-width;
-  max-width: 1440px;
-  padding: 10px 350px;
+  margin-top: var(--header-height);
+  margin-bottom: 55px;
 }
 
 .content {
   @include full-container;
   @include overflow-scroll;
+  max-width: var(--width-content-max);
+  margin: 0 auto;
 
   &::-webkit-scrollbar {
     display: none;
@@ -27,18 +27,20 @@
 
 .thumbnailSection {
   @include full-width;
-  @include flex;
-  height: 300px;
+  @include flex-center;
+  flex-wrap: wrap;
 }
 
 .thumbnailCardSection {
-  @include full-height;
   width: 200px;
+  height: 300px;
+  margin: 10px 0;
 }
 
 .thumbnailInfoSection {
-  @include full-height;
   @include flex-column;
+  height: 300px;
+  margin: 10px 0;
   flex: 1;
   padding-left: 20px;
 }

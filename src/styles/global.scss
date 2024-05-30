@@ -7,6 +7,7 @@
 
   --color-join-background: #f1f1f2;
   --color-background: #eeeeef; // 회원가입 완료 화면부터 배경색이 바뀜
+  --color-header: #f6f6f6;
   --color-footer: #d9d9d9;
 
   --color-white: #ffffff;
@@ -80,6 +81,10 @@
   --letter-spacing-0-48: 0.48px;
   --letter-spacing-minus-0-24: -0.24px;
   --letter-spacing-minus-0-4: -0.4px;
+
+  /* ======= Transfolio ======= */
+  --header-height: 86px;
+  --width-content-max: 720px;
 }
 
 html {
@@ -88,18 +93,8 @@ html {
 
 * {
   box-sizing: border-box;
-  font-family:
-    NanumMyeongjo,
-    -apple-system,
-    BlinkMacSystemFont,
-    Segoe UI,
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    Fira Sans,
-    Droid Sans,
-    Helvetica Neue,
+  font-family: NanumMyeongjo, -apple-system, BlinkMacSystemFont, Segoe UI,
+    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
     sans-serif;
 }
 
@@ -180,8 +175,7 @@ button {
   font-family: "Nanum Myeongjo";
   font-style: normal;
   font-weight: 400;
-  src:
-    local("Nanum-Myeongjo"),
+  src: local("Nanum-Myeongjo"),
     url("./styles/fonts/NanumMyeongjo.otf") format("otf"),
     url("./styles/fonts/NanumMyeongjo.ttf") format("truetype");
 }
@@ -190,8 +184,7 @@ button {
   font-family: "Nanum Myeongjo";
   font-style: normal;
   font-weight: 700;
-  src:
-    url("./styles/fonts/NanumMyeongjoBold.otf") format("otf"),
+  src: url("./styles/fonts/NanumMyeongjoBold.otf") format("otf"),
     url("./styles/fonts/NanumMyeongjoBold.ttf") format("truetype");
 }
 
@@ -199,7 +192,6 @@ button {
   font-family: "Nanum Myeongjo";
   font-style: normal;
   font-weight: 800;
-  src:
-    url("./styles/fonts/NanumMyeongjoExtraBold.otf") format("otf"),
+  src: url("./styles/fonts/NanumMyeongjoExtraBold.otf") format("otf"),
     url("./styles/fonts/NanumMyeongjoExtraBold.ttf") format("truetype");
 }

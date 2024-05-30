@@ -2,30 +2,19 @@
 @import "@styles/variables";
 
 .container {
-  @include overflow-scroll;
-  @include flex-column-center;
-  @include full-container;
-  max-width: 1440px;
-  padding: 10px 150px;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  margin-top: var(--header-height);
 }
 
 .content {
-  @include full-width;
-  height: 75%;
-  padding: 0 200px;
+  max-width: var(--width-content-max);
+  margin: 0 auto;
 }
 
 .headerSection {
-  @include full-width;
-  height: 200px;
 }
 
 .divider {
-  height: 100px;
+  height: 75px;
 }
 
 .bodySection {
