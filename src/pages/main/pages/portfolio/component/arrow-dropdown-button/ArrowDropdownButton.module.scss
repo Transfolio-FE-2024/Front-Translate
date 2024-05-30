@@ -1,33 +1,13 @@
 @import "@styles/mixins";
 @import "@styles/variables";
 
+
 .button {
   font-family: var(--font-pretend);
   color: var(--color-gray);
 
   &:focus {
     box-shadow: none;
-  }
-}
-
-.dropdownFontContent {
-  @include cursor-pointer;
-  color: var(--color-gray);
-  &:first-child {
-    font-family: var(--font-pretend);
-  }
-  &:nth-child(2) {
-    font-family: var(--font-nanum);
-  }
-  &:nth-child(3) {
-    font-family: var(--font-work);
-  }
-  &:last-child {
-    font-family: var(--font-variable);
-  }
-
-  &:active {
-    background-color: var(--color-light-gray);
   }
 }
 
