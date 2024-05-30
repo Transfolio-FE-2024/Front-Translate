@@ -49,6 +49,16 @@
   @include flex-center;
   @include full-width;
   height: 40px;
+
+  input::placeholder {
+    color : var(--color-orange);
+    line-height: var(--line-height-30);
+    letter-spacing : var(--letter-spacing-2-5);
+    font-size : $font-size-20;
+    font-weight: bold;
+    font-family: var(--font-pretend);
+    
+  }
 }
 
 .titleDateSection {

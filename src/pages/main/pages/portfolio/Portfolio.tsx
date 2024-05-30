@@ -15,30 +15,31 @@ import WritingContent from "./component/writing-content/WritingContent";
 const languageList = ["한국어", "영어", "일본어", "아랍어", "불어"];
 const fontSizeList = ["14pt", "16pt", "18pt", "20pt"];
 const fontFamilyList = [
-  "Pretendard",
-  "Nanum Myeangjo",
-  "Noto sans",
-  "Nanum Barun Gothic",
+	"Pretendard",
+	"Nanum Myeangjo",
+	"Noto sans",
+	"Nanum Barun Gothic",
 ];
 const Portfolio = () => {
-  const [title, setTitle] = useState<string>("");
-  const [information, setInformation] = useState<string>("");
-  const [selectedOriginLanguage, setSelectedOriginLanguage] = useState<
-    string | null
-  >(null);
-  const [selectedTranslatedLanguage, setSelectedTranslatedLanguage] = useState<
-    string | null
-  >(null);
-  const [selectedMainCatetory, setSelectedMainCategory] = useState<
-    string | null
-  >(null);
-  const [selectedSubCatetory, setSelectedSubCategory] = useState<string | null>(
-    null
-  );
-  const [selectedFontSize, setSelectedFontSize] = useState<string | null>(null);
-  const [selectedFontFamily, setSelectedFontFamily] = useState<string | null>(
-    null
-  );
+	const [title, setTitle] = useState<string>("");
+	const [information, setInformation] = useState<string>("");
+	const [selectedOriginLanguage, setSelectedOriginLanguage] = useState<
+		string | null
+	>(null);
+	const [selectedTranslatedLanguage, setSelectedTranslatedLanguage] =
+		useState<string | null>(null);
+	const [selectedMainCatetory, setSelectedMainCategory] = useState<
+		string | null
+	>(null);
+	const [selectedSubCatetory, setSelectedSubCategory] = useState<
+		string | null
+	>(null);
+	const [selectedFontSize, setSelectedFontSize] = useState<string | null>(
+		null
+	);
+	const [selectedFontFamily, setSelectedFontFamily] = useState<string | null>(
+		null
+	);
 
   return (
     <>

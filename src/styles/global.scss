@@ -32,6 +32,8 @@
   --font-pretend: Pretendard;
   --font-work: Work Sans;
   --font-variable: Pretendard Variable;
+  --font-notoSans : NotoSans;
+  --font-nanumBarunGothic : NanumBarunGothic;
 
   /* line-height 속성 */
   --line-height-55-08: 55.08px;
@@ -172,26 +174,68 @@ button {
 }
 
 @font-face {
-  font-family: "Nanum Myeongjo";
+  font-family: "NanumMyeongjo";
   font-style: normal;
   font-weight: 400;
   src: local("Nanum-Myeongjo"),
-    url("./styles/fonts/NanumMyeongjo.otf") format("otf"),
-    url("./styles/fonts/NanumMyeongjo.ttf") format("truetype");
+    url(@/styles/fonts/NanumMyeongjo.otf) format("otf"),
+    url(@/styles/fonts/NanumMyeongjo.ttf) format("truetype");
 }
 
 @font-face {
-  font-family: "Nanum Myeongjo";
+  font-family: "NanumMyeongjo";
   font-style: normal;
   font-weight: 700;
-  src: url("./styles/fonts/NanumMyeongjoBold.otf") format("otf"),
-    url("./styles/fonts/NanumMyeongjoBold.ttf") format("truetype");
+  src: url(@/styles/fonts/NanumMyeongjoBold.otf) format("otf"),
+    url(@/styles/fonts/NanumMyeongjoBold.ttf) format("truetype");
 }
 
 @font-face {
-  font-family: "Nanum Myeongjo";
+  font-family: "NanumMyeongjo";
   font-style: normal;
   font-weight: 800;
-  src: url("./styles/fonts/NanumMyeongjoExtraBold.otf") format("otf"),
-    url("./styles/fonts/NanumMyeongjoExtraBold.ttf") format("truetype");
+  src: url(@/styles/fonts/NanumMyeongjoExtraBold.otf) format("otf"),
+    url(@/styles/fonts/NanumMyeongjoExtraBold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url(@/styles/fonts/Pretendard-Regular.woff) format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url(@/styles/fonts/Pretendard-Bold.woff) format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NotoSans';
+  src: url(@/styles/fonts/NotoSans-Regular.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NotoSans';
+  src: url(@/styles/fonts/NotoSans-Bold.ttf) format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NanumBarunGothic';
+  src: url(@/styles/fonts/NanumBarunGothicRegular.woff) format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NanumBarunGothic';
+  src: url(@/styles/fonts/NanumBarunGothicBold.woff) format("woff");
+  font-weight: 700;
+  font-style: normal;
 }
