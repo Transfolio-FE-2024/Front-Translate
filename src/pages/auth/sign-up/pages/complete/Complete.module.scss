@@ -1,12 +1,24 @@
 @import "@styles/mixins";
 @import "@styles/variables";
 
+.container {
+  @include flex-column-center;
+  min-height: 100vh;
+  justify-content: space-between;
+  padding: 55px;
+  min-width: fit-content;
+}
+
 .content {
   @include flex-column;
   @include full-width;
   height: 40%;
   align-items: center;
   justify-content: space-around;
+}
+
+.pageSubTitleContainer {
+  margin-bottom: 10px;
 }
 
 .pageSubTitle {
@@ -21,6 +33,7 @@
 .logoSection {
   width: 250px;
   height: 42px;
+  margin-bottom: 60px;
 }
 
 .logo {

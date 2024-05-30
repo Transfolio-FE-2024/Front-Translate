@@ -1,16 +1,23 @@
 @import "@styles/mixins";
 @import "@styles/variables";
 
+.container {
+  @include flex-column-center;
+  min-height: 100vh;
+  justify-content: space-between;
+  padding: 55px;
+  min-width: fit-content;
+}
+
 .content {
-  @include full-height;
   @include flex-column-center;
   width: 350px;
 }
 
 .pageTitleSection {
-  @include full-width;
   @include flex-column-center;
-  margin-bottom: 30px;
+  width: 225px;
+  margin-bottom: 48px;
 }
 
 .pageTitle {
@@ -40,7 +47,6 @@
   align-items: center;
   justify-content: start;
   margin-bottom: 10px;
-  //   padding: 0 200px;
 }
 
 .inputTitle {
@@ -60,20 +66,25 @@
   flex: 1;
 }
 
-.divider {
-  height: 20px;
-}
-
 .buttonSection {
   width: 200px;
   height: 40px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .snsSignInTitle {
   color: var(--color-light-gray);
+  margin-bottom: 18px;
 }
 
 .snsButtonSection {
   width: 250px;
   height: 45px;
+}
+
+@include mobile {
+  .content {
+    width: 100%;
+  }
 }

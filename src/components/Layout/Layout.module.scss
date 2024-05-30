@@ -2,23 +2,7 @@
 @import "@styles/variables";
 
 .container {
-  @include full-width;
-  @include flex-column-center;
-  min-height: 720px;
-  height: 100vh;
   padding: 0;
   margin: 0;
-}
-
-.minContainer {
-  @include flex-column-center;
-  @include overflow-scroll;
-  width: 1440px;
-  height: 98vh;
-  padding: 0;
-  margin: 0;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  min-height: 100vh;
 }

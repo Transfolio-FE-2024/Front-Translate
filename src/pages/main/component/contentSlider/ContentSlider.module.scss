@@ -3,6 +3,8 @@
 
 .container {
   @include flex-column;
+  width: calc(100% - 150px);
+  margin: 0 auto;
 }
 
 .titleSection {
@@ -28,6 +30,7 @@
 .thumbnailSection {
   @include full-width;
   @include flex-center;
+  padding: 0 5px;
 }
 
 .thumbnailContainer {
