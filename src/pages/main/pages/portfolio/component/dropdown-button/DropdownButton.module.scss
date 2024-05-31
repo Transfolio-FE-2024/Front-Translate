@@ -11,6 +11,8 @@
 }
 
 .dropdown {
+  width: 102px;
+  min-width:inherit !important;
   border-radius : 15px;
   transform : translateX(-50%) !important;
   padding : 0px;
@@ -21,6 +23,7 @@
 .dropdownContent {
   @include flex-center;
   @include cursor-pointer;
+  font-size: 12px;
   font-family: var(--font-pretend);
   color: var(--color-gray);
   border-top: .5px solid #dfdfdf;

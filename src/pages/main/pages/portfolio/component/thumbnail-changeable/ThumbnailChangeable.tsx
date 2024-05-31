@@ -1,42 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./ThumbnailChangeable.module.scss";
-import ArrowDropdownButton from "../arrow-dropdown-button/ArrowDropdownButton";
+import { styleKeyType } from "../styled-dropdown-button/types";
+import StyledDropdownButton from "../styled-dropdown-button/StyledDropdownButton";
+import { fontFamily, fontFamilyList } from "@/util/const";
 
-const fontFamilyList = [
-  "Pretendard",
-  "Nanum Myeangjo",
-  "Noto sans",
-  "Nanum Barun Gothic",
-];
-const ThumbnailChangeable: React.FC<{ title: string }> = ({ title }) => {
-  const [selectedFontFamily, setSelectedFontFamily] = useState<string | null>(
-    null
-  );
+const ThumbnailChangeable: React.FC<{
+	title: string;
+	changeTitleFontFamily: (titleFontFamily: string) => void;
+}> = ({ title, changeTitleFontFamily }) => {
+	const [selectedFontFamily, setSelectedFontFamily] = useState<
+		styleKeyType | undefined
+	>();
 
-  return (
-    <>
-      <div className={styles.container}>
-        <div className={styles.indexSection}>
-          <div className={styles.indexContainer}>
-            <div className={styles.index}></div>
-          </div>
-          <div className={styles.dropdownSection}>
-            <ArrowDropdownButton
-              title={
-                selectedFontFamily === null ? "서체 설정" : selectedFontFamily
-              }
-              values={fontFamilyList}
-              selectedValue={selectedFontFamily}
-              onValueClicked={(value) => setSelectedFontFamily(value)}
-            />
-          </div>
-          <div className={styles.indexContainer}></div>
-        </div>
-        <div className={styles.contentSection}>{title}</div>
-        <div className={styles.footerSection}>@kimhim</div>
-      </div>
-    </>
-  );
+	useEffect(() => {
+		if (selectedFontFamily !== undefined)
+			changeTitleFontFamily(selectedFontFamily);
+	}, [selectedFontFamily, changeTitleFontFamily]);
+
+	return (
+		<>
+			<div className={styles.container}>
+				<div className={styles.indexSection}>
+					<div className={styles.indexContainer}>
+						<div className={styles.index}></div>
+					</div>
+					<div className={styles.dropdownSection}>
+						<StyledDropdownButton
+							title={
+								selectedFontFamily === undefined
+									? "서체 설정"
+									: selectedFontFamily
+							}
+							values={fontFamilyList}
+							selectedValue={selectedFontFamily}
+							onValueClicked={(value) =>
+								setSelectedFontFamily(value)
+							}
+						/>
+					</div>
+					<div className={styles.indexContainer}></div>
+				</div>
+				<div
+					style={
+						selectedFontFamily !== undefined
+							? { fontFamily: fontFamily[selectedFontFamily] }
+							: {}
+					}
+					className={styles.contentSection}
+				>
+					{title}
+				</div>
+				<div className={styles.footerSection}>@kimhim</div>
+			</div>
+		</>
+	);
 };
 
 export default ThumbnailChangeable;
