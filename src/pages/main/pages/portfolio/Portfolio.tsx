@@ -7,39 +7,41 @@ import { VscArrowSwap } from "react-icons/vsc";
 import DropdownButton from "./component/dropdown-button/DropdownButton";
 import TextFieldLonger from "@/components/text-field/text-field-longer/TextFieldLonger";
 import { RiErrorWarningLine } from "react-icons/ri";
-import ArrowDropdownButton from "./component/arrow-dropdown-button/ArrowDropdownButton";
+import StyledDropdownButton from "./component/styled-dropdown-button/StyledDropdownButton";
 import GreyButtonSquare from "@/components/button/grey-button-square/GreyButtonSquare";
 import MainButtonSquare from "@/components/button/main-button-square/MainButtonSquare";
 import WritingContent from "./component/writing-content/WritingContent";
+import {
+	fontFamilyList,
+	languageList,
+	fontSizeList,
+	fontFamily,
+	fontFamilyType,
+} from "@/util/const";
 
-const languageList = ["한국어", "영어", "일본어", "아랍어", "불어"];
-const fontSizeList = ["14pt", "16pt", "18pt", "20pt"];
-const fontFamilyList = [
-	"Pretendard",
-	"Nanum Myeangjo",
-	"Noto sans",
-	"Nanum Barun Gothic",
-];
 const Portfolio = () => {
 	const [title, setTitle] = useState<string>("");
+	const [titleFontFamily, setTitleFontFamily] = useState<
+		string | undefined
+	>();
 	const [information, setInformation] = useState<string>("");
 	const [selectedOriginLanguage, setSelectedOriginLanguage] = useState<
-		string | null
-	>(null);
+		string | undefined
+	>();
 	const [selectedTranslatedLanguage, setSelectedTranslatedLanguage] =
-		useState<string | null>(null);
+		useState<string | undefined>(undefined);
 	const [selectedMainCatetory, setSelectedMainCategory] = useState<
-		string | null
-	>(null);
+		string | undefined
+	>();
 	const [selectedSubCatetory, setSelectedSubCategory] = useState<
-		string | null
-	>(null);
-	const [selectedFontSize, setSelectedFontSize] = useState<string | null>(
-		null
-	);
-	const [selectedFontFamily, setSelectedFontFamily] = useState<string | null>(
-		null
-	);
+		string | undefined
+	>();
+	const [selectedFontSize, setSelectedFontSize] = useState<
+		string | undefined
+	>();
+	const [selectedFontFamily, setSelectedFontFamily] = useState<
+		fontFamilyType | undefined
+	>();
 
 	return (
 		<>
@@ -52,7 +54,12 @@ const Portfolio = () => {
 					<div className={styles.divider}></div>
 					<div className={styles.thumbnailSection}>
 						<div className={styles.thumbnailCardSection}>
-							<ThumbnailChangeable title={title} />
+							<ThumbnailChangeable
+								title={title}
+								changeTitleFontFamily={(
+									titleFontFamily: string
+								) => setTitleFontFamily(titleFontFamily)}
+							/>
 						</div>
 						<div className={styles.thumbnailInfoSection}>
 							<div className={styles.titleTextFieldSection}>
@@ -69,7 +76,7 @@ const Portfolio = () => {
 								<div className={styles.dropdownSection}>
 									<DropdownButton
 										title={
-											selectedOriginLanguage === null
+											selectedOriginLanguage === undefined
 												? "언어 선택"
 												: selectedOriginLanguage
 										}
@@ -84,7 +91,8 @@ const Portfolio = () => {
 								<div className={styles.dropdownSection}>
 									<DropdownButton
 										title={
-											selectedTranslatedLanguage === null
+											selectedTranslatedLanguage ===
+											undefined
 												? "언어 선택"
 												: selectedTranslatedLanguage
 										}
@@ -97,8 +105,8 @@ const Portfolio = () => {
 										}
 									/>
 								</div>
-								{(selectedOriginLanguage !== null ||
-									selectedTranslatedLanguage !== null) &&
+								{(selectedOriginLanguage !== undefined ||
+									selectedTranslatedLanguage !== undefined) &&
 									selectedOriginLanguage ===
 										selectedTranslatedLanguage && (
 										<div className={styles.warnTextSection}>
@@ -124,7 +132,7 @@ const Portfolio = () => {
 								<div className={styles.dropdownSection}>
 									<DropdownButton
 										title={
-											selectedMainCatetory === null
+											selectedMainCatetory === undefined
 												? "대분류"
 												: selectedMainCatetory
 										}
@@ -141,7 +149,7 @@ const Portfolio = () => {
 								<div className={styles.dropdownSection}>
 									<DropdownButton
 										title={
-											selectedSubCatetory === null
+											selectedSubCatetory === undefined
 												? "소분류"
 												: selectedSubCatetory
 										}
@@ -168,9 +176,9 @@ const Portfolio = () => {
 					<div className={styles.writingSection}>
 						<div className={styles.buttonsSection}>
 							<div className={styles.buttonSection}>
-								<ArrowDropdownButton
+								<DropdownButton
 									title={
-										selectedFontSize === null
+										selectedFontSize === undefined
 											? "글자 크기"
 											: selectedFontSize
 									}
@@ -182,9 +190,9 @@ const Portfolio = () => {
 								/>
 							</div>
 							<div className={styles.buttonSection}>
-								<ArrowDropdownButton
+								<StyledDropdownButton
 									title={
-										selectedFontFamily === null
+										selectedFontFamily === undefined
 											? "서체 설정"
 											: selectedFontFamily
 									}
@@ -196,7 +204,14 @@ const Portfolio = () => {
 								/>
 							</div>
 						</div>
-						<WritingContent />
+						<WritingContent
+							fontSize={selectedFontSize}
+							fontFamily={
+								selectedFontFamily === undefined
+									? undefined
+									: fontFamily[selectedFontFamily]
+							}
+						/>
 						<div className={styles.mainButtonsSection}>
 							<div className={styles.mainButtonSection}>
 								<GreyButtonSquare
