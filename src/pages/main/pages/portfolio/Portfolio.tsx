@@ -43,7 +43,6 @@ const Portfolio = () => {
 		fontFamilyType | undefined
 	>();
 
-<<<<<<< HEAD
 	return (
 		<>
 			<div className={styles.container}>
