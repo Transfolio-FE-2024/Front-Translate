@@ -11,6 +11,7 @@ import StyledDropdownButton from "./component/styled-dropdown-button/StyledDropd
 import GreyButtonSquare from "@/components/button/grey-button-square/GreyButtonSquare";
 import MainButtonSquare from "@/components/button/main-button-square/MainButtonSquare";
 import WritingContent from "./component/writing-content/WritingContent";
+import StyledTitle from "./component/styled-title/StyledTitle";
 import {
 	fontFamilyList,
 	languageList,
@@ -177,11 +178,7 @@ const Portfolio = () => {
 						<div className={styles.buttonsSection}>
 							<div className={styles.buttonSection}>
 								<DropdownButton
-									title={
-										selectedFontSize === undefined
-											? "글자 크기"
-											: selectedFontSize
-									}
+									title={<StyledTitle>글자 크기</StyledTitle>}
 									values={fontSizeList}
 									selectedValue={selectedFontSize}
 									onValueClicked={(value) =>
@@ -191,11 +188,7 @@ const Portfolio = () => {
 							</div>
 							<div className={styles.buttonSection}>
 								<StyledDropdownButton
-									title={
-										selectedFontFamily === undefined
-											? "서체 설정"
-											: selectedFontFamily
-									}
+									title={<StyledTitle>서체 설정</StyledTitle>}
 									values={fontFamilyList}
 									selectedValue={selectedFontFamily}
 									onValueClicked={(value) =>

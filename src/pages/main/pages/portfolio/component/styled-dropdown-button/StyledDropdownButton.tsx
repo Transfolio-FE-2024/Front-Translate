@@ -18,7 +18,7 @@ export const style = {
 };
 
 const StyledDropdownButton: React.FC<{
-	title: string;
+	title: string | React.ReactNode;
 	values: styleKeyType[];
 	selectedValue: string | undefined;
 	onValueClicked: (value: styleKeyType) => void;
@@ -29,20 +29,20 @@ const StyledDropdownButton: React.FC<{
 
 	return (
 		<>
-			<div className="btn-group">
+			<div className={`btn-group`}>
 				<button
-					className={`btn dropdown-toggle ${styles.button}`}
+					className={`btn ${styles.button}`}
 					type="button"
 					data-bs-toggle="dropdown"
 					aria-expanded="false"
 				>
 					{title}
 				</button>
-				<ul className="dropdown-menu">
+				<ul className={`dropdown-menu ${styles.dropdown}`}>
 					{values.map((value) => (
 						<li
 							key={value}
-							style={style[value]}
+							style={{ ...style[value] }}
 							className={`dropdown-item ${styles.dropdownContent} 
                 ${
 					selectedValue !== undefined && selectedValue === value

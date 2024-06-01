@@ -4,6 +4,7 @@
 .button {
   font-family: var(--font-pretend);
   color: var(--color-gray);
+  flex-shrink: 0 !important;
 
   &:focus {
     box-shadow: none;
@@ -35,6 +36,6 @@
 }
 
 .active {
-  color: var(--color-orange);
+  color: var(--color-orange) !important;
   font-weight: var(--font-semi-bold);
 }

@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./DropdownButton.module.scss";
 
 const DropdownButton: React.FC<{
-	title: string;
+	title: string | React.ReactNode;
 	values: string[];
 	selectedValue?: string;
 	onValueClicked: (value: string) => void;
