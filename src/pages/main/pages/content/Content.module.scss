@@ -182,7 +182,7 @@
 .mainContentSection {
   @include full-width;
   padding: 20px;
-  background-color: var(--color-white);
+  background-color: rgba(255,255,255,.25);
 }
 
 .mainContent {
@@ -191,16 +191,28 @@
 
 .mainContentRow {
   @include full-width;
-  border-bottom: 0.5px solid var(--color-light-gray);
   margin-bottom: 20px;
 }
 
 .mainContentRowOriginal {
-  color: var(--color-green-1);
+  color: var(--color-orange);
+  padding : 10px;
+  font-size: 16px;
+  line-height: var(--line-height-27);
   font-family: var(--font-pretend);
+  border-radius: 8px;
+  background-color: var(--color-white);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.13);
 }
 
 .mainContentRowTranslation {
+  padding : 10px;
   margin-top: 5px;
   margin-bottom: 10px;
+  font-size: 16px;
+  font-family: var(--font-pretend);
+  line-height: var(--line-height-27);
+  border-radius: 8px;
+  background-color: var(--color-white);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.13);
 }
