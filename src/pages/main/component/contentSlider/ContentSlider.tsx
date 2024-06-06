@@ -61,6 +61,7 @@ const ContentSlider = () => {
                         translated="번역본"
                         writer="@Kimhim"
                         picked={109}
+                        onClicked={() => {}}
                       />
                     </div>
                   </div>

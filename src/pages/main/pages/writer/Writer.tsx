@@ -3,6 +3,7 @@ import PageTitle from "../../../../components/page-title/PageTitle";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { useState } from "react";
 import ThumbnailCardFolderable from "../../../../components/thumbnail-card/thumbnail-card-folderable/ThumbnailCardFolderable";
+import ThumbnailCardUnfolderable from "@/components/thumbnail-card/thumbnail-card-unfolderable/ThumbnailCardUnfolderable";
 
 const buttonTitles = ["포트폴리오", "경력", "접음"];
 const Writer = () => {
@@ -58,11 +59,21 @@ const Writer = () => {
             </div>
             <div className={styles.portfolioThumbnailCardSection}>
               <ThumbnailCardFolderable
-                original="ㅊ"
+                original="たら堪らないという気を よく起した。"
                 translated="내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다."
                 writer="@Kimhim"
                 picked={4}
+                onClicked={() => {}}
               />
+              <ThumbnailCardFolderable
+                original="あなたと溶け合って 深いところで重なって "
+                translated="당신과 어울려 깊은 곳에 겹쳐서"
+                writer="@Kimhim"
+                picked={4}
+                onClicked={() => {}}
+                preSave
+              />
+              
               <div className={styles.thumbnailEmptyContainer}></div>
             </div>
           </div>

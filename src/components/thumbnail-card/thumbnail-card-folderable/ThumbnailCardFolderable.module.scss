@@ -11,6 +11,7 @@
   justify-content: space-between;
   margin-bottom: 20px;
   position: relative;
+  cursor : pointer;
 }
 
 .clickable {
@@ -19,6 +20,10 @@
   &:hover {
     @include opacity-0-8;
   }
+}
+
+.preSave {
+  color: var(--color-light-gray);
 }
 
 .indexSection {
@@ -42,7 +47,7 @@
 }
 
 .indexInActive {
-  background-color: var(--color-green-1);
+  background-color: var(--color-light-gray);
 }
 
 .contentSection {
