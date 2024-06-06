@@ -7,6 +7,7 @@ import ThumbnailCardFolderable from "@/components/thumbnail-card/thumbnail-card-
 import { useRef, useState } from "react";
 import Arrow from "../arrow/Arrow";
 import { useMediaQuery } from "react-responsive";
+import ThumbnailTitle from "@/components/thumbnail-title/ThumbnailTitle";
 
 const sliderContents = [1, 2, 3, 4, 5, 6, 7, 8];
 const ContentSlider = () => {
@@ -54,13 +55,14 @@ const ContentSlider = () => {
               return (
                 <>
                   <div className={styles.thumbnailContainer} key={slider}>
-                    <div className={styles.sliderTitle}>번역도 감-성 으로</div>
+                    <ThumbnailTitle interest="언어" />
                     <div className={styles.thumbnailSection}>
                       <ThumbnailCardFolderable
                         original="たら堪らないという気をよく起した。 내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다. 내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다."
                         translated="번역본"
                         writer="@Kimhim"
                         picked={109}
+                        onClicked={() => {}}
                       />
                     </div>
                   </div>

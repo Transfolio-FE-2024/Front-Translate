@@ -6,32 +6,26 @@ const ThumbnailCardFolderable: React.FC<{
   translated: string;
   writer: string;
   picked: number;
-  active?: boolean;
-  onClicked?: () => void;
+  preSave?: boolean;
+  onClicked: () => void;
 }> = ({
   original,
   translated,
   writer,
   picked,
-  active = true,
-  onClicked = null,
+  preSave = false,
+  onClicked,
 }) => {
   return (
     <>
       <div
-        className={`${styles.container} ${
-          onClicked !== null ? styles.clickable : null
-        }`}
-        onClick={() => {
-          if (onClicked !== null) {
-            onClicked();
-          }
-        }}
+        className={`${styles.container} ${styles.clickable} ${preSave ? styles.preSave : null}` }
+        onClick={onClicked}
       >
         <div className={styles.indexSection}>
           <div
             className={`${styles.index} ${
-              active ? styles.indexActive : styles.indexInActive
+              preSave ? styles.indexInActive : styles.indexActive
             }`}
           ></div>
         </div>
@@ -41,10 +35,10 @@ const ThumbnailCardFolderable: React.FC<{
         </div>
         <div className={styles.footerSection}>
           <div className={styles.nameSection}>{writer}</div>
-          <div className={styles.foldSection}>
+          {!preSave && <div className={styles.foldSection}>
             <div className={styles.pickedNumberContainer}>{picked}</div>
             <div className={styles.foldContainer}></div>
-          </div>
+          </div>}
         </div>
       </div>
     </>

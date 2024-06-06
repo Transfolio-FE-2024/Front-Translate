@@ -3,7 +3,6 @@
 
 .container {
   @include flex-column;
-  width: calc(100% - 150px);
   margin: 0 auto;
 }
 

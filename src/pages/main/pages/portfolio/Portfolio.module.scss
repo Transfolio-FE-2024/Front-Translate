@@ -149,7 +149,6 @@
 .buttonSection {
   @include flex;
   @include full-height;
-  width: 100px;
   align-items: center;
   justify-content: start;
 }
@@ -169,3 +168,4 @@
 .mainButtonDivider {
   width: 20px;
 }
+

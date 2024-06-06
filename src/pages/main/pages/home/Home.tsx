@@ -4,7 +4,9 @@ import HeaderSlider from "../../component/headerSlider/HeaderSlider";
 import Writers from "../../component/writers/Writers";
 import styles from "./Home.module.scss";
 import ThumbnailCardFolderable from "@/components/thumbnail-card/thumbnail-card-folderable/ThumbnailCardFolderable";
+import ThumbnailTitle from "@/components/thumbnail-title/ThumbnailTitle";
 
+const nickName="Kimhim"
 let thumbnailContents = [1, 2, 3, 4, 5, 6, 7, 8];
 const Home = () => {
   const navigate = useNavigate();
@@ -21,19 +23,14 @@ const Home = () => {
             <ContentSlider />
             <div className={styles.divider}></div>
             <div className={styles.titleSection}>
-              Today's freelance translator
+             {nickName}님의 관심분야의 번역들이에요!
             </div>
             <div className={styles.thumbnailCardSection}>
               {thumbnailContents.map((thumbnail) => {
                 return (
                   <>
                     <div className={styles.thumbnailContainer} key={thumbnail}>
-                      <div className={styles.thumbnailTitle}>
-                        <span>번역도</span>&ensp;
-                        <span className={styles.textHighlight}>감-성</span>
-                        &ensp;
-                        <span>으로</span>
-                      </div>
+                      <ThumbnailTitle interest="전공" />
                       <div className={styles.thumbnailSection}>
                         <ThumbnailCardFolderable
                           original="たら堪らないという気をよく起した。 내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다."

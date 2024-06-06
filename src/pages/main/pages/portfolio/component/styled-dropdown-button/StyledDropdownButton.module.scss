@@ -1,7 +1,6 @@
 @import "@styles/mixins";
 @import "@styles/variables";
 
-
 .button {
   font-family: var(--font-pretend);
   color: var(--color-gray);
@@ -11,17 +10,28 @@
   }
 }
 
+.dropdown {
+  min-width:inherit !important;
+  border-radius : 15px;
+  transform : translateX(-50%) !important;
+  padding : 0px;
+  top : 100% !important;
+  left : 50% !important;
+}
+
 .dropdownContent {
+  @include flex-center;
   @include cursor-pointer;
   color: var(--color-gray);
+  font-size: 12px;
   font-family: var(--font-pretend);
+  border-top: .5px solid #dfdfdf;
+  padding : 10px 20px !important;
 
-  &:active {
-    background-color: var(--color-light-gray);
-  }
+  
 }
 
 .active {
-  color: var(--color-orange);
+  color: var(--color-orange) !important;
   font-weight: var(--font-semi-bold);
 }

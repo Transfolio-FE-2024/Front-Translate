@@ -11,9 +11,10 @@ import StyledDropdownButton from "./component/styled-dropdown-button/StyledDropd
 import GreyButtonSquare from "@/components/button/grey-button-square/GreyButtonSquare";
 import MainButtonSquare from "@/components/button/main-button-square/MainButtonSquare";
 import WritingContent from "./component/writing-content/WritingContent";
+import StyledTitle from "./component/styled-title/StyledTitle";
 import {
+	areaOfInterest,
 	fontFamilyList,
-	languageList,
 	fontSizeList,
 	fontFamily,
 	fontFamilyType,
@@ -31,7 +32,7 @@ const Portfolio = () => {
 	const [selectedTranslatedLanguage, setSelectedTranslatedLanguage] =
 		useState<string | undefined>(undefined);
 	const [selectedMainCatetory, setSelectedMainCategory] = useState<
-		string | undefined
+		"언어" | "전공" | "문학" | "기업" | undefined
 	>();
 	const [selectedSubCatetory, setSelectedSubCategory] = useState<
 		string | undefined
@@ -80,7 +81,7 @@ const Portfolio = () => {
 												? "언어 선택"
 												: selectedOriginLanguage
 										}
-										values={languageList}
+										values={areaOfInterest["언어"]}
 										selectedValue={selectedOriginLanguage}
 										onValueClicked={(value) =>
 											setSelectedOriginLanguage(value)
@@ -96,7 +97,7 @@ const Portfolio = () => {
 												? "언어 선택"
 												: selectedTranslatedLanguage
 										}
-										values={languageList}
+										values={areaOfInterest["언어"]}
 										selectedValue={
 											selectedTranslatedLanguage
 										}
@@ -136,10 +137,17 @@ const Portfolio = () => {
 												? "대분류"
 												: selectedMainCatetory
 										}
-										values={languageList}
+										values={Object.keys(areaOfInterest)}
 										selectedValue={selectedMainCatetory}
 										onValueClicked={(value) =>
-											setSelectedMainCategory(value)
+											setSelectedMainCategory(
+												value as
+													| "언어"
+													| "전공"
+													| "문학"
+													| "기업"
+													| undefined
+											)
 										}
 									/>
 								</div>
@@ -153,7 +161,13 @@ const Portfolio = () => {
 												? "소분류"
 												: selectedSubCatetory
 										}
-										values={languageList}
+										values={
+											selectedMainCatetory !== undefined
+												? areaOfInterest[
+														selectedMainCatetory
+												  ]
+												: []
+										}
 										selectedValue={selectedSubCatetory}
 										onValueClicked={(value) =>
 											setSelectedSubCategory(value)
@@ -177,11 +191,7 @@ const Portfolio = () => {
 						<div className={styles.buttonsSection}>
 							<div className={styles.buttonSection}>
 								<DropdownButton
-									title={
-										selectedFontSize === undefined
-											? "글자 크기"
-											: selectedFontSize
-									}
+									title={<StyledTitle>글자 크기</StyledTitle>}
 									values={fontSizeList}
 									selectedValue={selectedFontSize}
 									onValueClicked={(value) =>
@@ -191,11 +201,7 @@ const Portfolio = () => {
 							</div>
 							<div className={styles.buttonSection}>
 								<StyledDropdownButton
-									title={
-										selectedFontFamily === undefined
-											? "서체 설정"
-											: selectedFontFamily
-									}
+									title={<StyledTitle>서체 설정</StyledTitle>}
 									values={fontFamilyList}
 									selectedValue={selectedFontFamily}
 									onValueClicked={(value) =>
