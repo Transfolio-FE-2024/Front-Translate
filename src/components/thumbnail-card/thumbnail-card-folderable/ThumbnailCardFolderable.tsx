@@ -19,9 +19,7 @@ const ThumbnailCardFolderable: React.FC<{
   return (
     <>
       <div
-        className={`${styles.container} ${
-          onClicked !== null ? styles.clickable : null
-        } ${preSave ? styles.preSave : null}` }
+        className={`${styles.container} ${styles.clickable} ${preSave ? styles.preSave : null}` }
         onClick={onClicked}
       >
         <div className={styles.indexSection}>
