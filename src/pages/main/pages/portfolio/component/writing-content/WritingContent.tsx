@@ -58,14 +58,12 @@ const WritingContent: React.FC<{
 						 (
 							<div
 								className={styles.textBundleContainer}
-								key={index}
 							>
 								<div
 									style={{ fontSize, fontFamily }}
 									className={styles.textBundleSection}
 								>
 									<TextBundle
-										key={`original-${index}`}
 										value={content}
 										setValue={(value) =>
 											setOriginalContents((prev) => {
@@ -80,7 +78,6 @@ const WritingContent: React.FC<{
 										}}
 									/>
 									<TextBundle
-										key={`translated-${index}`}
 										original={false}
 										value={translatedContents[index]}
 										setValue={(value) =>
