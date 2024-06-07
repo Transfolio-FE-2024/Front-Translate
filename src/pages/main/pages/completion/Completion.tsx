@@ -1,10 +1,12 @@
 import styles from "./Completion.module.scss";
 import trophyImage from "@/assets/images/trophy.png";
 import RankingCard from "./component/rankingCard/RankingCard";
+import { useNavigate } from "react-router-dom";
 
 const nickName = "Kimhin";
 
 const Complete = (): JSX.Element => {
+	const navigate = useNavigate();
 	return (
 		<>
 			<div className={styles.container}>
@@ -37,14 +39,16 @@ const Complete = (): JSX.Element => {
 							<RankingCard
 								rank={1}
 								isEmphasized
-								onClicked={() => {}}
+								onClicked={() => {
+									navigate("/home/writer")
+								}}
 							/>
-							<RankingCard rank={2} onClicked={() => {}} />
-							<RankingCard rank={3} onClicked={() => {}} />
+							<RankingCard rank={2} onClicked={() => {navigate("/home/writer")}} />
+							<RankingCard rank={3} onClicked={() => {navigate("/home/writer")}} />
 						</div>
 						<div>
 							<button
-								onClick={() => {}}
+								onClick={() => {navigate("/home")}}
 								className={styles.backButton}
 							>
 								돌아가기
