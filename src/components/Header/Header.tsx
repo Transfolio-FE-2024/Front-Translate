@@ -1,5 +1,5 @@
 import styles from "./Header.module.scss";
-import { logoIcon } from "./icons";
+import logoIcon from "@/assets/images/ico_logo.png";
 import { useState } from "react";
 import MenuBar from "./components/menu-bar/MenuBar";
 import Button from "./components/button/Button";
