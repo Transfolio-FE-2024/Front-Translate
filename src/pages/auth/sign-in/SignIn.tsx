@@ -4,7 +4,7 @@ import styles from "./SignIn.module.scss";
 import MainButtonRound from "@/components/button/main-button-round/MainButtonRound";
 import SnsButton from "@/components/button/sns-button/SnsButton";
 import kakaoImg from "../../../assets/images/sns_kakaotalk.png";
-import Layout from "@/components/layout/Layout";
+import Layout from "@/components/Layout/Layout";
 import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
