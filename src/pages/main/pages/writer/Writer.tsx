@@ -3,7 +3,6 @@ import PageTitle from "../../../../components/page-title/PageTitle";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { useState } from "react";
 import ThumbnailCardFolderable from "../../../../components/thumbnail-card/thumbnail-card-folderable/ThumbnailCardFolderable";
-import ThumbnailCardUnfolderable from "@/components/thumbnail-card/thumbnail-card-unfolderable/ThumbnailCardUnfolderable";
 
 const buttonTitles = ["포트폴리오", "경력", "접음"];
 const Writer = () => {

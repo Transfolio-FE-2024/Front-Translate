@@ -3,7 +3,7 @@ import logoImage from "../../assets/images/home_logo.png";
 import GreyButtonRound from "@/components/button/grey-button-round/GreyButtonRound";
 import MainButtonRound from "@/components/button/main-button-round/MainButtonRound";
 import { useNavigate } from "react-router-dom";
-import Layout from "@/components/layout/Layout";
+import Layout from "@/components/Layout/Layout";
 
 const Start = () => {
   const navigate = useNavigate();

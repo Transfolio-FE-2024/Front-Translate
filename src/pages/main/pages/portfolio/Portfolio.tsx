@@ -22,7 +22,7 @@ import {
 
 const Portfolio = () => {
 	const [title, setTitle] = useState<string>("");
-	const [titleFontFamily, setTitleFontFamily] = useState<
+	const [_1, setTitleFontFamily] = useState<
 		string | undefined
 	>();
 	const [information, setInformation] = useState<string>("");

@@ -4,7 +4,7 @@ import TextField from "../../../../../components/text-field/TextField";
 import SubButton from "../../component/sub-button/SubButton";
 import styles from "./RegForm.module.scss";
 import { useNavigate } from "react-router-dom";
-import Layout from "@/components/layout/Layout";
+import Layout from "@/components/Layout/Layout";
 import { SignUpInfo } from "@/interface";
 import { SessionStorageManager, ValidationUtil } from "@/util";
 import { TF } from "@/util/const";
