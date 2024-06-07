@@ -1,0 +1,28 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.container {
+  @include full-width;
+}
+
+.sliderContent {
+  @include full-width;
+  @include flex-center;
+
+  max-height: 400px;
+}
+
+.img {
+  @include full-container;
+  object-fit: contain;
+}
+
+@include mobile {
+  .sliderContent {
+    height: 150px;
+  }
+
+  .img {
+    object-fit: cover;
+  }
+}

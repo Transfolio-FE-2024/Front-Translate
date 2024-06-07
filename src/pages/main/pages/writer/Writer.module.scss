@@ -1,0 +1,115 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.container {
+  margin-top: var(--header-height);
+  margin-bottom: 55px;
+}
+
+.content {
+  @include full-container;
+  @include overflow-scroll;
+  max-width: var(--width-content-max);
+  margin: 0 auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.profileSection {
+  @include full-width;
+  padding: 20px 0;
+}
+
+.profileImgSection {
+  @include flex;
+  @include full-width;
+  height: 100px;
+  align-items: center;
+  justify-content: start;
+}
+
+.profileImg {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  color: var(--color-light-gray);
+}
+
+.profileNameSection {
+  font-size: 18px;
+  color: var(--color-green-1);
+  font-weight: var(--font-semi-bold);
+}
+
+.profileInfoSection {
+  @include flex;
+  @include full-width;
+  align-items: center;
+  justify-content: start;
+  margin-top: 20px;
+}
+
+.profileInfoBox {
+  margin-right: 30px;
+}
+
+.profileInfoBoxTitle {
+  font-size: 14px;
+  color: var(--color-light-gray);
+  font-weight: var(--font-semi-bold);
+  font-family: var(--font-pretend);
+  letter-spacing: var(--letter-spacing-1-5);
+  margin-bottom: 5px;
+}
+
+.profileInfoBoxContent {
+  color: var(--color-gray);
+  font-weight: var(--font-semi-bold);
+  font-family: var(--font-pretend);
+  letter-spacing: var(--letter-spacing-0-8);
+  margin-bottom: 5px;
+}
+
+.portfolioSection {
+  @include full-width;
+}
+
+.portfolioButtonSection {
+  @include flex;
+  @include full-width;
+}
+
+.portfolioButtonTitle {
+  @include flex-center;
+  @include cursor-pointer;
+  flex: 1;
+  height: 50px;
+  font-family: var(--font-pretend);
+  font-weight: var(--font-semi-bold);
+}
+
+.buttonActive {
+  color: var(--color-green-1);
+  border-bottom: 1.5px solid var(--color-green-1);
+}
+
+.buttonInActive {
+  color: var(--color-light-gray);
+  border-bottom: 1px solid var(--color-light-gray);
+}
+
+.portfolioThumbnailCardSection {
+  @include flex;
+  @include full-width;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.thumbnailEmptyContainer {
+  width: 200px;
+  height: 250px;
+}

@@ -1,0 +1,6 @@
+.slick-dots {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  width: 100%;
+}

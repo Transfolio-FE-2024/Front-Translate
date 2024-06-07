@@ -1,0 +1,31 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.container {
+  @include flex-center;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-color: var(--color-white);
+  padding: 10px;
+  top: 45%;
+}
+
+.left {
+  left: -55px;
+}
+
+.right {
+  right: -55px;
+}
+
+.icon {
+  @include cursor-pointer;
+  @include full-container;
+  color: var(--color-orange);
+}
+
+.icon:hover {
+  opacity: 0.8;
+}

@@ -1,0 +1,91 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.container {
+  @include flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 50px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  height: var(--header-height);
+  background-color: var(--color-header);
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.menuSection {
+  @include flex;
+  align-items: center;
+}
+
+.menuIconSection {
+  @include cursor-pointer;
+  width: 30px;
+  height: 20px;
+
+  &:hover {
+    @include opacity-0-8;
+  }
+
+  div {
+    height: 4px;
+    background-color: var(--color-gray);
+
+    &:first-child {
+      margin-bottom: 4px;
+    }
+
+    &:last-child {
+      margin-top: 4px;
+    }
+  }
+}
+
+.logoIcon {
+  @include cursor-pointer;
+  margin-left: 19px;
+}
+
+.buttonsSection {
+  @include flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.writeButtonSection {
+  width: 70px;
+  height: 25px;
+  margin-right: 10px;
+}
+
+.searchButtonSection {
+  width: 30px;
+  height: 30px;
+}
+
+.searchIcon {
+  @include full-container;
+  @include cursor-pointer;
+  color: var(--color-gray);
+
+  &:hover {
+    @include opacity-0-8;
+  }
+}
+
+.searchInputSection {
+  width: 150px;
+  height: 30px;
+  border-radius: 30px;
+}
+
+@include mobile {
+  .container {
+    padding: 28px 28px;
+  }
+}

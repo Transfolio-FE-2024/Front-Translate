@@ -1,0 +1,90 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.container {
+  @include flex-column-center;
+  min-height: 100vh;
+  justify-content: space-between;
+  padding: 55px;
+  min-width: fit-content;
+}
+
+.content {
+  @include flex-column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.pageTitleSection {
+  @include flex-column-center;
+  margin-bottom: 60px;
+}
+
+.pageTitle {
+  font-size: 18px;
+  font-weight: var(--font-bold);
+  line-height: var(--line-height-21-15);
+  letter-spacing: var(--letter-spacing-10-71);
+  font-family: var(--font-pretend);
+  color: var(--color-gray);
+  margin-bottom: 20px;
+}
+
+.pageSubTitle {
+  font-size: 14px;
+  font-weight: var(--font-bold);
+  line-height: var(--line-height-16-45);
+  letter-spacing: var(--letter-spacing-1-68);
+  font-family: var(--font-nanum);
+  color: var(--color-green-1);
+}
+
+.inputSection {
+  @include full-width;
+  margin-bottom: 20px;
+}
+
+.inputTitle {
+  font-size: 14px;
+  font-weight: var(--font-regular);
+  font-family: var(--font-work);
+  color: var(--color-light-gray);
+  margin-bottom: 10px;
+}
+
+.inputContainer {
+  @include flex;
+  height: 30px;
+  align-items: center;
+  justify-content: start;
+  margin-bottom: 10px;
+}
+
+.inputSubTitle {
+  @include full-height;
+  @include flex;
+  width: 120px;
+  font-size: $font-size-16;
+  font-weight: var(--font-bold);
+  font-family: var(--font-work);
+  align-items: end;
+  justify-content: start;
+  color: var(--color-green-2);
+}
+
+.input {
+  @include full-height;
+  flex: 1;
+}
+
+.subButton {
+  @include full-height;
+  margin-left: 20px;
+  width: 80px;
+}
+
+.mainButton {
+  width: 200px;
+  height: 40px;
+  margin-top: 25px;
+}

@@ -1,0 +1,90 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.container {
+  @include flex-column-center;
+  min-height: 100vh;
+  justify-content: space-between;
+  padding: 55px;
+  min-width: fit-content;
+}
+
+.content {
+  @include flex-column-center;
+  width: 350px;
+}
+
+.pageTitleSection {
+  @include flex-column-center;
+  width: 225px;
+  margin-bottom: 48px;
+}
+
+.pageTitle {
+  font-size: 18px;
+  font-weight: var(--font-bold);
+  line-height: var(--line-height-21-15);
+  letter-spacing: var(--letter-spacing-10-71);
+  font-family: var(--font-pretend);
+  color: var(--color-gray);
+  margin-bottom: 20px;
+}
+
+.pageSubTitle {
+  font-size: 14px;
+  font-weight: var(--font-bold);
+  line-height: var(--line-height-16-45);
+  letter-spacing: var(--letter-spacing-1-68);
+  font-family: var(--font-nanum);
+  color: var(--color-green-1);
+  text-align: center;
+}
+
+.inputSection {
+  @include flex;
+  @include full-width;
+  height: 30px;
+  align-items: center;
+  justify-content: start;
+  margin-bottom: 10px;
+}
+
+.inputTitle {
+  @include full-height;
+  @include flex;
+  width: 100px;
+  font-size: 16px;
+  font-weight: var(--font-bold);
+  font-family: var(--font-work);
+  align-items: end;
+  justify-content: start;
+  color: var(--color-green-2);
+}
+
+.input {
+  @include full-height;
+  flex: 1;
+}
+
+.buttonSection {
+  width: 200px;
+  height: 40px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.snsSignInTitle {
+  color: var(--color-light-gray);
+  margin-bottom: 18px;
+}
+
+.snsButtonSection {
+  width: 250px;
+  height: 45px;
+}
+
+@include mobile {
+  .content {
+    width: 100%;
+  }
+}

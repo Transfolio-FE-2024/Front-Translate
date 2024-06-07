@@ -1,0 +1,218 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.container {
+  margin-top: var(--header-height);
+  margin-bottom: 55px;
+}
+
+.content {
+  @include full-container;
+  @include overflow-scroll;
+  max-width: var(--width-content-max);
+  margin: 0 auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.thumbnailSection {
+  @include flex;
+  @include full-width;
+  height: 350px;
+  padding: 50px 0px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.thumbnailCardSection {
+  @include flex-column;
+  @include full-height;
+  width: 300px;
+  background-color: var(--color-white);
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.thumbnailCardIndexSection {
+  @include flex;
+  @include full-width;
+  height: 10px;
+  align-items: center;
+  justify-content: start;
+}
+
+.thumbnailCardIndex {
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-orange);
+  border-radius: 100%;
+}
+
+.thumbnailCardContentSection {
+  @include full-width;
+  height: 90%;
+}
+
+.thumbnailCardContentOriginalSection {
+  @include full-width;
+  margin-bottom: 10px;
+  font-family: var(--font-pretend);
+  line-height: var(--line-height-27);
+}
+
+.thumbnailCardContentTranslationSection {
+  @include full-width;
+  margin-bottom: 10px;
+  font-family: var(--font-nanum);
+  line-height: var(--line-height-27);
+}
+
+.thumbnailContentSection {
+  @include flex-column;
+  @include full-container;
+  margin-left: 20px;
+}
+
+.thumbnailContentTitleDateSection {
+  @include flex;
+  @include full-width;
+  height: 40px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.thumbnailConentTitleSection {
+  @include flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.thumbnailContentTitle {
+  color: var(--color-orange);
+  font-family: var(--font-pretend);
+  line-height: var(--line-height-27);
+  font-weight: var(--font-bold);
+}
+
+.thumbnailContentPage {
+  margin-left: 10px;
+  font-family: var(--font-pretend);
+  color: var(--color-light-gray);
+}
+
+.thumbnailContentDateSection {
+  font-size: 14px;
+  font-family: var(--font-pretend);
+  color: var(--color-light-gray);
+}
+
+.thumbnailContentTranslationDirectionSection {
+  @include flex;
+  @include full-width;
+  height: 40px;
+  align-items: center;
+  justify-content: start;
+  margin-top: 10px;
+}
+
+.thumbnailContentTranslationTarget {
+  font-size: 14px;
+  font-family: var(--font-pretend);
+  color: var(--color-gray);
+}
+
+.thumbnailContentTranslationArrow {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.thumbnailContentIntroSection {
+  @include full-container;
+  padding: 10px 0px;
+}
+
+.thumbnailContentIntro {
+  @include full-container;
+  border-top: 0.5px solid var(--color-light-gray);
+  border-bottom: 0.5px solid var(--color-light-gray);
+  padding: 10px 0px;
+  font-size: 14px;
+  font-family: var(--font-pretend);
+  color: var(--color-gray);
+  letter-spacing: var(--letter-spacing-1-92);
+  line-height: var(--line-height-normal);
+}
+
+.thumbnailContentDetailSection {
+  @include full-width;
+}
+
+.thumbnailContentDetail {
+  @include flex;
+  @include full-width;
+  height: 30px;
+  align-items: center;
+  justify-content: start;
+}
+
+.thumbnailContentDetailTitle {
+  @include flex;
+  @include full-height;
+  width: 100px;
+  font-size: 14px;
+  font-family: var(--font-pretend);
+  color: var(--color-light-gray);
+  align-items: center;
+  justify-content: start;
+}
+
+.thumbnailContentDetailContent {
+  @include flex;
+  @include full-container;
+  font-size: 14px;
+  font-family: var(--font-pretend);
+  color: var(--color-light-gray);
+  align-items: center;
+  justify-content: start;
+}
+
+.mainContentSection {
+  @include full-width;
+  padding: 20px;
+  background-color: rgba(255,255,255,.25);
+}
+
+.mainContent {
+  @include full-container;
+}
+
+.mainContentRow {
+  @include full-width;
+  margin-bottom: 20px;
+}
+
+.mainContentRowOriginal {
+  color: var(--color-orange);
+  padding : 10px;
+  font-size: 16px;
+  line-height: var(--line-height-27);
+  font-family: var(--font-pretend);
+  border-radius: 8px;
+  background-color: var(--color-white);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.13);
+}
+
+.mainContentRowTranslation {
+  padding : 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-family: var(--font-pretend);
+  line-height: var(--line-height-27);
+  border-radius: 8px;
+  background-color: var(--color-white);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.13);
+}
