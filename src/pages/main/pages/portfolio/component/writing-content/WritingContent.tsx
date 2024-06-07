@@ -53,12 +53,9 @@ const WritingContent: React.FC<{
 	return (
 		<>
 			<div className={styles.container}>
-				{origianlContents.map((content, index) => {
-					if (
-						targetIndex === index ||
-						index === origianlContents.length - 1
-					) {
-						return (
+				{origianlContents.map((content, index) => 
+					
+						 (
 							<div
 								className={styles.textBundleContainer}
 								key={index}
@@ -76,7 +73,11 @@ const WritingContent: React.FC<{
 												updated[index] = value;
 												return updated;
 											})
+											
 										}
+										onEnterPressed={() => {
+											
+										}}
 									/>
 									<TextBundle
 										key={`translated-${index}`}
@@ -103,41 +104,10 @@ const WritingContent: React.FC<{
 									/>
 								</div>
 							</div>
-						);
-					} else {
-						return (
-							<div
-								key={index}
-								className={styles.textBundleContainer}
-							>
-								<div className={styles.textBundleSection}>
-									<div
-										style={{ fontSize, fontFamily }}
-										className={styles.originalTextInput}
-										onClick={() => setTargetIndex(index)}
-									>
-										{content}
-									</div>
-									<div
-										style={{ fontSize, fontFamily }}
-										className={styles.translatedTextInput}
-										onClick={() => setTargetIndex(index)}
-									>
-										{translatedContents[index]}
-									</div>
-								</div>
-								<div className={styles.deleteIconSection}>
-									<IoMdCloseCircleOutline
-										className={styles.deleteIcon}
-										onClick={() =>
-											deleteIconClickHandler(index)
-										}
-									/>
-								</div>
-							</div>
-						);
-					}
-				})}
+						)
+					)
+				
+				}
 			</div>
 		</>
 	);
