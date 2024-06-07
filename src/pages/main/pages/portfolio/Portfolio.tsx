@@ -12,6 +12,7 @@ import GreyButtonSquare from "@/components/button/grey-button-square/GreyButtonS
 import MainButtonSquare from "@/components/button/main-button-square/MainButtonSquare";
 import WritingContent from "./component/writing-content/WritingContent";
 import StyledTitle from "./component/styled-title/StyledTitle";
+import { useNavigate } from "react-router-dom";
 import {
 	areaOfInterest,
 	fontFamilyList,
@@ -21,6 +22,7 @@ import {
 } from "@/util/const";
 
 const Portfolio = () => {
+	const navigate = useNavigate();
 	const [title, setTitle] = useState<string>("");
 	const [_1, setTitleFontFamily] = useState<
 		string | undefined
@@ -229,7 +231,9 @@ const Portfolio = () => {
 							<div className={styles.mainButtonSection}>
 								<MainButtonSquare
 									title="제출하기"
-									onClicked={() => {}}
+									onClicked={() => {
+										navigate("/home/completion")
+									}}
 								/>
 							</div>
 						</div>
