@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from "react";
+import React, { useCallback, useMemo, useRef } from "react";
 import styles from "./TextBundle.module.scss";
 import TextAreaAutoResize from "react-textarea-autosize";
 
@@ -16,6 +16,11 @@ const TextBundle: React.FC<{
 		if(value.length === 0) return 75+"px"
 		return ref.current.offsetWidth+50+"px"
 	}, [value, ref.current])
+
+	const onPaste = useCallback((e: React.ClipboardEvent) => {
+		setValue(e.clipboardData.getData("text/plain"))
+	}, [])
+
 	const keyDownHandler = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
 		if (e.key === "Enter") {
 			e.preventDefault();
@@ -46,6 +51,7 @@ const TextBundle: React.FC<{
 						? "번역 전"
 						: "번역 후"
 				}
+				onPaste={onPaste}
 				onChange={(e) => setValue(e.target.value)}
 				autoFocus={original ? true : false}
 				className={`${styles.textarea} ${
