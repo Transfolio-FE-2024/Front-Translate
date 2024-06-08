@@ -7,7 +7,7 @@ import DropdownButton from "../portfolio/component/dropdown-button/DropdownButto
 import {
     areaOfInterest,
     fontFamilyList,
-    fontSizeList,
+    fontSizes,
     fontFamily,
 } from "@/util/const";
 import { VscArrowSwap } from "react-icons/vsc";
@@ -291,7 +291,7 @@ function Edit() {
                         <div className={styles.buttonSection}>
                             <DropdownButton
                                 title={<StyledTitle>글자 크기</StyledTitle>}
-                                values={fontSizeList}
+                                values={fontSizes}
                                 selectedValue={selectedFontSize}
                                 onValueClicked={(value) =>
                                     setSelectedFontSize(value)

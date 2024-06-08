@@ -37,7 +37,7 @@ export const areaOfInterest = {
 	],
 };
 
-export const fontSizeList = ["14pt", "16pt", "18pt", "20pt"];
+export const fontSizes = ["14pt", "16pt", "18pt", "20pt"];
 export const fontFamilyList: FontFamilyType[] = [
 	"Pretendard",
 	"Nanum Myeangjo",

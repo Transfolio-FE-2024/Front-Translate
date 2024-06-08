@@ -1,22 +1,22 @@
-import PageTitle from "@/components/page-title/PageTitle";
-import styles from "./Portfolio.module.scss";
-import ThumbnailChangeable from "./component/thumbnail-changeable/ThumbnailChangeable";
 import { useCallback, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import styles from "./Portfolio.module.scss";
+import PageTitle from "@/components/page-title/PageTitle";
 import TextField from "@/components/text-field/TextField";
-import { VscArrowSwap } from "react-icons/vsc";
-import DropdownButton from "./component/dropdown-button/DropdownButton";
 import TextFieldLonger from "@/components/text-field/text-field-longer/TextFieldLonger";
-import { RiErrorWarningLine } from "react-icons/ri";
-import StyledDropdownButton from "./component/styled-dropdown-button/StyledDropdownButton";
 import GreyButtonSquare from "@/components/button/grey-button-square/GreyButtonSquare";
 import MainButtonSquare from "@/components/button/main-button-square/MainButtonSquare";
+import ThumbnailChangeable from "./component/thumbnail-changeable/ThumbnailChangeable";
+import DropdownButton from "./component/dropdown-button/DropdownButton";
+import StyledDropdownButton from "./component/styled-dropdown-button/StyledDropdownButton";
 import WritingContent from "./component/writing-content/WritingContent";
 import StyledTitle from "./component/styled-title/StyledTitle";
-import { useNavigate } from "react-router-dom";
+import { VscArrowSwap } from "react-icons/vsc";
+import { RiErrorWarningLine } from "react-icons/ri";
 import {
 	areaOfInterest,
 	fontFamilyList,
-	fontSizeList,
+	fontSizes,
 	fontFamily,
 } from "@/util/const";
 import {FontFamilyType, ContentType} from "@/types/index";
@@ -244,7 +244,7 @@ const Portfolio = () => {
 							<div className={styles.buttonSection}>
 								<DropdownButton
 									title={<StyledTitle>글자 크기</StyledTitle>}
-									values={fontSizeList}
+									values={fontSizes}
 									selectedValue={selectedFontSize}
 									onValueClicked={(value) =>
 										setSelectedFontSize(value)
