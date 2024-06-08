@@ -12,6 +12,8 @@ export const TF = {
 	}),
 };
 
+export type MainCategoryType = "언어" | "전공" | "문학" | "기업";
+
 export const areaOfInterest = {
 	언어: ["한국어", "영어", "일본어", "중국어", "러시아어", "불어", "기타"],
 	전공: ["공학", "교육", "사회", "예체능", "의약", "인문", "자연"],
