@@ -22,6 +22,17 @@ const WritingContent: React.FC<{
 		translated : "",
 	}]);
 
+	const offFocus = useCallback(() => {
+		const temp = contents.map((content) => ({
+			...content,
+			focused : false
+		}))
+		setContents(_contents => _contents.map((content) => ({
+			...content,
+			focused : false
+		})));
+	}, []);
+
 	const deleteContent = useCallback((index : number) => () => contents.length !== 1 ? setContents(contents.filter((_1, _index) => index !== _index)) : null, [contents])
 
 	const moveNextContent = useCallback((index : number) => () => {
@@ -38,7 +49,7 @@ const WritingContent: React.FC<{
 		} else {
 			const temp = contents.map((content, contentIndex) => ({
 				...content,
-				focused : index + 1 === contentIndex
+				focused : index+1 === contentIndex
 			}))
 			setContents(temp);
 		}
@@ -65,6 +76,7 @@ const WritingContent: React.FC<{
 								focused={content.focused}
 								fontSize={fontSize} fontFamily={fontFamily}
 								original={content.original} translated={content.translated} 
+								offFocus={offFocus}
 								setOriginal={setOriginal(index)} setTranslated={setTranslated(index)} 
 								moveNextContent={moveNextContent(index)} deleteContent={deleteContent(index)}
 							/>

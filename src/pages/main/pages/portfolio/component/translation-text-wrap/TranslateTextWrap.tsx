@@ -9,19 +9,21 @@ interface ITranslateTextWrap {
     fontFamily? : string;
     original : string;
     translated : string;
+    offFocus : () => void;
     setOriginal : (original : string) => void;
     setTranslated : (translated : string) => void;
     moveNextContent : () => void;
     deleteContent : () => void
 }
 
-function TranslateTextWrap({focused = false, fontSize, fontFamily, original,translated, setOriginal,  setTranslated, moveNextContent, deleteContent} : ITranslateTextWrap) {
+function TranslateTextWrap({focused = false, fontSize, fontFamily, original,translated, offFocus, setOriginal, setTranslated, moveNextContent, deleteContent} : ITranslateTextWrap) {
     const originalRef = useRef<HTMLTextAreaElement>(null);
     const translatedRef = useRef<HTMLTextAreaElement>(null);
 
     useEffect(() => {
         if(focused && originalRef.current !== null) originalRef.current.focus();
-    }, [focused])
+        offFocus();
+    }, [focused, offFocus])
 
     const originalOnEnter = useCallback(() => {
         translatedRef.current?.focus();
