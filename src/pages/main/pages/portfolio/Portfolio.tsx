@@ -19,7 +19,7 @@ import {
 	fontSizeList,
 	fontFamily,
 } from "@/util/const";
-import {fontFamilyType, ContentType} from "@/types/index";
+import {FontFamilyType, ContentType} from "@/types/index";
 
 
 const Portfolio = () => {
@@ -51,7 +51,7 @@ const Portfolio = () => {
 		string | undefined
 	>();
 	const [selectedFontFamily, setSelectedFontFamily] = useState<
-		fontFamilyType | undefined
+	FontFamilyType | undefined
 	>();
 
 	const offFocus = useCallback(() => {

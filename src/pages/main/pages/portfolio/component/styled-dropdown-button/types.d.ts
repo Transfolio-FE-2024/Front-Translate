@@ -1,3 +1,3 @@
-import { fontFamilyType } from "@/types/index";
+import { FontFamilyType } from "@/types/index";
 
-export type styleKeyType = fontFamilyType;
+export type styleKeyType = FontFamilyType;

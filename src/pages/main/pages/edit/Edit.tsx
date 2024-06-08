@@ -21,7 +21,7 @@ import MainButtonSquare from "@/components/button/main-button-square/MainButtonS
 import { useNavigate } from "react-router-dom";
 import { styleKeyType } from "../portfolio/component/styled-dropdown-button/types";
 import {ContentType} from "@/types/index";
-import { MainCategoryType, fontFamilyType } from "@/types/index";
+import { MainCategoryType, FontFamilyType } from "@/types/index";
 
 const docs = {
     title: "사랑은 언제나 눈물이 돼 가슴에 남아 떠나지도 못한 채 그 길을 걸으네",
@@ -85,7 +85,7 @@ function Edit() {
         string | undefined
     >(docs.selectedFontSize);
     const [selectedFontFamily, setSelectedFontFamily] = useState<
-        fontFamilyType | undefined
+    FontFamilyType | undefined
     >("Pretendard");
 
     const navigate = useNavigate();
