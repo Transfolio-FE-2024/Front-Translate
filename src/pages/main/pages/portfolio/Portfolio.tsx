@@ -15,7 +15,7 @@ import { VscArrowSwap } from "react-icons/vsc";
 import { RiErrorWarningLine } from "react-icons/ri";
 import {
 	areaOfInterest,
-	fontFamilyList,
+	fontFamilys,
 	fontSizes,
 	fontFamily,
 } from "@/util/const";
@@ -254,7 +254,7 @@ const Portfolio = () => {
 							<div className={styles.buttonSection}>
 								<StyledDropdownButton
 									title={<StyledTitle>서체 설정</StyledTitle>}
-									values={fontFamilyList}
+									values={fontFamilys}
 									selectedValue={selectedFontFamily}
 									onValueClicked={(value) =>
 										setSelectedFontFamily(value)

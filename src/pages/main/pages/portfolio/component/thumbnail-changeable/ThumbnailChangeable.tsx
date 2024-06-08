@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./ThumbnailChangeable.module.scss";
 import { styleKeyType } from "../styled-dropdown-button/types";
 import StyledDropdownButton from "../styled-dropdown-button/StyledDropdownButton";
-import { fontFamily, fontFamilyList } from "@/util/const";
+import { fontFamily, fontFamilys } from "@/util/const";
 
 const ThumbnailChangeable: React.FC<{
 	title: string;
@@ -32,7 +32,7 @@ const ThumbnailChangeable: React.FC<{
 									? "서체 설정"
 									: selectedFontFamily
 							}
-							values={fontFamilyList}
+							values={fontFamilys}
 							selectedValue={selectedFontFamily}
 							onValueClicked={(value) =>
 								setSelectedFontFamily(value)

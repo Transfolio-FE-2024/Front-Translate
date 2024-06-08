@@ -6,7 +6,7 @@ import TextField from "@/components/text-field/TextField";
 import DropdownButton from "../portfolio/component/dropdown-button/DropdownButton";
 import {
     areaOfInterest,
-    fontFamilyList,
+    fontFamilys,
     fontSizes,
     fontFamily,
 } from "@/util/const";
@@ -301,7 +301,7 @@ function Edit() {
                         <div className={styles.buttonSection}>
                             <StyledDropdownButton
                                 title={<StyledTitle>서체 설정</StyledTitle>}
-                                values={fontFamilyList}
+                                values={fontFamilys}
                                 selectedValue={selectedFontFamily}
                                 onValueClicked={(value) =>
                                     setSelectedFontFamily(value)
