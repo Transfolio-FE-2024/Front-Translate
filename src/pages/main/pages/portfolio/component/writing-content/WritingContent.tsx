@@ -1,143 +1,74 @@
-import { useState } from "react";
-import TextBundle from "../text-bundle/TextBundle";
+import { useCallback, useRef, useState } from "react";
+import TranslateTextWrap from "../translation-text-wrap/TranslateTextWrap";
 import styles from "./WritingContent.module.scss";
-import { IoMdCloseCircleOutline } from "react-icons/io";
+
+type ContentType =
+	{
+		id : number;
+		focused: boolean;
+		original : string;
+		translated : string;
+	}
 
 const WritingContent: React.FC<{
 	fontSize: string | undefined;
 	fontFamily: string | undefined;
 }> = ({ fontSize, fontFamily }) => {
-	const [origianlContents, setOriginalContents] = useState<string[]>([""]);
-	const [translatedContents, setTranslatedContents] = useState<string[]>([
-		"",
-	]);
-	const [targetIndex, setTargetIndex] = useState<number>(0);
+	const indexRef = useRef<number>(1);
+	const [contents, setContents] = useState<ContentType[]>([{
+		id : indexRef.current++,
+		focused : true,
+		original : "",
+		translated : "",
+	}]);
 
-	const deleteIconClickHandler = (targetIndex: number) => {
-		if (origianlContents.length === 1 && translatedContents.length === 1) {
-			return;
-		}
+	const deleteContent = useCallback((index : number) => () => contents.length !== 1 ? setContents(contents.filter((_1, _index) => index !== _index)) : null, [contents])
 
-		setOriginalContents((prev) => {
-			const updated = [...prev];
-			updated.splice(targetIndex, 1);
-			return updated;
-		});
-		setTranslatedContents((prev) => {
-			const updated = [...prev];
-			updated.splice(targetIndex, 1);
-			return updated;
-		});
+	const moveNextContent = useCallback((index : number) => () => {
+		if(index + 1 === contents.length) {
+			const newContent = {
+				id : indexRef.current++,
+				focused: true,
+				original : "",
+				translated : "",
+			}
 
-		if (targetIndex === 0) {
-			setTargetIndex(targetIndex);
+			const temp = contents.map(content => ({...content, focused : false}));
+			setContents([...temp, newContent]);
 		} else {
-			setTargetIndex(targetIndex - 1);
+			const temp = contents.map((content, contentIndex) => ({
+				...content,
+				focused : index + 1 === contentIndex
+			}))
+			setContents(temp);
 		}
-	};
+	}, [contents])
+	
+	const setOriginal = useCallback((index: number) => (original: string) => 
+		setContents(contents.map((_content, _index) => (index === _index ? {
+			..._content,
+			original
+		} : _content))), [contents]);
 
-	const enterPressHandler = (targetIndex: number) => {
-		setTargetIndex(targetIndex + 1);
-		setOriginalContents((prev) => {
-			const updated = [...prev];
-			updated.splice(targetIndex + 1, 0, "");
-			return updated;
-		});
-		setTranslatedContents((prev) => {
-			const updated = [...prev];
-			updated.splice(targetIndex + 1, 0, "");
-			return updated;
-		});
-	};
-
+	const setTranslated = useCallback((index: number) => (translated: string) => 
+		setContents(contents.map((_content, _index) => (index === _index ? {
+			..._content,
+			translated
+		} : _content))), [contents]);
+	
 	return (
 		<>
 			<div className={styles.container}>
-				{origianlContents.map((content, index) => {
-					if (
-						targetIndex === index ||
-						index === origianlContents.length - 1
-					) {
-						return (
-							<div
-								className={styles.textBundleContainer}
-								key={index}
-							>
-								<div
-									style={{ fontSize, fontFamily }}
-									className={styles.textBundleSection}
-								>
-									<TextBundle
-										key={`original-${index}`}
-										value={content}
-										setValue={(value) =>
-											setOriginalContents((prev) => {
-												const updated = [...prev];
-												updated[index] = value;
-												return updated;
-											})
-										}
-									/>
-									<TextBundle
-										key={`translated-${index}`}
-										original={false}
-										value={translatedContents[index]}
-										setValue={(value) =>
-											setTranslatedContents((prev) => {
-												const updated = [...prev];
-												updated[index] = value;
-												return updated;
-											})
-										}
-										onEnterPressed={() =>
-											enterPressHandler(index)
-										}
-									/>
-								</div>
-								<div className={styles.deleteIconSection}>
-									<IoMdCloseCircleOutline
-										className={styles.deleteIcon}
-										onClick={() =>
-											deleteIconClickHandler(index)
-										}
-									/>
-								</div>
-							</div>
-						);
-					} else {
-						return (
-							<div
-								key={index}
-								className={styles.textBundleContainer}
-							>
-								<div className={styles.textBundleSection}>
-									<div
-										style={{ fontSize, fontFamily }}
-										className={styles.originalTextInput}
-										onClick={() => setTargetIndex(index)}
-									>
-										{content}
-									</div>
-									<div
-										style={{ fontSize, fontFamily }}
-										className={styles.translatedTextInput}
-										onClick={() => setTargetIndex(index)}
-									>
-										{translatedContents[index]}
-									</div>
-								</div>
-								<div className={styles.deleteIconSection}>
-									<IoMdCloseCircleOutline
-										className={styles.deleteIcon}
-										onClick={() =>
-											deleteIconClickHandler(index)
-										}
-									/>
-								</div>
-							</div>
-						);
-					}
-				})}
+				{contents.map((content, index) => 
+							<TranslateTextWrap 
+								key={content.id}
+								focused={content.focused}
+								fontSize={fontSize} fontFamily={fontFamily}
+								original={content.original} translated={content.translated} 
+								setOriginal={setOriginal(index)} setTranslated={setTranslated(index)} 
+								moveNextContent={moveNextContent(index)} deleteContent={deleteContent(index)}
+							/>
+				)}
 			</div>
 		</>
 	);

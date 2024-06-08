@@ -19,17 +19,22 @@
 .textBundleSection {
   @include flex-column;
   flex: 1;
+  width: 100%;
+  gap: 10px;
+  overflow-x : hidden;
 }
 
 .deleteIconSection {
-  @include flex-center;
+  @include flex-column-center;
+ justify-content: flex-end;
+  
   width: 30px;
   padding: 5px;
 }
 
 .deleteIcon {
   @include cursor-pointer;
-  @include full-container;
+  width: 100%;
   color: #f6b298;
 
   &:hover {
