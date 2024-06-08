@@ -2,49 +2,56 @@ import React, { useCallback, useMemo, useRef } from "react";
 import styles from "./TextBundle.module.scss";
 import TextAreaAutoResize from "react-textarea-autosize";
 
-const TextBundle: React.FC<{
+interface ITextBundle {
+	fontSize? : string;
+	fontFamily?: string;
 	original?: boolean;
-	onEnterPressed?: () => void;
 	value: string;
 	setValue: (value: string) => void;
-}> = ({ original = true, onEnterPressed = null, value, setValue }) => {
-	const ref = useRef<HTMLDivElement>(null);
-	const width = useMemo(() => {
-		console.log(ref.current?.offsetWidth);
+	onEnterPressed: () => void;
+}
 
-		if(ref.current === null) return 75+"px"
-		if(value.length === 0) return 75+"px"
-		return ref.current.offsetWidth+50+"px"
-	}, [value, ref.current])
+const TextBundle = React.forwardRef<HTMLTextAreaElement, ITextBundle>(({fontSize, fontFamily, original = true, value, setValue, onEnterPressed}, ref) => {
+	const divRef = useRef<HTMLDivElement>(null);
+
+	const width = useMemo(() => {
+		if(divRef.current === null && value.length === 0 ) {	
+			return "100px";
+		}
+
+		const span = divRef.current?.firstChild as HTMLSpanElement;
+		if(fontFamily !== undefined) span.style.setProperty("font-family", fontFamily);
+		if(fontSize !== undefined) span.style.setProperty("font-size", fontSize);
+		span.innerText = value==="" ? "번역 전 " : value
+
+		console.log(span.offsetWidth)
+		return Math.floor(span.offsetWidth)+10+"px"
+	}, [value, fontSize, fontFamily])
 
 	const onPaste = useCallback((e: React.ClipboardEvent) => {
 		setValue(e.clipboardData.getData("text/plain"))
-	}, [])
+	}, [setValue])
 
 	const keyDownHandler = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
 		if (e.key === "Enter") {
 			e.preventDefault();
 
-			if (onEnterPressed !== null) {
-				onEnterPressed!();
-			}
+			onEnterPressed();
 		}
 	};
 
 	return (
 		<>
-			<div className={styles.hiddenDiv}>
-				<span ref={ref}>
-						{value}
-				</span>
+			<div style={{fontSize, fontFamily}} className={styles.hiddenDiv} ref={divRef}>
+				<span ></span>
 			</div>
-			
 			<TextAreaAutoResize
+				ref={ref}
 				style={{
 					width,
-					
+					fontSize, fontFamily,
+					boxSizing:"content-box"
 				}}
-				
 				defaultValue={value}
 				placeholder={
 					original
@@ -53,7 +60,7 @@ const TextBundle: React.FC<{
 				}
 				onPaste={onPaste}
 				onChange={(e) => setValue(e.target.value)}
-				autoFocus={original ? true : false}
+				autoFocus={original}
 				className={`${styles.textarea} ${
 					original ? styles.original : null
 				}`}
@@ -61,6 +68,6 @@ const TextBundle: React.FC<{
 			/>
 		</>
 	);
-};
+});
 
 export default TextBundle;
