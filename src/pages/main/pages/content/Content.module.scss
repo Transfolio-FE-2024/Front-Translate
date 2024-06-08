@@ -70,6 +70,14 @@
   line-height: var(--line-height-27);
 }
 
+.thumbnailContentDetailWrapper {
+  @include flex;
+}
+
+.thumbnailContentDetailWrap {
+  flex-grow : 1;
+}
+
 .thumbnailContentSection {
   @include flex-column;
   @include full-container;
@@ -177,6 +185,16 @@
   color: var(--color-light-gray);
   align-items: center;
   justify-content: start;
+}
+
+.editButton {
+  @include flex-column-center;
+  color : var(--color-gray);
+  font-size: 16px;
+  font-weight: 700;
+  font-family: var(--font-pretend);
+  height: 100%;
+  cursor: pointer;
 }
 
 .mainContentSection {
