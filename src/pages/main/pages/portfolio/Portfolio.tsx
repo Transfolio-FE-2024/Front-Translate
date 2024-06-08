@@ -19,16 +19,16 @@ import {
 	fontSizes,
 	fontFamily,
 } from "@/util/const";
-import {FontFamilyType, ContentType} from "@/types/index";
+import { FontFamilyType, MainCategoryType, ContentType } from "@/types/index";
 
 
 const Portfolio = () => {
 	const indexRef = useRef<number>(1);
 	const [contents, setContents] = useState<ContentType[]>([{
-		id : indexRef.current++,
-		focused : true,
-		original : "",
-		translated : "",
+		id: indexRef.current++,
+		focused: true,
+		original: "",
+		translated: "",
 	}]);
 	const navigate = useNavigate();
 	const [title, setTitle] = useState<string>("");
@@ -42,7 +42,7 @@ const Portfolio = () => {
 	const [selectedTranslatedLanguage, setSelectedTranslatedLanguage] =
 		useState<string | undefined>(undefined);
 	const [selectedMainCatetory, setSelectedMainCategory] = useState<
-		"언어" | "전공" | "문학" | "기업" | undefined
+		MainCategoryType | undefined
 	>();
 	const [selectedSubCatetory, setSelectedSubCategory] = useState<
 		string | undefined
@@ -51,7 +51,7 @@ const Portfolio = () => {
 		string | undefined
 	>();
 	const [selectedFontFamily, setSelectedFontFamily] = useState<
-	FontFamilyType | undefined
+		FontFamilyType | undefined
 	>();
 
 	const offFocus = useCallback(() => {
@@ -194,10 +194,7 @@ const Portfolio = () => {
 										onValueClicked={(value) =>
 											setSelectedMainCategory(
 												value as
-												| "언어"
-												| "전공"
-												| "문학"
-												| "기업"
+												MainCategoryType
 												| undefined
 											)
 										}

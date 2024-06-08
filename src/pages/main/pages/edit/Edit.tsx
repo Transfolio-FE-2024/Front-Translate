@@ -19,20 +19,19 @@ import WritingContent from "../portfolio/component/writing-content/WritingConten
 import GreyButtonSquare from "@/components/button/grey-button-square/GreyButtonSquare";
 import MainButtonSquare from "@/components/button/main-button-square/MainButtonSquare";
 import { useNavigate } from "react-router-dom";
-import { styleKeyType } from "../portfolio/component/styled-dropdown-button/types";
 import {ContentType} from "@/types/index";
 import { MainCategoryType, FontFamilyType } from "@/types/index";
 
 const docs = {
     title: "사랑은 언제나 눈물이 돼 가슴에 남아 떠나지도 못한 채 그 길을 걸으네",
     information: "리쌍의 발레리노입니다.",
-    titleFontFamily: "Pretendard" as styleKeyType,
+    titleFontFamily: "Pretendard" as FontFamilyType,
     selectedOriginLanguage: "한국어",
     selectedTranslatedLanguage: "영어",
     selectedMainCatetory: "언어" as MainCategoryType,
     selectedSubCatetory: "영어",
     selectedFontSize: "14pt",
-    selectedFontFamily: "Pretendard" as styleKeyType,
+    selectedFontFamily: "Pretendard" as FontFamilyType,
     contents : [
         {
             id : 1,
@@ -140,7 +139,7 @@ function Edit() {
         setInformation(_information);
     }, [])
 
-    const changeTitleFontFamily = useCallback((_titleFontFamily: styleKeyType) => {
+    const changeTitleFontFamily = useCallback((_titleFontFamily: FontFamilyType) => {
         setTitleFontFamily(_titleFontFamily);
     }, [])
 
@@ -241,10 +240,7 @@ function Edit() {
                                     onValueClicked={(value) =>
                                         setSelectedMainCategory(
                                             value as
-                                            | "언어"
-                                            | "전공"
-                                            | "문학"
-                                            | "기업"
+                                            MainCategoryType
                                             | undefined
                                         )
                                     }
