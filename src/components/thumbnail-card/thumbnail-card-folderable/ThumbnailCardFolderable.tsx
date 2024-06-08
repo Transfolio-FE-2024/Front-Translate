@@ -4,6 +4,7 @@ import React from "react";
 const ThumbnailCardFolderable: React.FC<{
   original: string;
   translated: string;
+  major? : string;
   writer: string;
   picked: number;
   preSave?: boolean;
@@ -12,6 +13,7 @@ const ThumbnailCardFolderable: React.FC<{
 }> = ({
   original,
   translated,
+  major,
   writer,
   picked,
   preSave = false,
@@ -35,9 +37,11 @@ const ThumbnailCardFolderable: React.FC<{
           <div className={styles.contentSection}>
             <div className={styles.originalSection}>{original}</div>
             <div className={styles.translatedSection}>{translated}</div>
+            
           </div>
           <div className={styles.footerSection}>
-            <div className={styles.nameSection}>{writer}</div>
+            
+            <div className={styles.nameSection}>{major}<br />{writer}</div>
             {!preSave && <div className={styles.foldSection}>
               <div className={styles.pickedNumberContainer}>{picked}</div>
               <div className={`${styles.foldContainer} ${color === "green" ? styles.borderTopGreen : styles.borderTopOrange}`}></div>

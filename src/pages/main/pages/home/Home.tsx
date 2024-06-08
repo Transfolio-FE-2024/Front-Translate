@@ -35,6 +35,7 @@ const Home = () => {
                         <ThumbnailCardFolderable
                           original="たら堪らないという気をよく起した。"
                           translated="내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다."
+                          major="고전시가 번역 전문"
                           writer="@Kimhim"
                           picked={109}
                           color="green"
