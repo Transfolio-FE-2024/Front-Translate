@@ -1,3 +1,5 @@
+import { fontFamilyType } from "@/types";
+
 export const TF = {
 	KEY: Object.freeze({
 		SESSION_STORAGE: Object.freeze({
@@ -11,8 +13,6 @@ export const TF = {
 		FAIL_UNKNOWN_STATUS: "900",
 	}),
 };
-
-export type MainCategoryType = "언어" | "전공" | "문학" | "기업";
 
 export const areaOfInterest = {
 	언어: ["한국어", "영어", "일본어", "중국어", "러시아어", "불어", "기타"],
@@ -44,12 +44,6 @@ export const fontFamilyList: fontFamilyType[] = [
 	"Noto Sans",
 	"Nanum Barun Gothic",
 ];
-
-export type fontFamilyType =
-	| "Pretendard"
-	| "Nanum Myeangjo"
-	| "Noto Sans"
-	| "Nanum Barun Gothic";
 
 export const fontFamily = {
 	Pretendard: "Pretendard",

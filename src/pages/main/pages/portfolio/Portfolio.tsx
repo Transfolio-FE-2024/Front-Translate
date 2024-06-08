@@ -18,16 +18,9 @@ import {
 	fontFamilyList,
 	fontSizeList,
 	fontFamily,
-	fontFamilyType,
 } from "@/util/const";
+import {fontFamilyType, ContentType} from "@/types/index";
 
-type ContentType =
-	{
-		id: number;
-		focused: boolean;
-		original: string;
-		translated: string;
-	}
 
 const Portfolio = () => {
 	const indexRef = useRef<number>(1);

@@ -1,3 +1,3 @@
-import { fontFamilyType } from "@/util/const";
+import { fontFamilyType } from "@/types/index";
 
 export type styleKeyType = fontFamilyType;

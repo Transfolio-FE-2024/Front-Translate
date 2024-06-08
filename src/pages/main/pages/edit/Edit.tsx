@@ -9,7 +9,6 @@ import {
     fontFamilyList,
     fontSizeList,
     fontFamily,
-    fontFamilyType,
 } from "@/util/const";
 import { VscArrowSwap } from "react-icons/vsc";
 import { RiErrorWarningLine } from "react-icons/ri";
@@ -21,15 +20,8 @@ import GreyButtonSquare from "@/components/button/grey-button-square/GreyButtonS
 import MainButtonSquare from "@/components/button/main-button-square/MainButtonSquare";
 import { useNavigate } from "react-router-dom";
 import { styleKeyType } from "../portfolio/component/styled-dropdown-button/types";
-import { MainCategoryType } from "@/util/const";
-
-type ContentType =
-	{
-		id : number;
-		focused: boolean;
-		original : string;
-		translated : string;
-	}
+import {ContentType} from "@/types/index";
+import { MainCategoryType, fontFamilyType } from "@/types/index";
 
 const docs = {
     title: "사랑은 언제나 눈물이 돼 가슴에 남아 떠나지도 못한 채 그 길을 걸으네",
