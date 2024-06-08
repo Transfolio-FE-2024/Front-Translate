@@ -6,11 +6,12 @@ import { fontFamily, fontFamilyList } from "@/util/const";
 
 const ThumbnailChangeable: React.FC<{
 	title: string;
-	changeTitleFontFamily: (titleFontFamily: string) => void;
-}> = ({ title, changeTitleFontFamily }) => {
+	titleFontFamily? : styleKeyType;
+	changeTitleFontFamily: (titleFontFamily: styleKeyType) => void;
+}> = ({ title, titleFontFamily, changeTitleFontFamily }) => {
 	const [selectedFontFamily, setSelectedFontFamily] = useState<
 		styleKeyType | undefined
-	>();
+	>(titleFontFamily);
 
 	useEffect(() => {
 		if (selectedFontFamily !== undefined)

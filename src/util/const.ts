@@ -1,3 +1,5 @@
+import { fontFamilyType } from "@/types";
+
 export const TF = {
 	KEY: Object.freeze({
 		SESSION_STORAGE: Object.freeze({
@@ -42,12 +44,6 @@ export const fontFamilyList: fontFamilyType[] = [
 	"Noto Sans",
 	"Nanum Barun Gothic",
 ];
-
-export type fontFamilyType =
-	| "Pretendard"
-	| "Nanum Myeangjo"
-	| "Noto Sans"
-	| "Nanum Barun Gothic";
 
 export const fontFamily = {
 	Pretendard: "Pretendard",

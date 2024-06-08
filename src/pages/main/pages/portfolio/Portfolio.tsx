@@ -1,7 +1,7 @@
 import PageTitle from "@/components/page-title/PageTitle";
 import styles from "./Portfolio.module.scss";
 import ThumbnailChangeable from "./component/thumbnail-changeable/ThumbnailChangeable";
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import TextField from "@/components/text-field/TextField";
 import { VscArrowSwap } from "react-icons/vsc";
 import DropdownButton from "./component/dropdown-button/DropdownButton";
@@ -18,10 +18,18 @@ import {
 	fontFamilyList,
 	fontSizeList,
 	fontFamily,
-	fontFamilyType,
 } from "@/util/const";
+import {fontFamilyType, ContentType} from "@/types/index";
+
 
 const Portfolio = () => {
+	const indexRef = useRef<number>(1);
+	const [contents, setContents] = useState<ContentType[]>([{
+		id : indexRef.current++,
+		focused : true,
+		original : "",
+		translated : "",
+	}]);
 	const navigate = useNavigate();
 	const [title, setTitle] = useState<string>("");
 	const [_1, setTitleFontFamily] = useState<
@@ -45,6 +53,48 @@ const Portfolio = () => {
 	const [selectedFontFamily, setSelectedFontFamily] = useState<
 		fontFamilyType | undefined
 	>();
+
+	const offFocus = useCallback(() => {
+		setContents(_contents => _contents.map((content) => ({
+			...content,
+			focused: false
+		})));
+	}, []);
+
+	const deleteContent = useCallback((index: number) => () => contents.length !== 1 ? setContents(contents.filter((_1, _index) => index !== _index)) : null, [contents])
+
+	const moveNextContent = useCallback((index: number) => () => {
+		if (index + 1 === contents.length) {
+			const newContent = {
+				id: indexRef.current++,
+				focused: true,
+				original: "",
+				translated: "",
+			}
+
+			const temp = contents.map(content => ({ ...content, focused: false }));
+			setContents([...temp, newContent]);
+		} else {
+			const temp = contents.map((content, contentIndex) => ({
+				...content,
+				focused: index + 1 === contentIndex
+			}))
+			setContents(temp);
+		}
+	}, [contents])
+
+	const setOriginal = useCallback((index: number) => (original: string) =>
+		setContents(contents.map((_content, _index) => (index === _index ? {
+			..._content,
+			original
+		} : _content))), [contents]);
+
+	const setTranslated = useCallback((index: number) => (translated: string) =>
+		setContents(contents.map((_content, _index) => (index === _index ? {
+			..._content,
+			translated
+		} : _content))), [contents]);
+
 
 	return (
 		<>
@@ -95,7 +145,7 @@ const Portfolio = () => {
 									<DropdownButton
 										title={
 											selectedTranslatedLanguage ===
-											undefined
+												undefined
 												? "언어 선택"
 												: selectedTranslatedLanguage
 										}
@@ -111,7 +161,7 @@ const Portfolio = () => {
 								{(selectedOriginLanguage !== undefined ||
 									selectedTranslatedLanguage !== undefined) &&
 									selectedOriginLanguage ===
-										selectedTranslatedLanguage && (
+									selectedTranslatedLanguage && (
 										<div className={styles.warnTextSection}>
 											<RiErrorWarningLine
 												className={styles.warnIcon}
@@ -144,11 +194,11 @@ const Portfolio = () => {
 										onValueClicked={(value) =>
 											setSelectedMainCategory(
 												value as
-													| "언어"
-													| "전공"
-													| "문학"
-													| "기업"
-													| undefined
+												| "언어"
+												| "전공"
+												| "문학"
+												| "기업"
+												| undefined
 											)
 										}
 									/>
@@ -166,8 +216,8 @@ const Portfolio = () => {
 										values={
 											selectedMainCatetory !== undefined
 												? areaOfInterest[
-														selectedMainCatetory
-												  ]
+												selectedMainCatetory
+												]
 												: []
 										}
 										selectedValue={selectedSubCatetory}
@@ -213,18 +263,24 @@ const Portfolio = () => {
 							</div>
 						</div>
 						<WritingContent
+							contents={contents}
 							fontSize={selectedFontSize}
 							fontFamily={
 								selectedFontFamily === undefined
 									? undefined
 									: fontFamily[selectedFontFamily]
 							}
+							offFocus={offFocus}
+							deleteContent={deleteContent}
+							moveNextContent={moveNextContent}
+							setOriginal={setOriginal}
+							setTranslated={setTranslated}
 						/>
 						<div className={styles.mainButtonsSection}>
 							<div className={styles.mainButtonSection}>
 								<GreyButtonSquare
 									title="임시 저장"
-									onClicked={() => {}}
+									onClicked={() => { }}
 								/>
 							</div>
 							<div className={styles.mainButtonDivider}></div>

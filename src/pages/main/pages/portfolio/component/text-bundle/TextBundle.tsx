@@ -19,6 +19,8 @@ const TextBundle = React.forwardRef<HTMLTextAreaElement, ITextBundle>(({fontSize
 			return "100px";
 		}
 
+		if(divRef.current === null) return "0px";
+
 		const span = divRef.current?.firstChild as HTMLSpanElement;
 		if(fontFamily !== undefined) span.style.setProperty("font-family", fontFamily);
 		if(fontSize !== undefined) span.style.setProperty("font-size", fontSize);
@@ -26,7 +28,7 @@ const TextBundle = React.forwardRef<HTMLTextAreaElement, ITextBundle>(({fontSize
 
 		console.log(span.offsetWidth)
 		return Math.floor(span.offsetWidth)+10+"px"
-	}, [value, fontSize, fontFamily])
+	}, [value, fontSize, fontFamily, divRef.current])
 
 	const onPaste = useCallback((e: React.ClipboardEvent) => {
 		setValue(e.clipboardData.getData("text/plain"))
@@ -45,7 +47,7 @@ const TextBundle = React.forwardRef<HTMLTextAreaElement, ITextBundle>(({fontSize
 			<div style={{fontSize, fontFamily}} className={styles.hiddenDiv} ref={divRef}>
 				<span ></span>
 			</div>
-			<TextAreaAutoResize
+			{width !== "0px" && <TextAreaAutoResize
 				ref={ref}
 				style={{
 					width,
@@ -65,7 +67,7 @@ const TextBundle = React.forwardRef<HTMLTextAreaElement, ITextBundle>(({fontSize
 					original ? styles.original : null
 				}`}
 				onKeyDown={keyDownHandler}
-			/>
+			/>}
 		</>
 	);
 });
