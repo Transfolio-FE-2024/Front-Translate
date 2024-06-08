@@ -33,10 +33,11 @@ const Home = () => {
                       <ThumbnailTitle interest="전공" />
                       <div className={styles.thumbnailSection}>
                         <ThumbnailCardFolderable
-                          original="たら堪らないという気をよく起した。 내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다."
-                          translated="번역본"
+                          original="たら堪らないという気をよく起した。"
+                          translated="내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다."
                           writer="@Kimhim"
                           picked={109}
+                          color="green"
                           onClicked={() => navigate("/home/content")}
                         />
                       </div>

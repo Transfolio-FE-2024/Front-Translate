@@ -114,7 +114,22 @@
   position: relative;
   width: 0;
   height: 0;
-  border-top: 40px solid var(--color-orange);
   border-right: 40px solid transparent;
   z-index: 2;
+}
+
+.borderTopGreen {
+  border-top: 40px solid var(--color-green-2);
+}
+
+.borderTopOrange {
+  border-top: 40px solid var(--color-orange);
+}
+
+.green {
+  background-color : var(--color-green-2);
+}
+
+.orange {
+  background-color : var(--color-orange);
 }
