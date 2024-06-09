@@ -48,22 +48,29 @@ const Content = () => {
                   위하여 짧지만 많이 수정했네요. 잘 봐주세요 :)
                 </div>
               </div>
-              <div className={styles.thumbnailContentDetailSection}>
-                <div className={styles.thumbnailContentDetail}>
-                  <div className={styles.thumbnailContentDetailTitle}>
-                    카테고리
+              <div className={styles.thumbnailContentDetailWrapper}>
+                <div className={styles.thumbnailContentDetailWrap}>
+                  <div className={styles.thumbnailContentDetailSection}>
+                    <div className={styles.thumbnailContentDetail}>
+                      <div className={styles.thumbnailContentDetailTitle}>
+                        카테고리
+                      </div>
+                      <div className={styles.thumbnailContentDetailContent}>
+                        언어
+                      </div>
+                    </div>
                   </div>
-                  <div className={styles.thumbnailContentDetailContent}>
-                    언어
+                  <div className={styles.thumbnailContentDetailSection}>
+                    <div className={styles.thumbnailContentDetail}>
+                      <div className={styles.thumbnailContentDetailTitle}>작가</div>
+                      <div className={styles.thumbnailContentDetailContent}>
+                        そうた
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className={styles.thumbnailContentDetailSection}>
-                <div className={styles.thumbnailContentDetail}>
-                  <div className={styles.thumbnailContentDetailTitle}>작가</div>
-                  <div className={styles.thumbnailContentDetailContent}>
-                    そうた
-                  </div>
+                <div className={styles.editButton}>
+                  수정하기
                 </div>
               </div>
             </div>

@@ -8,7 +8,7 @@ export type ContentType = {
 }
 
 export type MainCategoryType = "언어" | "전공" | "문학" | "기업";
-export type fontFamilyType =
+export type FontFamilyType =
 	| "Pretendard"
 	| "Nanum Myeangjo"
 	| "Noto Sans"

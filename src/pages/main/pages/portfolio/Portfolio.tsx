@@ -1,34 +1,34 @@
-import PageTitle from "@/components/page-title/PageTitle";
-import styles from "./Portfolio.module.scss";
-import ThumbnailChangeable from "./component/thumbnail-changeable/ThumbnailChangeable";
 import { useCallback, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import styles from "./Portfolio.module.scss";
+import PageTitle from "@/components/page-title/PageTitle";
 import TextField from "@/components/text-field/TextField";
-import { VscArrowSwap } from "react-icons/vsc";
-import DropdownButton from "./component/dropdown-button/DropdownButton";
 import TextFieldLonger from "@/components/text-field/text-field-longer/TextFieldLonger";
-import { RiErrorWarningLine } from "react-icons/ri";
-import StyledDropdownButton from "./component/styled-dropdown-button/StyledDropdownButton";
 import GreyButtonSquare from "@/components/button/grey-button-square/GreyButtonSquare";
 import MainButtonSquare from "@/components/button/main-button-square/MainButtonSquare";
+import ThumbnailChangeable from "./component/thumbnail-changeable/ThumbnailChangeable";
+import DropdownButton from "./component/dropdown-button/DropdownButton";
+import StyledDropdownButton from "./component/styled-dropdown-button/StyledDropdownButton";
 import WritingContent from "./component/writing-content/WritingContent";
 import StyledTitle from "./component/styled-title/StyledTitle";
-import { useNavigate } from "react-router-dom";
+import { VscArrowSwap } from "react-icons/vsc";
+import { RiErrorWarningLine } from "react-icons/ri";
 import {
 	areaOfInterest,
-	fontFamilyList,
-	fontSizeList,
+	fontFamilys,
+	fontSizes,
 	fontFamily,
 } from "@/util/const";
-import {fontFamilyType, ContentType} from "@/types/index";
+import { FontFamilyType, MainCategoryType, ContentType } from "@/types/index";
 
 
 const Portfolio = () => {
 	const indexRef = useRef<number>(1);
 	const [contents, setContents] = useState<ContentType[]>([{
-		id : indexRef.current++,
-		focused : true,
-		original : "",
-		translated : "",
+		id: indexRef.current++,
+		focused: true,
+		original: "",
+		translated: "",
 	}]);
 	const navigate = useNavigate();
 	const [title, setTitle] = useState<string>("");
@@ -42,7 +42,7 @@ const Portfolio = () => {
 	const [selectedTranslatedLanguage, setSelectedTranslatedLanguage] =
 		useState<string | undefined>(undefined);
 	const [selectedMainCatetory, setSelectedMainCategory] = useState<
-		"언어" | "전공" | "문학" | "기업" | undefined
+		MainCategoryType | undefined
 	>();
 	const [selectedSubCatetory, setSelectedSubCategory] = useState<
 		string | undefined
@@ -51,7 +51,7 @@ const Portfolio = () => {
 		string | undefined
 	>();
 	const [selectedFontFamily, setSelectedFontFamily] = useState<
-		fontFamilyType | undefined
+		FontFamilyType | undefined
 	>();
 
 	const offFocus = useCallback(() => {
@@ -194,10 +194,7 @@ const Portfolio = () => {
 										onValueClicked={(value) =>
 											setSelectedMainCategory(
 												value as
-												| "언어"
-												| "전공"
-												| "문학"
-												| "기업"
+												MainCategoryType
 												| undefined
 											)
 										}
@@ -244,7 +241,7 @@ const Portfolio = () => {
 							<div className={styles.buttonSection}>
 								<DropdownButton
 									title={<StyledTitle>글자 크기</StyledTitle>}
-									values={fontSizeList}
+									values={fontSizes}
 									selectedValue={selectedFontSize}
 									onValueClicked={(value) =>
 										setSelectedFontSize(value)
@@ -254,7 +251,7 @@ const Portfolio = () => {
 							<div className={styles.buttonSection}>
 								<StyledDropdownButton
 									title={<StyledTitle>서체 설정</StyledTitle>}
-									values={fontFamilyList}
+									values={fontFamilys}
 									selectedValue={selectedFontFamily}
 									onValueClicked={(value) =>
 										setSelectedFontFamily(value)

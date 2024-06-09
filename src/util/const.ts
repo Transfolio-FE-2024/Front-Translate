@@ -1,4 +1,4 @@
-import { fontFamilyType } from "@/types";
+import { FontFamilyType } from "@/types";
 
 export const TF = {
 	KEY: Object.freeze({
@@ -37,8 +37,8 @@ export const areaOfInterest = {
 	],
 };
 
-export const fontSizeList = ["14pt", "16pt", "18pt", "20pt"];
-export const fontFamilyList: fontFamilyType[] = [
+export const fontSizes = ["14pt", "16pt", "18pt", "20pt"];
+export const fontFamilys : FontFamilyType[] = [
 	"Pretendard",
 	"Nanum Myeangjo",
 	"Noto Sans",
