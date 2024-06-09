@@ -3,6 +3,28 @@ import { GoArrowSwitch } from "react-icons/go";
 import PageTitle from "../../../../components/page-title/PageTitle";
 import ThumbnailCardUnfolderable from "../../../../components/thumbnail-card/thumbnail-card-unfolderable/ThumbnailCardUnfolderable";
 
+const contents = [{
+  original: "目分は何気なく傍の流れを見た。",
+  translated: "눈초리는 무심코 곁의 흐름을 보았다."
+},
+{
+  original: "向う側の斜めに水から出ている半畳敷程の石に黒い小さいものがいた。",
+  translated: "맞은편 비스듬히 물에서 나온, 다다미 깔개 정도의 돌에 검은색 작은 것이 있었다."
+},
+{
+  original: "イモリだ。未だ濡れていて、それはいい色をしていた。",
+  translated: "머리를 아래로 경사에서 흐름에 임하여 응연했다."
+},
+{
+  original: "頭を下に傾斜から流れへ了臨んで、凝然としていた。",
+  translated: "맞은편 비스듬히 물에서 나온, 다다미 깔개 정도의 돌에 검은색 작은 것이 있었다.",
+},
+{
+  original: "からからになったまま干からびそうだ ソーダみたく弾けて飛びそうだ",
+  translated: ""
+}
+]
+
 const Content = () => {
   return (
     <>
@@ -77,49 +99,18 @@ const Content = () => {
           </div>
           <div className={styles.mainContentSection}>
             <div className={styles.mainContent}>
-              <div className={styles.mainContentRow}>
-                <div className={styles.mainContentRowOriginal}>
-                  目分は何気なく傍の流れを見た。
-                </div>
-                <div className={styles.mainContentRowTranslation}>
-                  눈초리는 무심코 곁의 흐름을 보았다.
-                </div>
-              </div>
-              <div className={styles.mainContentRow}>
-                <div className={styles.mainContentRowOriginal}>
-                  向う側の斜めに水から出ている半畳敷程の石に黒い小さいものがいた。
-                </div>
-                <div className={styles.mainContentRowTranslation}>
-                  맞은편 비스듬히 물에서 나온, 다다미 깔개 정도의 돌에 검은색
-                  작은 것이 있었다.
-                </div>
-              </div>
-              <div className={styles.mainContentRow}>
-                <div className={styles.mainContentRowOriginal}>
-                  イモリだ。未だ濡れていて、それはいい色をしていた。
-                </div>
-                <div className={styles.mainContentRowTranslation}>
-                  머리를 아래로 경사에서 흐름에 임하여 응연했다.
-                </div>
-              </div>
-              <div className={styles.mainContentRow}>
-                <div className={styles.mainContentRowOriginal}>
-                  頭を下に傾斜から流れへ了臨んで、凝然としていた。
-                </div>
-                <div className={styles.mainContentRowTranslation}>
-                  맞은편 비스듬히 물에서 나온, 다다미 깔개 정도의 돌에 검은색
-                  작은 것이 있었다.
-                </div>
-              </div>
-              <div className={styles.mainContentRow}>
-                <div className={styles.mainContentRowOriginal}>
-                  からからになったまま干からびそうだ
-                  ソーダみたく弾けて飛びそうだ
-                </div>
-                <div className={styles.mainContentRowTranslation}>
-                  바싹 바짝 마른 채 메마를 것 같고 소다처럼 터져 날아갈 것 같아
-                </div>
-              </div>
+              {
+                contents.map(content => (
+                  <div className={styles.mainContentRow}>
+                    <div className={`${styles.mainContentRowOriginal} ${content.translated === "" ? styles.greenColor : styles.orangeColor}`}>
+                      {content.original}
+                    </div>
+                    <div className={styles.mainContentRowTranslation}>
+                      {content.translated}
+                    </div>
+                  </div>
+                ))
+              }
             </div>
           </div>
         </div>
