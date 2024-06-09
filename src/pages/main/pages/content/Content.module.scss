@@ -200,7 +200,7 @@
 .mainContentSection {
   @include full-width;
   padding: 20px;
-  background-color: rgba(255,255,255,.25);
+  background-color: rgb(255,255,255);
 }
 
 .mainContent {
@@ -209,28 +209,38 @@
 
 .mainContentRow {
   @include full-width;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--color-light-gray);
+}
+
+.orangeColor {
+  color : var(--color-orange);
+}
+
+.greenColor {
+  color : var(--color-green-2);
 }
 
 .mainContentRowOriginal {
-  color: var(--color-orange);
-  padding : 10px;
+  padding : 5px 10px;
   font-size: 16px;
-  line-height: var(--line-height-27);
   font-family: var(--font-pretend);
-  border-radius: 8px;
   background-color: var(--color-white);
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.13);
 }
 
 .mainContentRowTranslation {
-  padding : 10px;
-  margin-top: 5px;
+  padding : 5px 10px;
   margin-bottom: 10px;
   font-size: 16px;
   font-family: var(--font-pretend);
-  line-height: var(--line-height-27);
-  border-radius: 8px;
   background-color: var(--color-white);
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.13);
+  line-height: 24px;
+  display : flex;
+
+  &::before {
+    content : " ";
+    display : block;
+    width: 1px;
+    height: 24px;
+  }
 }

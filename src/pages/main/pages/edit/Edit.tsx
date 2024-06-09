@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import PageTitle from "@/components/page-title/PageTitle";
 import styles from "./Edit.module.scss";
 import ThumbnailChangeable from "../portfolio/component/thumbnail-changeable/ThumbnailChangeable";
@@ -41,19 +41,37 @@ const docs = {
         },
         {
             id : 2,
-            focused : true,
+            focused : false,
             original : "이것은 테스트 오리지널 문입니다",
             translated: "이것은 테스트 번역 문입니다."
         },
         {
             id : 3,
-            focused : true,
+            focused : false,
             original : "이것은 테스트 오리지널 문입니다",
             translated: "이것은 테스트 번역 문입니다."
         },
         {
             id : 4,
-            focused : true,
+            focused : false,
+            original : "이것은 테스트 오리지널 문입니다",
+            translated: "이것은 테스트 번역 문입니다."
+        },
+        {
+            id : 5,
+            focused : false,
+            original : "이것은 테스트 오리지널 문입니다",
+            translated: "이것은 테스트 번역 문입니다."
+        },
+        {
+            id : 6,
+            focused : false,
+            original : "이것은 테스트 오리지널 문입니다",
+            translated: "이것은 테스트 번역 문입니다."
+        },
+        {
+            id : 7,
+            focused : false,
             original : "이것은 테스트 오리지널 문입니다",
             translated: "이것은 테스트 번역 문입니다."
         }
@@ -70,6 +88,7 @@ function Edit() {
 		original : "",
 		translated : "",
 	}] : docs.contents);
+
     const [title, setTitle] = useState(docs.title);
     const [information, setInformation] = useState(docs.information);
     const [titleFontFamily, setTitleFontFamily] = useState(docs.titleFontFamily);
@@ -88,6 +107,10 @@ function Edit() {
     >("Pretendard");
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        window.scrollTo(0,0);
+    }, [])
 
     const offFocus = useCallback(() => {
 		setContents(_contents => _contents.map((content) => ({
@@ -119,16 +142,16 @@ function Edit() {
 	}, [contents])
 	
 	const setOriginal = useCallback((index: number) => (original: string) => 
-		setContents(contents.map((_content, _index) => (index === _index ? {
+		setContents(_contents => _contents.map((_content, _index) => (index === _index ? {
 			..._content,
 			original
-		} : _content))), [contents]);
+		} : _content))), []);
 
 	const setTranslated = useCallback((index: number) => (translated: string) => 
-		setContents(contents.map((_content, _index) => (index === _index ? {
+		setContents(_contents => _contents.map((_content, _index) => (index === _index ? {
 			..._content,
 			translated
-		} : _content))), [contents]);
+		} : _content))), []);
 	
 
     const changeTitle = useCallback((_title: string) => {

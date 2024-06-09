@@ -26,7 +26,6 @@ const TextBundle = React.forwardRef<HTMLTextAreaElement, ITextBundle>(({fontSize
 		if(fontSize !== undefined) span.style.setProperty("font-size", fontSize);
 		span.innerText = value==="" ? "번역 전 " : value
 
-		console.log(span.offsetWidth)
 		return Math.floor(span.offsetWidth)+10+"px"
 	}, [value, fontSize, fontFamily, divRef.current])
 
@@ -47,10 +46,11 @@ const TextBundle = React.forwardRef<HTMLTextAreaElement, ITextBundle>(({fontSize
 			<div style={{fontSize, fontFamily}} className={styles.hiddenDiv} ref={divRef}>
 				<span ></span>
 			</div>
-			{width !== "0px" && <TextAreaAutoResize
+			<TextAreaAutoResize
 				ref={ref}
 				style={{
 					width,
+					visibility : width === "0px" ? "hidden" : "visible",
 					fontSize, fontFamily,
 					boxSizing:"content-box"
 				}}
@@ -67,7 +67,7 @@ const TextBundle = React.forwardRef<HTMLTextAreaElement, ITextBundle>(({fontSize
 					original ? styles.original : null
 				}`}
 				onKeyDown={keyDownHandler}
-			/>}
+			/>
 		</>
 	);
 });

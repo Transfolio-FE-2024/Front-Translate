@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Portfolio.module.scss";
 import PageTitle from "@/components/page-title/PageTitle";
@@ -53,6 +53,10 @@ const Portfolio = () => {
 	const [selectedFontFamily, setSelectedFontFamily] = useState<
 		FontFamilyType | undefined
 	>();
+
+	useEffect(() => {
+		window.scrollTo(0,0)
+	}, [])
 
 	const offFocus = useCallback(() => {
 		setContents(_contents => _contents.map((content) => ({
