@@ -1,3 +1,5 @@
+import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./Content.module.scss";
 import { GoArrowSwitch } from "react-icons/go";
 import PageTitle from "../../../../components/page-title/PageTitle";
@@ -26,6 +28,11 @@ const contents = [{
 ]
 
 const Content = () => {
+  const navigate = useNavigate();
+  const editButtonOnClick = useCallback(() => {
+    navigate("/home/edit");
+  }, [])
+
   return (
     <>
       <div className={styles.container}>
@@ -91,7 +98,7 @@ const Content = () => {
                     </div>
                   </div>
                 </div>
-                <div className={styles.editButton}>
+                <div className={styles.editButton} onClick={editButtonOnClick}>
                   수정하기
                 </div>
               </div>
