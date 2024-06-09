@@ -4,25 +4,27 @@ import styles from "./TranslateTextWrap.module.scss"
 import { useCallback, useEffect, useRef } from "react";
 
 interface ITranslateTextWrap {
-    focused : boolean;
-    fontSize? : string; 
-    fontFamily? : string;
-    original : string;
-    translated : string;
-    offFocus : () => void;
-    setOriginal : (original : string) => void;
-    setTranslated : (translated : string) => void;
-    moveNextContent : () => void;
-    deleteContent : () => void
+    focused: boolean;
+    fontSize?: string;
+    fontFamily?: string;
+    original: string;
+    translated: string;
+    offFocus: () => void;
+    setOriginal: (original: string) => void;
+    setTranslated: (translated: string) => void;
+    moveNextContent: () => void;
+    deleteContent: () => void
 }
 
-function TranslateTextWrap({focused = false, fontSize, fontFamily, original,translated, offFocus, setOriginal, setTranslated, moveNextContent, deleteContent} : ITranslateTextWrap) {
+function TranslateTextWrap({ focused, fontSize, fontFamily, original, translated, offFocus, setOriginal, setTranslated, moveNextContent, deleteContent }: ITranslateTextWrap) {
     const originalRef = useRef<HTMLTextAreaElement>(null);
     const translatedRef = useRef<HTMLTextAreaElement>(null);
 
     useEffect(() => {
-        if(focused && originalRef.current !== null) originalRef.current.focus();
-        offFocus();
+        if (focused && originalRef.current !== null) {
+            originalRef.current.focus();
+            offFocus();
+        }
     }, [focused, offFocus])
 
     const originalOnEnter = useCallback(() => {
@@ -33,7 +35,7 @@ function TranslateTextWrap({focused = false, fontSize, fontFamily, original,tran
         moveNextContent();
     }, [moveNextContent])
 
-    return ( <div
+    return (<div
         className={styles.textBundleContainer}
     >
         <div
