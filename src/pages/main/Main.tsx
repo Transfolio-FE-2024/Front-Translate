@@ -17,7 +17,7 @@ const Main = () => {
           <Route path="/" element={<Home />} />
           <Route path="/edit" element={<Edit />} />
           <Route path="/content" element={<Content />} />
-          <Route path="/writer" element={<Writer />} />
+          <Route path="/writer/:writerId" element={<Writer />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/completion" element={<Completion />} />
         </Routes>

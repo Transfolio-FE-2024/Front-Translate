@@ -6,8 +6,9 @@ import styles from "./Home.module.scss";
 import ThumbnailCardFolderable from "@/components/thumbnail-card/thumbnail-card-folderable/ThumbnailCardFolderable";
 import ThumbnailTitle from "@/components/thumbnail-title/ThumbnailTitle";
 
-const nickName="Kimhim"
-let thumbnailContents = [1, 2, 3, 4, 5, 6, 7, 8];
+const nickName = "Kimhim";
+const currentUserId = "Kimhim";
+const thumbnailContents = [1, 2, 3, 4, 5, 6, 7, 8];
 const Home = () => {
   const navigate = useNavigate();
 
@@ -23,7 +24,7 @@ const Home = () => {
             <ContentSlider />
             <div className={styles.divider}></div>
             <div className={styles.titleSection}>
-             {nickName}님의 관심분야의 번역들이에요!
+              {nickName}님의 관심분야의 번역들이에요!
             </div>
             <div className={styles.thumbnailCardSection}>
               {thumbnailContents.map((thumbnail) => {
@@ -49,7 +50,10 @@ const Home = () => {
               <div className={styles.thumbnailEmptyContainer}></div>
             </div>
             <div className={styles.divider}></div>
-            <div className={styles.moveToPageContainer}>
+            <div
+              className={styles.moveToPageContainer}
+              onClick={() => navigate(`/home/writer/${currentUserId}`)}
+            >
               <div>
                 <div className={styles.moveToPageSubTitle}>
                   translation contest

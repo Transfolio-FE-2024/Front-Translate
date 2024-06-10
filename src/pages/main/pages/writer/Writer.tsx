@@ -3,9 +3,11 @@ import PageTitle from "../../../../components/page-title/PageTitle";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { useState } from "react";
 import ThumbnailCardFolderable from "../../../../components/thumbnail-card/thumbnail-card-folderable/ThumbnailCardFolderable";
+import { useParams } from "react-router-dom";
 
 const buttonTitles = ["포트폴리오", "경력", "접음"];
 const Writer = () => {
+  const { writerId = "" } = useParams();
   const [selectedButtonIndex, setSelectedButtonIndex] = useState<number>(0);
 
   const buttonClickHandler = (index: number) => {
@@ -25,7 +27,7 @@ const Writer = () => {
               {/* <div className={styles.profileImg}></div> */}
               <IoPersonCircleOutline className={styles.profileImg} />
             </div>
-            <div className={styles.profileNameSection}>@Kimhim</div>
+            <div className={styles.profileNameSection}>@{writerId}</div>
             <div className={styles.profileInfoSection}>
               <div className={styles.profileInfoBox}>
                 <div className={styles.profileInfoBoxTitle}>접기</div>
@@ -72,7 +74,7 @@ const Writer = () => {
                 onClicked={() => {}}
                 preSave
               />
-              
+
               <div className={styles.thumbnailEmptyContainer}></div>
             </div>
           </div>
