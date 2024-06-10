@@ -14,6 +14,10 @@ const TextField: React.FC<{
   placeholder?: string;
   validationFn?: (value: string) => ValidationResult;
   validationFailText?: string | { (value: string): string };
+  inputProps?: React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  >;
 }> = ({
   value,
   onChange,
@@ -21,6 +25,7 @@ const TextField: React.FC<{
   placeholder = "",
   validationFn = () => "Ok",
   validationFailText = "값이 유효하지 않습니다.",
+  inputProps = {},
 }) => {
   return (
     <>
@@ -30,6 +35,7 @@ const TextField: React.FC<{
         }`}
       >
         <input
+          {...inputProps}
           className={styles.input}
           type={hide ? "password" : "text"}
           defaultValue={value}
