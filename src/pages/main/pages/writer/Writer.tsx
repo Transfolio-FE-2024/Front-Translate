@@ -64,6 +64,7 @@ const Writer = () => {
                 translated="내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다."
                 writer="@Kimhim"
                 picked={4}
+                color="orange"
                 onClicked={() => {}}
               />
               <ThumbnailCardFolderable
@@ -71,6 +72,7 @@ const Writer = () => {
                 translated="당신과 어울려 깊은 곳에 겹쳐서"
                 writer="@Kimhim"
                 picked={4}
+                color="orange"
                 onClicked={() => {}}
                 preSave
               />
