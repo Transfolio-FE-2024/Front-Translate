@@ -7,15 +7,15 @@ import ThumbnailCardUnfolderable from "../../../../components/thumbnail-card/thu
 
 const contents = [{
   original: "目分は何気なく傍の流れを見た。",
-  translated: "눈초리는 무심코 곁의 흐름을 보았다."
+  translated: "눈초리는 무심코 곁의 흐름을 보았다.",
 },
 {
   original: "向う側の斜めに水から出ている半畳敷程の石に黒い小さいものがいた。",
-  translated: "맞은편 비스듬히 물에서 나온, 다다미 깔개 정도의 돌에 검은색 작은 것이 있었다."
+  translated: "맞은편 비스듬히 물에서 나온, 다다미 깔개 정도의 돌에 검은색 작은 것이 있었다.",
 },
 {
   original: "イモリだ。未だ濡れていて、それはいい色をしていた。",
-  translated: "머리를 아래로 경사에서 흐름에 임하여 응연했다."
+  translated: "머리를 아래로 경사에서 흐름에 임하여 응연했다.",
 },
 {
   original: "頭を下に傾斜から流れへ了臨んで、凝然としていた。",
@@ -23,9 +23,11 @@ const contents = [{
 },
 {
   original: "からからになったまま干からびそうだ ソーダみたく弾けて飛びそうだ",
-  translated: ""
+  translated: "",
 }
 ]
+
+const preSave = true;
 
 const Content = () => {
   const navigate = useNavigate();
@@ -109,7 +111,10 @@ const Content = () => {
               {
                 contents.map(content => (
                   <div className={styles.mainContentRow}>
-                    <div className={`${styles.mainContentRowOriginal} ${content.translated === "" ? styles.greenColor : styles.orangeColor}`}>
+                    <div className={`
+                      ${styles.mainContentRowOriginal} 
+                      ${(content.translated === "" || preSave)  ? styles.greenColor : styles.orangeColor}
+                    `}>
                       {content.original}
                     </div>
                     <div className={styles.mainContentRowTranslation}>
