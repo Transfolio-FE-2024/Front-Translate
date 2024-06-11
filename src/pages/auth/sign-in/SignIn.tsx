@@ -7,7 +7,7 @@ import kakaoImg from "../../../assets/images/sns_kakaotalk.png";
 import Layout from "@/components/Layout/Layout";
 import { useNavigate } from "react-router-dom";
 import { ValidationUtil } from "@/util";
-import { signIn } from "@/api/auth";
+// import { signIn } from "@/api/auth";
 
 const SignIn = () => {
   const navigate = useNavigate();
