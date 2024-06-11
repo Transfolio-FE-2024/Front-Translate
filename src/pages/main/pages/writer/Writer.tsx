@@ -3,10 +3,11 @@ import PageTitle from "../../../../components/page-title/PageTitle";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { useState } from "react";
 import ThumbnailCardFolderable from "../../../../components/thumbnail-card/thumbnail-card-folderable/ThumbnailCardFolderable";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const buttonTitles = ["포트폴리오", "경력", "접음"];
 const Writer = () => {
+  const navigate = useNavigate();
   const { writerId = "" } = useParams();
   const [selectedButtonIndex, setSelectedButtonIndex] = useState<number>(0);
 
@@ -65,7 +66,7 @@ const Writer = () => {
                 writer="@Kimhim"
                 picked={4}
                 color="orange"
-                onClicked={() => {}}
+                onClicked={() => {navigate("/home/content")}}
               />
               <ThumbnailCardFolderable
                 original="あなたと溶け合って 深いところで重なって "
@@ -73,7 +74,7 @@ const Writer = () => {
                 writer="@Kimhim"
                 picked={4}
                 color="orange"
-                onClicked={() => {}}
+                onClicked={() => {navigate("/home/content")}}
                 preSave
               />
 
