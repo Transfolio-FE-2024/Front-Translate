@@ -47,7 +47,7 @@ export const fontFamilys : FontFamilyType[] = [
 
 export const fontFamily = {
 	Pretendard: "Pretendard",
-	"Nanum Myeangjo": "NanumMyeangjo",
+	"Nanum Myeangjo": "NanumMyeongjo",
 	"Noto Sans": "NotoSans",
 	"Nanum Barun Gothic": "NanumBarunGothic",
 };
