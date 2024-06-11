@@ -8,9 +8,11 @@ import { useRef, useState } from "react";
 import Arrow from "../arrow/Arrow";
 import { useMediaQuery } from "react-responsive";
 import ThumbnailTitle from "@/components/thumbnail-title/ThumbnailTitle";
+import { useNavigate } from "react-router-dom";
 
 const sliderContents = [1, 2, 3, 4, 5, 6, 7, 8];
 const ContentSlider = () => {
+  const navigate = useNavigate();
   const isMobile = useMediaQuery({ maxWidth: "767px" });
   const sliderNumber = isMobile ? 1 : 3;
   const [pageIndex, setPageIndex] = useState<number>(0);
@@ -64,7 +66,7 @@ const ContentSlider = () => {
                         writer="@Kimhim"
                         picked={109}
                         color="orange"
-                        onClicked={() => {}}
+                        onClicked={() => {navigate("/home/content")}}
                       />
                     </div>
                   </div>

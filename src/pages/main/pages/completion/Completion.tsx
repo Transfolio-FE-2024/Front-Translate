@@ -43,8 +43,8 @@ const Complete = (): JSX.Element => {
 									navigate("/home/writer")
 								}}
 							/>
-							<RankingCard rank={2} onClicked={() => {navigate("/home/writer")}} />
-							<RankingCard rank={3} onClicked={() => {navigate("/home/writer")}} />
+							<RankingCard rank={2} onClicked={() => {navigate("/home/writer/transfolioTeam")}} />
+							<RankingCard rank={3} onClicked={() => {navigate("/home/writer/transfolioTeam")}} />
 						</div>
 						<div>
 							<button
