@@ -46,6 +46,7 @@ const Portfolio = () => {
   const [selectedSubCatetory, setSelectedSubCategory] = useState<
     string | undefined
   >();
+  const [author, setAuthor] = useState<string>("");
   const [selectedFontSize, setSelectedFontSize] = useState<
     string | undefined
   >();
@@ -243,7 +244,13 @@ const Portfolio = () => {
               <div className={styles.etcSection}>
                 <div className={styles.etcTitleSection}>작가</div>
                 <div className={styles.divider}></div>
-                <div className={styles.etcTitleSection}>@kimhim</div>
+                <div className={styles.etcTitleSection}>
+                  <TextField
+                    value={author}
+                    onChange={(value) => setAuthor(value)}
+                    placeholder="작가를 입력해주세요"
+                  />
+                </div>
               </div>
             </div>
           </div>
