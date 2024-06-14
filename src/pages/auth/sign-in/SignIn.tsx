@@ -10,7 +10,7 @@ import { ValidationUtil } from "@/util";
 import { CLIENT_SITE_ADDRESS } from "@/util/const";
 // import { signIn } from "@/api/auth";
 
-const REDIRECT_URL = CLIENT_SITE_ADDRESS+"/oauth/kakaocallback";
+const REDIRECT_URL = CLIENT_SITE_ADDRESS+"oauth/kakaocallback";
 
 const SignIn = () => {
   const navigate = useNavigate();
