@@ -12,6 +12,8 @@ export const TF = {
 	}),
 };
 
+export const CLIENT_SITE_ADDRESS = import.meta.env.DEV ? "http://localhost:5173/" : "https://dev--transfolio.netlify.app/";
+
 export const areaOfInterest = {
 	언어: ["한국어", "영어", "일본어", "중국어", "러시아어", "불어", "기타"],
 	전공: ["공학", "교육", "사회", "예체능", "의약", "인문", "자연"],
