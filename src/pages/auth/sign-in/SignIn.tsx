@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import TextField from "../../../components/text-field/TextField";
 import styles from "./SignIn.module.scss";
 import MainButtonRound from "@/components/button/main-button-round/MainButtonRound";
@@ -7,12 +7,18 @@ import kakaoImg from "../../../assets/images/sns_kakaotalk.png";
 import Layout from "@/components/Layout/Layout";
 import { useNavigate } from "react-router-dom";
 import { ValidationUtil } from "@/util";
+
 // import { signIn } from "@/api/auth";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const kakaoLoginOnClick = useCallback(async() => {
+    const REDIRECT_URL = "http://localhost:5173/oauth/kakaocallback"
+    location.href =  `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_KAKAO_REST_API}&redirect_uri=${REDIRECT_URL}&response_type=code`
+  }, [])
 
   const login = () => {
     const onError = (key: string) => alert(`${key} 값을 입력하세요.`);
@@ -91,7 +97,7 @@ const SignIn = () => {
               <SnsButton
                 img={kakaoImg}
                 title="카카오톡으로 시작하기"
-                onClicked={() => {}}
+                onClicked={kakaoLoginOnClick}
               />
             </div>
           </div>
