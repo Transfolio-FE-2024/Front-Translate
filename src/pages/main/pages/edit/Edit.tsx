@@ -8,6 +8,7 @@ import {
   areaOfInterest,
   preDefinedFontSize,
   preDefinedFontFamily,
+  supportedTranslateLanguage,
 } from "@/util/const";
 import { VscArrowSwap } from "react-icons/vsc";
 import { RiErrorWarningLine } from "react-icons/ri";
@@ -240,7 +241,7 @@ function Edit() {
                         ? "언어 선택"
                         : selectedOriginLanguage
                     }
-                    values={areaOfInterest["언어"]}
+                    values={supportedTranslateLanguage}
                     selectedValue={selectedOriginLanguage}
                     onValueClicked={(value) => setSelectedOriginLanguage(value)}
                   />
@@ -253,7 +254,7 @@ function Edit() {
                         ? "언어 선택"
                         : selectedTranslatedLanguage
                     }
-                    values={areaOfInterest["언어"]}
+                    values={supportedTranslateLanguage}
                     selectedValue={selectedTranslatedLanguage}
                     onValueClicked={(value) =>
                       setSelectedTranslatedLanguage(value)

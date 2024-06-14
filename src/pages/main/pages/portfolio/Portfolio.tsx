@@ -17,6 +17,7 @@ import {
   areaOfInterest,
   preDefinedFontSize,
   preDefinedFontFamily,
+  supportedTranslateLanguage,
 } from "@/util/const";
 import { MainCategoryType, ContentType } from "@/types/index";
 
@@ -166,7 +167,7 @@ const Portfolio = () => {
                         ? "언어 선택"
                         : selectedOriginLanguage
                     }
-                    values={areaOfInterest["언어"]}
+                    values={supportedTranslateLanguage}
                     selectedValue={selectedOriginLanguage}
                     onValueClicked={(value) => setSelectedOriginLanguage(value)}
                   />
@@ -179,7 +180,7 @@ const Portfolio = () => {
                         ? "언어 선택"
                         : selectedTranslatedLanguage
                     }
-                    values={areaOfInterest["언어"]}
+                    values={supportedTranslateLanguage}
                     selectedValue={selectedTranslatedLanguage}
                     onValueClicked={(value) =>
                       setSelectedTranslatedLanguage(value)
