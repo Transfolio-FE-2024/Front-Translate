@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { CLIENT_SITE_ADDRESS } from "@/util/const";
 
-const REDIRECT_URL = CLIENT_SITE_ADDRESS + "oauth/kakocallback";
+const REDIRECT_URL = CLIENT_SITE_ADDRESS + "oauth/kakaocallback";
 
 export default function KCallback() {
   const navigate = useNavigate();
