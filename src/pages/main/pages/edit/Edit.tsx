@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import PageTitle from "@/components/page-title/PageTitle";
 import styles from "./Edit.module.scss";
 import ThumbnailChangeable from "../portfolio/component/thumbnail-changeable/ThumbnailChangeable";
@@ -6,9 +6,8 @@ import TextField from "@/components/text-field/TextField";
 import DropdownButton from "../portfolio/component/dropdown-button/DropdownButton";
 import {
     areaOfInterest,
-    fontFamilys,
-    fontSizes,
-    fontFamily,
+    preDefinedFontSize,
+    preDefinedFontFamily,
 } from "@/util/const";
 import { VscArrowSwap } from "react-icons/vsc";
 import { RiErrorWarningLine } from "react-icons/ri";
@@ -20,18 +19,17 @@ import GreyButtonSquare from "@/components/button/grey-button-square/GreyButtonS
 import MainButtonSquare from "@/components/button/main-button-square/MainButtonSquare";
 import { useNavigate } from "react-router-dom";
 import {ContentType} from "@/types/index";
-import { MainCategoryType, FontFamilyType } from "@/types/index";
+import { MainCategoryType } from "@/types/index";
 
 const docs = {
     title: "사랑은 언제나 눈물이 돼 가슴에 남아 떠나지도 못한 채 그 길을 걸으네",
     information: "리쌍의 발레리노입니다.",
-    titleFontFamily: "Pretendard" as FontFamilyType,
     selectedOriginLanguage: "한국어",
     selectedTranslatedLanguage: "영어",
     selectedMainCatetory: "언어" as MainCategoryType,
     selectedSubCatetory: "영어",
     selectedFontSize: "14pt",
-    selectedFontFamily: "Pretendard" as FontFamilyType,
+    selectedFontFamily: "Pretendard",
     contents : [
         {
             id : 1,
@@ -91,7 +89,6 @@ function Edit() {
 
     const [title, setTitle] = useState(docs.title);
     const [information, setInformation] = useState(docs.information);
-    const [titleFontFamily, setTitleFontFamily] = useState(docs.titleFontFamily);
     const [selectedOriginLanguage, setSelectedOriginLanguage] = useState<undefined | string>(docs.selectedOriginLanguage);
     const [selectedTranslatedLanguage, setSelectedTranslatedLanguage] = useState<undefined | string>(docs.selectedTranslatedLanguage);
     const [selectedMainCatetory, setSelectedMainCategory] = useState<
@@ -103,8 +100,8 @@ function Edit() {
         string | undefined
     >(docs.selectedFontSize);
     const [selectedFontFamily, setSelectedFontFamily] = useState<
-    FontFamilyType | undefined
-    >("Pretendard");
+    string | undefined
+    >();
 
     const navigate = useNavigate();
 
@@ -162,9 +159,11 @@ function Edit() {
         setInformation(_information);
     }, [])
 
-    const changeTitleFontFamily = useCallback((_titleFontFamily: FontFamilyType) => {
-        setTitleFontFamily(_titleFontFamily);
-    }, [])
+    const fontFamily : string = useMemo(() => {
+		const fontFamilyKeys = Object.keys(preDefinedFontFamily);
+		if (selectedFontFamily === undefined) return preDefinedFontFamily[fontFamilyKeys[0]];
+		return preDefinedFontFamily[selectedFontFamily]
+	}, [selectedFontFamily]);
 
     return (<>
         <div className={styles.container}>
@@ -179,8 +178,7 @@ function Edit() {
                     <div className={styles.thumbnailCardSection}>
                         <ThumbnailChangeable
                             title={title}
-                            titleFontFamily={titleFontFamily}
-                            changeTitleFontFamily={changeTitleFontFamily}
+                            fontFamily={selectedFontFamily}
                         />
                     </div>
                     <div className={styles.thumbnailInfoSection}>
@@ -310,7 +308,7 @@ function Edit() {
                         <div className={styles.buttonSection}>
                             <DropdownButton
                                 title={<StyledTitle>글자 크기</StyledTitle>}
-                                values={fontSizes}
+                                values={preDefinedFontSize}
                                 selectedValue={selectedFontSize}
                                 onValueClicked={(value) =>
                                     setSelectedFontSize(value)
@@ -320,7 +318,7 @@ function Edit() {
                         <div className={styles.buttonSection}>
                             <StyledDropdownButton
                                 title={<StyledTitle>서체 설정</StyledTitle>}
-                                values={fontFamilys}
+                                values={Object.keys(preDefinedFontFamily)}
                                 selectedValue={selectedFontFamily}
                                 onValueClicked={(value) =>
                                     setSelectedFontFamily(value)
@@ -332,9 +330,7 @@ function Edit() {
                         contents={contents}
                         fontSize={selectedFontSize}
                         fontFamily={
-                            selectedFontFamily === undefined
-                                ? undefined
-                                : fontFamily[selectedFontFamily]
+                            fontFamily
                         }
                         offFocus={offFocus}
                         deleteContent={deleteContent}

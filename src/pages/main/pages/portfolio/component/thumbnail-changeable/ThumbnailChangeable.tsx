@@ -1,23 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styles from "./ThumbnailChangeable.module.scss";
-import { styleKeyType } from "../styled-dropdown-button/types";
-import StyledDropdownButton from "../styled-dropdown-button/StyledDropdownButton";
-import { fontFamily, fontFamilys } from "@/util/const";
 
 const ThumbnailChangeable: React.FC<{
 	title: string;
-	titleFontFamily? : styleKeyType;
-	changeTitleFontFamily: (titleFontFamily: styleKeyType) => void;
-}> = ({ title, titleFontFamily, changeTitleFontFamily }) => {
-	const [selectedFontFamily, setSelectedFontFamily] = useState<
-		styleKeyType | undefined
-	>(titleFontFamily);
-
-	useEffect(() => {
-		if (selectedFontFamily !== undefined)
-			changeTitleFontFamily(selectedFontFamily);
-	}, [selectedFontFamily, changeTitleFontFamily]);
-
+	fontFamily : string | undefined
+}> = ({ title, fontFamily }) => {
 	return (
 		<>
 			<div className={styles.container}>
@@ -25,28 +12,11 @@ const ThumbnailChangeable: React.FC<{
 					<div className={styles.indexContainer}>
 						<div className={styles.index}></div>
 					</div>
-					<div className={styles.dropdownSection}>
-						<StyledDropdownButton
-							title={
-								selectedFontFamily === undefined
-									? "서체 설정"
-									: selectedFontFamily
-							}
-							values={fontFamilys}
-							selectedValue={selectedFontFamily}
-							onValueClicked={(value) =>
-								setSelectedFontFamily(value)
-							}
-						/>
-					</div>
+					
 					<div className={styles.indexContainer}></div>
 				</div>
 				<div
-					style={
-						selectedFontFamily !== undefined
-							? { fontFamily: fontFamily[selectedFontFamily] }
-							: {}
-					}
+					style={{fontFamily}}
 					className={styles.contentSection}
 				>
 					{title}
