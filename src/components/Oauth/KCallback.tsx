@@ -21,7 +21,7 @@ export default function KCallback() {
           }
         })
 
-        axios.post("https://localhost:4000/api/login/kakao", {
+        await axios.post("https://localhost:4000/api/login/kakao", {
           ...kakaoLoginResult,
         })
 
@@ -29,7 +29,7 @@ export default function KCallback() {
         
     } catch (e) { 
       alert("카카오 로그인에 실패하였습니다.");
-      navigate("/signin");
+      return navigate("/signin");
     }
   }, [])
 
