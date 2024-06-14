@@ -2,7 +2,11 @@ import React from "react";
 import styles from "./StyledDropdownButton.module.scss";
 import { styleKeyType } from "./types";
 
-export const style = {
+export const style : {
+	[key  : string] : {
+		fontFamily : string
+	}
+} = {
 	Pretendard: {
 		fontFamily: "Pretendard",
 	},
