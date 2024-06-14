@@ -29,6 +29,7 @@ const docs = {
   selectedTranslatedLanguage: "영어",
   selectedMainCatetory: "언어" as MainCategoryType,
   selectedSubCatetory: "영어",
+  author: "Kimhim",
   selectedFontSize: "14pt",
   selectedFontFamily: "Pretendard",
   contents: [
@@ -106,6 +107,7 @@ function Edit() {
   const [selectedSubCatetory, setSelectedSubCategory] = useState<
     string | undefined
   >(docs.selectedSubCatetory);
+  const [author, setAuthor] = useState(docs.author);
   const [selectedFontSize, setSelectedFontSize] = useState<string | undefined>(
     docs.selectedFontSize
   );
@@ -198,6 +200,10 @@ function Edit() {
 
   const changeInformation = useCallback((_information: string) => {
     setInformation(_information);
+  }, []);
+
+  const changeAuthor = useCallback((_author: string) => {
+    setAuthor(_author);
   }, []);
 
   const fontFamily: string = useMemo(() => {
@@ -317,7 +323,13 @@ function Edit() {
               <div className={styles.etcSection}>
                 <div className={styles.etcTitleSection}>작가</div>
                 <div className={styles.divider}></div>
-                <div className={styles.etcTitleSection}>@kimhim</div>
+                <div className={styles.etcTitleSection}>
+                  <TextField
+                    value={author}
+                    onChange={changeAuthor}
+                    placeholder="작가를 입력해주세요"
+                  />
+                </div>
               </div>
             </div>
           </div>
