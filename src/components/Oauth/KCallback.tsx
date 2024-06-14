@@ -1,6 +1,9 @@
 import { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { CLIENT_SITE_ADDRESS } from "@/util/const";
+
+const REDIRECT_URL = CLIENT_SITE_ADDRESS + "/oauth/kakocallback";
 
 export default function KCallback() {
   const navigate = useNavigate();
@@ -12,7 +15,7 @@ export default function KCallback() {
         {
           "grant_type": "authorization_code",
           "client_id": import.meta.env.VITE_KAKAO_REST_API,
-          "redirect_uri": "http://localhost:5173/oauth/kakaocallback",
+          "redirect_uri": REDIRECT_URL,
           code,
         },
         {

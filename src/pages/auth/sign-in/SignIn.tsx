@@ -7,8 +7,10 @@ import kakaoImg from "../../../assets/images/sns_kakaotalk.png";
 import Layout from "@/components/Layout/Layout";
 import { useNavigate } from "react-router-dom";
 import { ValidationUtil } from "@/util";
-
+import { CLIENT_SITE_ADDRESS } from "@/util/const";
 // import { signIn } from "@/api/auth";
+
+const REDIRECT_URL = CLIENT_SITE_ADDRESS+"/oauth/kakaocallback";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -16,7 +18,6 @@ const SignIn = () => {
   const [password, setPassword] = useState<string>("");
 
   const kakaoLoginOnClick = useCallback(async() => {
-    const REDIRECT_URL = "http://localhost:5173/oauth/kakaocallback"
     window.location.href =  `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_KAKAO_REST_API}&redirect_uri=${REDIRECT_URL}&response_type=code`
   }, [])
 
