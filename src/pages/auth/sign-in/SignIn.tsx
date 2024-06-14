@@ -17,7 +17,7 @@ const SignIn = () => {
 
   const kakaoLoginOnClick = useCallback(async() => {
     const REDIRECT_URL = "http://localhost:5173/oauth/kakaocallback"
-    location.href =  `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_KAKAO_REST_API}&redirect_uri=${REDIRECT_URL}&response_type=code`
+    window.location.href =  `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_KAKAO_REST_API}&redirect_uri=${REDIRECT_URL}&response_type=code`
   }, [])
 
   const login = () => {

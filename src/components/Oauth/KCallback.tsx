@@ -21,7 +21,7 @@ export default function KCallback() {
           }
         })
 
-        const result = axios.post("https://localhost:4000/api/login/kakao", {
+        axios.post("https://localhost:4000/api/login/kakao", {
           ...kakaoLoginResult,
         })
 
