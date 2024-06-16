@@ -42,3 +42,9 @@ export const signUp = async (signUpInfo: SignUpInfo): Promise<APIResponse> => {
       status: response.data.status || TF.HTTP_STATUS.FAIL_UNKNOWN_STATUS,
     }));
 };
+
+export const kakaoLogin = async (kakaoToken: any) => {
+  return await axios.post("https://localhost:4000/api/login/kakao", {
+    ...kakaoToken.data
+  })
+}

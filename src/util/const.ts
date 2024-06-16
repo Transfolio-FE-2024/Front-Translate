@@ -12,7 +12,7 @@ export const TF = {
 	}),
 };
 
-export const CLIENT_SITE_ADDRESS = import.meta.env.DEV ? "http://localhost:5173/" : "https://dev--transfolio.netlify.app/";
+export const CLIENT_SITE_ADDRESS = import.meta.env.DEV ? import.meta.env.VITE_LOCAL_SITE_ADDRESS : import.meta.env.VITE_REMOTE_SITE_ADDRESS
 
 export const areaOfInterest = {
 	언어: ["한국어", "영어", "일본어", "중국어", "러시아어", "불어", "기타"],
