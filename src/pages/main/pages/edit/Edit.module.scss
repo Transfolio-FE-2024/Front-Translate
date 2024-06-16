@@ -2,166 +2,170 @@
 @import "@styles/variables";
 
 @mixin border-bottom {
-    border-bottom: 1px solid var(--color-light-gray);
+  border-bottom: 1px solid var(--color-light-gray);
 }
 
 .container {
-    margin-top: var(--header-height);
-    margin-bottom: 55px;
+  margin-top: var(--header-height);
+  margin-bottom: 55px;
 }
 
 .content {
-    @include full-container;
-    @include overflow-scroll;
-    max-width: var(--width-content-max);
-    margin: 0 auto;
+  @include full-container;
+  @include overflow-scroll;
+  max-width: var(--width-content-max);
+  margin: 0 auto;
 
-    &::-webkit-scrollbar {
-        display: none;
-    }
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .divider {
-    height: 20px;
+  height: 20px;
+  width: 20px;
 }
 
 .thumbnailSection {
-    @include full-width;
-    @include flex-center;
-    flex-wrap: wrap;
+  @include full-width;
+  @include flex-center;
+  flex-wrap: wrap;
 }
 
 .thumbnailCardSection {
-    width: 200px;
-    height: 300px;
-    margin: 10px 0;
+  width: 200px;
+  height: 300px;
+  margin: 10px 0;
 }
 
 .thumbnailInfoSection {
-    @include flex-column;
-    height: 300px;
-    margin: 10px 0;
-    flex: 1;
-    padding-left: 20px;
+  @include flex-column;
+  height: 300px;
+  margin: 10px 0;
+  flex: 1;
+  padding-left: 20px;
 }
 
 .titleTextFieldSection {
-    @include flex-center;
-    @include full-width;
-    height: 40px;
+  @include flex-center;
+  @include full-width;
+  height: 40px;
 
-    input::placeholder {
-        color: var(--color-orange);
-        line-height: var(--line-height-30);
-        letter-spacing: var(--letter-spacing-2-5);
-        font-size: $font-size-20;
-        font-weight: bold;
-        font-family: var(--font-pretend);
-
-    }
+  input::placeholder {
+    color: var(--color-orange);
+    line-height: var(--line-height-30);
+    letter-spacing: var(--letter-spacing-2-5);
+    font-size: $font-size-20;
+    font-weight: bold;
+    font-family: var(--font-pretend);
+  }
 }
 
 .titleDateSection {
-    @include full-height;
-    @include flex-center;
-    width: 150px;
-    border-bottom: 1px solid var(--color-light-gray);
-    font-family: var(--font-pretend);
-    color: var(--color-light-gray);
+  @include full-height;
+  @include flex-center;
+  width: 150px;
+  border-bottom: 1px solid var(--color-light-gray);
+  font-family: var(--font-pretend);
+  color: var(--color-light-gray);
 }
 
 .selectLanguageSection {
-    @include border-bottom();
-    @include full-width;
-    @include flex;
-    height: 50px;
-    align-items: center;
-    justify-content: start;
+  @include border-bottom();
+  @include full-width;
+  @include flex;
+  height: 50px;
+  align-items: center;
+  justify-content: start;
 }
 
 .dropdownSection {
-    @include full-height;
-    @include flex-center;
-    width: 100px;
+  @include full-height;
+  @include flex-center;
+  width: 100px;
 }
 
 .arrowIcon {
-    color: var(--color-gray);
+  color: var(--color-gray);
 }
 
 .warnTextSection {
-    @include full-height;
-    @include flex;
-    flex: 1;
-    align-items: center;
-    justify-content: end;
-    font-size: $font-size-12;
-    color: var(--color-orange);
-    font-family: var(--font-pretend);
+  @include full-height;
+  @include flex;
+  flex: 1;
+  align-items: center;
+  justify-content: end;
+  font-size: $font-size-12;
+  color: var(--color-orange);
+  font-family: var(--font-pretend);
 }
 
 .warnIcon {
-    color: var(--color-orange);
-    margin-right: 5px;
+  color: var(--color-orange);
+  margin-right: 5px;
 }
 
 .infoTextFieldSection {
-    @include border-bottom();
-    @include full-width;
-    flex: 1;
-    padding: 5px 0;
+  @include border-bottom();
+  @include full-width;
+  flex: 1;
+  padding: 5px 0;
 }
 
 .etcSection {
-    @include border-bottom();
-    @include full-width;
-    @include flex;
-    height: 40px;
-    align-items: center;
-    justify-content: start;
+  @include border-bottom();
+  @include full-width;
+  @include flex;
+  height: 40px;
+  align-items: center;
+  justify-content: start;
 }
 
 .etcTitleSection {
-    @include full-height;
-    @include flex;
-    align-items: center;
-    justify-content: start;
-    color: var(--color-light-gray);
-    font-family: var(--font-pretend);
+  @include full-height;
+  @include flex;
+  align-items: center;
+  justify-content: start;
+  color: var(--color-light-gray);
+  font-family: var(--font-pretend);
+
+  input,
+  input:focus {
+    border-bottom: none;
+  }
 }
 
 .writingSection {
-    @include full-width;
-  }
-  
-  .buttonsSection {
-    @include full-width;
-    @include flex;
-    height: 50px;
-    align-items: center;
-    justify-content: start;
-  }
-  
-  .buttonSection {
-    @include flex;
-    @include full-height;
-    align-items: center;
-    justify-content: start;
-  }
-  
-  .mainButtonsSection {
-    @include flex-center;
-    @include full-width;
-    margin-top: 20px;
-    height: 50px;
-  }
-  
-  .mainButtonSection {
-    @include full-height;
-    width: 200px;
-  }
-  
-  .mainButtonDivider {
-    width: 20px;
-  }
-  
+  @include full-width;
+}
+
+.buttonsSection {
+  @include full-width;
+  @include flex;
+  height: 50px;
+  align-items: center;
+  justify-content: start;
+}
+
+.buttonSection {
+  @include flex;
+  @include full-height;
+  align-items: center;
+  justify-content: start;
+}
+
+.mainButtonsSection {
+  @include flex-center;
+  @include full-width;
+  margin-top: 20px;
+  height: 50px;
+}
+
+.mainButtonSection {
+  @include full-height;
+  width: 200px;
+}
+
+.mainButtonDivider {
+  width: 20px;
+}
