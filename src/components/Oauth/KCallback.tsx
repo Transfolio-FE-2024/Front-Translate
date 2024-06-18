@@ -10,7 +10,7 @@ export default function KCallback() {
     queryKey: ["getKakaoToken"], queryFn: getKakaoToken,
     retry : 0,
   });
-  const { data: jwt, isError: serverError, isSuccess : serverSuccess } = useQuery({
+  const { isError: serverError, isSuccess : serverSuccess } = useQuery({
     queryKey: ["kakaoLogin"],
     queryFn: () => kakaoLogin(kakaoTokenData),
     enabled: !!kakaoTokenData,
