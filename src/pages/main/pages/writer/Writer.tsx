@@ -32,9 +32,7 @@ const Writer = () => {
   };
 
   const renderTabComponent = () => {
-    const tabComponent = tabs.find(
-      (tab, index) => index === selectedButtonIndex
-    );
+    const tabComponent = tabs.find((_, index) => index === selectedButtonIndex);
 
     if (!tabComponent) return <div>오류</div>;
 
