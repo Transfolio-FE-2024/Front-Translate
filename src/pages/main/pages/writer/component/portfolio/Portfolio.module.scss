@@ -1,0 +1,14 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.grid {
+  @include flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.thumbnailEmptyContainer {
+  width: 200px;
+  height: 250px;
+}

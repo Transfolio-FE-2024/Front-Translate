@@ -1,0 +1,150 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+$corner-size: 25px;
+
+.container {
+  position: relative;
+  z-index: 0;
+  padding: 50px 0;
+}
+
+.centerLine {
+  position: absolute;
+  z-index: -1;
+  width: 12px;
+  top: 0;
+  bottom: 1px;
+  left: calc(50% - 12px / 2);
+  background-color: var(--color-orange);
+
+  .bottomNot {
+    width: 14px;
+    height: 17px;
+    border-radius: 2px;
+    position: absolute;
+    left: -0.5px;
+    bottom: -1px;
+    background: var(--color-orange);
+    background: linear-gradient(
+      0deg,
+      var(--color-orange) 0%,
+      var(--color-dark-orange) 100%
+    );
+  }
+}
+
+.cardContainer {
+  .cardWrapper {
+    margin: 0 50px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    position: relative;
+
+    .card {
+      @include flex-center;
+      justify-content: space-between;
+      position: relative;
+
+      padding: 15px 34px 15px 17px;
+      background-color: var(--color-white);
+
+      .date {
+        font-family: var(--font-pretend);
+        font-size: $font-size-14;
+        color: var(--color-light-gray);
+        flex-shrink: 0;
+      }
+
+      .mainText {
+        font-family: var(--font-pretend);
+        font-size: $font-size-18;
+        font-weight: bold;
+        color: var(--color-black);
+        padding: 0 39px;
+        flex-grow: 1;
+      }
+
+      .rightArea {
+        padding-left: 44px;
+        border-left: 1px solid var(--color-light-gray);
+        width: 180px;
+        flex-shrink: 0;
+      }
+
+      .subText {
+        font-family: var(--font-pretend);
+        font-size: $font-size-16;
+        color: var(--color-gray);
+      }
+
+      .writer {
+        font-family: var(--font-pretend);
+        font-size: $font-size-14;
+        color: var(--color-light-gray);
+        &::before {
+          content: "Writer ";
+        }
+      }
+
+      .corner {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+
+        border-top: $corner-size solid;
+        border-top-color: transparent;
+        border-right: $corner-size solid;
+        border-right-color: var(--color-background);
+
+        &.folded {
+          border-top-color: var(--color-light-gray);
+          border-right-color: var(--color-background);
+        }
+      }
+    }
+
+    .card:not(:last-child) {
+      margin-bottom: 24px;
+    }
+
+    // 트로피
+    .trophy {
+      background-image: url("/src/assets/images/trophy_circle_gray.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: absolute;
+      display: inline-block;
+      right: -50px;
+      width: 38px;
+      height: 38px;
+      top: calc(50% - 35px / 2); // 수직중앙정렬
+
+      &.achieved {
+        background-image: url("/src/assets/images/trophy_circle_orange.png");
+      }
+    }
+  }
+}
+
+@include mobile {
+  .cardContainer {
+    .cardWrapper {
+      margin: 0 80px;
+
+      .card {
+        flex-direction: column;
+        align-items: start;
+
+        .mainText {
+          padding: 0;
+        }
+
+        .rightArea {
+          width: 100%;
+          text-align: right;
+          border-left: none;
+        }
+      }
+    }
+  }
+}

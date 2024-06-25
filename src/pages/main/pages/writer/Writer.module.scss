@@ -101,15 +101,9 @@
 }
 
 .portfolioThumbnailCardSection {
-  @include flex;
   @include full-width;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 20px;
-  flex-wrap: wrap;
 }
 
-.thumbnailEmptyContainer {
-  width: 200px;
-  height: 250px;
+.topSpace {
+  margin-top: 20px;
 }

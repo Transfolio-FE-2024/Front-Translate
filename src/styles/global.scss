@@ -4,6 +4,7 @@
   --color-green-1: #003d2b;
   --color-green-2: #006934;
   --color-light-orange: #f0c2b1;
+  --color-dark-orange: #d35524;
 
   --color-join-background: #f1f1f2;
   --color-background: #eeeeef; // 회원가입 완료 화면부터 배경색이 바뀜
@@ -32,8 +33,8 @@
   --font-pretend: Pretendard;
   --font-work: Work Sans;
   --font-variable: Pretendard Variable;
-  --font-notoSans : NotoSans;
-  --font-nanumBarunGothic : NanumBarunGothic;
+  --font-notoSans: NotoSans;
+  --font-nanumBarunGothic: NanumBarunGothic;
 
   /* line-height 속성 */
   --line-height-55-08: 55.08px;
@@ -199,42 +200,42 @@ button {
 }
 
 @font-face {
-  font-family: 'Pretendard';
-  src: url(@/styles/fonts/Pretendard-Regular.woff) format('woff');
+  font-family: "Pretendard";
+  src: url(@/styles/fonts/Pretendard-Regular.woff) format("woff");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Pretendard';
-  src: url(@/styles/fonts/Pretendard-Bold.woff) format('woff');
+  font-family: "Pretendard";
+  src: url(@/styles/fonts/Pretendard-Bold.woff) format("woff");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'NotoSans';
+  font-family: "NotoSans";
   src: url(@/styles/fonts/NotoSans-Regular.ttf) format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'NotoSans';
+  font-family: "NotoSans";
   src: url(@/styles/fonts/NotoSans-Bold.ttf) format("truetype");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'NanumBarunGothic';
+  font-family: "NanumBarunGothic";
   src: url(@/styles/fonts/NanumBarunGothicRegular.woff) format("woff");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'NanumBarunGothic';
+  font-family: "NanumBarunGothic";
   src: url(@/styles/fonts/NanumBarunGothicBold.woff) format("woff");
   font-weight: 700;
   font-style: normal;
