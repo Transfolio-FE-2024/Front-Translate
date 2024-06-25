@@ -2,17 +2,43 @@ import styles from "./Writer.module.scss";
 import PageTitle from "../../../../components/page-title/PageTitle";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { useState } from "react";
-import ThumbnailCardFolderable from "../../../../components/thumbnail-card/thumbnail-card-folderable/ThumbnailCardFolderable";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { Career, Portfolio } from "./component";
 
-const buttonTitles = ["포트폴리오", "경력", "접음"];
+const tabs = [
+  {
+    buttonTitle: "포트폴리오",
+    component: (
+      <div className={styles.topSpace}>
+        <Portfolio></Portfolio>
+      </div>
+    ),
+  },
+  {
+    buttonTitle: "경력",
+    component: <Career></Career>,
+  },
+  {
+    buttonTitle: "접음",
+    component: <div className={styles.topSpace}>준비중입니다.</div>,
+  },
+];
 const Writer = () => {
-  const navigate = useNavigate();
   const { writerId = "" } = useParams();
   const [selectedButtonIndex, setSelectedButtonIndex] = useState<number>(0);
 
   const buttonClickHandler = (index: number) => {
     setSelectedButtonIndex(index);
+  };
+
+  const renderTabComponent = () => {
+    const tabComponent = tabs.find(
+      (tab, index) => index === selectedButtonIndex
+    );
+
+    if (!tabComponent) return <div>오류</div>;
+
+    return tabComponent.component;
   };
 
   return (
@@ -44,7 +70,7 @@ const Writer = () => {
           </div>
           <div className={styles.portfolioSection}>
             <div className={styles.portfolioButtonSection}>
-              {buttonTitles.map((title, index) => {
+              {tabs.map((tab, index) => {
                 return (
                   <div
                     className={`${styles.portfolioButtonTitle} ${
@@ -53,32 +79,15 @@ const Writer = () => {
                         : styles.buttonInActive
                     }`}
                     onClick={() => buttonClickHandler(index)}
+                    key={index}
                   >
-                    {title} 4
+                    {tab.buttonTitle} 4
                   </div>
                 );
               })}
             </div>
             <div className={styles.portfolioThumbnailCardSection}>
-              <ThumbnailCardFolderable
-                original="たら堪らないという気を よく起した。"
-                translated="내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다."
-                writer="@Kimhim"
-                picked={4}
-                color="orange"
-                onClicked={() => {navigate("/home/content")}}
-              />
-              <ThumbnailCardFolderable
-                original="あなたと溶け合って 深いところで重なって "
-                translated="당신과 어울려 깊은 곳에 겹쳐서"
-                writer="@Kimhim"
-                picked={4}
-                color="orange"
-                onClicked={() => {navigate("/home/content")}}
-                preSave
-              />
-
-              <div className={styles.thumbnailEmptyContainer}></div>
+              {renderTabComponent()}
             </div>
           </div>
         </div>
