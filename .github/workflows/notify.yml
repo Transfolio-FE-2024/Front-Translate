@@ -1,0 +1,16 @@
+name: Notify deploy repo
+
+on:
+  push:
+    branches: ["dev"]
+  pull_request:
+    branches: ["dev"]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Notify Front-Translate-Web
+        run: |
+          curl -X POST https://api.github.com/repos/devkimqwer/Front-Translate-Web/actions/workflows/104813702/dispatches -H 'Accept: application/vnd.github.v3+json' -H 'Authorization: Bearer ${{ secrets.FRONT_TRANSLATE_WEB }}' -d '{"ref":"deploy"}'
