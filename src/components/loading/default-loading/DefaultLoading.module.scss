@@ -1,0 +1,10 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.container {
+  position: fixed;
+  inset: 0;
+  align-items: center;
+  z-index: 999;
+  background-color: rgba(255, 255, 255, 0.4);
+}
