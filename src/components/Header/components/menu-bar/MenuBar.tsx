@@ -21,7 +21,7 @@ const MenuBar: React.FC<{
   };
 
   return (
-    <>
+    <React.Fragment>
       <div className={styles.overlay} onClick={overlayClickHandler}></div>
       <div className={`${styles.container} ${easeout ? styles.hide : ""}`}>
         <div className={styles.content}>
@@ -72,7 +72,7 @@ const MenuBar: React.FC<{
           </div>
         </div>
       </div>
-    </>
+    </React.Fragment>
   );
 };
 

@@ -7,21 +7,19 @@ const ThumbnailCardUnfolderable: React.FC<{
   active?: boolean;
 }> = ({ original, translated, active = true }) => {
   return (
-    <>
-      <div className={styles.container}>
-        <div className={styles.indexSection}>
-          <div
-            className={`${styles.index} ${
-              active ? styles.indexActive : styles.indexInActive
-            }`}
-          ></div>
-        </div>
-        <div className={styles.contentSection}>
-          <div className={styles.originalSection}>{original}</div>
-          <div className={styles.translatedSection}>{translated}</div>
-        </div>
+    <div className={styles.container}>
+      <div className={styles.indexSection}>
+        <div
+          className={`${styles.index} ${
+            active ? styles.indexActive : styles.indexInActive
+          }`}
+        ></div>
       </div>
-    </>
+      <div className={styles.contentSection}>
+        <div className={styles.originalSection}>{original}</div>
+        <div className={styles.translatedSection}>{translated}</div>
+      </div>
+    </div>
   );
 };
 

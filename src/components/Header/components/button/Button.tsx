@@ -6,11 +6,9 @@ const Button: React.FC<{
   onButtonClicked: () => void;
 }> = ({ title, onButtonClicked }) => {
   return (
-    <>
-      <div className={styles.container} onClick={onButtonClicked}>
-        {title}
-      </div>
-    </>
+    <div className={styles.container} onClick={onButtonClicked}>
+      {title}
+    </div>
   );
 };
 

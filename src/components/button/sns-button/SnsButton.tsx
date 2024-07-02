@@ -7,14 +7,12 @@ const SnsButton: React.FC<{
   onClicked: () => void;
 }> = ({ img, title, onClicked }) => {
   return (
-    <>
-      <div className={styles.container} onClick={onClicked}>
-        <div className={styles.imgSection}>
-          <img src={img} className={styles.img} />
-        </div>
-        <div className={styles.titleSection}>{title}</div>
+    <div className={styles.container} onClick={onClicked}>
+      <div className={styles.imgSection}>
+        <img src={img} className={styles.img} />
       </div>
-    </>
+      <div className={styles.titleSection}>{title}</div>
+    </div>
   );
 };
 

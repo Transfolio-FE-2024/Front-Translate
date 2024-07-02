@@ -7,15 +7,13 @@ const Arrow: React.FC<{
   left?: boolean;
 }> = ({ onClicked, left = true }) => {
   return (
-    <>
-      <div
-        className={`${styles.container} ${left ? styles.left : styles.right}`}
-        onClick={onClicked}
-      >
-        {left && <MdKeyboardArrowLeft className={styles.icon} />}
-        {!left && <MdKeyboardArrowRight className={styles.icon} />}
-      </div>
-    </>
+    <div
+      className={`${styles.container} ${left ? styles.left : styles.right}`}
+      onClick={onClicked}
+    >
+      {left && <MdKeyboardArrowLeft className={styles.icon} />}
+      {!left && <MdKeyboardArrowRight className={styles.icon} />}
+    </div>
   );
 };
 

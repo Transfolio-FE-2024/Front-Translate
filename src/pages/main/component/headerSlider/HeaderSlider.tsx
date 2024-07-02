@@ -17,21 +17,19 @@ const HeaderSlider = () => {
   };
 
   return (
-    <>
-      <div className={styles.container}>
-        <Slider {...sliderSettings}>
-          <div className={styles.sliderContent}>
-            <img src={mainImg1} className={styles.img} />
-          </div>
-          <div className={styles.sliderContent}>
-            <img src={mainImg2} className={styles.img} />
-          </div>
-          <div className={styles.sliderContent}>
-            <img src={mainImg3} className={styles.img} />
-          </div>
-        </Slider>
-      </div>
-    </>
+    <div className={styles.container}>
+      <Slider {...sliderSettings}>
+        <div className={styles.sliderContent}>
+          <img src={mainImg1} className={styles.img} />
+        </div>
+        <div className={styles.sliderContent}>
+          <img src={mainImg2} className={styles.img} />
+        </div>
+        <div className={styles.sliderContent}>
+          <img src={mainImg3} className={styles.img} />
+        </div>
+      </Slider>
+    </div>
   );
 };
 

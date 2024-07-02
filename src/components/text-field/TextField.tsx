@@ -28,29 +28,27 @@ const TextField: React.FC<{
   inputProps = {},
 }) => {
   return (
-    <>
-      <div
-        className={`${styles.container}${
-          validationFn(value) === "Error" ? ` ${styles.error}` : ""
-        }`}
-      >
-        <input
-          {...inputProps}
-          className={styles.input}
-          type={hide ? "password" : "text"}
-          defaultValue={value}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder={placeholder}
-        />
-        {validationFn(value) === "Error" ? (
-          <div className={styles.errorText}>
-            {typeof validationFailText === "string"
-              ? validationFailText
-              : validationFailText(value)}
-          </div>
-        ) : null}
-      </div>
-    </>
+    <div
+      className={`${styles.container}${
+        validationFn(value) === "Error" ? ` ${styles.error}` : ""
+      }`}
+    >
+      <input
+        {...inputProps}
+        className={styles.input}
+        type={hide ? "password" : "text"}
+        defaultValue={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+      />
+      {validationFn(value) === "Error" ? (
+        <div className={styles.errorText}>
+          {typeof validationFailText === "string"
+            ? validationFailText
+            : validationFailText(value)}
+        </div>
+      ) : null}
+    </div>
   );
 };
 

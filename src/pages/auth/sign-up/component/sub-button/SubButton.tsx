@@ -6,11 +6,9 @@ const SubButton: React.FC<{
   onClick: () => void;
 }> = ({ title, onClick }) => {
   return (
-    <>
-      <div className={styles.container} onClick={onClick}>
-        {title}
-      </div>
-    </>
+    <div className={styles.container} onClick={onClick}>
+      {title}
+    </div>
   );
 };
 

@@ -8,17 +8,15 @@ const TextFieldLonger: React.FC<{
   maxLength?: number;
 }> = ({ value, onChange, placeholder = "", maxLength = undefined }) => {
   return (
-    <>
-      <div className={styles.container}>
-        <textarea
-          className={styles.textarea}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder={placeholder}
-          maxLength={maxLength}
-        />
-      </div>
-    </>
+    <div className={styles.container}>
+      <textarea
+        className={styles.textarea}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        maxLength={maxLength}
+      />
+    </div>
   );
 };
 

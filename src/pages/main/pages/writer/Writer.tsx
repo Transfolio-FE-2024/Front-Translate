@@ -40,57 +40,52 @@ const Writer = () => {
   };
 
   return (
-    <>
-      <div className={styles.container}>
-        <div className={styles.content}>
-          <PageTitle
-            mainTitle={"Translator"}
-            subTitle={"고전시 번역 프리랜서"}
-          />
-          <div className={styles.profileSection}>
-            <div className={styles.profileImgSection}>
-              {/* <div className={styles.profileImg}></div> */}
-              <IoPersonCircleOutline className={styles.profileImg} />
-            </div>
-            <div className={styles.profileNameSection}>@{writerId}</div>
-            <div className={styles.profileInfoSection}>
-              <div className={styles.profileInfoBox}>
-                <div className={styles.profileInfoBoxTitle}>접기</div>
-                <div className={styles.profileInfoBoxContent}>1,801</div>
-              </div>
-              <div className={styles.profileInfoBox}>
-                <div className={styles.profileInfoBoxTitle}>분야</div>
-                <div className={styles.profileInfoBoxContent}>
-                  고전시 • 문학 • 일본어
-                </div>
-              </div>
-            </div>
+    <div className={styles.container}>
+      <div className={styles.content}>
+        <PageTitle mainTitle={"Translator"} subTitle={"고전시 번역 프리랜서"} />
+        <div className={styles.profileSection}>
+          <div className={styles.profileImgSection}>
+            {/* <div className={styles.profileImg}></div> */}
+            <IoPersonCircleOutline className={styles.profileImg} />
           </div>
-          <div className={styles.portfolioSection}>
-            <div className={styles.portfolioButtonSection}>
-              {tabs.map((tab, index) => {
-                return (
-                  <div
-                    className={`${styles.portfolioButtonTitle} ${
-                      selectedButtonIndex === index
-                        ? styles.buttonActive
-                        : styles.buttonInActive
-                    }`}
-                    onClick={() => buttonClickHandler(index)}
-                    key={index}
-                  >
-                    {tab.buttonTitle} 4
-                  </div>
-                );
-              })}
+          <div className={styles.profileNameSection}>@{writerId}</div>
+          <div className={styles.profileInfoSection}>
+            <div className={styles.profileInfoBox}>
+              <div className={styles.profileInfoBoxTitle}>접기</div>
+              <div className={styles.profileInfoBoxContent}>1,801</div>
             </div>
-            <div className={styles.portfolioThumbnailCardSection}>
-              {renderTabComponent()}
+            <div className={styles.profileInfoBox}>
+              <div className={styles.profileInfoBoxTitle}>분야</div>
+              <div className={styles.profileInfoBoxContent}>
+                고전시 • 문학 • 일본어
+              </div>
             </div>
           </div>
         </div>
+        <div className={styles.portfolioSection}>
+          <div className={styles.portfolioButtonSection}>
+            {tabs.map((tab, index) => {
+              return (
+                <div
+                  className={`${styles.portfolioButtonTitle} ${
+                    selectedButtonIndex === index
+                      ? styles.buttonActive
+                      : styles.buttonInActive
+                  }`}
+                  onClick={() => buttonClickHandler(index)}
+                  key={index}
+                >
+                  {tab.buttonTitle} 4
+                </div>
+              );
+            })}
+          </div>
+          <div className={styles.portfolioThumbnailCardSection}>
+            {renderTabComponent()}
+          </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

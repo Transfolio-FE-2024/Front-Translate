@@ -48,35 +48,33 @@ const ContentSlider = () => {
   };
 
   return (
-    <>
-      <div className={styles.container}>
-        <div className={styles.titleSection}>Today's freelance translator</div>
-        <div className={styles.bodySection}>
-          <Slider {...sliderSettings} ref={slickRef}>
-            {sliderContents.map((slider) => {
-              return (
-                <>
-                  <div className={styles.thumbnailContainer} key={slider}>
-                    <ThumbnailTitle interest="언어" />
-                    <div className={styles.thumbnailSection}>
-                      <ThumbnailCardFolderable
-                        original="たら堪らないという気をよく起した。 "
-                        translated="내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다. "
-                        major="고전시가 번역 전문"
-                        writer="@Kimhim"
-                        picked={109}
-                        color="orange"
-                        onClicked={() => {navigate("/home/content")}}
-                      />
-                    </div>
-                  </div>
-                </>
-              );
-            })}
-          </Slider>
-        </div>
+    <div className={styles.container}>
+      <div className={styles.titleSection}>Today's freelance translator</div>
+      <div className={styles.bodySection}>
+        <Slider {...sliderSettings} ref={slickRef}>
+          {sliderContents.map((slider) => {
+            return (
+              <div className={styles.thumbnailContainer} key={slider}>
+                <ThumbnailTitle interest="언어" />
+                <div className={styles.thumbnailSection}>
+                  <ThumbnailCardFolderable
+                    original="たら堪らないという気をよく起した。 "
+                    translated="내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다. "
+                    major="고전시가 번역 전문"
+                    writer="@Kimhim"
+                    picked={109}
+                    color="orange"
+                    onClicked={() => {
+                      navigate("/home/content");
+                    }}
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </Slider>
       </div>
-    </>
+    </div>
   );
 };
 

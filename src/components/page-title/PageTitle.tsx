@@ -6,12 +6,10 @@ const PageTitle: React.FC<{ mainTitle: string; subTitle: string }> = ({
   subTitle,
 }) => {
   return (
-    <>
-      <div className={styles.container}>
-        <div className={styles.title}>{mainTitle}</div>
-        <div className={styles.subTitle}>{subTitle}</div>
-      </div>
-    </>
+    <div className={styles.container}>
+      <div className={styles.title}>{mainTitle}</div>
+      <div className={styles.subTitle}>{subTitle}</div>
+    </div>
   );
 };
 

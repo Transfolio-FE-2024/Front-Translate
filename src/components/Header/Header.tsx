@@ -1,3 +1,4 @@
+import React from "react";
 import styles from "./Header.module.scss";
 import logoIcon from "@/assets/images/ico_logo.png";
 import { useState } from "react";
@@ -21,7 +22,7 @@ export const Header = () => {
   };
 
   return (
-    <>
+    <React.Fragment>
       {showMenu && <MenuBar setOpen={setShowMenu} />}
       <div className={styles.container}>
         <div className={styles.menuSection}>
@@ -65,6 +66,6 @@ export const Header = () => {
           </div>
         </div>
       </div>
-    </>
+    </React.Fragment>
   );
 };
