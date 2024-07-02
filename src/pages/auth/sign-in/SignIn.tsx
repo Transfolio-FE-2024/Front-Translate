@@ -19,11 +19,11 @@ const SignIn = () => {
   const [password, setPassword] = useState<string>("");
   const [showLoading, setShowLoading] = useState<boolean>(false);
 
-  const kakaoLoginOnClick = useCallback(async () => {
+  const kakaoLoginOnClick = async () => {
     window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${
       import.meta.env.VITE_KAKAO_REST_API
     }&redirect_uri=${REDIRECT_URL}&response_type=code`;
-  }, []);
+  };
 
   const login = () => {
     const onError = (key: string) => alert(`${key} 값을 입력하세요.`);
