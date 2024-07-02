@@ -2,10 +2,8 @@ name: Sync with Upstream
 
 on:
   repository_dispatch:
-    branches: ["deploy"]
     types: [sync]
   workflow_dispatch:
-    branches: ["deploy"]
     inputs:
       logLevel:
         description: "Log level"
@@ -35,10 +33,14 @@ jobs:
         run: git remote add upstream https://github.com/Transfolio-FE-2024/Front-Translate.git
 
       - name: Fetch upstream
-        run: git fetch upstream
+        run: |
+          git fetch upstream
+          echo "Current branch: $(git branch)"
 
       - name: Merge upstream changes
-        run: git merge -s recursive -X upstream/dev --allow-unrelated-histories
+        run: |
+          git merge --allow-unrelated-histories
+          git log --pretty=format:'%C(yellow)[%ad]%C(reset) %C(green)[%h]%C(reset) | %C(red)%s %C(bold red){{%an}}%C(reset) %C(blue)%d%C(reset)' --graph --date=short -1
         env:
           GIT_COMMITTER_NAME: github-actions
           GIT_COMMITTER_EMAIL: github-actions@github.com
