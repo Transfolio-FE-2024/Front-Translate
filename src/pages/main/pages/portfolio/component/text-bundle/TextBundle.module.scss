@@ -3,23 +3,22 @@
 
 .hiddenDiv {
   position: absolute;
-  visibility : hidden;
-  
+  visibility: hidden;
 }
 
 .textarea {
   @include overflow-hidden;
-  box-shadow: 0 0 2px var(--color-light-gray);
+  box-shadow: var(--box-shadow-small);
   border-radius: 5px;
   background-color: var(--color-white);
   resize: none;
-  padding-left : 10px;
+  padding-left: 10px;
   padding-right: 10px;
   max-width: 100%;
   box-sizing: border-box;
-  border:none;
+  border: none;
   border-radius: 8px;
-  padding : 8px 10px;
+  padding: 8px 10px;
 
   &:focus {
     background-color: var(--color-white);

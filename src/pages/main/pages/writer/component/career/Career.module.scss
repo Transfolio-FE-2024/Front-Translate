@@ -37,7 +37,7 @@ $corner-size: 25px;
 .cardContainer {
   .cardWrapper {
     margin: 0 50px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    box-shadow: var(--box-shadow-large);
     position: relative;
 
     .card {

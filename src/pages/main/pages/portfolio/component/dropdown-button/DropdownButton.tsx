@@ -23,7 +23,7 @@ const DropdownButton: React.FC<{
         {title}
       </button>
       <span className="visually-hidden">Toggle Dropdown</span>
-      <ul className={`dropdown-menu ${styles.dropdown}`}>
+      <ul className={`dropdown-menu border-0 shadow-sm ${styles.dropdown}`}>
         {values.map((value, index) => (
           <li
             className={`dropdown-item ${styles.dropdownContent} ${
