@@ -18,3 +18,38 @@ export interface SignUpInfo {
   email: string;
   userIntrsDto: UserIntrs;
 }
+
+// FIXME - 임시. 백엔드와 인터페이스 동기화 필요
+export interface Post {
+  id: string;
+  translator: {
+    id: string;
+    nickName: string;
+    major: string;
+  };
+  author: string;
+  description: string;
+  regDate: string;
+  lastUpdatedDate: string;
+  status: string;
+  category: {
+    major: string;
+    sub: string;
+  };
+  title: {
+    original: string;
+    translated: string;
+  };
+  language: {
+    original: string;
+    translated: string;
+  };
+  style: {
+    fontSize: string;
+    fontFamily: string;
+  };
+  content: {
+    original: string;
+    translated: string;
+  }[];
+}

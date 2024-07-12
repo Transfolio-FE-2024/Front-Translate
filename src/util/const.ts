@@ -10,9 +10,14 @@ export const TF = {
   HTTP_STATUS: Object.freeze({
     FAIL_UNKNOWN_STATUS: "900",
   }),
+  PAGE_ERROR: Object.freeze({
+    NOT_FOUND: "NotFound",
+  }),
 };
 
-export const CLIENT_SITE_ADDRESS = import.meta.env.DEV ? import.meta.env.VITE_LOCAL_SITE_ADDRESS : import.meta.env.VITE_REMOTE_SITE_ADDRESS
+export const CLIENT_SITE_ADDRESS = import.meta.env.DEV
+  ? import.meta.env.VITE_LOCAL_SITE_ADDRESS
+  : import.meta.env.VITE_REMOTE_SITE_ADDRESS;
 export const supportedTranslateLanguage = [
   "한국어",
   "영어",

@@ -8,11 +8,10 @@ import { useRef, useState } from "react";
 import Arrow from "../arrow/Arrow";
 import { useMediaQuery } from "react-responsive";
 import ThumbnailTitle from "@/components/thumbnail-title/ThumbnailTitle";
-import { useNavigate } from "react-router-dom";
+import { posts } from "@/util/sample-data";
+import { getCategoryColor } from "@/util";
 
-const sliderContents = [1, 2, 3, 4, 5, 6, 7, 8];
 const ContentSlider = () => {
-  const navigate = useNavigate();
   const isMobile = useMediaQuery({ maxWidth: "767px" });
   const sliderNumber = isMobile ? 1 : 3;
   const [pageIndex, setPageIndex] = useState<number>(0);
@@ -52,21 +51,19 @@ const ContentSlider = () => {
       <div className={styles.titleSection}>Today's freelance translator</div>
       <div className={styles.bodySection}>
         <Slider {...sliderSettings} ref={slickRef}>
-          {sliderContents.map((slider) => {
+          {posts.map((post) => {
             return (
-              <div className={styles.thumbnailContainer} key={slider}>
+              <div className={styles.thumbnailContainer} key={post.id}>
                 <ThumbnailTitle interest="언어" />
                 <div className={styles.thumbnailSection}>
                   <ThumbnailCardFolderable
-                    original="たら堪らないという気をよく起した。 "
-                    translated="내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다. "
-                    major="고전시가 번역 전문"
-                    writer="@Kimhim"
+                    original={post.title.original}
+                    translated={post.title.translated}
+                    major={post.translator.major}
+                    writer={`@${post.translator.nickName}`}
                     picked={109}
-                    color="orange"
-                    onClicked={() => {
-                      navigate("/home/content");
-                    }}
+                    color={getCategoryColor(post.category.major)}
+                    href={`/home/content/${post.id}`}
                   />
                 </div>
               </div>

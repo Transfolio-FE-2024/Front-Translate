@@ -16,7 +16,7 @@ const WriterThumbnail: React.FC<{
             </div>
           </div>
           <div className={styles.writerTitleSection}>고전시 번역 전문가</div>
-          <div className={styles.writerNameSection}>@doom</div>
+          <div className={styles.writerNameSection}>@kimhim00</div>
           <div className={styles.writerInfoSection}>
             고전시를 위주로 번역합니다. 일본 고전시를 엮은 경력 다수 있으며 일본
             블로그를 운영합니다.

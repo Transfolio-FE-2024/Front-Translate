@@ -1,80 +1,67 @@
 import { useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styles from "./Content.module.scss";
 import { GoArrowSwitch } from "react-icons/go";
 import PageTitle from "../../../../components/page-title/PageTitle";
 import ThumbnailCardUnfolderable from "../../../../components/thumbnail-card/thumbnail-card-unfolderable/ThumbnailCardUnfolderable";
-
-const contents = [
-  {
-    original: "目分は何気なく傍の流れを見た。",
-    translated: "눈초리는 무심코 곁의 흐름을 보았다.",
-  },
-  {
-    original:
-      "向う側の斜めに水から出ている半畳敷程の石に黒い小さいものがいた。",
-    translated:
-      "맞은편 비스듬히 물에서 나온, 다다미 깔개 정도의 돌에 검은색 작은 것이 있었다.",
-  },
-  {
-    original: "イモリだ。未だ濡れていて、それはいい色をしていた。",
-    translated: "머리를 아래로 경사에서 흐름에 임하여 응연했다.",
-  },
-  {
-    original: "頭を下に傾斜から流れへ了臨んで、凝然としていた。",
-    translated:
-      "맞은편 비스듬히 물에서 나온, 다다미 깔개 정도의 돌에 검은색 작은 것이 있었다.",
-  },
-  {
-    original: "からからになったまま干からびそうだ ソーダみたく弾けて飛びそうだ",
-    translated: "",
-  },
-];
+import { posts } from "@/util/sample-data";
+import { TF } from "@/util/const";
+import { getCategoryColor } from "@/util";
 
 const preSave = true;
 
 const Content = () => {
+  const { contentId = "" } = useParams();
   const navigate = useNavigate();
   const editButtonOnClick = useCallback(() => {
     navigate("/home/edit");
   }, []);
 
+  const post = posts.find((post) => post.id === contentId);
+
+  // FIXME
+  if (!post) {
+    const err = new Error();
+    err.name = TF.PAGE_ERROR.NOT_FOUND;
+    throw err;
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <PageTitle mainTitle={"Translator"} subTitle={"고전시 번역 프리랜서"} />
+        <PageTitle mainTitle={"Translator"} subTitle={post.translator.major} />
         <div className={styles.thumbnailSection}>
           <ThumbnailCardUnfolderable
-            original="たら堪らないという気を よく起した。"
-            translated="내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다."
+            original={post.title.original}
+            translated={post.title.translated}
+            color={getCategoryColor(post.category.major)}
           />
           <div className={styles.thumbnailContentSection}>
             <div className={styles.thumbnailContentTitleDateSection}>
               <div className={styles.thumbnailConentTitleSection}>
-                <div className={styles.thumbnailContentTitle}>イモリだ</div>
+                <div className={styles.thumbnailContentTitle}>
+                  {post.title.original}
+                </div>
                 <div className={styles.thumbnailContentPage}>(1P)</div>
               </div>
               <div className={styles.thumbnailContentDateSection}>
-                2022.01.01
+                {post.lastUpdatedDate}
               </div>
             </div>
             <div className={styles.thumbnailContentTranslationDirectionSection}>
               <div className={styles.thumbnailContentTranslationTarget}>
-                일본어
+                {post.language.original}
               </div>
               <GoArrowSwitch
                 className={styles.thumbnailContentTranslationArrow}
               />
               <div className={styles.thumbnailContentTranslationTarget}>
-                한국어
+                {post.language.translated}
               </div>
             </div>
             <div className={styles.thumbnailContentIntroSection}>
               <div className={styles.thumbnailContentIntro}>
-                문학은 시가 나오야의 기노사키에서라는 작품을 번역해보았습니다.
-                저의 첫 문학 번역 작품이며 작가의 의도가 잘 느껴지도록 번역하기
-                위하여 노력했습니다. 일본 특유의 언어성을 옮기기 위하여 짧지만
-                많이 수정했네요. 잘 봐주세요 :)
+                {post.description}
               </div>
             </div>
             <div className={styles.thumbnailContentDetailWrapper}>
@@ -95,7 +82,7 @@ const Content = () => {
                       작가
                     </div>
                     <div className={styles.thumbnailContentDetailContent}>
-                      そうた
+                      {post.author}
                     </div>
                   </div>
                 </div>
@@ -108,17 +95,14 @@ const Content = () => {
         </div>
         <div className={styles.mainContentSection}>
           <div className={styles.mainContent}>
-            {contents.map((content, index) => (
+            {post.content.map((content, index) => (
               <div className={styles.mainContentRow} key={index}>
                 <div
-                  className={`
-                      ${styles.mainContentRowOriginal} 
-                      ${
-                        content.translated === "" || preSave
-                          ? styles.greenColor
-                          : styles.orangeColor
-                      }
-                    `}
+                  className={`${styles.mainContentRowOriginal}${
+                    content.translated === "" || preSave
+                      ? ` ${styles.greenColor}`
+                      : ` ${styles.orangeColor}`
+                  }`}
                 >
                   {content.original}
                 </div>

@@ -65,7 +65,7 @@ const router = createBrowserRouter([
             element: <Edit />,
           },
           {
-            path: "content",
+            path: "content/:contentId",
             element: <Content />,
           },
           {

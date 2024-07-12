@@ -1,34 +1,29 @@
 import React from "react";
 import styles from "./Portfolio.module.scss";
 import ThumbnailCardFolderable from "@/components/thumbnail-card/thumbnail-card-folderable/ThumbnailCardFolderable";
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { posts } from "@/util/sample-data";
+import { getCategoryColor } from "@/util";
 
 const Portfolio: React.FC = () => {
-  const navigate = useNavigate();
+  const { writerId = "" } = useParams();
+  const filteredPosts = posts.filter((post) => post.translator.id === writerId);
+
+  if (!filteredPosts.length) return <div>포트폴리오가 존재하지 않습니다.</div>;
 
   return (
     <div className={styles.grid}>
-      <ThumbnailCardFolderable
-        original="たら堪らないという気を よく起した。"
-        translated="내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다."
-        writer="@Kimhim"
-        picked={4}
-        color="orange"
-        onClicked={() => {
-          navigate("/home/content");
-        }}
-      />
-      <ThumbnailCardFolderable
-        original="あなたと溶け合って 深いところで重なって "
-        translated="당신과 어울려 깊은 곳에 겹쳐서"
-        writer="@Kimhim"
-        picked={4}
-        color="orange"
-        onClicked={() => {
-          navigate("/home/content");
-        }}
-        preSave
-      />
+      {filteredPosts.map((post, index) => (
+        <ThumbnailCardFolderable
+          original={post.title.original}
+          translated={post.title.translated}
+          writer={`@${post.translator.nickName}`}
+          picked={4}
+          color={getCategoryColor(post.category.major)}
+          href={`/home/content/${post.id}`}
+          preSave={index === filteredPosts.length - 1} // FIXME
+        />
+      ))}
       <div className={styles.thumbnailEmptyContainer}></div>
     </div>
   );

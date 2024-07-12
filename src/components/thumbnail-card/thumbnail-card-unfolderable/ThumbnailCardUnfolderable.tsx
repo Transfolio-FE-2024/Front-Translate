@@ -4,14 +4,14 @@ import React from "react";
 const ThumbnailCardUnfolderable: React.FC<{
   original: string;
   translated: string;
-  active?: boolean;
-}> = ({ original, translated, active = true }) => {
+  color: "green" | "orange";
+}> = ({ original, translated, color }) => {
   return (
     <div className={styles.container}>
       <div className={styles.indexSection}>
         <div
           className={`${styles.index} ${
-            active ? styles.indexActive : styles.indexInActive
+            color === "green" ? styles.green : styles.orange
           }`}
         ></div>
       </div>

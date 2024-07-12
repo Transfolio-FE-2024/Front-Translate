@@ -149,3 +149,7 @@ export class ValidationUtil {
     });
   }
 }
+
+export function getCategoryColor(category: string): "orange" | "green" {
+  return ["언어", "문학"].includes(category) ? "orange" : "green";
+}

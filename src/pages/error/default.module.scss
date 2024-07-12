@@ -1,0 +1,23 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.container {
+  @include flex-center;
+  @include flex-column;
+
+  height: 100lvh;
+
+  * {
+    font-family: var(--font-pretend);
+
+    a {
+      color: var(--color-orange) !important;
+      text-decoration: underline;
+    }
+  }
+}
+
+.title {
+  font-size: $font-size-24;
+  padding: 24px;
+}

@@ -5,10 +5,11 @@ import Writers from "../../component/writers/Writers";
 import styles from "./Home.module.scss";
 import ThumbnailCardFolderable from "@/components/thumbnail-card/thumbnail-card-folderable/ThumbnailCardFolderable";
 import ThumbnailTitle from "@/components/thumbnail-title/ThumbnailTitle";
+import { posts } from "@/util/sample-data";
+import { getCategoryColor } from "@/util";
 
 const nickName = "Kimhim";
 const currentUserId = "Kimhim";
-const thumbnailContents = [1, 2, 3, 4, 5, 6, 7, 8];
 const Home = () => {
   const navigate = useNavigate();
 
@@ -26,25 +27,24 @@ const Home = () => {
             {nickName}님의 관심분야의 번역들이에요!
           </div>
           <div className={styles.thumbnailCardSection}>
-            {thumbnailContents.map((thumbnail) => {
+            {posts.map((post) => {
               return (
-                <div className={styles.thumbnailContainer} key={thumbnail}>
+                <div className={styles.thumbnailContainer} key={post.id}>
                   <ThumbnailTitle interest="전공" />
                   <div className={styles.thumbnailSection}>
                     <ThumbnailCardFolderable
-                      original="たら堪らないという気をよく起した。"
-                      translated="내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다."
-                      major="고전시가 번역 전문"
-                      writer="@Kimhim"
+                      original={post.title.original}
+                      translated={post.title.translated}
+                      major={post.translator.major}
+                      writer={`@${post.translator.nickName}`}
                       picked={109}
-                      color="green"
-                      onClicked={() => navigate("/home/content")}
+                      color={getCategoryColor(post.category.major)}
+                      href={`/home/content/${post.id}`}
                     />
                   </div>
                 </div>
               );
             })}
-            <div className={styles.thumbnailEmptyContainer}></div>
           </div>
           <div className={styles.divider}></div>
           <div

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./ThumbnailCardFolderable.module.scss";
 import React from "react";
 
@@ -9,7 +10,7 @@ const ThumbnailCardFolderable: React.FC<{
   picked: number;
   preSave?: boolean;
   color: "green" | "orange";
-  onClicked: () => void;
+  href?: string;
 }> = ({
   original,
   translated,
@@ -18,18 +19,18 @@ const ThumbnailCardFolderable: React.FC<{
   picked,
   preSave = false,
   color,
-  onClicked,
+  href = "",
 }) => {
   return (
-    <div
-      className={`${styles.container} ${styles.clickable} ${
-        preSave ? styles.preSave : null
-      }`}
-      onClick={onClicked}
-    >
-      <div className={styles.indexSection}>
-        <div
-          className={`${styles.index} 
+    <Link to={href}>
+      <div
+        className={`${styles.container} ${styles.clickable} ${
+          preSave ? styles.preSave : null
+        }`}
+      >
+        <div className={styles.indexSection}>
+          <div
+            className={`${styles.index} 
             ${
               preSave
                 ? styles.indexInActive
@@ -38,32 +39,33 @@ const ThumbnailCardFolderable: React.FC<{
                 : styles.orange
             }
             `}
-        />
-      </div>
-      <div className={styles.contentSection}>
-        <div className={styles.originalSection}>{original}</div>
-        <div className={styles.translatedSection}>{translated}</div>
-      </div>
-      <div className={styles.footerSection}>
-        <div className={styles.nameSection}>
-          {major}
-          <br />
-          {writer}
+          />
         </div>
-        {!preSave && (
-          <div className={styles.foldSection}>
-            <div className={styles.pickedNumberContainer}>{picked}</div>
-            <div
-              className={`${styles.foldContainer} ${
-                color === "green"
-                  ? styles.borderTopGreen
-                  : styles.borderTopOrange
-              }`}
-            ></div>
+        <div className={styles.contentSection}>
+          <div className={styles.originalSection}>{original}</div>
+          <div className={styles.translatedSection}>{translated}</div>
+        </div>
+        <div className={styles.footerSection}>
+          <div className={styles.nameSection}>
+            {major}
+            <br />
+            {writer}
           </div>
-        )}
+          {!preSave && (
+            <div className={styles.foldSection}>
+              <div className={styles.pickedNumberContainer}>{picked}</div>
+              <div
+                className={`${styles.foldContainer} ${
+                  color === "green"
+                    ? styles.borderTopGreen
+                    : styles.borderTopOrange
+                }`}
+              ></div>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

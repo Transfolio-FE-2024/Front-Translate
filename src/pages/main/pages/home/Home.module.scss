@@ -39,10 +39,6 @@
   flex-wrap: wrap;
 }
 
-.thumbnailEmptyContainer {
-  flex: 1;
-}
-
 .thumbnailTitle {
   @include full-width;
   @include flex-center;
