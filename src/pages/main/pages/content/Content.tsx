@@ -35,6 +35,7 @@ const Content = () => {
             original={post.title.original}
             translated={post.title.translated}
             color={getCategoryColor(post.category.major)}
+            fontStyle={post.style.fontFamily}
           />
           <div className={styles.thumbnailContentSection}>
             <div className={styles.thumbnailContentTitleDateSection}>
@@ -96,7 +97,11 @@ const Content = () => {
         <div className={styles.mainContentSection}>
           <div className={styles.mainContent}>
             {post.content.map((content, index) => (
-              <div className={styles.mainContentRow} key={index}>
+              <div
+                className={styles.mainContentRow}
+                key={index}
+                style={{ fontFamily: post.style.fontFamily }}
+              >
                 <div
                   className={`${styles.mainContentRowOriginal}${
                     content.translated === "" || preSave

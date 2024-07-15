@@ -41,13 +41,13 @@
 .originalSection {
   width: 100%;
   margin-bottom: 10px;
-  font-family: var(--font-pretend);
+  font-family: inherit;
   line-height: var(--line-height-27);
 }
 
 .translatedSection {
   width: 100%;
   margin-bottom: 10px;
-  font-family: var(--font-nanum);
+  font-family: inherit;
   line-height: var(--line-height-27);
 }

@@ -5,7 +5,8 @@ const ThumbnailCardUnfolderable: React.FC<{
   original: string;
   translated: string;
   color: "green" | "orange";
-}> = ({ original, translated, color }) => {
+  fontStyle?: string;
+}> = ({ original, translated, color, fontStyle = "Pretendard" }) => {
   return (
     <div className={styles.container}>
       <div className={styles.indexSection}>
@@ -15,7 +16,7 @@ const ThumbnailCardUnfolderable: React.FC<{
           }`}
         ></div>
       </div>
-      <div className={styles.contentSection}>
+      <div className={styles.contentSection} style={{ fontFamily: fontStyle }}>
         <div className={styles.originalSection}>{original}</div>
         <div className={styles.translatedSection}>{translated}</div>
       </div>

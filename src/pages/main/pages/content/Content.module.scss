@@ -26,56 +26,12 @@
   justify-content: space-between;
 }
 
-.thumbnailCardSection {
-  @include flex-column;
-  @include full-height;
-  width: 300px;
-  background-color: var(--color-white);
-  padding: 10px;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.thumbnailCardIndexSection {
-  @include flex;
-  @include full-width;
-  height: 10px;
-  align-items: center;
-  justify-content: start;
-}
-
-.thumbnailCardIndex {
-  width: 10px;
-  height: 10px;
-  background-color: var(--color-orange);
-  border-radius: 100%;
-}
-
-.thumbnailCardContentSection {
-  @include full-width;
-  height: 90%;
-}
-
-.thumbnailCardContentOriginalSection {
-  @include full-width;
-  margin-bottom: 10px;
-  font-family: var(--font-pretend);
-  line-height: var(--line-height-27);
-}
-
-.thumbnailCardContentTranslationSection {
-  @include full-width;
-  margin-bottom: 10px;
-  font-family: var(--font-nanum);
-  line-height: var(--line-height-27);
-}
-
 .thumbnailContentDetailWrapper {
   @include flex;
 }
 
 .thumbnailContentDetailWrap {
-  flex-grow : 1;
+  flex-grow: 1;
 }
 
 .thumbnailContentSection {
@@ -189,7 +145,7 @@
 
 .editButton {
   @include flex-column-center;
-  color : var(--color-gray);
+  color: var(--color-gray);
   font-size: 16px;
   font-weight: 700;
   font-family: var(--font-pretend);
@@ -200,7 +156,7 @@
 .mainContentSection {
   @include full-width;
   padding: 20px;
-  background-color: rgb(255,255,255);
+  background-color: rgb(255, 255, 255);
 }
 
 .mainContent {
@@ -214,32 +170,32 @@
 }
 
 .orangeColor {
-  color : var(--color-orange);
+  color: var(--color-orange);
 }
 
 .greenColor {
-  color : var(--color-green-2);
+  color: var(--color-green-2);
 }
 
 .mainContentRowOriginal {
-  padding : 5px 10px;
+  padding: 5px 10px;
   font-size: 16px;
-  font-family: var(--font-pretend);
+  font-family: inherit;
   background-color: var(--color-white);
 }
 
 .mainContentRowTranslation {
-  padding : 5px 10px;
+  padding: 5px 10px;
   margin-bottom: 10px;
   font-size: 16px;
-  font-family: var(--font-pretend);
-  background-color: var(--color-white);
+  font-family: inherit;
+  background-color: inherit;
   line-height: 24px;
-  display : flex;
+  display: flex;
 
   &::before {
-    content : " ";
-    display : block;
+    content: " ";
+    display: block;
     width: 1px;
     height: 24px;
   }
