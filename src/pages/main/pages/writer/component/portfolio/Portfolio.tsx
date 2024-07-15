@@ -22,6 +22,7 @@ const Portfolio: React.FC = () => {
           color={getCategoryColor(post.category.major)}
           href={`/home/content/${post.id}`}
           preSave={index === filteredPosts.length - 1} // FIXME
+          fontStyle={post.style.fontFamily}
         />
       ))}
       <div className={styles.thumbnailEmptyContainer}></div>

@@ -11,6 +11,7 @@ const ThumbnailCardFolderable: React.FC<{
   preSave?: boolean;
   color: "green" | "orange";
   href?: string;
+  fontStyle?: string;
 }> = ({
   original,
   translated,
@@ -20,6 +21,7 @@ const ThumbnailCardFolderable: React.FC<{
   preSave = false,
   color,
   href = "",
+  fontStyle = "Pretendard",
 }) => {
   return (
     <Link to={href}>
@@ -41,7 +43,10 @@ const ThumbnailCardFolderable: React.FC<{
             `}
           />
         </div>
-        <div className={styles.contentSection}>
+        <div
+          className={styles.contentSection}
+          style={{ fontFamily: fontStyle }}
+        >
           <div className={styles.originalSection}>{original}</div>
           <div className={styles.translatedSection}>{translated}</div>
         </div>

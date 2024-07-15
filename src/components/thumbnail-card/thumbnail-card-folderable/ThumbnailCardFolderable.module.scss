@@ -11,7 +11,7 @@
   justify-content: space-between;
   margin-bottom: 20px;
   position: relative;
-  cursor : pointer;
+  cursor: pointer;
 }
 
 .clickable {
@@ -59,7 +59,7 @@
 .originalSection {
   @include full-width;
   margin-bottom: 10px;
-  font-family: var(--font-pretend);
+  font-family: inherit;
   line-height: var(--line-height-27);
   // 5줄 넘어가면 말줄임표시
   -webkit-line-clamp: 5;
@@ -71,7 +71,7 @@
 .translatedSection {
   @include full-width;
   margin-bottom: 10px;
-  font-family: var(--font-nanum);
+  font-family: inherit;
   line-height: var(--line-height-27);
 }
 
@@ -127,9 +127,9 @@
 }
 
 .green {
-  background-color : var(--color-green-2);
+  background-color: var(--color-green-2);
 }
 
 .orange {
-  background-color : var(--color-orange);
+  background-color: var(--color-orange);
 }

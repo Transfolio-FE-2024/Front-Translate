@@ -64,6 +64,7 @@ const ContentSlider = () => {
                     picked={109}
                     color={getCategoryColor(post.category.major)}
                     href={`/home/content/${post.id}`}
+                    fontStyle={post.style.fontFamily}
                   />
                 </div>
               </div>

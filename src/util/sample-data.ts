@@ -36,7 +36,7 @@ const posts: Post[] = [
     },
     style: {
       fontSize: "14pt",
-      fontFamily: "NotoSans",
+      fontFamily: "NanumMyeongjo",
     },
     content: [
       {
@@ -118,7 +118,7 @@ const posts: Post[] = [
     },
     style: {
       fontSize: "16pt",
-      fontFamily: "Pretendard",
+      fontFamily: "NanumBarunGothic",
     },
     content: [
       {
@@ -221,7 +221,7 @@ const posts: Post[] = [
     },
     style: {
       fontSize: "14pt",
-      fontFamily: "NotoSans",
+      fontFamily: "NanumMyeongjo",
     },
     content: [
       {
@@ -303,7 +303,7 @@ const posts: Post[] = [
     },
     style: {
       fontSize: "16pt",
-      fontFamily: "Pretendard",
+      fontFamily: "NanumBarunGothic",
     },
     content: [
       {
@@ -406,7 +406,7 @@ const posts: Post[] = [
     },
     style: {
       fontSize: "14pt",
-      fontFamily: "NotoSans",
+      fontFamily: "NanumMyeongjo",
     },
     content: [
       {
@@ -488,7 +488,7 @@ const posts: Post[] = [
     },
     style: {
       fontSize: "16pt",
-      fontFamily: "Pretendard",
+      fontFamily: "NanumBarunGothic",
     },
     content: [
       {
@@ -591,7 +591,7 @@ const posts: Post[] = [
     },
     style: {
       fontSize: "16pt",
-      fontFamily: "Pretendard",
+      fontFamily: "NanumBarunGothic",
     },
     content: [
       {
@@ -694,7 +694,7 @@ const posts: Post[] = [
     },
     style: {
       fontSize: "14pt",
-      fontFamily: "NotoSans",
+      fontFamily: "NanumMyeongjo",
     },
     content: [
       {
@@ -776,7 +776,7 @@ const posts: Post[] = [
     },
     style: {
       fontSize: "14pt",
-      fontFamily: "NotoSans",
+      fontFamily: "NanumMyeongjo",
     },
     content: [
       {
