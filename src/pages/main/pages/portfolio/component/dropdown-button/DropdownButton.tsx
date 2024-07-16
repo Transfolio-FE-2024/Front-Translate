@@ -27,7 +27,7 @@ const DropdownButton: React.FC<{
         {values.map((value, index) => (
           <li
             className={`dropdown-item ${styles.dropdownContent} ${
-              selectedValue === value ? styles.active : undefined
+              selectedValue === value ? styles.active : ""
             }`}
             onClick={() => dropdownContentClickHandler(value)}
             key={index}

@@ -51,7 +51,7 @@ const Portfolio = () => {
     preDefinedFontSize[0]
   );
   const [selectedFontFamily, setSelectedFontFamily] = useState<string>(
-    preDefinedFontFamily[0]
+    Object.keys(preDefinedFontFamily)[0]
   );
 
   useEffect(() => {

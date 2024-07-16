@@ -27,9 +27,7 @@ const StyledDropdownButton: React.FC<{
             key={optionKey}
             style={{ fontFamily: optionKey }}
             className={`dropdown-item ${styles.dropdownContent} ${
-              selectedOptionKey !== undefined && selectedOptionKey === optionKey
-                ? styles.active
-                : ""
+              selectedOptionKey === optionKey ? styles.active : ""
             }`}
             onClick={() => onOptionClicked(optionKey, options[optionKey])}
           >
