@@ -6,7 +6,7 @@ import MenuBar from "./components/menu-bar/MenuBar";
 import Button from "./components/button/Button";
 import { IoMdSearch } from "react-icons/io";
 import TextField from "./components/text-field/TextField";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -34,15 +34,16 @@ export const Header = () => {
             <div></div>
             <div></div>
           </div>
-          <div
-            className={styles.logoIcon}
-            onClick={() => {
-              navigate("/home");
-              window.scrollTo(0, 0);
-            }}
-          >
-            <img src={logoIcon} />
-          </div>
+          <Link to={"/home"}>
+            <div
+              className={styles.logoIcon}
+              onClick={() => {
+                window.scrollTo(0, 0);
+              }}
+            >
+              <img src={logoIcon} />
+            </div>
+          </Link>
         </div>
         <div className={styles.buttonsSection}>
           <div className={styles.writeButtonSection}>
