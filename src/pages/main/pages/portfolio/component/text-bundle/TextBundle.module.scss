@@ -4,6 +4,10 @@
 .hiddenDiv {
   position: absolute;
   visibility: hidden;
+
+  & > span {
+    padding: 0 10px;
+  }
 }
 
 .textarea {

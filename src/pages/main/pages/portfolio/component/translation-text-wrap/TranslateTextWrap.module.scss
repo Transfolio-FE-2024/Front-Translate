@@ -5,21 +5,25 @@
   @include flex;
   @include full-width;
   align-items: center;
-  margin-bottom: 10px;
+  border-radius: 8px;
+  padding: 10px;
+
+  &.hoverDeleteButton {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
 }
 
 .textBundleSection {
   @include flex-column;
-  flex: 1;
-  width: 100%;
+  flex-grow: 1;
   gap: 10px;
-  overflow-x: hidden;
+  position: relative;
 }
 
 .deleteIconSection {
   @include flex-column-center;
   justify-content: flex-end;
-
+  flex-shrink: 0;
   width: 30px;
   padding: 5px;
 }
@@ -27,7 +31,7 @@
 .deleteIcon {
   @include cursor-pointer;
   width: 100%;
-  color: #f6b298;
+  color: var(--color-light-orange);
 
   &:hover {
     @include opacity-0-8;

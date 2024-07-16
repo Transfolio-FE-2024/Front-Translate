@@ -31,7 +31,7 @@ const TextBundle = React.forwardRef<HTMLTextAreaElement, ITextBundle>(
       if (fontSize !== undefined) span.style.setProperty("font-size", fontSize);
       span.innerText = value === "" ? "번역 전 " : value;
 
-      return Math.floor(span.offsetWidth) + 10 + "px";
+      return Math.floor(span.offsetWidth) + "px";
     }, [value, fontSize, fontFamily, divRef.current]);
 
     const onPaste = useCallback(
@@ -53,7 +53,7 @@ const TextBundle = React.forwardRef<HTMLTextAreaElement, ITextBundle>(
       <React.Fragment>
         <div
           style={{ fontSize, fontFamily }}
-          className={styles.hiddenDiv}
+          className={`${styles.hiddenDiv} ${styles.textarea}`}
           ref={divRef}
         >
           <span></span>
