@@ -13,6 +13,7 @@
 .textBundleContainer {
   @include flex;
   @include full-width;
+  align-items: center;
   margin-bottom: 10px;
 }
 
