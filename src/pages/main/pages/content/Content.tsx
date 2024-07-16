@@ -1,5 +1,4 @@
-import { useCallback } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styles from "./Content.module.scss";
 import { GoArrowSwitch } from "react-icons/go";
 import PageTitle from "../../../../components/page-title/PageTitle";
@@ -12,10 +11,6 @@ const preSave = true;
 
 const Content = () => {
   const { contentId = "" } = useParams();
-  const navigate = useNavigate();
-  const editButtonOnClick = useCallback(() => {
-    navigate("/home/edit");
-  }, []);
 
   const post = posts.find((post) => post.id === contentId);
 
@@ -88,9 +83,9 @@ const Content = () => {
                   </div>
                 </div>
               </div>
-              <div className={styles.editButton} onClick={editButtonOnClick}>
-                수정하기
-              </div>
+              <Link to={`/home/edit/${post.id}`}>
+                <div className={styles.editButton}>수정하기</div>
+              </Link>
             </div>
           </div>
         </div>

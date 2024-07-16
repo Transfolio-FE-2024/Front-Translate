@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Portfolio.module.scss";
 import PageTitle from "@/components/page-title/PageTitle";
@@ -53,13 +53,6 @@ const Portfolio = () => {
   const [selectedFontFamily, setSelectedFontFamily] = useState<string>(
     preDefinedFontFamily[0]
   );
-
-  const fontFamily: string = useMemo(() => {
-    const fontFamilyKeys = Object.keys(preDefinedFontFamily);
-    if (selectedFontFamily === undefined)
-      return preDefinedFontFamily[fontFamilyKeys[0]];
-    return preDefinedFontFamily[selectedFontFamily];
-  }, [selectedFontFamily]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -141,11 +134,17 @@ const Portfolio = () => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <PageTitle mainTitle={"Translator"} subTitle={"고전시 번역 프리랜서"} />
+        <PageTitle
+          mainTitle={"Translator"}
+          subTitle={"사용자가 설정한 값으로 교체 필요"}
+        />
         <div className={styles.divider}></div>
         <div className={styles.thumbnailSection}>
           <div className={styles.thumbnailCardSection}>
-            <ThumbnailChangeable title={title} fontFamily={fontFamily} />
+            <ThumbnailChangeable
+              title={title}
+              fontFamily={selectedFontFamily}
+            />
           </div>
           <div className={styles.thumbnailInfoSection}>
             <div className={styles.titleTextFieldSection}>
@@ -264,16 +263,22 @@ const Portfolio = () => {
             <div className={styles.buttonSection}>
               <StyledDropdownButton
                 title={<StyledTitle>서체 설정</StyledTitle>}
-                values={Object.keys(preDefinedFontFamily)}
-                selectedValue={selectedFontFamily}
-                onValueClicked={(value) => setSelectedFontFamily(value)}
+                options={Object.entries(preDefinedFontFamily).reduce(
+                  (acc, [key, value]) => {
+                    acc[value] = key;
+                    return acc;
+                  },
+                  {} as { [key: string]: string }
+                )}
+                selectedOptionKey={selectedFontFamily}
+                onOptionClicked={(key) => setSelectedFontFamily(key)}
               />
             </div>
           </div>
           <WritingContent
             contents={contents}
             fontSize={selectedFontSize}
-            fontFamily={fontFamily}
+            fontFamily={selectedFontFamily}
             offFocus={offFocus}
             deleteContent={deleteContent}
             moveNextContent={moveNextContent}

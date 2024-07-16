@@ -5,7 +5,6 @@ import Interests from "./auth/sign-up/pages/interests/Interests";
 import SignIn from "./auth/sign-in/SignIn";
 import KCallback from "@/components/Oauth/KCallback";
 import Home from "./main/pages/home/Home";
-import Edit from "./main/pages/edit/Edit";
 import Content from "./main/pages/content/Content";
 import Writer from "./main/pages/writer/Writer";
 import Portfolio from "./main/pages/portfolio/Portfolio";
@@ -13,6 +12,7 @@ import Root from "./Root";
 import Complete from "./auth/sign-up/pages/complete/Complete";
 import Main from "./main/Main";
 import DefaultErrorBoundary from "./error/default";
+import Edit from "./main/pages/edit/Edit";
 
 const router = createBrowserRouter([
   {
@@ -61,7 +61,7 @@ const router = createBrowserRouter([
             element: <Home />,
           },
           {
-            path: "edit",
+            path: "edit/:contentId",
             element: <Edit />,
           },
           {

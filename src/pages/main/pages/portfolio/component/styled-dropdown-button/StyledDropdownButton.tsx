@@ -1,18 +1,15 @@
 import React from "react";
 import styles from "./StyledDropdownButton.module.scss";
-import { styleKeyType } from "./types";
-import { preDefinedFontFamily } from "@/util/const";
 
 const StyledDropdownButton: React.FC<{
   title: string | React.ReactNode;
-  values: styleKeyType[];
-  selectedValue: string | undefined;
-  onValueClicked: (value: styleKeyType) => void;
-}> = ({ title, values, selectedValue, onValueClicked }) => {
-  const dropdownContentClickHandler = (value: styleKeyType) => {
-    onValueClicked(value);
-  };
-
+  options: { [key: string]: string };
+  selectedOptionKey: string | undefined;
+  onOptionClicked: (
+    selectedOptionKey: string,
+    selectedOptionValue: string
+  ) => void;
+}> = ({ title, options, selectedOptionKey, onOptionClicked }) => {
   return (
     <div className={`btn-group`}>
       <button
@@ -24,19 +21,18 @@ const StyledDropdownButton: React.FC<{
         {title}
       </button>
       <ul className={`dropdown-menu ${styles.dropdown}`}>
-        {values.map((value) => (
+        {Object.keys(options).map((optionKey) => (
           <li
-            key={value}
-            style={{ fontFamily: preDefinedFontFamily[value] }}
-            className={`dropdown-item ${styles.dropdownContent} 
-                ${
-                  selectedValue !== undefined && selectedValue === value
-                    ? styles.active
-                    : undefined
-                }`}
-            onClick={() => dropdownContentClickHandler(value)}
+            key={optionKey}
+            style={{ fontFamily: optionKey }}
+            className={`dropdown-item ${styles.dropdownContent} ${
+              selectedOptionKey !== undefined && selectedOptionKey === optionKey
+                ? styles.active
+                : ""
+            }`}
+            onClick={() => onOptionClicked(optionKey, options[optionKey])}
           >
-            {value}
+            {options[optionKey]}
           </li>
         ))}
       </ul>
