@@ -108,12 +108,12 @@ function Edit() {
     string | undefined
   >(docs.selectedSubCatetory);
   const [author, setAuthor] = useState(docs.author);
-  const [selectedFontSize, setSelectedFontSize] = useState<string | undefined>(
+  const [selectedFontSize, setSelectedFontSize] = useState<string>(
     docs.selectedFontSize
   );
-  const [selectedFontFamily, setSelectedFontFamily] = useState<
-    string | undefined
-  >();
+  const [selectedFontFamily, setSelectedFontFamily] = useState<string>(
+    preDefinedFontFamily[0] // FIXME
+  );
 
   const navigate = useNavigate();
 

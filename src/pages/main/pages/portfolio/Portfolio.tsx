@@ -47,12 +47,12 @@ const Portfolio = () => {
     string | undefined
   >();
   const [author, setAuthor] = useState<string>("");
-  const [selectedFontSize, setSelectedFontSize] = useState<
-    string | undefined
-  >();
-  const [selectedFontFamily, setSelectedFontFamily] = useState<
-    string | undefined
-  >();
+  const [selectedFontSize, setSelectedFontSize] = useState<string>(
+    preDefinedFontSize[0]
+  );
+  const [selectedFontFamily, setSelectedFontFamily] = useState<string>(
+    preDefinedFontFamily[0]
+  );
 
   const fontFamily: string = useMemo(() => {
     const fontFamilyKeys = Object.keys(preDefinedFontFamily);

@@ -48,7 +48,7 @@ export const areaOfInterest = {
   ],
 };
 
-export const preDefinedFontSize = ["14pt", "16pt", "18pt", "20pt"];
+export const preDefinedFontSize = ["12pt", "14pt", "16pt", "18pt", "20pt"];
 export const preDefinedFontFamily: {
   [key: string]: string;
 } = {

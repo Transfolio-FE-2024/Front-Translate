@@ -1,25 +1,7 @@
 import React from "react";
 import styles from "./StyledDropdownButton.module.scss";
 import { styleKeyType } from "./types";
-
-export const style: {
-  [key: string]: {
-    fontFamily: string;
-  };
-} = {
-  Pretendard: {
-    fontFamily: "Pretendard",
-  },
-  "Nanum Myeangjo": {
-    fontFamily: "NanumMyeangjo",
-  },
-  "Noto Sans": {
-    fontFamily: "NotoSans",
-  },
-  "Nanum Barun Gothic": {
-    fontFamily: "NanumBarunGothic",
-  },
-};
+import { preDefinedFontFamily } from "@/util/const";
 
 const StyledDropdownButton: React.FC<{
   title: string | React.ReactNode;
@@ -45,7 +27,7 @@ const StyledDropdownButton: React.FC<{
         {values.map((value) => (
           <li
             key={value}
-            style={{ ...style[value] }}
+            style={{ fontFamily: preDefinedFontFamily[value] }}
             className={`dropdown-item ${styles.dropdownContent} 
                 ${
                   selectedValue !== undefined && selectedValue === value
