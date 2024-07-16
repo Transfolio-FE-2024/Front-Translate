@@ -28,16 +28,17 @@
   color: var(--color-gray);
   padding: 10px 20px !important;
 
+  &.active {
+    color: var(--color-orange) !important;
+    font-weight: var(--font-semi-bold);
+  }
+
   &:active {
-    color: var(--color-orange);
+    color: var(--color-white) !important;
+    background-color: var(--color-light-orange);
   }
 
   &:not(:first-child) {
     border-top: 0.5px solid #dfdfdf;
   }
-}
-
-.active {
-  color: var(--color-orange) !important;
-  font-weight: var(--font-semi-bold);
 }

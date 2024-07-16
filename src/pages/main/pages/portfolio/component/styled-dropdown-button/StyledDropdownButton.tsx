@@ -16,11 +16,12 @@ const StyledDropdownButton: React.FC<{
         className={`btn ${styles.button}`}
         type="button"
         data-bs-toggle="dropdown"
+        data-bs-display="static"
         aria-expanded="false"
       >
         {title}
       </button>
-      <ul className={`dropdown-menu ${styles.dropdown}`}>
+      <ul className={`dropdown-menu border-0 shadow-sm ${styles.dropdown}`}>
         {Object.keys(options).map((optionKey) => (
           <li
             key={optionKey}
