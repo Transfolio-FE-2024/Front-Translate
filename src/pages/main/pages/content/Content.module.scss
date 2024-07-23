@@ -20,8 +20,9 @@
 .thumbnailSection {
   @include flex;
   @include full-width;
-  height: 350px;
-  padding: 50px 0px;
+  height: 299px;
+  padding: 50px 0 20px;
+  box-sizing: content-box;
   align-items: center;
   justify-content: space-between;
 }
@@ -59,12 +60,6 @@
   font-family: var(--font-pretend);
   line-height: var(--line-height-27);
   font-weight: var(--font-bold);
-}
-
-.thumbnailContentPage {
-  margin-left: 10px;
-  font-family: var(--font-pretend);
-  color: var(--color-light-gray);
 }
 
 .thumbnailContentDateSection {
@@ -107,7 +102,7 @@
   font-family: var(--font-pretend);
   color: var(--color-gray);
   letter-spacing: var(--letter-spacing-1-92);
-  line-height: var(--line-height-normal);
+  line-height: var(--line-height-21);
 }
 
 .thumbnailContentDetailSection {

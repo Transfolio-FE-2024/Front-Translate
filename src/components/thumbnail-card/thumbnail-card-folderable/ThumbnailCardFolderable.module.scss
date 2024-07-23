@@ -12,6 +12,7 @@
   margin-bottom: 20px;
   position: relative;
   cursor: pointer;
+  box-shadow: var(--box-shadow-large);
 }
 
 .clickable {
@@ -53,7 +54,7 @@
 .contentSection {
   @include full-width;
   height: 90%;
-  padding: 0 10px;
+  padding: 0 20px;
 }
 
 .originalSection {
@@ -86,7 +87,7 @@
   font-size: $font-size-12;
   font-family: var(--font-pretend);
   color: var(--color-light-gray);
-  margin-left: 10px;
+  margin-left: 20px;
   margin-bottom: 10px;
 }
 

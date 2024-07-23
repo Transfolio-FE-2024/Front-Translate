@@ -1,6 +1,6 @@
 import styles from "./ContentSlider.module.scss";
 import "./ContentSlider.css";
-import Slider from "react-slick";
+import Slider, { Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ThumbnailCardFolderable from "@/components/thumbnail-card/thumbnail-card-folderable/ThumbnailCardFolderable";
@@ -16,7 +16,7 @@ const ContentSlider = () => {
   const sliderNumber = isMobile ? 1 : 3;
   const [pageIndex, setPageIndex] = useState<number>(0);
   const slickRef = useRef<Slider>(null);
-  const sliderSettings = {
+  const sliderSettings: Settings = {
     dots: true,
     infinite: true,
     speed: 500,
@@ -54,7 +54,7 @@ const ContentSlider = () => {
           {posts.map((post) => {
             return (
               <div className={styles.thumbnailContainer} key={post.id}>
-                <ThumbnailTitle interest="언어" />
+                <ThumbnailTitle interest={post.category.major} />
                 <div className={styles.thumbnailSection}>
                   <ThumbnailCardFolderable
                     original={post.title.original}

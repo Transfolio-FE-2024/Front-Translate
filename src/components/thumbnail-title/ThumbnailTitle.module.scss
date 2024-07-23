@@ -1,19 +1,19 @@
 .textWrapper {
-    width: 200px;
-    height: 30px;
-    overflow: hidden;
-    white-space: nowrap;
-    font-family : var(--font-nanum);
-    font-size: 18px;
-    font-weight: 800;
-    text-overflow: ellipsis;
-    margin-bottom: 10px;
+  width: 200px;
+  height: 30px;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: var(--font-nanum);
+  font-size: 18px;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  margin: 0 auto 10px;
 }
 
 .orange {
-    color : var(--color-orange);
+  color: var(--color-orange);
 }
 
 .green {
-    color : var(--color-green-2);
+  color: var(--color-green-2);
 }

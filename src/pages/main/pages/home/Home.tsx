@@ -30,7 +30,7 @@ const Home = () => {
             {posts.map((post) => {
               return (
                 <div className={styles.thumbnailContainer} key={post.id}>
-                  <ThumbnailTitle interest="전공" />
+                  <ThumbnailTitle interest={post.category.major} />
                   <div className={styles.thumbnailSection}>
                     <ThumbnailCardFolderable
                       original={post.title.original}

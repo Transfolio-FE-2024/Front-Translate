@@ -38,7 +38,6 @@ const Content = () => {
                 <div className={styles.thumbnailContentTitle}>
                   {post.title.original}
                 </div>
-                <div className={styles.thumbnailContentPage}>(1P)</div>
               </div>
               <div className={styles.thumbnailContentDateSection}>
                 {post.lastUpdatedDate}
