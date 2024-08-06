@@ -20,6 +20,9 @@ import {
   supportedTranslateLanguage,
 } from "@/util/const";
 import { MainCategoryType, ContentType } from "@/types/index";
+import { useMutation } from "@tanstack/react-query";
+import { Post } from "@/interface";
+import { createPost } from "@/api/post";
 
 const Portfolio = () => {
   const indexRef = useRef<number>(1);
@@ -53,6 +56,12 @@ const Portfolio = () => {
   const [selectedFontFamily, setSelectedFontFamily] = useState<string>(
     Object.keys(preDefinedFontFamily)[0]
   );
+  //
+  const { mutate: submitPost } = useMutation({
+    mutationFn: (post: Post) => createPost(post),
+    onSuccess: () => navigate("/home/completion"),
+    onError: (e: Error) => alert(e.message),
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -294,7 +303,36 @@ const Portfolio = () => {
               <MainButtonSquare
                 title="제출하기"
                 onClicked={() => {
-                  navigate("/home/completion");
+                  // TODO - 입력값 유효성 검증
+
+                  submitPost({
+                    title,
+                    subtitle: title, // FIXME
+                    translator: {
+                      // FIXME
+                      id: "test",
+                      major: "",
+                      nickName: "test_nickname",
+                    },
+                    category: {
+                      major: selectedMainCatetory || "",
+                      sub: selectedSubCatetory || "",
+                    },
+                    content: contents.map((content) => ({
+                      original: content.original,
+                      translated: content.translated,
+                    })),
+                    style: {
+                      fontSize: selectedFontSize,
+                      fontFamily: selectedFontFamily,
+                    },
+                    language: {
+                      original: selectedOriginLanguage || "",
+                      translated: selectedTranslatedLanguage || "",
+                    },
+                    description: information,
+                    author,
+                  });
                 }}
               />
             </div>

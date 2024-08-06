@@ -21,7 +21,7 @@ export interface SignUpInfo {
 
 // FIXME - 임시. 백엔드와 인터페이스 동기화 필요
 export interface Post {
-  id: string;
+  id?: string;
   translator: {
     id: string;
     nickName: string;
@@ -29,17 +29,15 @@ export interface Post {
   };
   author: string;
   description: string;
-  regDate: string;
-  lastUpdatedDate: string;
-  status: string;
+  regDate?: string;
+  lastUpdatedDate?: string;
+  status?: string;
   category: {
     major: string;
     sub: string;
   };
-  title: {
-    original: string;
-    translated: string;
-  };
+  title: string;
+  subtitle: string;
   language: {
     original: string;
     translated: string;

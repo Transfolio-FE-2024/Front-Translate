@@ -25,10 +25,9 @@ const posts: Post[] = [
       sub: "고전 소설",
     },
     // 작품의 제목
-    title: {
-      original: "たら堪らないという気を よく起した。",
-      translated: "내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다.",
-    },
+    title: "내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다.",
+    subtitle:
+      "たら堪らないという気を よく起した。내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다.",
     // 작품의 언어(original -> translated)
     language: {
       original: "일본어",
@@ -108,10 +107,8 @@ const posts: Post[] = [
       major: "전공",
       sub: "인문",
     },
-    title: {
-      original: "Pride and Prejudice",
-      translated: "오만과 편견",
-    },
+    title: "Pride and Prejudice 오만과 편견",
+    subtitle: "오만과 편견",
     language: {
       original: "영어",
       translated: "한국어",
@@ -211,10 +208,9 @@ const posts: Post[] = [
       major: "문학",
       sub: "고전 소설",
     },
-    title: {
-      original: "たら堪らないという気を よく起した。",
-      translated: "내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다.",
-    },
+    title: "내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다.",
+    subtitle:
+      "たら堪らないという気を よく起した。내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다.",
     language: {
       original: "일본어",
       translated: "한국어",
@@ -293,10 +289,8 @@ const posts: Post[] = [
       major: "전공",
       sub: "인문",
     },
-    title: {
-      original: "Pride and Prejudice",
-      translated: "오만과 편견",
-    },
+    title: "Pride and Prejudice 오만과 편견",
+    subtitle: "오만과 편견",
     language: {
       original: "영어",
       translated: "한국어",
@@ -396,10 +390,9 @@ const posts: Post[] = [
       major: "문학",
       sub: "고전 소설",
     },
-    title: {
-      original: "たら堪らないという気を よく起した。",
-      translated: "내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다.",
-    },
+    title: "내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다.",
+    subtitle:
+      "たら堪らないという気を よく起した。내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다.",
     language: {
       original: "일본어",
       translated: "한국어",
@@ -478,10 +471,8 @@ const posts: Post[] = [
       major: "전공",
       sub: "인문",
     },
-    title: {
-      original: "Pride and Prejudice",
-      translated: "오만과 편견",
-    },
+    title: "Pride and Prejudice 오만과 편견",
+    subtitle: "오만과 편견",
     language: {
       original: "영어",
       translated: "한국어",
@@ -581,10 +572,8 @@ const posts: Post[] = [
       major: "전공",
       sub: "인문",
     },
-    title: {
-      original: "Pride and Prejudice",
-      translated: "오만과 편견",
-    },
+    title: "Pride and Prejudice 오만과 편견",
+    subtitle: "오만과 편견",
     language: {
       original: "영어",
       translated: "한국어",
@@ -684,10 +673,9 @@ const posts: Post[] = [
       major: "문학",
       sub: "고전 소설",
     },
-    title: {
-      original: "たら堪らないという気を よく起した。",
-      translated: "내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다.",
-    },
+    title: "내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다.",
+    subtitle:
+      "たら堪らないという気を よく起した。내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다.",
     language: {
       original: "일본어",
       translated: "한국어",
@@ -766,10 +754,9 @@ const posts: Post[] = [
       major: "문학",
       sub: "고전 소설",
     },
-    title: {
-      original: "たら堪らないという気を よく起した。",
-      translated: "내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다.",
-    },
+    title: "내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다.",
+    subtitle:
+      "たら堪らないという気を よく起した。내가 도룡뇽이라면 견딜 수 없다는 생각을 자주 했다.",
     language: {
       original: "일본어",
       translated: "한국어",
