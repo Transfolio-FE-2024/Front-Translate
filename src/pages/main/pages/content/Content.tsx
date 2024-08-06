@@ -27,8 +27,8 @@ const Content = () => {
         <PageTitle mainTitle={"Translator"} subTitle={post.translator.major} />
         <div className={styles.thumbnailSection}>
           <ThumbnailCardUnfolderable
-            original={post.title.original}
-            translated={post.title.translated}
+            original={post.title}
+            translated={post.subtitle}
             color={getCategoryColor(post.category.major)}
             fontStyle={post.style.fontFamily}
           />
@@ -36,7 +36,7 @@ const Content = () => {
             <div className={styles.thumbnailContentTitleDateSection}>
               <div className={styles.thumbnailConentTitleSection}>
                 <div className={styles.thumbnailContentTitle}>
-                  {post.title.original}
+                  {post.subtitle}
                 </div>
               </div>
               <div className={styles.thumbnailContentDateSection}>

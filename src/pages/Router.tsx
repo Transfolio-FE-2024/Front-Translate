@@ -13,6 +13,7 @@ import Complete from "./auth/sign-up/pages/complete/Complete";
 import Main from "./main/Main";
 import DefaultErrorBoundary from "./error/default";
 import Edit from "./main/pages/edit/Edit";
+import Completion from "./main/pages/completion/Completion";
 
 const router = createBrowserRouter([
   {
@@ -78,7 +79,7 @@ const router = createBrowserRouter([
           },
           {
             path: "completion",
-            element: <Complete />,
+            element: <Completion />,
           },
         ],
       },

@@ -15,8 +15,8 @@ const Portfolio: React.FC = () => {
     <div className={styles.grid}>
       {filteredPosts.map((post, index) => (
         <ThumbnailCardFolderable
-          original={post.title.original}
-          translated={post.title.translated}
+          original={post.title}
+          translated={post.subtitle}
           writer={`@${post.translator.nickName}`}
           picked={4}
           color={getCategoryColor(post.category.major)}

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const nickName = "Kimhin";
 
-const Complete = (): JSX.Element => {
+const Completion = (): JSX.Element => {
   const navigate = useNavigate();
   return (
     <div className={styles.container}>
@@ -69,4 +69,4 @@ const Complete = (): JSX.Element => {
   );
 };
 
-export default Complete;
+export default Completion;

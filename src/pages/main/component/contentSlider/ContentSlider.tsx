@@ -57,8 +57,8 @@ const ContentSlider = () => {
                 <ThumbnailTitle interest={post.category.major} />
                 <div className={styles.thumbnailSection}>
                   <ThumbnailCardFolderable
-                    original={post.title.original}
-                    translated={post.title.translated}
+                    original={post.title}
+                    translated={post.subtitle}
                     major={post.translator.major}
                     writer={`@${post.translator.nickName}`}
                     picked={109}

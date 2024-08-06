@@ -58,7 +58,7 @@ function Edit() {
             } as ContentType)
         )
   );
-  const [title, setTitle] = useState(post.title.original);
+  const [title, setTitle] = useState(post.title);
   const [information, setInformation] = useState(post.description);
   const [selectedOriginLanguage, setSelectedOriginLanguage] = useState<
     undefined | string
