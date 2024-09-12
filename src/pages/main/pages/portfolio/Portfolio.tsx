@@ -22,7 +22,7 @@ import {
 import { MainCategoryType, ContentType } from "@/types/index";
 import { useMutation } from "@tanstack/react-query";
 import { Post } from "@/interface";
-import { createPost } from "@/api/post";
+import boardApi from "@/api/boardApi";
 
 const Portfolio = () => {
   const indexRef = useRef<number>(1);
@@ -58,7 +58,7 @@ const Portfolio = () => {
   );
   //
   const { mutate: submitPost } = useMutation({
-    mutationFn: (post: Post) => createPost(post),
+    mutationFn: (post: Post) => boardApi.createBoard(post),
     onSuccess: () => navigate("/home/completion"),
     onError: (e: Error) => alert(e.message),
   });

@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import TextField from "../../../components/text-field/TextField";
 import styles from "./SignIn.module.scss";
 import MainButtonRound from "@/components/button/main-button-round/MainButtonRound";
@@ -8,8 +8,8 @@ import Layout from "@/components/Layout/Layout";
 import { useNavigate } from "react-router-dom";
 import { ValidationUtil } from "@/util";
 import { CLIENT_SITE_ADDRESS } from "@/util/const";
-import { signIn } from "@/api/auth";
 import DefaultLoading from "@/components/loading/default-loading/DefaultLoading";
+import authApi from "@/api/authApi";
 
 const REDIRECT_URL = CLIENT_SITE_ADDRESS + "oauth/kakaocallback";
 
@@ -38,7 +38,8 @@ const SignIn = () => {
     }
 
     setShowLoading(true);
-    signIn(id, password)
+    authApi
+      .signIn(id, password)
       .then((res) => {
         if (String(res.status) === "200") {
           navigate("/home");

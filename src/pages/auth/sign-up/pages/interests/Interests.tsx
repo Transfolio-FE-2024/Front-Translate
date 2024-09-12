@@ -6,7 +6,7 @@ import Layout from "@/components/Layout/Layout";
 import { SessionStorageManager } from "@/util";
 import { TF } from "@/util/const";
 import { SignUpInfo } from "@/interface";
-import { signUp } from "@/api/auth";
+import authApi from "@/api/authApi";
 
 const tableTitles = ["언어", "전공", "문학", "기업"];
 const langContents = [
@@ -197,7 +197,8 @@ const Interests = () => {
                     intrsCorporation: intrsCorporation.join(","),
                   };
 
-                  signUp(signUpInfo)
+                  authApi
+                    .signUp(signUpInfo)
                     .then((res) => {
                       console.log(res);
                       SessionStorageManager.remove(
