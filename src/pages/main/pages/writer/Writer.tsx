@@ -1,9 +1,15 @@
 import styles from "./Writer.module.scss";
 import PageTitle from "../../../../components/page-title/PageTitle";
-import { IoPersonCircleOutline } from "react-icons/io5";
+import {
+  IoPencilOutline,
+  IoPersonCircleOutline,
+  IoSettingsOutline,
+} from "react-icons/io5";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Career, Portfolio } from "./component";
+import jwtManager from "@/util/jwtManager";
+import { HiOutlinePencil } from "react-icons/hi";
 
 const tabs = [
   {
@@ -26,6 +32,11 @@ const tabs = [
 const Writer = () => {
   const { writerId = "" } = useParams();
   const [selectedButtonIndex, setSelectedButtonIndex] = useState<number>(0);
+  const [editMode, setEditMode] = useState<boolean>(false); // 프로필 편집 모드 토글
+  // FIXME 쿠키에서 토큰 읽어오는 로직으로 변경 필요
+  // const isMe =
+  //   jwtManager.decodeJwt(prompt("토큰입력: ") || "")?.["loginId"] === writerId;
+  const isMe = true;
 
   const buttonClickHandler = (index: number) => {
     setSelectedButtonIndex(index);
@@ -48,7 +59,27 @@ const Writer = () => {
             {/* <div className={styles.profileImg}></div> */}
             <IoPersonCircleOutline className={styles.profileImg} />
           </div>
-          <div className={styles.profileNameSection}>@{writerId}</div>
+          <div className={styles.profileNameSection}>
+            <div className={styles.profileNameSectionTitle}>@{writerId}</div>
+            {isMe &&
+              (editMode ? (
+                <div
+                  className={styles.profileEditButton}
+                  onClick={() => alert("이름 수정 미구현")}
+                  title="이름 수정"
+                >
+                  <HiOutlinePencil className={styles.icon} />
+                </div>
+              ) : (
+                <div
+                  className={styles.profileSettingButton}
+                  onClick={() => setEditMode(true)}
+                  title="편집모드로 전환"
+                >
+                  <IoSettingsOutline className={styles.icon} />
+                </div>
+              ))}
+          </div>
           <div className={styles.profileInfoSection}>
             <div className={styles.profileInfoBox}>
               <div className={styles.profileInfoBoxTitle}>접기</div>
@@ -56,8 +87,19 @@ const Writer = () => {
             </div>
             <div className={styles.profileInfoBox}>
               <div className={styles.profileInfoBoxTitle}>분야</div>
-              <div className={styles.profileInfoBoxContent}>
-                고전시 • 문학 • 일본어
+              <div className={styles.interestSection}>
+                <div className={styles.profileInfoBoxContent}>
+                  고전시 • 문학 • 일본어
+                </div>
+                {isMe && editMode && (
+                  <div
+                    className={styles.interestEditButton}
+                    onClick={() => alert("관심분야 수정 미구현")}
+                    title="관심분야 수정"
+                  >
+                    <HiOutlinePencil className={styles.icon} />
+                  </div>
+                )}
               </div>
             </div>
           </div>
