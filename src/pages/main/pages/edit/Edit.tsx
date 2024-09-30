@@ -23,6 +23,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ContentType } from "@/types/index";
 import { MainCategoryType } from "@/types/index";
 import { posts } from "@/util/sample-data";
+import ThumbnailCardUnfolderable from "@/components/thumbnail-card/thumbnail-card-unfolderable/ThumbnailCardUnfolderable";
+import { getCategoryColor } from "@/util";
 
 function Edit() {
   const { contentId = "" } = useParams();
@@ -170,12 +172,18 @@ function Edit() {
       <div className={styles.content}>
         <PageTitle mainTitle={"Translator"} subTitle={post.translator.major} />
 
-        <div className={styles.divider}></div>
         <div className={styles.thumbnailSection}>
           <div className={styles.thumbnailCardSection}>
-            <ThumbnailChangeable
+            {/* <ThumbnailChangeable
               title={title}
               fontFamily={selectedFontFamily}
+            /> */}
+            <ThumbnailCardUnfolderable
+              original={post.title}
+              translated={post.subtitle}
+              color={getCategoryColor(post.category.major)}
+              fontStyle={post.style.fontFamily}
+              isEditMode
             />
           </div>
           <div className={styles.thumbnailInfoSection}>
@@ -185,7 +193,7 @@ function Edit() {
                 onChange={changeTitle}
                 placeholder="제목을 입력해주세요"
               />
-              <div className={styles.titleDateSection}>2023.12.12</div>
+              <div className={styles.titleDateSection}>2024.07.01</div>
             </div>
             <div className={styles.selectLanguageSection}>
               <div className={styles.dropdownSection}>
@@ -281,7 +289,6 @@ function Edit() {
             </div>
           </div>
         </div>
-        <div className={styles.divider}></div>
         <div className={styles.writingSection}>
           <div className={styles.buttonsSection}>
             <div className={styles.buttonSection}>

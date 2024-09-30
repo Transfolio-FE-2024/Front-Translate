@@ -3,20 +3,23 @@
 
 .container {
   @include flex-column;
-  width: 300px;
-  height: 100%;
+  width: 210px;
+  height: 269px;
   background-color: var(--color-white);
-  padding: 10px;
+  padding-top: 10px;
   align-items: center;
   justify-content: space-between;
+  flex-shrink: 0;
 }
 
 .indexSection {
   @include flex;
-  width: 100%;
+  @include full-width;
   height: 10px;
   align-items: center;
   justify-content: start;
+  padding: 0 13px;
+  margin-bottom: 10px;
 }
 
 .index {
@@ -34,9 +37,16 @@
 }
 
 .contentSection {
-  width: 100%;
-  height: 90%;
-  overflow-y: auto;
+  @include full-width;
+  flex-grow: 1;
+  padding: 0 25px 25px;
+  overflow-y: hidden;
+}
+
+.editableContent {
+  line-height: 2.2;
+  font-size: $font-size-16;
+  white-space: pre-line; // \n 기준으로 개행
 }
 
 .originalSection {

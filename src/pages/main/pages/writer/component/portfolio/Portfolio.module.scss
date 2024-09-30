@@ -2,13 +2,10 @@
 @import "@styles/variables";
 
 .grid {
-  @include flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 33.33% 33.33% 33.33%;
 }
 
-.thumbnailEmptyContainer {
-  width: 200px;
-  height: 250px;
+.gridItem {
+  margin: 0 auto;
 }

@@ -34,11 +34,6 @@ const Content = () => {
           />
           <div className={styles.thumbnailContentSection}>
             <div className={styles.thumbnailContentTitleDateSection}>
-              <div className={styles.thumbnailConentTitleSection}>
-                <div className={styles.thumbnailContentTitle}>
-                  {post.subtitle}
-                </div>
-              </div>
               <div className={styles.thumbnailContentDateSection}>
                 {post.lastUpdatedDate}
               </div>
@@ -55,34 +50,31 @@ const Content = () => {
               </div>
             </div>
             <div className={styles.thumbnailContentIntroSection}>
-              <div className={styles.thumbnailContentIntro}>
-                {post.description}
-              </div>
+              {post.description}
             </div>
             <div className={styles.thumbnailContentDetailWrapper}>
               <div className={styles.thumbnailContentDetailWrap}>
-                <div className={styles.thumbnailContentDetailSection}>
-                  <div className={styles.thumbnailContentDetail}>
-                    <div className={styles.thumbnailContentDetailTitle}>
-                      카테고리
-                    </div>
-                    <div className={styles.thumbnailContentDetailContent}>
-                      언어
-                    </div>
-                  </div>
+                <div className={styles.thumbnailContentDetailTitle}>대분류</div>
+                <div className={styles.thumbnailContentDetailContent}>언어</div>
+                <div className={styles.thumbnailContentDetailTitle}>
+                  하위 카테고리
                 </div>
-                <div className={styles.thumbnailContentDetailSection}>
-                  <div className={styles.thumbnailContentDetail}>
-                    <div className={styles.thumbnailContentDetailTitle}>
-                      작가
-                    </div>
-                    <div className={styles.thumbnailContentDetailContent}>
-                      {post.author}
-                    </div>
-                  </div>
+                <div className={styles.thumbnailContentDetailContent}>
+                  일본어
+                </div>
+                <div></div>
+                <div className={styles.thumbnailContentDetailTitle}>작가</div>
+                <div
+                  className={styles.thumbnailContentDetailContent}
+                  style={{ gridColumn: "2 / span 3" }}
+                >
+                  {post.author}
                 </div>
               </div>
-              <Link to={`/home/edit/${post.id}`}>
+              <Link
+                to={`/home/edit/${post.id}`}
+                style={{ height: "fit-content" }}
+              >
                 <div className={styles.editButton}>수정하기</div>
               </Link>
             </div>

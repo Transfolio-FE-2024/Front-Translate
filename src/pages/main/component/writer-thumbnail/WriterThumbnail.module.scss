@@ -4,10 +4,9 @@
 .container {
   @include cursor-pointer;
   @include flex-column;
-  width: 200px;
-  height: 250px;
+  width: 210px;
+  height: 304px;
   background-color: var(--color-white);
-  padding-top: 10px;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
@@ -21,30 +20,27 @@
 .content {
   @include full-container;
   @include flex-column;
-  padding: 0 10px 30px 10px;
+  padding: 26px;
 }
 
 .bodySection {
-  @include full-width;
-  flex: 1;
+  @include flex-column;
+  @include full-container;
+  align-items: center;
+  overflow-y: hidden;
 }
 
 .profileImgSection {
   @include full-width;
   @include flex-center;
-  height: 100px;
+  margin-bottom: 10px;
 }
 
 .profileImg {
-  width: 100px;
-  height: 100px;
+  width: 73px;
+  height: 73px;
   border-radius: 100%;
-}
-
-.profileIcon {
-  width: 100px;
-  height: 100%;
-  color: var(--color-light-gray);
+  overflow: hidden;
 }
 
 .writerTitleSection {
@@ -58,19 +54,22 @@
 
 .writerNameSection {
   @include full-width;
-  @include flex-center;
+  @include flex;
+  justify-content: center;
+  align-items: baseline;
+  flex-grow: 1;
   font-size: $font-size-12;
   color: var(--color-gray);
-  font-weight: var(--font-semi-bold);
   font-family: var(--font-pretend);
 }
 
 .writerInfoSection {
-  flex: 1;
   padding: 10px 0;
   font-size: $font-size-12;
   color: var(--color-light-gray);
   font-family: var(--font-pretend);
+  text-align: center;
+  white-space: pre-line;
 }
 
 .foldSection {

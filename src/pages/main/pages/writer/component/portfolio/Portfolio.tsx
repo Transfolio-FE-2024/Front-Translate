@@ -14,18 +14,19 @@ const Portfolio: React.FC = () => {
   return (
     <div className={styles.grid}>
       {filteredPosts.map((post, index) => (
-        <ThumbnailCardFolderable
-          original={post.title}
-          translated={post.subtitle}
-          writer={`@${post.translator.nickName}`}
-          picked={4}
-          color={getCategoryColor(post.category.major)}
-          href={`/home/content/${post.id}`}
-          preSave={index === filteredPosts.length - 1} // FIXME
-          fontStyle={post.style.fontFamily}
-        />
+        <div className={styles.gridItem}>
+          <ThumbnailCardFolderable
+            original={post.title}
+            translated={post.subtitle}
+            writer={`@${post.translator.nickName}`}
+            picked={4}
+            color={getCategoryColor(post.category.major)}
+            href={`/home/content/${post.id}`}
+            preSave={index === filteredPosts.length - 1} // FIXME
+            fontStyle={post.style.fontFamily}
+          />
+        </div>
       ))}
-      <div className={styles.thumbnailEmptyContainer}></div>
     </div>
   );
 };

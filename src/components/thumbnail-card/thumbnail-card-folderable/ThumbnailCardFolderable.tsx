@@ -47,8 +47,7 @@ const ThumbnailCardFolderable: React.FC<{
           className={styles.contentSection}
           style={{ fontFamily: fontStyle }}
         >
-          <div className={styles.originalSection}>{original}</div>
-          <div className={styles.translatedSection}>{translated}</div>
+          {original}
         </div>
         <div className={styles.footerSection}>
           <div className={styles.nameSection}>

@@ -1,12 +1,19 @@
 import styles from "./ThumbnailCardUnfolderable.module.scss";
-import React from "react";
+import React, { useState } from "react";
 
 const ThumbnailCardUnfolderable: React.FC<{
   original: string;
   translated: string;
   color: "green" | "orange";
   fontStyle?: string;
-}> = ({ original, translated, color, fontStyle = "Pretendard" }) => {
+  isEditMode?: boolean;
+}> = ({
+  original,
+  translated,
+  color,
+  fontStyle = "Pretendard",
+  isEditMode,
+}) => {
   return (
     <div className={styles.container}>
       <div className={styles.indexSection}>
@@ -17,8 +24,9 @@ const ThumbnailCardUnfolderable: React.FC<{
         ></div>
       </div>
       <div className={styles.contentSection} style={{ fontFamily: fontStyle }}>
-        <div className={styles.originalSection}>{original}</div>
-        <div className={styles.translatedSection}>{translated}</div>
+        <div className={styles.editableContent} contentEditable={isEditMode}>
+          {original}
+        </div>
       </div>
     </div>
   );

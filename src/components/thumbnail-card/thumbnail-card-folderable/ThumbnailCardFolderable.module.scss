@@ -3,14 +3,14 @@
 
 .container {
   @include flex-column;
-  width: 200px;
-  height: 250px;
+  position: relative;
+  width: 210px;
+  height: 269px;
   background-color: var(--color-white);
   padding-top: 10px;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
-  position: relative;
   cursor: pointer;
   box-shadow: var(--box-shadow-large);
 }
@@ -31,7 +31,7 @@
   @include flex;
   @include full-width;
   height: 10px;
-  padding: 0 10px;
+  padding: 0 13px;
   align-items: center;
   justify-content: start;
   margin-bottom: 10px;
@@ -53,33 +53,19 @@
 
 .contentSection {
   @include full-width;
-  height: 90%;
-  padding: 0 20px;
-  overflow-y: auto;
-}
-
-.originalSection {
-  @include full-width;
-  margin-bottom: 10px;
-  font-family: inherit;
-  line-height: var(--line-height-27);
-  // 5줄 넘어가면 말줄임표시
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  display: -webkit-box;
-}
-
-.translatedSection {
-  @include full-width;
-  margin-bottom: 10px;
-  font-family: inherit;
-  line-height: var(--line-height-27);
+  flex-grow: 1;
+  padding: 0 25px;
+  line-height: 2.2;
+  font-size: $font-size-16;
+  overflow-y: hidden;
+  white-space: pre-line; // \n 기준으로 개행
 }
 
 .footerSection {
   @include flex;
   @include full-width;
+  position: absolute;
+  bottom: 0;
   align-items: end;
   justify-content: space-between;
 }
@@ -88,8 +74,8 @@
   font-size: $font-size-12;
   font-family: var(--font-pretend);
   color: var(--color-light-gray);
-  margin-left: 20px;
-  margin-bottom: 10px;
+  margin-left: 25px;
+  margin-bottom: 13px;
 }
 
 .foldSection {

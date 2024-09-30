@@ -18,13 +18,12 @@
 }
 
 .thumbnailSection {
-  @include flex;
+  @include flex-center;
   @include full-width;
-  height: 299px;
-  padding: 50px 0 20px;
+  align-items: flex-end;
+  padding: 50px 0 61px;
+  height: 269px;
   box-sizing: content-box;
-  align-items: center;
-  justify-content: space-between;
 }
 
 .thumbnailContentDetailWrapper {
@@ -33,6 +32,8 @@
 
 .thumbnailContentDetailWrap {
   flex-grow: 1;
+  display: grid;
+  grid-template-columns: 20% 25% 20% 25% 10%;
 }
 
 .thumbnailContentSection {
@@ -41,29 +42,14 @@
   margin-left: 20px;
 }
 
-.thumbnailContentTitleDateSection {
+.thumbnailContentDateSection {
   @include flex;
   @include full-width;
   height: 40px;
   align-items: center;
-  justify-content: space-between;
-}
-
-.thumbnailConentTitleSection {
-  @include flex;
-  align-items: center;
-  justify-content: start;
-}
-
-.thumbnailContentTitle {
-  color: var(--color-orange);
-  font-family: var(--font-pretend);
-  line-height: var(--line-height-27);
-  font-weight: var(--font-bold);
-}
-
-.thumbnailContentDateSection {
-  font-size: 14px;
+  justify-content: flex-end;
+  font-size: $font-size-14;
+  letter-spacing: var(--letter-spacing-1-92);
   font-family: var(--font-pretend);
   color: var(--color-light-gray);
 }
@@ -74,54 +60,40 @@
   height: 40px;
   align-items: center;
   justify-content: start;
-  margin-top: 10px;
+  padding: 10px 0;
 }
 
 .thumbnailContentTranslationTarget {
-  font-size: 14px;
+  font-size: $font-size-16;
   font-family: var(--font-pretend);
   color: var(--color-gray);
 }
 
 .thumbnailContentTranslationArrow {
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .thumbnailContentIntroSection {
   @include full-container;
   padding: 10px 0px;
-}
-
-.thumbnailContentIntro {
-  @include full-container;
+  margin-bottom: 10px;
   border-top: 0.5px solid var(--color-light-gray);
   border-bottom: 0.5px solid var(--color-light-gray);
-  padding: 10px 0px;
-  font-size: 14px;
+  font-size: $font-size-14;
   font-family: var(--font-pretend);
   color: var(--color-gray);
   letter-spacing: var(--letter-spacing-1-92);
   line-height: var(--line-height-21);
-}
-
-.thumbnailContentDetailSection {
-  @include full-width;
-}
-
-.thumbnailContentDetail {
-  @include flex;
-  @include full-width;
-  height: 30px;
-  align-items: center;
-  justify-content: start;
+  flex-shrink: 1;
+  overflow-y: auto;
 }
 
 .thumbnailContentDetailTitle {
   @include flex;
   @include full-height;
-  width: 100px;
-  font-size: 14px;
+  height: 30px;
+  font-size: $font-size-14;
   font-family: var(--font-pretend);
   color: var(--color-light-gray);
   align-items: center;
@@ -131,7 +103,7 @@
 .thumbnailContentDetailContent {
   @include flex;
   @include full-container;
-  font-size: 14px;
+  font-size: $font-size-14;
   font-family: var(--font-pretend);
   color: var(--color-light-gray);
   align-items: center;
@@ -140,12 +112,16 @@
 
 .editButton {
   @include flex-column-center;
-  color: var(--color-gray);
-  font-size: 16px;
-  font-weight: 700;
+  color: var(--color-white);
+  background-color: var(--color-orange);
+  font-size: $font-size-14;
   font-family: var(--font-pretend);
-  height: 100%;
+  padding: 10px;
   cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .mainContentSection {
@@ -174,7 +150,7 @@
 
 .mainContentRowOriginal {
   padding: 5px 10px;
-  font-size: 16px;
+  font-size: $font-size-16;
   font-family: inherit;
   background-color: var(--color-white);
 }
@@ -182,7 +158,7 @@
 .mainContentRowTranslation {
   padding: 5px 10px;
   margin-bottom: 10px;
-  font-size: 16px;
+  font-size: $font-size-16;
   font-family: inherit;
   background-color: inherit;
   line-height: 24px;
