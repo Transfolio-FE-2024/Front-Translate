@@ -36,6 +36,7 @@ const ContentSlider = () => {
         ></div>
       );
     },
+    dotsClass: `slick-dots ${styles.customDots}`,
   };
 
   const previous = () => {

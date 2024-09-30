@@ -37,9 +37,16 @@
   @include flex-column-center;
 }
 
-.customDot {
-  flex: 1;
-  height: 2px;
+.customDots {
+  li {
+    width: calc(100% / 3) !important;
+    margin: 0 !important;
+    height: 2px !important;
+  }
+  .customDot {
+    flex: 1;
+    height: 100%;
+  }
 }
 
 .active {
