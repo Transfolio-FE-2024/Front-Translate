@@ -17,8 +17,8 @@ const Completion = (): JSX.Element => {
           </div>
         </div>
         <div className={styles.middleWrapper}>
-          <div className={styles.trophyImage}>
-            <img src={trophyImage} />
+          <div className={styles.trophyImageWrapper}>
+            <img className={styles.trophyImage} src={trophyImage} />
           </div>
           <div className={styles.submitCompletion}>
             <div>{nickName}님의</div>
@@ -26,10 +26,10 @@ const Completion = (): JSX.Element => {
           </div>
         </div>
         <div>
-          <div className={styles.awardWrapper}>
-            <div className={styles.awardTitle}>Award</div>
-            <div className={styles.awardSubTitle}>
-              &lt;Instant love&gt; 번역다분들의 인기순위에요!
+          <div className={styles.top3Wrapper}>
+            <div className={styles.top3Title}>TOP 3</div>
+            <div className={styles.top3SubTitle}>
+              다른 번역가들을 구경해보세요!
             </div>
           </div>
           <div className={styles.RankingCardWrapper}>
@@ -37,7 +37,7 @@ const Completion = (): JSX.Element => {
               rank={1}
               isEmphasized
               onClicked={() => {
-                navigate("/home/writer");
+                navigate("/home/writer/kimhim00");
               }}
             />
             <RankingCard

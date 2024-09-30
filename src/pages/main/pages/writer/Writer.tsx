@@ -1,15 +1,12 @@
 import styles from "./Writer.module.scss";
 import PageTitle from "../../../../components/page-title/PageTitle";
-import {
-  IoPencilOutline,
-  IoPersonCircleOutline,
-  IoSettingsOutline,
-} from "react-icons/io5";
+import { IoPersonCircleOutline } from "react-icons/io5";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Career, Portfolio } from "./component";
 import jwtManager from "@/util/jwtManager";
 import { HiOutlinePencil } from "react-icons/hi";
+import { CiSettings } from "react-icons/ci";
 
 const tabs = [
   {
@@ -76,7 +73,7 @@ const Writer = () => {
                   onClick={() => setEditMode(true)}
                   title="편집모드로 전환"
                 >
-                  <IoSettingsOutline className={styles.icon} />
+                  <CiSettings className={styles.icon} />
                 </div>
               ))}
           </div>

@@ -38,7 +38,7 @@
 
 .completionCaption {
   color: var(--color-gray);
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   line-height: var(--line-height-16-45);
   letter-spacing: var(--letter-spacing-1-68);
@@ -49,11 +49,14 @@
   margin-bottom: 174px;
 }
 
-.trophyImage {
-  width: 65px;
-  height: 81px;
-  overflow: hidden;
+.trophyImageWrapper {
+  width: 58px;
+  object-fit: contain;
   margin-bottom: 44px;
+}
+
+.trophyImage {
+  width: 100%;
 }
 
 .submitCompletion {
@@ -61,7 +64,7 @@
 
   div {
     color: var(--color-orange);
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     line-height: var(--line-height-27);
     letter-spacing: var(--letter-spacing-2-25);
@@ -70,21 +73,21 @@
 
   p {
     color: var(--color-black);
-    font-size: 22px;
+    font-size: 20px;
     font-weight: bold;
     line-height: var(--line-height-33);
     letter-spacing: var(--letter-spacing-2-75);
   }
 }
 
-.awardWrapper {
+.top3Wrapper {
   @include flex-column-center;
   margin-bottom: 30px;
 }
 
-.awardTitle {
+.top3Title {
   color: var(--color-gray);
-  font-size: 18px;
+  font-size: 16px;
   font-family: var(--font-pretend);
   font-weight: bold;
   line-height: var(--line-height-21-15);
@@ -92,9 +95,9 @@
   margin-bottom: 8px;
 }
 
-.awardSubTitle {
+.top3SubTitle {
   color: var(--color-green-1);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: regular;
   line-height: var(--line-height-27);
   letter-spacing: var(--letter-spacing-2-25);
@@ -110,9 +113,9 @@
 .backButton {
   @include flex-center;
   width: 100%;
-  padding: 30px 0px;
+  padding: 25px 0px;
   color: var(--color-white);
-  font-size: $font-size-22;
+  font-size: $font-size-20;
   font-weight: bold;
   font-family: var(--font-pretend);
   line-height: var(--line-height-33);
