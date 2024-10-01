@@ -102,6 +102,7 @@ const Interests = () => {
                   );
                 })}
               </div>
+              <div style={{ width: 19.5, height: 1, flexShrink: 0 }}></div>
               <div className={styles.tableContents}>
                 {contents.map((content, index) => {
                   return (

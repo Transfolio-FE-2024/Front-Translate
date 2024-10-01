@@ -55,7 +55,6 @@ const SignIn = () => {
   return (
     <Layout>
       <div className={styles.container}>
-        <div></div>
         <div className={styles.content}>
           <div className={styles.pageTitleSection}>
             <div className={styles.pageTitle}>Login</div>
@@ -64,35 +63,37 @@ const SignIn = () => {
               <div className={styles.pageSubTitle}>로그인 해주세요</div>
             </div>
           </div>
-          <div className={styles.inputSection}>
-            <div className={styles.inputTitle}>아이디</div>
-            <div className={styles.input}>
-              <TextField
-                value={id}
-                onChange={(value) => setId(value)}
-                inputProps={{
-                  onKeyDown: (e) => {
-                    if (e.key === "Enter") login();
-                  },
-                  id: "id",
-                }}
-              />
+          <div className={styles.inputSectionWrapper}>
+            <div className={styles.inputSection}>
+              <div className={styles.inputTitle}>아이디</div>
+              <div className={styles.input}>
+                <TextField
+                  value={id}
+                  onChange={(value) => setId(value)}
+                  inputProps={{
+                    onKeyDown: (e) => {
+                      if (e.key === "Enter") login();
+                    },
+                    id: "id",
+                  }}
+                />
+              </div>
             </div>
-          </div>
-          <div className={styles.inputSection}>
-            <div className={styles.inputTitle}>비밀번호</div>
-            <div className={styles.input}>
-              <TextField
-                value={password}
-                onChange={(value) => setPassword(value)}
-                hide={true}
-                inputProps={{
-                  onKeyDown: (e) => {
-                    if (e.key === "Enter") login();
-                  },
-                  id: "password",
-                }}
-              />
+            <div className={styles.inputSection}>
+              <div className={styles.inputTitle}>비밀번호</div>
+              <div className={styles.input}>
+                <TextField
+                  value={password}
+                  onChange={(value) => setPassword(value)}
+                  hide={true}
+                  inputProps={{
+                    onKeyDown: (e) => {
+                      if (e.key === "Enter") login();
+                    },
+                    id: "password",
+                  }}
+                />
+              </div>
             </div>
           </div>
           <div className={styles.buttonSection}>
@@ -107,7 +108,6 @@ const SignIn = () => {
             />
           </div>
         </div>
-        <div></div>
       </div>
       {showLoading && <DefaultLoading />}
     </Layout>

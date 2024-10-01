@@ -2,50 +2,56 @@
 @import "@styles/variables";
 
 .container {
+  font-family: var(--font-nanum);
+  font-weight: var(--font-bold);
+  font-size: 22px;
+  letter-spacing: 0.12em;
+  line-height: 117.5%;
+
   @include flex-column-center;
   min-height: 100vh;
   justify-content: space-between;
-  padding: 55px;
-  min-width: fit-content;
+  padding: 178px 55px;
 }
 
 .content {
   @include flex-column;
-  width: 800px;
-  height: 75%;
+  width: 100%;
+  max-width: 911px;
   align-items: center;
   justify-content: space-around;
 }
 
 .pageTitleSection {
   @include flex-column-center;
-  margin-bottom: 50px;
+  margin-bottom: 80px;
 }
 
 .pageTitle {
-  font-size: 18px;
-  font-weight: var(--font-bold);
-  line-height: var(--line-height-21-15);
-  letter-spacing: var(--letter-spacing-10-71);
+  font-size: 22px;
   font-family: var(--font-pretend);
+  font-weight: var(--font-bold);
+  letter-spacing: 0.595em;
+
   color: var(--color-gray);
+  padding: 10px;
   margin-bottom: 20px;
   text-align: center;
 }
 
 .pageSubTitle {
-  font-size: 14px;
-  font-weight: var(--font-bold);
-  line-height: var(--line-height-16-45);
-  letter-spacing: var(--letter-spacing-1-68);
+  font-size: 16px;
   font-family: var(--font-nanum);
+  font-weight: var(--font-bold);
+  letter-spacing: 0.12em;
+
+  padding: 10px;
   color: var(--color-green-1);
 }
 
 // table section
 .tableSection {
   @include full-width;
-  height: 350px;
 }
 
 .table {
@@ -54,14 +60,13 @@
 }
 
 .tableTitles {
-  @include full-height;
-  width: 100px;
+  margin-top: 1px;
 }
 
 .tableTitle {
   @include flex-center;
-  width: 80%;
-  height: 25%;
+  width: 69.5px;
+  height: 115px;
   font-size: 16px;
   font-weight: var(--font-bold);
   color: var(--color-green-2);
@@ -70,25 +75,27 @@
 }
 
 .tableContents {
-  @include full-container;
   background-color: var(--color-white);
   border: 0.5px solid var(--color-light-gray);
+  flex-shrink: 1;
+  overflow-x: auto;
 }
 
 .tableRow {
   @include flex;
-  @include full-width;
-  height: 25%;
   align-items: center;
 }
 
 .contentBox {
+  font-size: 18px;
+  font-family: var(--font-pretend);
+  font-weight: var(--font-regular);
+  letter-spacing: 0.125em;
   @include flex-center;
   @include cursor-pointer;
-  @include full-container;
-  font-size: 14px;
-  font-weight: var(--font-medium);
-  font-family: var(--font-work);
+  flex-shrink: 0;
+  width: 117px;
+  height: 115px;
   color: var(--color-gray);
   position: relative;
 }
@@ -115,19 +122,19 @@
   right: 0;
   bottom: 0;
   z-index: 2;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
 }
 
 .contentCheckedMark {
   width: 0;
   height: 0;
-  border-top: 20px solid var(--color-orange);
-  border-right: 20px solid rgba(128, 128, 128, 0.1);
+  border-top: 30px solid var(--color-orange);
+  border-right: 30px solid rgba(128, 128, 128, 0.1);
 }
 
 .mainButton {
-  width: 200px;
-  height: 40px;
-  margin-top: 52px;
+  width: 330px;
+  height: 66px;
+  margin: 86px auto;
 }

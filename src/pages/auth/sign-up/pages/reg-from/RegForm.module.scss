@@ -2,89 +2,105 @@
 @import "@styles/variables";
 
 .container {
-  @include flex-column-center;
+  font-family: var(--font-nanum);
+  font-weight: var(--font-bold);
+  font-size: 22px;
+  letter-spacing: 0.12em;
+  line-height: 117.5%;
+
+  @include flex-center;
   min-height: 100vh;
-  justify-content: space-between;
-  padding: 55px;
-  min-width: fit-content;
+  padding: 178px 55px;
 }
 
 .content {
-  @include flex-column;
-  align-items: center;
-  justify-content: space-around;
+  @include flex-column-center;
+  width: 100%;
+  max-width: 708px;
 }
 
 .pageTitleSection {
   @include flex-column-center;
+  width: 225px;
   margin-bottom: 60px;
 }
 
 .pageTitle {
-  font-size: 18px;
-  font-weight: var(--font-bold);
-  line-height: var(--line-height-21-15);
-  letter-spacing: var(--letter-spacing-10-71);
   font-family: var(--font-pretend);
+  letter-spacing: 0.595em;
+
+  height: 46px;
   color: var(--color-gray);
   margin-bottom: 20px;
 }
 
 .pageSubTitle {
-  font-size: 14px;
-  font-weight: var(--font-bold);
-  line-height: var(--line-height-16-45);
-  letter-spacing: var(--letter-spacing-1-68);
-  font-family: var(--font-nanum);
   color: var(--color-green-1);
+  text-align: center;
+}
+
+.inputSectionWrapper {
+  @include full-width;
 }
 
 .inputSection {
   @include full-width;
   margin-bottom: 20px;
+
+  &:not(:last-child) {
+    margin-bottom: 100px;
+  }
 }
 
 .inputTitle {
-  font-size: 14px;
+  font-family: var(--font-pretend);
   font-weight: var(--font-regular);
-  font-family: var(--font-work);
+  font-size: 20px;
+  letter-spacing: -0.02em;
   color: var(--color-light-gray);
-  margin-bottom: 10px;
+
+  margin-bottom: 16px;
+  padding: 10px;
 }
 
 .inputContainer {
   @include flex;
-  height: 30px;
+  height: 63px;
   align-items: center;
   justify-content: start;
-  margin-bottom: 10px;
+
+  &:not(:last-child) {
+    margin-bottom: 26px;
+  }
 }
 
 .inputSubTitle {
-  @include full-height;
-  @include flex;
-  width: 120px;
-  font-size: $font-size-16;
-  font-weight: var(--font-bold);
   font-family: var(--font-work);
-  align-items: end;
-  justify-content: start;
+  font-weight: var(--font-bold);
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+
+  width: 120px;
   color: var(--color-green-2);
+  text-align: center;
 }
 
 .input {
-  @include full-height;
   flex: 1;
+  margin: 10px;
+  height: 40px;
 }
 
 .subButton {
   @include full-height;
   margin-left: 20px;
-  width: 80px;
+  width: 108px;
+  height: 44px;
 }
 
 .mainButton {
-  width: 200px;
-  height: 40px;
-  margin-top: 25px;
+  width: 330px;
+  height: 66px;
+  margin: 140px auto;
 }

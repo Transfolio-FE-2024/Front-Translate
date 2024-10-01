@@ -5,12 +5,14 @@ const MainButtonRound: React.FC<{
   title: string;
   onClicked: () => void;
   enable?: boolean;
-}> = ({ title, onClicked, enable = true }) => {
+  fillColor?: string;
+}> = ({ title, onClicked, enable = true, fillColor = "" }) => {
   return (
     <div
       className={`${styles.container} ${
         enable ? styles.enable : styles.disable
       }`}
+      style={{ backgroundColor: fillColor ? `${fillColor} !important` : "" }}
       onClick={() => {
         if (enable) {
           onClicked();

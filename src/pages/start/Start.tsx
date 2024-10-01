@@ -1,6 +1,5 @@
 import styles from "./Start.module.scss";
 import logoImage from "../../assets/images/home_logo.png";
-import GreyButtonRound from "@/components/button/grey-button-round/GreyButtonRound";
 import MainButtonRound from "@/components/button/main-button-round/MainButtonRound";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout/Layout";
@@ -20,16 +19,17 @@ const Start = () => {
             <img src={logoImage} className={styles.logo} alt="logo" />
           </div>
           <div className={styles.buttonSection}>
-            <GreyButtonRound
+            <MainButtonRound
               title="로그인"
               onClicked={() => {
                 navigate("/signin");
               }}
+              fillColor={"var(--color-light-gray)"}
             />
           </div>
           <div className={styles.buttonSection}>
             <MainButtonRound
-              title="회원가입"
+              title="시작하기"
               onClicked={() => {
                 navigate("/signup/regform");
               }}

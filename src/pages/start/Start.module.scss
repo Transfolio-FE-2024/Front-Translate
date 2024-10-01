@@ -2,6 +2,12 @@
 @import "@styles/variables";
 
 .container {
+  font-family: var(--font-nanum);
+  font-weight: var(--font-bold);
+  font-size: 22px;
+  letter-spacing: 0.12em;
+  line-height: 117.5%;
+
   @include flex-column-center;
   min-height: 100vh;
   justify-content: space-between;
@@ -15,12 +21,12 @@
 
 .subTitle {
   margin-bottom: 20px;
+  height: 46px;
 }
 
 .logoSection {
-  width: 300px;
-  height: 50px;
-  margin-bottom: 80px;
+  height: 83.55px;
+  margin-bottom: 84px;
 }
 
 .logo {
@@ -28,11 +34,10 @@
 }
 
 .buttonSection {
-  width: 200px;
-  height: 40px;
-  margin-bottom: 20px;
-}
+  width: 330px;
+  height: 66px;
 
-.buttonSection:last-child {
-  margin-bottom: 0;
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
 }

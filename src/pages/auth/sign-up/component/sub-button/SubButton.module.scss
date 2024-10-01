@@ -2,12 +2,15 @@
 @import "@styles/variables";
 
 .container {
+  font-size: 20px;
+  font-family: var(--font-pretend);
+  font-weight: var(--font-regular);
+  letter-spacing: -0.02em;
+
   @include flex-center;
   @include cursor-pointer;
   @include full-container;
-  font-size: 14px;
   border: 1px solid var(--color-light-gray);
-  font-family: var(--font-work);
   border-radius: 20px;
   color: var(--color-light-gray);
   z-index: 1;

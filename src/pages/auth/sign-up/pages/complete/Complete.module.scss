@@ -2,6 +2,12 @@
 @import "@styles/variables";
 
 .container {
+  font-family: var(--font-nanum);
+  font-weight: var(--font-bold);
+  font-size: 22px;
+  letter-spacing: 0.12em;
+  line-height: 157.5%;
+
   @include flex-column-center;
   min-height: 100vh;
   justify-content: space-between;
@@ -18,22 +24,19 @@
 }
 
 .pageSubTitleContainer {
-  margin-bottom: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
 .pageSubTitle {
-  font-weight: var(--font-bold);
-  line-height: var(--line-height-27);
-  letter-spacing: var(--letter-spacing-2);
-  font-family: var(--font-nanum);
   color: var(--color-green-1);
   text-align: center;
 }
 
 .logoSection {
-  width: 250px;
+  width: 251.61px;
   height: 42px;
-  margin-bottom: 60px;
+  margin-bottom: 104px;
 }
 
 .logo {
@@ -41,6 +44,6 @@
 }
 
 .mainButton {
-  width: 200px;
-  height: 40px;
+  width: 330px;
+  height: 66px;
 }
