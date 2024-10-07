@@ -1,5 +1,4 @@
 import styles from "./ContentSlider.module.scss";
-import "./ContentSlider.css";
 import Slider, { Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -49,30 +48,29 @@ const ContentSlider = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.titleSection}>Today's freelance translator</div>
-      <div className={styles.bodySection}>
-        <Slider {...sliderSettings} ref={slickRef}>
-          {posts.map((post) => {
-            return (
-              <div className={styles.thumbnailContainer} key={post.id}>
+      <Slider {...sliderSettings} ref={slickRef}>
+        {posts.map((post) => {
+          return (
+            <div className={styles.thumbnailContainer} key={post.id}>
+              <div className={styles.thumbnailTitleSection}>
                 <ThumbnailTitle interest={post.category.major} />
-                <div className={styles.thumbnailSection}>
-                  <ThumbnailCardFolderable
-                    original={post.title}
-                    translated={post.subtitle}
-                    major={post.translator.major}
-                    writer={`@${post.translator.nickName}`}
-                    picked={109}
-                    color={getCategoryColor(post.category.major)}
-                    href={`/home/content/${post.id}`}
-                    fontStyle={post.style.fontFamily}
-                  />
-                </div>
               </div>
-            );
-          })}
-        </Slider>
-      </div>
+              <div className={styles.thumbnailSection}>
+                <ThumbnailCardFolderable
+                  original={post.title}
+                  translated={post.subtitle}
+                  major={post.translator.major}
+                  writer={`@${post.translator.nickName}`}
+                  picked={109}
+                  color={getCategoryColor(post.category.major)}
+                  href={`/home/content/${post.id}`}
+                  fontStyle={post.style.fontFamily}
+                />
+              </div>
+            </div>
+          );
+        })}
+      </Slider>
     </div>
   );
 };

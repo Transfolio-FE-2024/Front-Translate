@@ -2,17 +2,19 @@
 @import "@styles/variables";
 
 .container {
+  font-weight: var(--font-light);
+  font-size: 18px;
+  line-height: 229.5%;
+  letter-spacing: 0em;
+
   @include flex-column;
+  @include full-container;
+  @include cursor-pointer;
   position: relative;
-  width: 210px;
-  height: 269px;
   background-color: var(--color-white);
-  padding-top: 10px;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
-  cursor: pointer;
-  box-shadow: var(--box-shadow-large);
 }
 
 .clickable {
@@ -30,16 +32,15 @@
 .indexSection {
   @include flex;
   @include full-width;
-  height: 10px;
-  padding: 0 13px;
+  height: 14px;
   align-items: center;
   justify-content: start;
-  margin-bottom: 10px;
+  margin: 16px auto 15px 15px;
 }
 
 .index {
-  width: 10px;
-  height: 10px;
+  width: 14px;
+  height: 14px;
   border-radius: 100%;
 }
 
@@ -54,47 +55,57 @@
 .contentSection {
   @include full-width;
   flex-grow: 1;
-  padding: 0 25px;
-  line-height: 2.2;
-  font-size: $font-size-16;
+  padding: 0 29px;
+  margin-bottom: 97px;
   overflow-y: hidden;
-  white-space: pre-line; // \n 기준으로 개행
+  white-space: pre-wrap; // \n 기준으로 개행
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
 }
 
 .footerSection {
   @include flex;
-  @include full-width;
   position: absolute;
   bottom: 0;
-  align-items: end;
-  justify-content: space-between;
+  left: 0;
+  right: 0;
 }
 
 .nameSection {
-  font-size: $font-size-12;
   font-family: var(--font-pretend);
+  font-weight: var(--font-regular);
+  font-size: 16px;
+  letter-spacing: 0em;
+  line-height: 172%;
+
   color: var(--color-light-gray);
-  margin-left: 25px;
-  margin-bottom: 13px;
+  position: absolute;
+  left: 29px;
+  bottom: 19px;
 }
 
 .foldSection {
-  position: relative;
-  width: 40px;
-  height: 40px;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  right: 0;
+  bottom: 0;
 }
 
 .pickedNumberContainer {
+  font-family: var(--font-pretend);
+  font-weight: var(--font-regular);
+  font-size: 14px;
+  letter-spacing: 0em;
+  line-height: 172%;
+
   @include flex;
   position: absolute;
-  align-items: end;
-  justify-content: end;
-  font-size: $font-size-12;
-  font-family: var(--font-pretend);
+  right: 6px;
+  bottom: 0;
   color: var(--color-light-gray);
-  width: 40px;
-  height: 40px;
-  padding: 0 3px 3px 0;
   z-index: 3;
 }
 
@@ -102,16 +113,16 @@
   position: relative;
   width: 0;
   height: 0;
-  border-right: 40px solid transparent;
+  border-right: 50px solid transparent;
   z-index: 2;
 }
 
 .borderTopGreen {
-  border-top: 40px solid var(--color-green-2);
+  border-top: 50px solid var(--color-green-2);
 }
 
 .borderTopOrange {
-  border-top: 40px solid var(--color-orange);
+  border-top: 50px solid var(--color-orange);
 }
 
 .green {

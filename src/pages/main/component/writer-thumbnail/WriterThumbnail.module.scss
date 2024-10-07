@@ -2,14 +2,9 @@
 @import "@styles/variables";
 
 .container {
+  @include full-container;
   @include cursor-pointer;
-  @include flex-column;
-  width: 210px;
-  height: 304px;
   background-color: var(--color-white);
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
   position: relative;
 
   &:hover {
@@ -19,55 +14,59 @@
 
 .content {
   @include full-container;
-  @include flex-column;
-  padding: 26px;
 }
 
 .bodySection {
-  @include flex-column;
-  @include full-container;
-  align-items: center;
+  padding-top: 49.5px;
   overflow-y: hidden;
 }
 
 .profileImgSection {
   @include full-width;
   @include flex-center;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 
 .profileImg {
-  width: 73px;
-  height: 73px;
+  width: 91px;
+  height: 91px;
   border-radius: 100%;
   overflow: hidden;
 }
 
 .writerTitleSection {
+  font-family: var(--font-nanum);
+  font-weight: var(--font-bold);
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  line-height: 117.5%;
+
   @include full-width;
   @include flex-center;
-  font-size: $font-size-16;
   color: var(--color-green-1);
-  font-weight: var(--font-semi-bold);
-  margin: 5px 0;
+  margin-bottom: 1px;
 }
 
 .writerNameSection {
-  @include full-width;
-  @include flex;
-  justify-content: center;
-  align-items: baseline;
-  flex-grow: 1;
-  font-size: $font-size-12;
-  color: var(--color-gray);
   font-family: var(--font-pretend);
+  font-weight: var(--font-regular);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  line-height: 229.5%;
+
+  text-align: center;
+  color: var(--color-gray);
+  margin-bottom: 41px;
 }
 
 .writerInfoSection {
-  padding: 10px 0;
-  font-size: $font-size-12;
-  color: var(--color-light-gray);
   font-family: var(--font-pretend);
+  font-weight: var(--font-regular);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  line-height: 150%;
+
+  color: var(--color-light-gray);
   text-align: center;
   white-space: pre-line;
 }
@@ -77,15 +76,15 @@
   right: 0;
   bottom: 0;
   z-index: 2;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
 }
 
 .fold {
   position: absolute;
   width: 0;
   height: 0;
-  border-top: 20px solid var(--color-orange);
-  border-right: 20px solid transparent;
+  border-top: 30px solid var(--color-orange);
+  border-right: 30px solid transparent;
   z-index: 2;
 }

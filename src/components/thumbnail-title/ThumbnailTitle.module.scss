@@ -1,13 +1,13 @@
 .textWrapper {
-  width: 200px;
-  height: 30px;
+  font-family: var(--font-nanum);
+  font-weight: var(--font-extra-bold);
+  font-size: 20px;
+  letter-spacing: 0.04em;
+  line-height: 117.5%;
+
   overflow: hidden;
   white-space: nowrap;
-  font-family: var(--font-nanum);
-  font-size: 18px;
-  font-weight: 800;
   text-overflow: ellipsis;
-  margin: 0 auto 10px;
 }
 
 .orange {

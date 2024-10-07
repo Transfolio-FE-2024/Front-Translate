@@ -6,40 +6,27 @@
   margin: 0 auto;
 }
 
-.titleSection {
-  @include full-width;
-  @include flex;
-  align-items: center;
-  justify-content: start;
-  color: var(--color-gray);
-  letter-spacing: var(--letter-spacing-0-72);
-  margin-bottom: 20px;
-}
-
-.bodySection {
-  @include full-width;
-}
-
-.sliderTitle {
-  @include full-width;
-  @include flex-center;
-  height: 30px;
-}
-
-.thumbnailSection {
-  @include full-width;
-  @include flex-center;
-  padding: 0 5px;
-}
-
 .thumbnailContainer {
-  @include full-width;
-  @include flex-column-center;
+  width: 271px;
+  padding: 0 10px;
+
+  .thumbnailTitleSection {
+    margin-bottom: 19px;
+  }
+
+  .thumbnailSection {
+    height: 348px;
+  }
 }
 
 .customDots {
+  display: flex !important;
+  align-items: flex-end;
+  justify-content: center;
+  bottom: -51px !important;
+
   li {
-    width: calc(100% / 3) !important;
+    width: calc((100% - 10px * 2) / 3) !important;
     margin: 0 !important;
     height: 2px !important;
   }

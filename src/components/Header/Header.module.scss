@@ -10,7 +10,7 @@
   z-index: 9999;
   align-items: center;
   justify-content: space-between;
-  padding: 28px 50px;
+  padding: 0 50px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   height: var(--header-height);
   background-color: var(--color-header);
@@ -26,7 +26,7 @@
 .menuIconSection {
   @include cursor-pointer;
   width: 30px;
-  height: 20px;
+  height: 21px;
 
   &:hover {
     @include opacity-0-8;
@@ -49,6 +49,12 @@
 .logoIcon {
   @include cursor-pointer;
   margin-left: 19px;
+  width: 150px;
+  height: 25px;
+
+  img {
+    @include full-container;
+  }
 }
 
 .buttonsSection {
@@ -57,10 +63,25 @@
   justify-content: end;
 }
 
-.writeButtonSection {
-  width: 70px;
-  height: 25px;
-  margin-right: 10px;
+.writeButton {
+  font-family: var(--font-pretend);
+  font-weight: var(--font-refular);
+  font-size: 14px;
+  letter-spacing: 0.125em;
+  line-height: 229.5%;
+
+  @include flex-center;
+  @include cursor-pointer;
+  width: 78px;
+  height: 30px;
+  margin-right: 19px;
+  border: 1px solid var(--color-gray);
+  color: var(--color-gray);
+  border-radius: 30px;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .searchButtonSection {
@@ -82,6 +103,7 @@
   width: 150px;
   height: 30px;
   border-radius: 30px;
+  margin-right: 10px;
 }
 
 @include mobile {

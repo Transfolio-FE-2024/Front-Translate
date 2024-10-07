@@ -3,7 +3,6 @@ import styles from "./Header.module.scss";
 import logoIcon from "@/assets/images/ico_logo.png";
 import { useState } from "react";
 import MenuBar from "./components/menu-bar/MenuBar";
-import Button from "./components/button/Button";
 import { IoMdSearch } from "react-icons/io";
 import TextField from "./components/text-field/TextField";
 import { Link, useNavigate } from "react-router-dom";
@@ -46,14 +45,14 @@ export const Header = () => {
           </Link>
         </div>
         <div className={styles.buttonsSection}>
-          <div className={styles.writeButtonSection}>
-            <Button
-              title={"글쓰기"}
-              onButtonClicked={() => {
-                navigate("/home/portfolio");
-              }}
-            />
-          </div>
+          <button
+            onClick={() => {
+              navigate("/home/portfolio");
+            }}
+            className={styles.writeButton}
+          >
+            글쓰기
+          </button>
           {showSearchInput && (
             <div className={styles.searchInputSection}>
               <TextField />
