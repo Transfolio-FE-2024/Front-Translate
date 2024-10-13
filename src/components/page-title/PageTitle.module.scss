@@ -2,30 +2,32 @@
 @import "@styles/variables";
 
 .container {
-  @include flex-column;
-  width: 100%;
-  height: 150px;
-  align-items: center;
-  justify-content: end;
-  padding-bottom: 20px;
+  @include full-width;
+  height: 177px;
   background-color: var(--color-white);
 }
 
 .title {
-  color: var(--color-gray);
   font-family: var(--font-pretend);
   font-weight: var(--font-bold);
-  line-height: var(--line-height-21-15);
-  letter-spacing: var(--letter-spacing-10-71);
-  font-size: $font-size-18;
+  font-size: 18px;
+  letter-spacing: 0.595em;
+  line-height: 117.5%;
+
+  color: var(--color-gray);
   margin-bottom: 10px;
+  text-align: center;
+  padding-top: 106px;
+  margin-bottom: 12px;
 }
 
 .subTitle {
-  font-size: $font-size-14;
-  font-weight: var(--font-bold);
-  line-height: var(--line-height-16-45);
-  letter-spacing: var(--letter-spacing-1-68);
   font-family: var(--font-nanum);
+  font-weight: var(--font-bold);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  line-height: 117.5%;
+
   color: var(--color-green-1);
+  text-align: center;
 }

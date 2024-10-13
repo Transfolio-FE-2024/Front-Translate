@@ -5,11 +5,6 @@
   border-bottom: 1px solid var(--color-light-gray);
 }
 
-input:focus,
-textarea:focus {
-  background-color: var(--color-white) !important;
-}
-
 .container {
   margin-top: var(--header-height);
   margin-bottom: 55px;
@@ -17,8 +12,7 @@ textarea:focus {
 
 .content {
   @include full-container;
-  @include overflow-scroll;
-  max-width: var(--width-content-max);
+  max-width: 821px;
   margin: 0 auto;
 
   &::-webkit-scrollbar {
@@ -26,54 +20,52 @@ textarea:focus {
   }
 }
 
-.divider {
-  height: 20px;
-  width: 20px;
-}
-
 .thumbnailSection {
   @include flex-center;
-  @include full-width;
-  padding: 50px 0 30px;
-  height: 269px;
-  box-sizing: content-box;
+  margin-top: 61px;
+  flex-wrap: wrap;
 }
 
 .thumbnailCardSection {
+  box-shadow: var(--box-shadow-card);
+  width: 238px;
+  height: 339px;
 }
 
 .thumbnailInfoSection {
   @include flex-column;
-  @include full-width;
-  height: 100%;
-  margin-left: 20px;
+  height: 339px;
+  flex: 1;
+  padding-left: 27px;
 }
 
 .titleTextFieldSection {
   @include flex-center;
-  @include full-width;
-  height: 40px;
-  border-bottom: 1px solid var(--color-light-gray);
+  height: 29px;
 
-  input,
-  input:focus {
-    border-bottom: none;
-  }
   input::placeholder {
-    color: var(--color-orange);
-    line-height: var(--line-height-30);
-    letter-spacing: var(--letter-spacing-2-5);
-    font-size: $font-size-20;
-    font-weight: bold;
     font-family: var(--font-pretend);
+    font-weight: var(--font-bold);
+    font-size: 20px;
+    letter-spacing: 0.125em;
+    line-height: 150%;
+
+    color: var(--color-orange);
   }
 }
 
 .titleDateSection {
-  padding-left: 10px;
   font-family: var(--font-pretend);
-  letter-spacing: var(--letter-spacing-1-92);
-  font-size: $font-size-14;
+  font-weight: var(--font-medium);
+  font-size: 16px;
+  letter-spacing: 0.125em;
+  line-height: 150%;
+
+  @include full-height;
+  @include flex-center;
+  width: 150px;
+  padding-left: 10px;
+  border-bottom: 1px solid var(--color-light-gray);
   color: var(--color-light-gray);
 }
 
@@ -81,15 +73,59 @@ textarea:focus {
   @include border-bottom();
   @include full-width;
   @include flex;
-  height: 40px;
+  height: 66px;
   align-items: center;
   justify-content: start;
 }
 
 .dropdownSection {
-  @include full-height;
-  @include flex-center;
-  width: 100px;
+  &.lang {
+    width: 100px;
+
+    button {
+      font-family: var(--font-pretend);
+      font-weight: var(--font-medium);
+      font-size: 18px;
+      letter-spacing: 0.125em;
+      line-height: 150%;
+
+      color: var(--color-gray);
+    }
+  }
+
+  &.category {
+    width: 100px;
+
+    button {
+      font-family: var(--font-pretend);
+      font-weight: var(--font-medium);
+      font-size: 16px;
+      letter-spacing: 0.125em;
+      line-height: 150%;
+
+      color: var(--color-light-gray);
+    }
+  }
+
+  &.setting {
+    &:not(:last-child) {
+      margin-right: 23px;
+    }
+
+    button {
+      font-family: var(--font-pretend);
+      font-weight: var(--font-bold);
+      font-size: 16px;
+      letter-spacing: 0.125em;
+      line-height: 150%;
+
+      color: var(--color-gray);
+      border-radius: 100px;
+      width: 127px;
+      height: 33px;
+      border: 1px var(--color-gray) solid;
+    }
+  }
 }
 
 .arrowIcon {
@@ -97,14 +133,18 @@ textarea:focus {
 }
 
 .warnTextSection {
+  font-family: var(--font-pretend);
+  font-weight: var(--font-medium);
+  font-size: 12px;
+  letter-spacing: 0.125em;
+  line-height: 150%;
+
   @include full-height;
   @include flex;
   flex: 1;
   align-items: center;
   justify-content: end;
-  font-size: $font-size-12;
   color: var(--color-orange);
-  font-family: var(--font-pretend);
 }
 
 .warnIcon {
@@ -115,64 +155,142 @@ textarea:focus {
 .infoTextFieldSection {
   @include border-bottom();
   @include full-width;
+  flex: 1;
   padding: 5px 0;
-  flex-grow: 1;
 }
 
-.etcSection {
-  @include border-bottom();
-  @include full-width;
-  @include flex;
-  height: 40px;
-  align-items: center;
-  justify-content: start;
+.etcWrapper {
+  display: grid;
+  grid-template:
+    "a b" max(38px)
+    "c c" max(38px) / auto auto;
+
+  :nth-child(1) {
+    grid-area: a;
+  }
+  :nth-child(2) {
+    grid-area: b;
+  }
+  :nth-child(3) {
+    grid-area: c;
+  }
+
+  .etcItemContainer {
+    @include flex;
+    align-items: center;
+    padding-top: 14px;
+
+    .etcItemTitle {
+      font-family: var(--font-pretend);
+      font-weight: var(--font-regular);
+      font-size: 16px;
+      letter-spacing: 0.125em;
+      line-height: 150%;
+
+      color: var(--color-light-gray);
+      margin-right: 40px;
+      text-wrap: nowrap;
+      min-width: 50px;
+    }
+
+    .etcItemContent {
+      font-family: var(--font-pretend);
+      font-weight: var(--font-regular);
+      font-size: 16px;
+      letter-spacing: 0.125em;
+      line-height: 150%;
+
+      color: var(--color-light-gray);
+      flex: 1;
+      font-weight: var(--font-medium);
+      text-wrap: nowrap;
+    }
+  }
+
+  .authorInputSection {
+    input,
+    input:focus {
+      padding: 6px 12px;
+      border-bottom: none;
+    }
+  }
 }
+// .etcSection {
+//   @include full-width;
+//   @include flex;
+//   margin-top: 14px;
+//   align-items: center;
+//   justify-content: start;
 
-.etcTitleSection {
-  @include full-height;
-  @include flex;
-  align-items: center;
-  justify-content: start;
-  color: var(--color-light-gray);
-  font-family: var(--font-pretend);
+//   .authorInputSection {
+//     flex: 1;
 
-  input,
-  input:focus {
-    border-bottom: none;
+//     input,
+//     input:focus {
+//       padding: 6px 12px;
+//       border-bottom: none;
+//     }
+//   }
+// }
+
+// .etcTitleSection {
+//   font-family: var(--font-pretend);
+//   font-weight: var(--font-regular);
+//   font-size: 16px;
+//   letter-spacing: 0.125em;
+//   line-height: 150%;
+
+//   @include full-height;
+//   @include flex;
+//   width: 80px;
+//   align-items: center;
+//   justify-content: start;
+//   color: var(--color-light-gray);
+// }
+
+.writingSection {
+  .buttonsSection {
+    @include flex;
+    align-items: center;
+    justify-content: start;
+    margin-bottom: 15px;
+  }
+
+  .writingContentSection {
+    box-shadow: var(--box-shadow-card);
+  }
+
+  .mainButtonsSection {
+    display: grid;
+    grid-template-columns: repeat(2, calc((100% - 62px) / 2));
+    column-gap: 62px;
+    margin-top: 113px;
+  }
+
+  .mainButtonSection {
+    font-family: var(--font-pretend);
+    font-weight: var(--font-bold);
+    font-size: 22px;
+    letter-spacing: 0.125em;
+    line-height: 150%;
+
+    height: 95px;
+
+    button.btnPreSave {
+      @include full-container;
+      background-color: var(--color-light-gray);
+      color: var(--color-white);
+    }
+
+    button.btnSubmit {
+      @include full-container;
+      background-color: var(--color-orange);
+      color: var(--color-white);
+    }
   }
 }
 
-.writingSection {
-  @include full-width;
-}
-
-.buttonsSection {
-  @include full-width;
-  @include flex;
-  height: 50px;
-  align-items: center;
-  justify-content: start;
-}
-
-.buttonSection {
-  @include flex;
-  @include full-height;
-  align-items: center;
-  justify-content: start;
-}
-
-.mainButtonsSection {
-  @include flex-center;
-  @include full-width;
-  margin-top: 20px;
-  height: 50px;
-}
-
-.mainButtonSection {
-  @include full-height;
-  width: 200px;
-}
-
-.mainButtonDivider {
-  width: 20px;
+.hr {
+  width: 100%;
+  border-bottom: 1px solid var(--color-light-gray);
 }

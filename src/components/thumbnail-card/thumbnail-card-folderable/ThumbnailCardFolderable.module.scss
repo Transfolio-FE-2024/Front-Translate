@@ -117,12 +117,16 @@
   z-index: 2;
 }
 
-.borderTopGreen {
+.borderTop-green {
   border-top: 50px solid var(--color-green-2);
 }
 
-.borderTopOrange {
+.borderTop-orange {
   border-top: 50px solid var(--color-orange);
+}
+
+.borderTop-gray {
+  border-top: 50px solid var(--color-light-gray);
 }
 
 .green {
@@ -131,4 +135,8 @@
 
 .orange {
   background-color: var(--color-orange);
+}
+
+.gray {
+  background-color: var(--color-light-gray);
 }

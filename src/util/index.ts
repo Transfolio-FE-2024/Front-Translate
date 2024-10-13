@@ -150,6 +150,13 @@ export class ValidationUtil {
   }
 }
 
-export function getCategoryColor(category: string): "orange" | "green" {
-  return ["언어", "문학"].includes(category) ? "orange" : "green";
+export type CategoryColor = "orange" | "green" | "gray";
+export function getCategoryColor(category: string): CategoryColor {
+  if (!category) return "gray";
+
+  return ["언어", "문학"].includes(category)
+    ? "orange"
+    : ["전공", "기업"].includes(category)
+    ? "green"
+    : "gray";
 }

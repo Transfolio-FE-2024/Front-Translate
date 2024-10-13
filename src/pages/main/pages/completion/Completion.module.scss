@@ -8,8 +8,7 @@
 
 .content {
   @include full-container;
-  @include overflow-scroll;
-  max-width: var(--width-content-max);
+  max-width: 856px;
   margin: 0 auto;
 
   display: flex;

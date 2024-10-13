@@ -1,9 +1,18 @@
 @import "@styles/mixins";
 @import "@styles/variables";
 
+.buttonGroup {
+  position: relative;
+}
+
 .button {
-  font-family: var(--font-pretend);
-  color: var(--color-gray);
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+
+  color: inherit;
   flex-shrink: 0 !important;
 
   &:focus {
@@ -12,21 +21,31 @@
 }
 
 .dropdown {
-  width: 102px;
-  min-width: inherit !important;
-  border-radius: 15px;
+  position: absolute;
+  z-index: 1000;
+  min-width: 102px;
+  width: max-content;
+  border-radius: 8px;
   padding: 0px;
   overflow: hidden;
-  left: calc(50% - 102px / 2) !important;
+  background-color: var(--color-white);
 }
 
 .dropdownContent {
+  font-family: var(--font-pretend);
+  font-weight: var(--font-medium);
+  font-size: 12px;
+  letter-spacing: 0em;
+  line-height: 14px;
+
   @include flex-center;
   @include cursor-pointer;
-  font-size: 12px;
-  font-family: var(--font-pretend);
   color: var(--color-gray);
-  padding: 10px 20px !important;
+  padding: 10px !important;
+
+  &:hover {
+    opacity: 0.8;
+  }
 
   &.active {
     color: var(--color-orange) !important;
@@ -35,7 +54,7 @@
 
   &:active {
     color: var(--color-white) !important;
-    background-color: var(--color-light-orange);
+    background-color: var(--color-orange);
   }
 
   &:not(:first-child) {

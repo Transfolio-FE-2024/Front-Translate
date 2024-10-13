@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./ThumbnailCardFolderable.module.scss";
 import React from "react";
+import { CategoryColor } from "@/util";
 
 const ThumbnailCardFolderable: React.FC<{
   original: string;
@@ -9,7 +10,7 @@ const ThumbnailCardFolderable: React.FC<{
   writer: string;
   picked: number;
   preSave?: boolean;
-  color: "green" | "orange";
+  color: CategoryColor;
   href?: string;
   fontStyle?: string;
 }> = ({
@@ -33,13 +34,7 @@ const ThumbnailCardFolderable: React.FC<{
         <div className={styles.indexSection}>
           <div
             className={`${styles.index} 
-            ${
-              preSave
-                ? styles.indexInActive
-                : color === "green"
-                ? styles.green
-                : styles.orange
-            }
+            ${preSave ? styles.indexInActive : styles[color]}
             `}
           />
         </div>
@@ -60,9 +55,7 @@ const ThumbnailCardFolderable: React.FC<{
               <div className={styles.pickedNumberContainer}>{picked}</div>
               <div
                 className={`${styles.foldContainer} ${
-                  color === "green"
-                    ? styles.borderTopGreen
-                    : styles.borderTopOrange
+                  styles[`borderTop-${color}`]
                 }`}
               ></div>
             </div>

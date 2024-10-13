@@ -1,6 +1,5 @@
 import styles from "./Writer.module.scss";
 import PageTitle from "../../../../components/page-title/PageTitle";
-import { IoPersonCircleOutline } from "react-icons/io5";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Career, Portfolio } from "./component";
@@ -53,8 +52,10 @@ const Writer = () => {
         <PageTitle mainTitle={"Translator"} subTitle={"고전시 번역 프리랜서"} />
         <div className={styles.profileSection}>
           <div className={styles.profileImgSection}>
-            {/* <div className={styles.profileImg}></div> */}
-            <IoPersonCircleOutline className={styles.profileImg} />
+            <img
+              className={styles.profileImg}
+              src={`https://picsum.photos/seed/${Math.random()}/73/73`}
+            />
           </div>
           <div className={styles.profileNameSection}>
             <div className={styles.profileNameSectionTitle}>@{writerId}</div>
@@ -101,12 +102,12 @@ const Writer = () => {
             </div>
           </div>
         </div>
-        <div className={styles.portfolioSection}>
-          <div className={styles.portfolioButtonSection}>
+        <div className={styles.tabSection}>
+          <div className={styles.tabButtonsSection}>
             {tabs.map((tab, index) => {
               return (
                 <div
-                  className={`${styles.portfolioButtonTitle} ${
+                  className={`${styles.tabButtonTitle} ${
                     selectedButtonIndex === index
                       ? styles.buttonActive
                       : styles.buttonInActive
@@ -119,7 +120,7 @@ const Writer = () => {
               );
             })}
           </div>
-          <div className={styles.portfolioThumbnailCardSection}>
+          <div className={styles.tabComponentSection}>
             {renderTabComponent()}
           </div>
         </div>

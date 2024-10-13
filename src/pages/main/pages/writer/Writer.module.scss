@@ -8,8 +8,7 @@
 
 .content {
   @include full-container;
-  @include overflow-scroll;
-  max-width: var(--width-content-max);
+  max-width: 821px;
   margin: 0 auto;
 
   &::-webkit-scrollbar {
@@ -18,21 +17,17 @@
 }
 
 .profileSection {
-  @include full-width;
-  padding: 20px 0;
+  margin-top: 60px;
+  margin-bottom: 48px;
 }
 
 .profileImgSection {
-  @include flex;
-  @include full-width;
-  height: 100px;
-  align-items: center;
-  justify-content: start;
+  margin-bottom: 17px;
 }
 
 .profileImg {
-  width: 100px;
-  height: 100px;
+  width: 91px;
+  height: 91px;
   border-radius: 100%;
   color: var(--color-light-gray);
 }
@@ -40,12 +35,17 @@
 .profileNameSection {
   @include flex;
   align-items: center;
+  margin-bottom: 24px;
 }
 
 .profileNameSectionTitle {
-  font-size: 18px;
+  font-family: var(--font-nanum);
+  font-weight: var(--font-bold);
+  font-size: 20px;
+  letter-spacing: 0.04em;
+  line-height: 117.5%;
+
   color: var(--color-green-1);
-  font-weight: var(--font-semi-bold);
 }
 
 .profileSettingButton,
@@ -63,24 +63,23 @@
 }
 
 .profileInfoSection {
-  @include flex;
-  @include full-width;
-  align-items: center;
-  justify-content: start;
-  margin-top: 20px;
+  display: grid;
+  grid-template-columns: max-content auto;
+  column-gap: 49px;
 }
 
 .profileInfoBox {
-  margin-right: 30px;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 
 .profileInfoBoxTitle {
-  font-size: 14px;
-  color: var(--color-light-gray);
-  font-weight: var(--font-semi-bold);
   font-family: var(--font-pretend);
-  letter-spacing: var(--letter-spacing-1-5);
+  font-weight: var(--font-regular);
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  line-height: 117.5%;
+
+  color: var(--color-light-gray);
   margin-bottom: 5px;
 }
 
@@ -90,28 +89,33 @@
 }
 
 .profileInfoBoxContent {
-  color: var(--color-gray);
-  font-weight: var(--font-semi-bold);
   font-family: var(--font-pretend);
-  letter-spacing: var(--letter-spacing-0-8);
+  font-weight: var(--font-semi-bold);
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  line-height: 117.5%;
+
+  color: var(--color-gray);
 }
 
-.portfolioSection {
-  @include full-width;
+.tabSection {
 }
 
-.portfolioButtonSection {
+.tabButtonsSection {
   @include flex;
-  @include full-width;
 }
 
-.portfolioButtonTitle {
+.tabButtonTitle {
+  font-family: var(--font-pretend);
+  font-weight: var(--font-semi-bold);
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  line-height: 117.5%;
+
   @include flex-center;
   @include cursor-pointer;
   flex: 1;
-  height: 50px;
-  font-family: var(--font-pretend);
-  font-weight: var(--font-semi-bold);
+  height: 48px;
 }
 
 .buttonActive {
@@ -124,10 +128,10 @@
   border-bottom: 1px solid var(--color-light-gray);
 }
 
-.portfolioThumbnailCardSection {
-  @include full-width;
+.tabComponentSection {
+  min-height: 100px;
 }
 
 .topSpace {
-  margin-top: 20px;
+  margin-top: 49px;
 }

@@ -4,13 +4,8 @@ import styles from "./Portfolio.module.scss";
 import PageTitle from "@/components/page-title/PageTitle";
 import TextField from "@/components/text-field/TextField";
 import TextFieldLonger from "@/components/text-field/text-field-longer/TextFieldLonger";
-import GreyButtonSquare from "@/components/button/grey-button-square/GreyButtonSquare";
-import MainButtonSquare from "@/components/button/main-button-square/MainButtonSquare";
-import ThumbnailChangeable from "./component/thumbnail-changeable/ThumbnailChangeable";
 import DropdownButton from "./component/dropdown-button/DropdownButton";
-import StyledDropdownButton from "./component/styled-dropdown-button/StyledDropdownButton";
 import WritingContent from "./component/writing-content/WritingContent";
-import StyledTitle from "./component/styled-title/StyledTitle";
 import { VscArrowSwap } from "react-icons/vsc";
 import { RiErrorWarningLine } from "react-icons/ri";
 import {
@@ -23,6 +18,8 @@ import { MainCategoryType, ContentType } from "@/types/index";
 import { useMutation } from "@tanstack/react-query";
 import { Post } from "@/interface";
 import boardApi from "@/api/boardApi";
+import { getCategoryColor } from "@/util";
+import ThumbnailCardUnfolderable from "@/components/thumbnail-card/thumbnail-card-unfolderable/ThumbnailCardUnfolderable";
 
 const Portfolio = () => {
   const indexRef = useRef<number>(1);
@@ -147,12 +144,14 @@ const Portfolio = () => {
           mainTitle={"Translator"}
           subTitle={"사용자가 설정한 값으로 교체 필요"}
         />
-        <div className={styles.divider}></div>
         <div className={styles.thumbnailSection}>
           <div className={styles.thumbnailCardSection}>
-            <ThumbnailChangeable
-              title={title}
-              fontFamily={selectedFontFamily}
+            <ThumbnailCardUnfolderable
+              original={title}
+              translated={title}
+              color={getCategoryColor(selectedMainCatetory || "")}
+              fontStyle={selectedFontFamily}
+              isEditMode
             />
           </div>
           <div className={styles.thumbnailInfoSection}>
@@ -165,31 +164,45 @@ const Portfolio = () => {
               <div className={styles.titleDateSection}>2023.12.12</div>
             </div>
             <div className={styles.selectLanguageSection}>
-              <div className={styles.dropdownSection}>
+              <div className={`${styles.dropdownSection} ${styles.lang}`}>
                 <DropdownButton
                   title={
                     selectedOriginLanguage === undefined
                       ? "언어 선택"
                       : selectedOriginLanguage
                   }
-                  values={supportedTranslateLanguage}
-                  selectedValue={selectedOriginLanguage}
-                  onValueClicked={(value) => setSelectedOriginLanguage(value)}
+                  dropdownOptions={supportedTranslateLanguage}
+                  selectedOption={
+                    selectedOriginLanguage
+                      ? {
+                          key: selectedOriginLanguage,
+                          value: selectedOriginLanguage,
+                        }
+                      : undefined
+                  }
+                  onOptionClicked={(key) => setSelectedOriginLanguage(key)}
+                  buttonStyle={{ width: "100%" }}
                 />
               </div>
               <VscArrowSwap className={styles.arrowIcon} />
-              <div className={styles.dropdownSection}>
+              <div className={`${styles.dropdownSection} ${styles.lang}`}>
                 <DropdownButton
                   title={
                     selectedTranslatedLanguage === undefined
                       ? "언어 선택"
                       : selectedTranslatedLanguage
                   }
-                  values={supportedTranslateLanguage}
-                  selectedValue={selectedTranslatedLanguage}
-                  onValueClicked={(value) =>
-                    setSelectedTranslatedLanguage(value)
+                  dropdownOptions={supportedTranslateLanguage}
+                  selectedOption={
+                    selectedTranslatedLanguage
+                      ? {
+                          key: selectedTranslatedLanguage,
+                          value: selectedTranslatedLanguage,
+                        }
+                      : undefined
                   }
+                  onOptionClicked={(key) => setSelectedTranslatedLanguage(key)}
+                  buttonStyle={{ width: "100%" }}
                 />
               </div>
               {(selectedOriginLanguage !== undefined ||
@@ -211,44 +224,60 @@ const Portfolio = () => {
             </div>
             <div className={styles.etcSection}>
               <div className={styles.etcTitleSection}>대분류</div>
-              <div className={styles.dropdownSection}>
+              <div className={`${styles.dropdownSection} ${styles.category}`}>
                 <DropdownButton
                   title={
                     selectedMainCatetory === undefined
                       ? "대분류"
                       : selectedMainCatetory
                   }
-                  values={Object.keys(areaOfInterest)}
-                  selectedValue={selectedMainCatetory}
-                  onValueClicked={(value) =>
-                    setSelectedMainCategory(
-                      value as MainCategoryType | undefined
-                    )
+                  dropdownOptions={Object.keys(areaOfInterest)}
+                  selectedOption={
+                    selectedMainCatetory
+                      ? {
+                          key: selectedMainCatetory,
+                          value: selectedMainCatetory,
+                        }
+                      : undefined
                   }
+                  onOptionClicked={(key) => {
+                    setSelectedMainCategory(
+                      key as MainCategoryType | undefined
+                    );
+                    setSelectedSubCategory(undefined);
+                  }}
+                  buttonStyle={{ textAlign: "left" }}
                 />
               </div>
               <div className={styles.etcTitleSection}>소분류</div>
-              <div className={styles.dropdownSection}>
+              <div className={`${styles.dropdownSection} ${styles.category}`}>
                 <DropdownButton
                   title={
                     selectedSubCatetory === undefined
                       ? "소분류"
                       : selectedSubCatetory
                   }
-                  values={
+                  dropdownOptions={
                     selectedMainCatetory !== undefined
                       ? areaOfInterest[selectedMainCatetory]
                       : []
                   }
-                  selectedValue={selectedSubCatetory}
-                  onValueClicked={(value) => setSelectedSubCategory(value)}
+                  selectedOption={
+                    selectedSubCatetory
+                      ? {
+                          key: selectedSubCatetory,
+                          value: selectedSubCatetory,
+                        }
+                      : undefined
+                  }
+                  onOptionClicked={(key) => setSelectedSubCategory(key)}
+                  buttonStyle={{ textAlign: "left" }}
                 />
               </div>
             </div>
             <div className={styles.etcSection}>
               <div className={styles.etcTitleSection}>작가</div>
-              <div className={styles.divider}></div>
-              <div className={styles.etcTitleSection}>
+              <div className={styles.authorInputSection}>
                 <TextField
                   value={author}
                   onChange={(value) => setAuthor(value)}
@@ -258,51 +287,70 @@ const Portfolio = () => {
             </div>
           </div>
         </div>
-        <div className={styles.divider}></div>
+
+        <div
+          className={styles.hr}
+          style={{ marginTop: "34px", marginBottom: "15px" }}
+        />
+
         <div className={styles.writingSection}>
           <div className={styles.buttonsSection}>
-            <div className={styles.buttonSection}>
+            <div className={`${styles.dropdownSection} ${styles.setting}`}>
               <DropdownButton
-                title={<StyledTitle>글자 크기</StyledTitle>}
-                values={preDefinedFontSize}
-                selectedValue={selectedFontSize}
-                onValueClicked={(value) => setSelectedFontSize(value)}
+                title={"글자 크기"}
+                dropdownOptions={preDefinedFontSize}
+                selectedOption={
+                  selectedFontSize
+                    ? {
+                        key: selectedFontSize,
+                        value: selectedFontSize,
+                      }
+                    : undefined
+                }
+                onOptionClicked={(key) => setSelectedFontSize(key)}
               />
             </div>
-            <div className={styles.buttonSection}>
-              <StyledDropdownButton
-                title={<StyledTitle>서체 설정</StyledTitle>}
-                options={Object.entries(preDefinedFontFamily).reduce(
-                  (acc, [key, value]) => {
-                    acc[value] = key;
-                    return acc;
-                  },
-                  {} as { [key: string]: string }
-                )}
-                selectedOptionKey={selectedFontFamily}
+            <div className={`${styles.dropdownSection} ${styles.setting}`}>
+              <DropdownButton
+                title={"서체 설정"}
+                dropdownOptions={preDefinedFontFamily}
+                selectedOption={
+                  selectedFontFamily
+                    ? {
+                        key: selectedFontFamily,
+                        value: preDefinedFontFamily[selectedFontFamily],
+                      }
+                    : undefined
+                }
                 onOptionClicked={(key) => setSelectedFontFamily(key)}
               />
             </div>
           </div>
-          <WritingContent
-            contents={contents}
-            fontSize={selectedFontSize}
-            fontFamily={selectedFontFamily}
-            offFocus={offFocus}
-            deleteContent={deleteContent}
-            moveNextContent={moveNextContent}
-            setOriginal={setOriginal}
-            setTranslated={setTranslated}
-          />
+          <div className={styles.writingContentSection}>
+            <WritingContent
+              contents={contents}
+              fontSize={selectedFontSize}
+              fontFamily={selectedFontFamily}
+              offFocus={offFocus}
+              deleteContent={deleteContent}
+              moveNextContent={moveNextContent}
+              setOriginal={setOriginal}
+              setTranslated={setTranslated}
+            />
+          </div>
           <div className={styles.mainButtonsSection}>
             <div className={styles.mainButtonSection}>
-              <GreyButtonSquare title="임시 저장" onClicked={() => {}} />
+              <button
+                className={styles.btnPreSave}
+                onClick={() => alert("임시 저장 기능 미구현")}
+              >
+                임시저장
+              </button>
             </div>
-            <div className={styles.mainButtonDivider}></div>
             <div className={styles.mainButtonSection}>
-              <MainButtonSquare
-                title="제출하기"
-                onClicked={() => {
+              <button
+                className={styles.btnSubmit}
+                onClick={() => () => {
                   // TODO - 입력값 유효성 검증
 
                   submitPost({
@@ -334,7 +382,9 @@ const Portfolio = () => {
                     author,
                   });
                 }}
-              />
+              >
+                제출하기
+              </button>
             </div>
           </div>
         </div>

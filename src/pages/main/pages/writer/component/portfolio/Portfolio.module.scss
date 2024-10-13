@@ -3,9 +3,12 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 33.33% 33.33% 33.33%;
+  grid-template-columns: repeat(3, calc((100% - 53px * 2) / 3));
+  grid-auto-rows: 339px;
+  column-gap: 53px;
+  row-gap: 25px;
 }
 
 .gridItem {
-  margin: 0 auto;
+  @include full-container;
 }
