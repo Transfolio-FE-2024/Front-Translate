@@ -160,3 +160,7 @@ export function getCategoryColor(category: string): CategoryColor {
     ? "green"
     : "gray";
 }
+
+export function className(...args: string[]) {
+  return args.join(" ").trim();
+}

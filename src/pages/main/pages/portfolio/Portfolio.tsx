@@ -18,7 +18,7 @@ import { MainCategoryType, ContentType } from "@/types/index";
 import { useMutation } from "@tanstack/react-query";
 import { Post } from "@/interface";
 import boardApi from "@/api/boardApi";
-import { getCategoryColor } from "@/util";
+import { className, getCategoryColor } from "@/util";
 import ThumbnailCardUnfolderable from "@/components/thumbnail-card/thumbnail-card-unfolderable/ThumbnailCardUnfolderable";
 
 const Portfolio = () => {
@@ -164,7 +164,7 @@ const Portfolio = () => {
               <div className={styles.titleDateSection}>2023.12.12</div>
             </div>
             <div className={styles.selectLanguageSection}>
-              <div className={`${styles.dropdownSection} ${styles.lang}`}>
+              <div className={className(styles.dropdownSection, styles.lang)}>
                 <DropdownButton
                   title={
                     selectedOriginLanguage === undefined
@@ -185,7 +185,7 @@ const Portfolio = () => {
                 />
               </div>
               <VscArrowSwap className={styles.arrowIcon} />
-              <div className={`${styles.dropdownSection} ${styles.lang}`}>
+              <div className={className(styles.dropdownSection, styles.lang)}>
                 <DropdownButton
                   title={
                     selectedTranslatedLanguage === undefined
@@ -224,7 +224,9 @@ const Portfolio = () => {
             </div>
             <div className={styles.etcSection}>
               <div className={styles.etcTitleSection}>대분류</div>
-              <div className={`${styles.dropdownSection} ${styles.category}`}>
+              <div
+                className={className(styles.dropdownSection, styles.category)}
+              >
                 <DropdownButton
                   title={
                     selectedMainCatetory === undefined
@@ -250,7 +252,9 @@ const Portfolio = () => {
                 />
               </div>
               <div className={styles.etcTitleSection}>소분류</div>
-              <div className={`${styles.dropdownSection} ${styles.category}`}>
+              <div
+                className={className(styles.dropdownSection, styles.category)}
+              >
                 <DropdownButton
                   title={
                     selectedSubCatetory === undefined
@@ -295,7 +299,7 @@ const Portfolio = () => {
 
         <div className={styles.writingSection}>
           <div className={styles.buttonsSection}>
-            <div className={`${styles.dropdownSection} ${styles.setting}`}>
+            <div className={className(styles.dropdownSection, styles.setting)}>
               <DropdownButton
                 title={"글자 크기"}
                 dropdownOptions={preDefinedFontSize}
@@ -310,7 +314,7 @@ const Portfolio = () => {
                 onOptionClicked={(key) => setSelectedFontSize(key)}
               />
             </div>
-            <div className={`${styles.dropdownSection} ${styles.setting}`}>
+            <div className={className(styles.dropdownSection, styles.setting)}>
               <DropdownButton
                 title={"서체 설정"}
                 dropdownOptions={preDefinedFontFamily}

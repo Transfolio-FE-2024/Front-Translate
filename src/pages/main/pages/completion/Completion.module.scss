@@ -23,102 +23,109 @@
 .topWrapper {
   @include flex-column-center;
   margin-bottom: 144px;
-}
 
-.completion {
-  color: var(--color-gray);
-  font-size: var(--font-size-16);
-  font-family: var(--font-pretend);
-  font-weight: 700;
-  line-height: var(--line-height-18-8);
-  letter-spacing: var(--letter-spacing-9-52);
-  margin-bottom: 14px;
-}
+  .completion {
+    font-family: var(--font-pretend);
+    font-weight: var(--font-bold);
+    font-size: 16px;
+    letter-spacing: 0.595em;
+    line-height: 117.5%;
 
-.completionCaption {
-  color: var(--color-gray);
-  font-size: 12px;
-  font-weight: 400;
-  line-height: var(--line-height-16-45);
-  letter-spacing: var(--letter-spacing-1-68);
+    color: var(--color-gray);
+    margin-bottom: 14px;
+  }
+
+  .completionCaption {
+    font-family: var(--font-nanum);
+    font-weight: var(--font-regular);
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    line-height: 117.5%;
+
+    color: var(--color-gray);
+  }
 }
 
 .middleWrapper {
   @include flex-column-center;
   margin-bottom: 174px;
-}
 
-.trophyImageWrapper {
-  width: 58px;
-  object-fit: contain;
-  margin-bottom: 44px;
-}
-
-.trophyImage {
-  width: 100%;
-}
-
-.submitCompletion {
-  text-align: center;
-
-  div {
-    color: var(--color-orange);
-    font-size: 16px;
-    font-weight: bold;
-    line-height: var(--line-height-27);
-    letter-spacing: var(--letter-spacing-2-25);
-    margin-bottom: 17px;
+  .trophyImageWrapper {
+    width: 65px;
+    object-fit: contain;
+    margin-bottom: 44px;
   }
 
-  p {
-    color: var(--color-black);
-    font-size: 20px;
-    font-weight: bold;
-    line-height: var(--line-height-33);
-    letter-spacing: var(--letter-spacing-2-75);
+  .trophyImage {
+    width: 100%;
+  }
+
+  .submitCompletion {
+    text-align: center;
+
+    .text {
+      font-family: var(--font-nanum);
+      font-weight: var(--font-bold);
+      font-size: 22px;
+      letter-spacing: 0.125em;
+      line-height: 150%;
+
+      color: var(--color-black);
+
+      &.highlight {
+        font-size: 18px;
+
+        color: var(--color-orange);
+        margin-bottom: 17px;
+      }
+    }
   }
 }
 
 .top3Wrapper {
   @include flex-column-center;
   margin-bottom: 30px;
+
+  .title {
+    font-family: var(--font-pretend);
+    font-weight: var(--font-bold);
+    font-size: 18px;
+    letter-spacing: 0.595em;
+    line-height: 117.5%;
+
+    color: var(--color-gray);
+    margin-bottom: 8px;
+  }
+
+  .subTitle {
+    font-family: var(--font-nanum);
+    font-weight: var(--font-regular);
+    font-size: 18px;
+    letter-spacing: 0.125em;
+    line-height: 150%;
+
+    color: var(--color-green-1);
+    opacity: 0.14;
+  }
 }
 
-.top3Title {
-  color: var(--color-gray);
-  font-size: 16px;
-  font-family: var(--font-pretend);
-  font-weight: bold;
-  line-height: var(--line-height-21-15);
-  letter-spacing: var(--letter-spacing-10-71);
-  margin-bottom: 8px;
-}
-
-.top3SubTitle {
-  color: var(--color-green-1);
-  font-size: 16px;
-  font-weight: regular;
-  line-height: var(--line-height-27);
-  letter-spacing: var(--letter-spacing-2-25);
-  opacity: 0.14;
-}
-
-.RankingCardWrapper {
+.rankingCardWrapper {
   @include flex;
   gap: 24px;
   margin-bottom: 95px;
 }
 
 .backButton {
+  font-family: var(--font-pretend);
+  font-weight: var(--font-bold);
+  font-size: 22px;
+  letter-spacing: 0.125em;
+  line-height: 150%;
+
   @include flex-center;
   width: 100%;
-  padding: 25px 0px;
+  height: 95px;
   color: var(--color-white);
-  font-size: $font-size-20;
-  font-weight: bold;
-  font-family: var(--font-pretend);
-  line-height: var(--line-height-33);
-  letter-spacing: var(--letter-spacing-2-75);
   background-color: var(--color-orange);
   cursor: pointer;
 }

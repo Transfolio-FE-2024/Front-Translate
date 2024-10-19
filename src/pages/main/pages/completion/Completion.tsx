@@ -2,6 +2,7 @@ import styles from "./Completion.module.scss";
 import trophyImage from "@/assets/images/trophy.png";
 import RankingCard from "./component/rankingCard/RankingCard";
 import { useNavigate } from "react-router-dom";
+import { className } from "@/util";
 
 const nickName = "Kimhin";
 
@@ -21,18 +22,22 @@ const Completion = (): JSX.Element => {
             <img className={styles.trophyImage} src={trophyImage} />
           </div>
           <div className={styles.submitCompletion}>
-            <div>{nickName}님의</div>
-            <p>&lt;Instant love&gt; 번역이 제출 완료 되었어요!</p>
+            <div className={className(styles.text, styles.highlight)}>
+              {nickName}님의
+            </div>
+            <div className={styles.text}>
+              &lt;Instant love&gt; 번역이 제출 완료 되었어요!
+            </div>
           </div>
         </div>
         <div>
           <div className={styles.top3Wrapper}>
-            <div className={styles.top3Title}>TOP 3</div>
-            <div className={styles.top3SubTitle}>
-              다른 번역가들을 구경해보세요!
+            <div className={styles.title}>Award</div>
+            <div className={styles.subTitle}>
+              &lt;Instant love&gt; 번역가분들의 인기순위에요!
             </div>
           </div>
-          <div className={styles.RankingCardWrapper}>
+          <div className={styles.rankingCardWrapper}>
             <RankingCard
               rank={1}
               isEmphasized

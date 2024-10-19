@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./MainButtonRound.module.scss";
+import { className } from "@/util";
 
 const MainButtonRound: React.FC<{
   title: string;
@@ -9,9 +10,10 @@ const MainButtonRound: React.FC<{
 }> = ({ title, onClicked, enable = true, fillColor = "" }) => {
   return (
     <div
-      className={`${styles.container} ${
+      className={className(
+        styles.container,
         enable ? styles.enable : styles.disable
-      }`}
+      )}
       style={{ backgroundColor: fillColor ? `${fillColor} !important` : "" }}
       onClick={() => {
         if (enable) {

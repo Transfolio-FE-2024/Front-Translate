@@ -2,6 +2,7 @@ import { IoMdCloseCircleOutline } from "react-icons/io";
 import TextBundle from "../text-bundle/TextBundle";
 import styles from "./TranslateTextWrap.module.scss";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { className } from "@/util";
 
 interface ITranslateTextWrap {
   focused: boolean;
@@ -49,9 +50,10 @@ function TranslateTextWrap({
 
   return (
     <div
-      className={`${styles.textBundleContainer}${
-        hoverDeleteButton ? ` ${styles.hoverDeleteButton}` : ""
-      }`}
+      className={className(
+        styles.textBundleContainer,
+        hoverDeleteButton ? styles.hoverDeleteButton : ""
+      )}
     >
       <div
         style={{ fontSize, fontFamily }}

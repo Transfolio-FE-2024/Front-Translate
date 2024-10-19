@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./TextField.module.scss";
+import { className } from "@/util";
 
 /**
  * - Ok - 값이 유효함
@@ -29,9 +30,10 @@ const TextField: React.FC<{
 }) => {
   return (
     <div
-      className={`${styles.container}${
-        validationFn(value) === "Error" ? ` ${styles.error}` : ""
-      }`}
+      className={className(
+        styles.container,
+        validationFn(value) === "Error" ? styles.error : ""
+      )}
     >
       <input
         {...inputProps}

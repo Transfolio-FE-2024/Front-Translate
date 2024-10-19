@@ -1,4 +1,4 @@
-import { CategoryColor } from "@/util";
+import { CategoryColor, className } from "@/util";
 import styles from "./ThumbnailCardUnfolderable.module.scss";
 import React from "react";
 
@@ -18,7 +18,7 @@ const ThumbnailCardUnfolderable: React.FC<{
   return (
     <div className={styles.container}>
       <div className={styles.indexSection}>
-        <div className={`${styles.index} ${styles[color]}`}></div>
+        <div className={className(styles.index, styles[color])}></div>
       </div>
       <div className={styles.contentSection} style={{ fontFamily: fontStyle }}>
         <div className={styles.editableContent} contentEditable={isEditMode}>

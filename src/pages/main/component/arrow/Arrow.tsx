@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Arrow.module.scss";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import { className } from "@/util";
 
 const Arrow: React.FC<{
   onClicked: () => void;
@@ -8,7 +9,7 @@ const Arrow: React.FC<{
 }> = ({ onClicked, left = true }) => {
   return (
     <div
-      className={`${styles.container} ${left ? styles.left : styles.right}`}
+      className={className(styles.container, left ? styles.left : styles.right)}
       onClick={onClicked}
     >
       {left && <MdKeyboardArrowLeft className={styles.icon} />}

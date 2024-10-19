@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo, useRef } from "react";
 import styles from "./TextBundle.module.scss";
 import TextAreaAutoResize from "react-textarea-autosize";
+import { className } from "@/util";
 
 interface ITextBundle {
   fontSize?: string;
@@ -53,7 +54,7 @@ const TextBundle = React.forwardRef<HTMLTextAreaElement, ITextBundle>(
       <React.Fragment>
         <div
           style={{ fontSize, fontFamily }}
-          className={`${styles.hiddenDiv} ${styles.textarea}`}
+          className={className(styles.hiddenDiv, styles.textarea)}
           ref={divRef}
         >
           <span></span>
@@ -72,7 +73,10 @@ const TextBundle = React.forwardRef<HTMLTextAreaElement, ITextBundle>(
           onPaste={onPaste}
           onChange={(e) => setValue(e.target.value)}
           autoFocus={original}
-          className={`${styles.textarea} ${original ? styles.original : null}`}
+          className={className(
+            styles.textarea,
+            original ? styles.original : ""
+          )}
           onKeyDown={keyDownHandler}
         />
       </React.Fragment>

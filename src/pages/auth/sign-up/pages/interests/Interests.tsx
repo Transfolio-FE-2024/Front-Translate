@@ -3,7 +3,7 @@ import { useState } from "react";
 import styles from "./Interests.module.scss";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout/Layout";
-import { SessionStorageManager } from "@/util";
+import { className, SessionStorageManager } from "@/util";
 import { TF } from "@/util/const";
 import { SignUpInfo } from "@/interface";
 import authApi from "@/api/authApi";
@@ -110,17 +110,15 @@ const Interests = () => {
                       {content.map((contentTitle, contentIndex) => {
                         return (
                           <div
-                            className={`${styles.contentBox} ${
+                            className={className(
+                              styles.contentBox,
                               contentIndex !== content.length - 1
                                 ? styles.contentRightBorder
-                                : null
-                            } ${
+                                : "",
                               index !== contents.length - 1
                                 ? styles.contentBottomBorder
-                                : null
-                            }
-                                
-                                `}
+                                : ""
+                            )}
                             key={contentIndex}
                           >
                             {contentTitle}
@@ -139,7 +137,10 @@ const Interests = () => {
                                   _item.value === contentTitle
                               ) !== undefined && (
                                 <div
-                                  className={`${styles.contentChecked} ${styles.contentCheckedMark}`}
+                                  className={className(
+                                    styles.contentChecked,
+                                    styles.contentCheckedMark
+                                  )}
                                 ></div>
                               )}
                             </div>

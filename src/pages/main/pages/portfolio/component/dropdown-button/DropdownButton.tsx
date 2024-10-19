@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./DropdownButton.module.scss";
+import { className } from "@/util";
 
 const DropdownButton: React.FC<{
   title: string | React.ReactNode;
@@ -74,9 +75,10 @@ const DropdownButton: React.FC<{
 
     return Object.keys(_dropdownOptions).map((key) => (
       <li
-        className={`${styles.dropdownContent} ${
+        className={className(
+          styles.dropdownContent,
           selectedOption?.key === key ? styles.active : ""
-        }`}
+        )}
         onClick={() => {
           onOptionClicked(key, _dropdownOptions[key]);
           setIsVisible(false);

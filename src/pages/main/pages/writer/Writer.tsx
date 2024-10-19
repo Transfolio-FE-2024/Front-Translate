@@ -6,6 +6,7 @@ import { Career, Portfolio } from "./component";
 import jwtManager from "@/util/jwtManager";
 import { HiOutlinePencil } from "react-icons/hi";
 import { CiSettings } from "react-icons/ci";
+import { className } from "@/util";
 
 const tabs = [
   {
@@ -107,11 +108,12 @@ const Writer = () => {
             {tabs.map((tab, index) => {
               return (
                 <div
-                  className={`${styles.tabButtonTitle} ${
+                  className={className(
+                    styles.tabButtonTitle,
                     selectedButtonIndex === index
                       ? styles.buttonActive
                       : styles.buttonInActive
-                  }`}
+                  )}
                   onClick={() => buttonClickHandler(index)}
                   key={index}
                 >

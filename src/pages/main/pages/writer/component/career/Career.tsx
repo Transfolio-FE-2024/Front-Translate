@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Career.module.scss";
+import { className } from "@/util";
 
 const Career: React.FC = () => {
   return (
@@ -30,9 +31,9 @@ const Career: React.FC = () => {
               <div className={styles.subText}>러브레터 번역</div>
               <div className={styles.writer}>야마</div>
             </div>
-            <div className={`${styles.corner} ${styles.folded}`}></div>
+            <div className={className(styles.corner, styles.folded)}></div>
           </div>
-          <div className={`${styles.trophy} ${styles.achieved}`}></div>
+          <div className={className(styles.trophy, styles.achieved)}></div>
         </div>
       </div>
     </div>

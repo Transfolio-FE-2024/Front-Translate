@@ -3,7 +3,7 @@ import styles from "./Content.module.scss";
 import PageTitle from "@/components/page-title/PageTitle";
 import { VscArrowSwap } from "react-icons/vsc";
 import { TF } from "@/util/const";
-import { getCategoryColor } from "@/util";
+import { className, getCategoryColor } from "@/util";
 import ThumbnailCardUnfolderable from "@/components/thumbnail-card/thumbnail-card-unfolderable/ThumbnailCardUnfolderable";
 import { posts } from "@/util/sample-data";
 
@@ -86,11 +86,12 @@ const Content = () => {
                 }}
               >
                 <div
-                  className={`${styles.mainContentRowOriginal}${
+                  className={className(
+                    styles.mainContentRowOriginal,
                     content.translated === "" || preSave
-                      ? ` ${styles.greenColor}`
-                      : ` ${styles.orangeColor}`
-                  }`}
+                      ? styles.greenColor
+                      : styles.orangeColor
+                  )}
                 >
                   {content.original}
                 </div>

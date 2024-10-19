@@ -15,7 +15,7 @@ import {
 } from "@/util/const";
 import { MainCategoryType, ContentType } from "@/types/index";
 import { posts } from "@/util/sample-data";
-import { getCategoryColor } from "@/util";
+import { className, getCategoryColor } from "@/util";
 import ThumbnailCardUnfolderable from "@/components/thumbnail-card/thumbnail-card-unfolderable/ThumbnailCardUnfolderable";
 import DropdownButton from "../portfolio/component/dropdown-button/DropdownButton";
 import WritingContent from "../portfolio/component/writing-content/WritingContent";
@@ -186,7 +186,7 @@ const Edit = () => {
               <div className={styles.titleDateSection}>2024.07.01</div>
             </div>
             <div className={styles.selectLanguageSection}>
-              <div className={`${styles.dropdownSection} ${styles.lang}`}>
+              <div className={className(styles.dropdownSection, styles.lang)}>
                 <DropdownButton
                   title={
                     selectedOriginLanguage === undefined
@@ -207,7 +207,7 @@ const Edit = () => {
                 />
               </div>
               <VscArrowSwap className={styles.arrowIcon} />
-              <div className={`${styles.dropdownSection} ${styles.lang}`}>
+              <div className={className(styles.dropdownSection, styles.lang)}>
                 <DropdownButton
                   title={
                     selectedTranslatedLanguage === undefined
@@ -249,7 +249,10 @@ const Edit = () => {
                 <div className={styles.etcItemTitle}>대분류</div>
                 <div className={styles.etcItemContent}>
                   <div
-                    className={`${styles.dropdownSection} ${styles.category}`}
+                    className={className(
+                      styles.dropdownSection,
+                      styles.category
+                    )}
                   >
                     <DropdownButton
                       title={
@@ -281,7 +284,10 @@ const Edit = () => {
                 <div className={styles.etcItemTitle}>소분류</div>
                 <div className={styles.etcItemContent}>
                   <div
-                    className={`${styles.dropdownSection} ${styles.category}`}
+                    className={className(
+                      styles.dropdownSection,
+                      styles.category
+                    )}
                   >
                     <DropdownButton
                       title={
@@ -331,7 +337,7 @@ const Edit = () => {
 
         <div className={styles.writingSection}>
           <div className={styles.buttonsSection}>
-            <div className={`${styles.dropdownSection} ${styles.setting}`}>
+            <div className={className(styles.dropdownSection, styles.setting)}>
               <DropdownButton
                 title={"글자 크기"}
                 dropdownOptions={preDefinedFontSize}
@@ -346,7 +352,7 @@ const Edit = () => {
                 onOptionClicked={(key) => setSelectedFontSize(key)}
               />
             </div>
-            <div className={`${styles.dropdownSection} ${styles.setting}`}>
+            <div className={className(styles.dropdownSection, styles.setting)}>
               <DropdownButton
                 title={"서체 설정"}
                 dropdownOptions={preDefinedFontFamily}

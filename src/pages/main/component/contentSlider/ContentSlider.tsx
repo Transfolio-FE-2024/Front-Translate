@@ -8,7 +8,7 @@ import Arrow from "../arrow/Arrow";
 import { useMediaQuery } from "react-responsive";
 import ThumbnailTitle from "@/components/thumbnail-title/ThumbnailTitle";
 import { posts } from "@/util/sample-data";
-import { getCategoryColor } from "@/util";
+import { className, getCategoryColor } from "@/util";
 
 const ContentSlider = () => {
   const isMobile = useMediaQuery({ maxWidth: "767px" });
@@ -29,9 +29,10 @@ const ContentSlider = () => {
     customPaging: (index: number) => {
       return (
         <div
-          className={`${styles.customDot} ${
+          className={className(
+            styles.customDot,
             index === pageIndex / sliderNumber ? styles.active : styles.inActive
-          }`}
+          )}
         ></div>
       );
     },
