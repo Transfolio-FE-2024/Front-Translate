@@ -2,27 +2,59 @@
 @import "@styles/variables.scss";
 
 .container {
-  @include full-width;
-}
-
-.sliderContent {
-  @include full-width;
-  @include flex-center;
-
-  max-height: 400px;
-}
-
-.img {
-  @include full-container;
-  object-fit: contain;
-}
-
-@include mobile {
-  .sliderContent {
-    height: 150px;
+  .slider {
+    div:not([class^="_custom"]) {
+      height: fit-content !important;
+    }
   }
 
-  .img {
+  .dots {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    position: absolute;
+    bottom: 32px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+
+    li {
+      margin: 0 23px;
+      width: 10px;
+      height: 10px;
+
+      button {
+        width: 10px;
+        height: 10px;
+        &::before {
+          color: white;
+          font-size: 10px;
+          line-height: 10px;
+          width: 10px;
+          height: 10px;
+        }
+      }
+
+      &[class="slick-active"] button::before {
+        color: var(--color-orange);
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.customSliderContent {
+  @include full-container;
+  background-color: var(--color-black);
+
+  img.customSliderImg {
+    height: 40dvh;
+    width: 100%;
     object-fit: cover;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
