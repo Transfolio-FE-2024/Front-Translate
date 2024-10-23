@@ -4,7 +4,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ThumbnailCardFolderable from "@/components/thumbnail-card/thumbnail-card-folderable/ThumbnailCardFolderable";
 import { useRef, useState } from "react";
-import Arrow from "../arrow/Arrow";
 import { useMediaQuery } from "react-responsive";
 import ThumbnailTitle from "@/components/thumbnail-title/ThumbnailTitle";
 import { posts } from "@/util/sample-data";
@@ -21,8 +20,9 @@ const ContentSlider = () => {
     speed: 500,
     slidesToShow: sliderNumber,
     slidesToScroll: sliderNumber,
-    nextArrow: <Arrow left={false} onClicked={() => next()} />,
-    prevArrow: <Arrow onClicked={() => previous()} />,
+    arrows: false, // FIXME
+    // nextArrow: <Arrow left={false} onClicked={() => next()} />,
+    // prevArrow: <Arrow onClicked={() => previous()} />,
     afterChange: (index: number) => {
       setPageIndex(index);
     },
@@ -59,7 +59,6 @@ const ContentSlider = () => {
               <div className={styles.thumbnailSection}>
                 <ThumbnailCardFolderable
                   original={post.title}
-                  translated={post.subtitle}
                   major={post.translator.major}
                   writer={`@${post.translator.nickName}`}
                   picked={109}

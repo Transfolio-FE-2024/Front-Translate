@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { APIResponse, SignUpInfo } from "@/interface";
 import { TF } from "@/util/const";
 import axios from "axios";

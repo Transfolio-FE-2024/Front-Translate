@@ -170,7 +170,6 @@ const Edit = () => {
           <div className={styles.thumbnailCardSection}>
             <ThumbnailCardUnfolderable
               original={post.title}
-              translated={post.subtitle}
               color={getCategoryColor(post.category.major)}
               fontStyle={selectedFontFamily}
               isEditMode

@@ -13,13 +13,20 @@ import {
   preDefinedFontSize,
   preDefinedFontFamily,
   supportedTranslateLanguage,
+  TF,
 } from "@/util/const";
 import { MainCategoryType, ContentType } from "@/types/index";
 import { useMutation } from "@tanstack/react-query";
-import { Post } from "@/interface";
 import boardApi from "@/api/boardApi";
-import { className, getCategoryColor } from "@/util";
+import {
+  className,
+  CookieManager,
+  getCategoryColor,
+  ValidationUtil,
+} from "@/util";
 import ThumbnailCardUnfolderable from "@/components/thumbnail-card/thumbnail-card-unfolderable/ThumbnailCardUnfolderable";
+import JwtManager from "@/util/jwtManager";
+import { Board } from "@/interface/client/board";
 
 const Portfolio = () => {
   const indexRef = useRef<number>(1);
@@ -55,7 +62,7 @@ const Portfolio = () => {
   );
   //
   const { mutate: submitPost } = useMutation({
-    mutationFn: (post: Post) => boardApi.createBoard(post),
+    mutationFn: (board: Board) => boardApi.createBoard(board),
     onSuccess: () => navigate("/home/completion"),
     onError: (e: Error) => alert(e.message),
   });
@@ -137,6 +144,55 @@ const Portfolio = () => {
     [contents]
   );
 
+  const handleClickPreSave = () => saveBoard(true);
+
+  const handleClickSubmit = () => saveBoard();
+
+  function saveBoard(preSave: boolean = false) {
+    // 필수 입력값 체크
+    const onError = (key: string) => alert(`${key}(을)를 입력하세요.`);
+
+    if (
+      !ValidationUtil.isBlank(
+        { value: title, key: "제목", onError },
+        { value: selectedOriginLanguage || "", key: "원문 언어", onError },
+        { value: selectedTranslatedLanguage || "", key: "번역 언어", onError },
+        {
+          value: selectedMainCatetory?.toString() || "",
+          key: "대분류",
+          onError,
+        },
+        { value: selectedSubCatetory?.toString() || "", key: "소분류", onError }
+      )
+    ) {
+      return;
+    }
+
+    const token = JwtManager.decodeJwt(
+      CookieManager.get(document, TF.KEY.COOKIE.TOKEN) || ""
+    );
+    const loginId = token ? token[TF.KEY.JWT.LOGIN_ID] : "";
+
+    if (loginId) {
+      submitPost({
+        boardTitle: title,
+        boardSubTitle: title,
+        beforeLang: selectedOriginLanguage || "",
+        afterLang: selectedTranslatedLanguage || "",
+        boardDescription: information,
+        highCtg: selectedMainCatetory ? selectedMainCatetory.toString() : "",
+        lowCtg: selectedSubCatetory ? selectedSubCatetory.toString() : "",
+        boardAuthor: author,
+        boardContent: JSON.stringify(contents),
+        tempStorageAt: preSave,
+        fontSize: Number(selectedFontSize || "12"),
+        fontType: preDefinedFontFamily[selectedFontFamily],
+      });
+    } else {
+      alert("오류가 발생했습니다.");
+    }
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -148,7 +204,6 @@ const Portfolio = () => {
           <div className={styles.thumbnailCardSection}>
             <ThumbnailCardUnfolderable
               original={title}
-              translated={title}
               color={getCategoryColor(selectedMainCatetory || "")}
               fontStyle={selectedFontFamily}
               isEditMode
@@ -346,47 +401,13 @@ const Portfolio = () => {
             <div className={styles.mainButtonSection}>
               <button
                 className={styles.btnPreSave}
-                onClick={() => alert("임시 저장 기능 미구현")}
+                onClick={handleClickPreSave}
               >
                 임시저장
               </button>
             </div>
             <div className={styles.mainButtonSection}>
-              <button
-                className={styles.btnSubmit}
-                onClick={() => () => {
-                  // TODO - 입력값 유효성 검증
-
-                  submitPost({
-                    title,
-                    subtitle: title, // FIXME
-                    translator: {
-                      // FIXME
-                      id: "test",
-                      major: "",
-                      nickName: "test_nickname",
-                    },
-                    category: {
-                      major: selectedMainCatetory || "",
-                      sub: selectedSubCatetory || "",
-                    },
-                    content: contents.map((content) => ({
-                      original: content.original,
-                      translated: content.translated,
-                    })),
-                    style: {
-                      fontSize: selectedFontSize,
-                      fontFamily: selectedFontFamily,
-                    },
-                    language: {
-                      original: selectedOriginLanguage || "",
-                      translated: selectedTranslatedLanguage || "",
-                    },
-                    description: information,
-                    author,
-                  });
-                }}
-              >
+              <button className={styles.btnSubmit} onClick={handleClickSubmit}>
                 제출하기
               </button>
             </div>

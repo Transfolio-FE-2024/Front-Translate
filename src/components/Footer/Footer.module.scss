@@ -1,0 +1,58 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.container {
+  * {
+    font-family: var(--font-pretend);
+    font-weight: var(--font-regular);
+    font-size: 16px;
+    letter-spacing: 0.04em;
+    line-height: 229.5%;
+  }
+
+  width: 100%;
+  @include flex-center;
+  flex-wrap: wrap-reverse;
+  align-content: flex-start;
+  background-color: var(--color-footer);
+  min-height: 347px;
+  height: auto;
+  padding-top: 106px;
+  padding-bottom: 99px;
+
+  .leftSide {
+    flex-shrink: 0;
+    padding-right: 98px;
+
+    .top {
+      margin-bottom: 29px;
+      .slogan {
+        font-size: 18px;
+        letter-spacing: 0.125em;
+      }
+    }
+
+    .bottom {
+      .since {
+        font-size: 18px;
+        letter-spacing: 0.125em;
+      }
+    }
+  }
+
+  .rightSide {
+    flex-shrink: 1;
+
+    @include flex;
+
+    .column {
+      &:not(:last-child) {
+        margin-right: min(10dvw, 158px);
+      }
+
+      .item {
+        text-wrap: nowrap;
+      }
+    }
+  }
+}

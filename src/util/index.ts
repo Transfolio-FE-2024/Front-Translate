@@ -1,47 +1,59 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // util
-export class SessionStorageManager {
-  static get = (window: Window, key: string) => {
+export const SessionStorageManager = (() => {
+  function get(window: Window, key: string) {
     if (!window) throw new Error("[Transfolio] undefined window!");
 
     return window.sessionStorage.getItem(key);
-  };
+  }
 
-  static set = (window: Window, key: string, value: any) => {
+  function set(window: Window, key: string, value: any) {
     if (!window) throw new Error("[Transfolio] undefined window!");
 
     return window.sessionStorage.setItem(key, value);
-  };
+  }
 
-  static remove = (window: Window, key: string) => {
+  function remove(window: Window, key: string) {
     if (!window) throw new Error("[Transfolio] undefined window!");
 
     return window.sessionStorage.removeItem(key);
-  };
-}
+  }
 
-export class LocalStorageManager {
-  static get = (window: Window, key: string) => {
+  return {
+    get,
+    set,
+    remove,
+  };
+})();
+
+export const LocalStorageManager = (() => {
+  function get(window: Window, key: string) {
     if (!window) throw new Error("[Transfolio] undefined window!");
 
     return window.localStorage.getItem(key);
-  };
+  }
 
-  static set = (window: Window, key: string, value: any) => {
+  function set(window: Window, key: string, value: any) {
     if (!window) throw new Error("[Transfolio] undefined window!");
 
     return window.localStorage.setItem(key, value);
-  };
+  }
 
-  static remove = (window: Window, key: string) => {
+  function remove(window: Window, key: string) {
     if (!window) throw new Error("[Transfolio] undefined window!");
 
     return window.localStorage.removeItem(key);
-  };
-}
+  }
 
-export class CookieManager {
-  static get(document: Document, name: string) {
+  return {
+    get,
+    set,
+    remove,
+  };
+})();
+
+export const CookieManager = (() => {
+  function get(document: Document, name: string) {
     const nameEQ = name + "=";
     const ca = document.cookie.split(";");
     for (let i = 0; i < ca.length; i++) {
@@ -52,7 +64,7 @@ export class CookieManager {
     return null;
   }
 
-  static set(
+  function set(
     document: Document,
     name: string,
     value: string,
@@ -67,16 +79,22 @@ export class CookieManager {
     document.cookie = name + "=" + (value || "") + expires + "; path=/";
   }
 
-  static remove(document: Document, name: string) {
+  function remove(document: Document, name: string) {
     document.cookie = name + "=; Max-Age=-99999999;";
   }
-}
 
-export class ValidationUtil {
+  return {
+    get,
+    set,
+    remove,
+  };
+})();
+
+export const ValidationUtil = (() => {
   /**
    * @description 비밀번호 유효성 체크
    */
-  static validatePassword(password: string): boolean {
+  function validatePassword(password: string): boolean {
     const lengthCheck = /.{8,}/;
     const upperCaseCheck = /[A-Z]/;
     const lowerCaseCheck = /[a-z]/;
@@ -95,7 +113,7 @@ export class ValidationUtil {
   /**
    * @description 이메일 유효성 체크
    */
-  static validateEmail(email: string): boolean {
+  function validateEmail(email: string): boolean {
     const emailCheck = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     return emailCheck.test(email);
@@ -104,7 +122,7 @@ export class ValidationUtil {
   /**
    * @description 빈 값 여부 체크
    */
-  static isBlank(
+  function isBlank(
     ...targets: {
       onError?: (key: string) => void;
       value: string;
@@ -128,7 +146,7 @@ export class ValidationUtil {
   /**
    * @description 빈 값 및 공백 여부 체크
    */
-  static isWhiteSpace(
+  function isWhiteSpace(
     ...targets: {
       onError?: (key: string) => void;
       value: string;
@@ -148,7 +166,14 @@ export class ValidationUtil {
       return true;
     });
   }
-}
+
+  return {
+    validatePassword,
+    validateEmail,
+    isBlank,
+    isWhiteSpace,
+  };
+})();
 
 export type CategoryColor = "orange" | "green" | "gray";
 export function getCategoryColor(category: string): CategoryColor {

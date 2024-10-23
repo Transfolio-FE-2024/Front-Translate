@@ -4,17 +4,10 @@ import React from "react";
 
 const ThumbnailCardUnfolderable: React.FC<{
   original: string;
-  translated: string;
   color: CategoryColor;
   fontStyle?: string;
   isEditMode?: boolean;
-}> = ({
-  original,
-  translated,
-  color,
-  fontStyle = "Pretendard",
-  isEditMode,
-}) => {
+}> = ({ original, color, fontStyle = "Pretendard", isEditMode }) => {
   return (
     <div className={styles.container}>
       <div className={styles.indexSection}>

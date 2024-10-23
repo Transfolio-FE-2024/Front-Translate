@@ -16,7 +16,6 @@ const ThumbnailCardGallery: React.FC = () => {
             <div className={styles.thumbnailSection}>
               <ThumbnailCardFolderable
                 original={post.title}
-                translated={post.subtitle}
                 major={post.translator.major}
                 writer={`@${post.translator.nickName}`}
                 picked={109}

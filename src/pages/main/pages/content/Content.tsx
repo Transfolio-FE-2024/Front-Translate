@@ -29,7 +29,6 @@ const Content = () => {
           <div className={styles.thumbnailCardSection}>
             <ThumbnailCardUnfolderable
               original={post.title}
-              translated={post.subtitle}
               color={getCategoryColor(post.category.major)}
               fontStyle={post.style.fontFamily}
             />

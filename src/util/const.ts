@@ -4,7 +4,10 @@ export const TF = {
       SIGNUPINFO: "TF_SIGNUPINFO",
     }),
     COOKIE: Object.freeze({
-      TOKEN: "TF_TOKEN",
+      TOKEN: "jwtToken",
+    }),
+    JWT: Object.freeze({
+      LOGIN_ID: "loginId",
     }),
   }),
   HTTP_STATUS: Object.freeze({

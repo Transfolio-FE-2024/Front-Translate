@@ -6,14 +6,18 @@
 }
 
 .content {
-  max-width: 856px;
+  max-width: 896px;
   margin: 75px auto 0;
 }
 
 .bodySection {
-  @include full-width;
+  $padding: 20px;
+
+  width: calc(100% - $padding * 2);
   display: grid;
   grid-template-columns: 100%;
+  padding: 0 $padding;
+  box-sizing: content-box;
 }
 
 .titleSection {
@@ -43,7 +47,9 @@
   position: relative;
   background-color: var(--color-orange);
   color: var(--color-white);
-  height: 127px;
+  min-height: 127px;
+  height: fit-content;
+  overflow-y: auto; // FIXME
 
   // 드래그 막기
   -webkit-user-select: none;

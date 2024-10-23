@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface JwtPayload {
   [key: string]: any;
 }
@@ -6,7 +7,7 @@ export interface JwtPayload {
  * JWT는 점(.)으로 구분된 세 부분으로 구성
  * header, payload, signature
  */
-const jwtManager = () => {
+const JwtManager = (() => {
   function decodeJwt(token: string): JwtPayload | null {
     try {
       // 두 번째 부분(payload) 추출
@@ -24,7 +25,7 @@ const jwtManager = () => {
       // JSON 문자열을 객체로 변환
       return JSON.parse(jsonPayload);
     } catch (e) {
-      console.error("Invalid token:", e);
+      console.warn("Invalid token:", e);
       return null;
     }
   }
@@ -32,6 +33,6 @@ const jwtManager = () => {
   return {
     decodeJwt,
   };
-};
+})();
 
-export default jwtManager();
+export default JwtManager;

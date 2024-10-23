@@ -210,7 +210,7 @@ const Interests = () => {
                       navigate("/signup/complete");
                     })
                     .catch((e) => {
-                      console.error("[TF_ERROR]", e);
+                      console.warn("[TF_ERROR]", e);
                       alert("오류가 발생했습니다.");
                     });
                 }

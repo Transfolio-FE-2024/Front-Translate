@@ -1,32 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Portfolio.module.scss";
 import ThumbnailCardFolderable from "@/components/thumbnail-card/thumbnail-card-folderable/ThumbnailCardFolderable";
 import { useParams } from "react-router-dom";
-import { posts } from "@/util/sample-data";
 import { getCategoryColor } from "@/util";
+import profileApi from "@/api/profileApi";
+import { Portfolio as IPortfolio } from "@/interface/client/profile";
 
 const Portfolio: React.FC = () => {
   const { writerId = "" } = useParams();
-  const filteredPosts = posts.filter((post) => post.translator.id === writerId);
+  const [portfolios, setPortfolios] = useState<IPortfolio[]>();
 
-  if (!filteredPosts.length) return <div>포트폴리오가 존재하지 않습니다.</div>;
+  useEffect(() => {
+    // 포트폴리오 조회
+    profileApi
+      .getPortfolio(writerId)
+      .then((portfolios) => setPortfolios(portfolios))
+      .catch(() => alert("오류가 발생했습니다."));
+  }, []);
 
   return (
     <div className={styles.grid}>
-      {filteredPosts.map((post, index) => (
-        <div className={styles.gridItem}>
-          <ThumbnailCardFolderable
-            original={post.title}
-            translated={post.subtitle}
-            writer={`@${post.translator.nickName}`}
-            picked={4}
-            color={getCategoryColor(post.category.major)}
-            href={`/home/content/${post.id}`}
-            preSave={index === filteredPosts.length - 1} // FIXME
-            fontStyle={post.style.fontFamily}
-          />
-        </div>
-      ))}
+      {portfolios && portfolios.length ? (
+        portfolios.map((portfolio, index) => (
+          <div key={index} className={styles.gridItem}>
+            <ThumbnailCardFolderable
+              original={portfolio.boardTitle}
+              writer={`@${portfolio.userId}`}
+              picked={Number(portfolio.foldCnt)}
+              color={getCategoryColor(portfolio.highCtg)}
+              href={`/home/content/${portfolio.boardPid}`}
+              preSave={portfolio.tempStorageYn === "Y"}
+              fontStyle={portfolio.fontType}
+            />
+          </div>
+        ))
+      ) : (
+        <div>포트폴리오가 존재하지 않습니다.</div>
+      )}
     </div>
   );
 };

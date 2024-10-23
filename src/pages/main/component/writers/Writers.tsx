@@ -12,7 +12,7 @@ const Writers = () => {
       <div className={styles.buttonsSection}>
         {["언어", "전공", "문학", "기업"].map((name, index) => {
           return (
-            <span
+            <div
               className={[
                 styles.button,
                 selectedButtonIndex === index ? styles.active : null,
@@ -21,7 +21,7 @@ const Writers = () => {
               key={index}
             >
               {name}
-            </span>
+            </div>
           );
         })}
       </div>

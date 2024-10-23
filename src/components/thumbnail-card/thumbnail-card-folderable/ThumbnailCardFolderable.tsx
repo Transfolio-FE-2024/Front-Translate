@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import styles from "./ThumbnailCardFolderable.module.scss";
-import React from "react";
+import React, { useState } from "react";
 import { CategoryColor, className } from "@/util";
 
 const ThumbnailCardFolderable: React.FC<{
   original: string;
-  translated: string;
   major?: string;
   writer: string;
   picked: number;
@@ -15,7 +14,6 @@ const ThumbnailCardFolderable: React.FC<{
   fontStyle?: string;
 }> = ({
   original,
-  translated,
   major,
   writer,
   picked,
@@ -24,8 +22,26 @@ const ThumbnailCardFolderable: React.FC<{
   href = "",
   fontStyle = "Pretendard",
 }) => {
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+
+  // 드래그 상태 초기화
+  const handleMouseDown = () => setIsDragging(false);
+
+  // 마우스 이동이 감지되면 드래그 상태로 변경
+  const handleMouseMove = () => setIsDragging(true);
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    if (isDragging) e.preventDefault();
+  };
+
   return (
-    <Link to={href}>
+    <Link
+      to={href}
+      draggable={false}
+      onClick={handleClick}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+    >
       <div
         className={className(
           styles.container,

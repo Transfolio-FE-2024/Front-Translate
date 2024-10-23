@@ -5,7 +5,7 @@ import MainButtonRound from "@/components/button/main-button-round/MainButtonRou
 import SnsButton from "@/components/button/sns-button/SnsButton";
 import kakaoImg from "../../../assets/images/sns_kakaotalk.png";
 import Layout from "@/components/Layout/Layout";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { ValidationUtil } from "@/util";
 import { CLIENT_SITE_ADDRESS } from "@/util/const";
 import DefaultLoading from "@/components/loading/default-loading/DefaultLoading";
@@ -15,6 +15,7 @@ const REDIRECT_URL = CLIENT_SITE_ADDRESS + "oauth/kakaocallback";
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [showLoading, setShowLoading] = useState<boolean>(false);
@@ -42,11 +43,18 @@ const SignIn = () => {
       .signIn(id, password)
       .then((res) => {
         if (String(res.status) === "200") {
+          // b_url이 있으면 해당 url로 이동
+          const bURL = searchParams.get("b_url") || "";
+          if (bURL) {
+            navigate(decodeURIComponent(bURL));
+            return;
+          }
+
           navigate("/home");
         } else throw new Error("오류가 발생했습니다." + ` ${res.message}`);
       })
       .catch((e) => {
-        console.error("[TF_ERROR]", e);
+        console.warn("[TF_ERROR]", e);
         alert(e.message);
       })
       .finally(() => setShowLoading(false));
