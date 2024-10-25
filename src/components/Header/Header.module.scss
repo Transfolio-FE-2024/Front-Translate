@@ -7,7 +7,7 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 9999;
+  z-index: 999;
   align-items: center;
   justify-content: space-between;
   padding: 0 50px;
@@ -16,98 +16,128 @@
   background-color: var(--color-header);
   overflow-x: auto;
   overflow-y: hidden;
-}
 
-.menuSection {
-  @include flex;
-  align-items: center;
-}
+  .menuSection {
+    @include flex;
+    align-items: center;
 
-.menuIconSection {
-  @include cursor-pointer;
-  width: 30px;
-  height: 21px;
+    .menuIcon {
+      @include cursor-pointer;
+      width: 30px;
+      height: 21px;
 
-  &:hover {
-    @include opacity-0-8;
-  }
+      &:hover {
+        @include opacity-0-8;
+      }
 
-  div {
-    height: 4px;
-    background-color: var(--color-gray);
+      div {
+        height: 4px;
+        background-color: var(--color-gray);
 
-    &:first-child {
-      margin-bottom: 4px;
+        &:first-child {
+          margin-bottom: 4px;
+        }
+
+        &:last-child {
+          margin-top: 4px;
+        }
+      }
     }
 
-    &:last-child {
-      margin-top: 4px;
+    .logoIcon {
+      @include cursor-pointer;
+      margin-left: 19px;
+      width: 150px;
+      height: 25px;
+
+      img {
+        @include full-container;
+      }
     }
   }
-}
 
-.logoIcon {
-  @include cursor-pointer;
-  margin-left: 19px;
-  width: 150px;
-  height: 25px;
-
-  img {
-    @include full-container;
+  .buttonsSection {
+    @include flex;
+    align-items: center;
+    justify-content: end;
   }
-}
 
-.buttonsSection {
-  @include flex;
-  align-items: center;
-  justify-content: end;
-}
+  .writeButton {
+    font-family: var(--font-pretend);
+    font-weight: var(--font-refular);
+    font-size: 14px;
+    letter-spacing: 0.125em;
+    line-height: 229.5%;
 
-.writeButton {
-  font-family: var(--font-pretend);
-  font-weight: var(--font-refular);
-  font-size: 14px;
-  letter-spacing: 0.125em;
-  line-height: 229.5%;
+    @include flex-center;
+    @include cursor-pointer;
+    width: 78px;
+    height: 30px;
+    margin-right: 19px;
+    border: 1px solid var(--color-gray);
+    color: var(--color-gray);
+    border-radius: 30px;
 
-  @include flex-center;
-  @include cursor-pointer;
-  width: 78px;
-  height: 30px;
-  margin-right: 19px;
-  border: 1px solid var(--color-gray);
-  color: var(--color-gray);
-  border-radius: 30px;
-
-  &:hover {
-    opacity: 0.8;
+    &:hover {
+      opacity: 0.8;
+    }
   }
-}
 
-.searchButtonSection {
-  width: 30px;
-  height: 30px;
-}
+  .searchButton,
+  .closeButton {
+    width: 30px;
+    height: 30px;
 
-.searchIcon {
-  @include full-container;
-  @include cursor-pointer;
-  color: var(--color-gray);
+    .icon {
+      @include full-container;
+      @include cursor-pointer;
+      color: var(--color-gray);
 
-  &:hover {
-    @include opacity-0-8;
+      &:hover {
+        @include opacity-0-8;
+      }
+    }
   }
-}
 
-.searchInputSection {
-  width: 150px;
-  height: 30px;
-  border-radius: 30px;
-  margin-right: 10px;
+  .searchOveraySection {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+
+    .searchInputSection {
+      @include flex;
+      padding: 30px;
+      background-color: var(--color-white);
+
+      input.searchInput {
+        flex: 1;
+        border-bottom: 1px solid var(--color-gray);
+      }
+
+      .searchButton {
+        margin-left: 10px;
+        .icon {
+          color: var(--color-orange);
+        }
+      }
+
+      .closeButton {
+        margin-left: 10px;
+      }
+    }
+  }
 }
 
 @include mobile {
   .container {
     padding: 28px 28px;
+
+    .logoIcon {
+      display: none;
+    }
   }
 }
