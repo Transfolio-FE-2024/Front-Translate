@@ -1,17 +1,34 @@
-import React, { useEffect, useRef } from "react";
+import React, { ReactNode, useContext, useEffect, useRef } from "react";
 import styles from "./Header.module.scss";
 import logoIcon from "@/assets/images/ico_logo.png";
 import { useState } from "react";
 import MenuBar from "./components/menu-bar/MenuBar";
 import { IoMdClose, IoMdSearch } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
+import HeaderMenuContext from "./context/HeaderMenuContext";
 
 export const Header = () => {
+  const headerMenuContext = useContext(HeaderMenuContext);
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const [showSearchInput, setShowSearchInput] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
   const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const defaultButtons: ReactNode = (
+      <>
+        <button onClick={handleClickWrite} className={styles.writeButton}>
+          글쓰기
+        </button>
+        <div className={styles.searchButton} onClick={toggleShowSearchInput}>
+          <IoMdSearch className={styles.icon} />
+        </div>
+      </>
+    );
+
+    headerMenuContext.setDefaultButtons(defaultButtons);
+  }, []);
 
   useEffect(() => {
     // 검색창 열렸을 때
@@ -79,14 +96,7 @@ export const Header = () => {
             </div>
           </Link>
         </div>
-        <div className={styles.buttonsSection}>
-          <button onClick={handleClickWrite} className={styles.writeButton}>
-            글쓰기
-          </button>
-          <div className={styles.searchButton} onClick={toggleShowSearchInput}>
-            <IoMdSearch className={styles.icon} />
-          </div>
-        </div>
+        <div className={styles.buttonsSection}>{headerMenuContext.buttons}</div>
         {/* 오버레이 검색창 */}
         {showSearchInput && (
           <div

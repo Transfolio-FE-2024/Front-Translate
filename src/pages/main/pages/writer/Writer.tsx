@@ -1,6 +1,6 @@
 import styles from "./Writer.module.scss";
 import PageTitle from "../../../../components/page-title/PageTitle";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Career, Portfolio } from "./component";
 import { HiOutlinePencil } from "react-icons/hi";
@@ -10,6 +10,7 @@ import profileApi from "@/api/profileApi";
 import { TF } from "@/util/const";
 import JwtManager from "@/util/jwtManager";
 import { UserInfo } from "@/interface/client/profile";
+import HeaderMenuContext from "@/components/Header/context/HeaderMenuContext";
 
 const tabs = [
   {
@@ -30,13 +31,22 @@ const tabs = [
   },
 ];
 const Writer = () => {
-  const { writerId = "" } = useParams();
+  const headerMenuContext = useContext(HeaderMenuContext);
   const navigate = useNavigate();
   const location = useLocation();
+  const { writerId = "" } = useParams();
   const [selectedButtonIndex, setSelectedButtonIndex] = useState<number>(0);
   const [editMode, setEditMode] = useState<boolean>(false); // 프로필 편집 모드 토글
   const [isMe, setIsMe] = useState<boolean>(false);
   const [userInfo, setUserInfo] = useState<UserInfo>();
+  const doneEditButton = useMemo(
+    () => (
+      <button className={styles.doneEditButton} onClick={handleClickDoneEdit}>
+        완료
+      </button>
+    ),
+    []
+  );
 
   useEffect(() => {
     // 토큰 확인
@@ -63,6 +73,14 @@ const Writer = () => {
       });
   }, []);
 
+  useEffect(() => {
+    if (editMode) {
+      headerMenuContext.setButtons(doneEditButton);
+    } else {
+      headerMenuContext.setButtons();
+    }
+  }, [editMode, headerMenuContext]); // WHY? headerMenuContext 추가하지 않으면 버튼이 바뀌지 않음
+
   const buttonClickHandler = (index: number) => {
     setSelectedButtonIndex(index);
   };
@@ -74,6 +92,15 @@ const Writer = () => {
 
     return tabComponent.component;
   };
+
+  function handleClickDoneEdit() {
+    if (confirm("저장하시겠습니까?")) {
+      // TODO - api 연결
+      alert("프로필 수정 미구현");
+      // Edit 모드에서 나가기
+      setEditMode(false);
+    }
+  }
 
   return (
     <div className={styles.container}>
