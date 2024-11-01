@@ -57,7 +57,10 @@ const Writer = () => {
     profileApi
       .getMyInfo(writerId)
       .then((userInfo) => setUserInfo(userInfo))
-      .catch(() => alert("오류가 발생했습니다."));
+      .catch((e) => {
+        console.warn("[Transfolio] ", e);
+        alert("프로필 정보를 가져오는 도중 오류가 발생했습니다.");
+      });
   }, []);
 
   const buttonClickHandler = (index: number) => {

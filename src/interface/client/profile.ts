@@ -12,7 +12,7 @@ export interface UserInterest {
 export interface UserInfo {
   userId: string;
   email: string;
-  foldCnt: string;
+  foldCnt: number;
   userIntrs: UserInterest;
 }
 
@@ -28,9 +28,8 @@ export interface Portfolio {
   lowCtg: string;
   boardAuthor: string;
   boardContent: string;
-  tempStorageAt: boolean;
   fontSize: number; // pt
   fontType: string;
   foldCnt: string;
-  tempStorageYn: string;
+  tempStorageYN: "Y" | "N";
 }

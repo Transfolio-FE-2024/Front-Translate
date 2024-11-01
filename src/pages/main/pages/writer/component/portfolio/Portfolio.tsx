@@ -29,7 +29,7 @@ const Portfolio: React.FC = () => {
               picked={Number(portfolio.foldCnt)}
               color={getCategoryColor(portfolio.highCtg)}
               href={`/home/content/${portfolio.boardPid}`}
-              preSave={portfolio.tempStorageYn === "Y"}
+              preSave={portfolio.tempStorageYN === "Y"}
               fontStyle={portfolio.fontType}
             />
           </div>

@@ -15,8 +15,11 @@ export interface UserInterest {
 export interface UserInfo {
   userId: string;
   email: string;
-  foldCnt: string;
-  userIntrs: UserInterest;
+  intrsCorporation: string;
+  intrsLiterature: string;
+  intrsMajor: string;
+  intrsLanguage: string;
+  totalFoldCnt: number;
 }
 
 export interface Portfolio {
@@ -31,7 +34,6 @@ export interface Portfolio {
   lowCtg: string;
   boardAuthor: string;
   boardContent: string;
-  tempStorageAt: boolean;
   fontSize: number; // pt
   fontType: string;
   foldCnt: string;

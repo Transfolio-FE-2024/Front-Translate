@@ -78,7 +78,7 @@ const router = createBrowserRouter([
             element: <Portfolio />,
           },
           {
-            path: "completion",
+            path: "completion/:contentId",
             element: <Completion />,
           },
         ],

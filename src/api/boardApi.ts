@@ -1,5 +1,7 @@
 import { Board } from "@/interface/client/board";
 import { Board as S_Board } from "@/interface/server/board";
+import { Portfolio } from "@/interface/client/profile";
+import { Portfolio as S_Portfolio } from "@/interface/server/profile";
 import { CookieManager } from "@/util";
 import { TF } from "@/util/const";
 import JwtManager from "@/util/jwtManager";
@@ -18,8 +20,22 @@ const boardApi = () => {
 
     return await axios
       .post(
-        `${String(import.meta.env.VITE_API_HOST)}/board`,
-        { ...board, userId: loginId } as S_Board, // FIXME userId 토큰에서 추출
+        `${String(import.meta.env.VITE_API_HOST)}/board/regist`,
+        {
+          userId: loginId,
+          boardTitle: board.boardTitle,
+          boardSubTitle: board.boardSubTitle,
+          beforeLang: board.beforeLang,
+          afterLang: board.afterLang,
+          boardDescription: board.boardDescription,
+          highCtg: board.highCtg,
+          lowCtg: board.lowCtg,
+          boardAuthor: board.boardAuthor,
+          boardContent: board.boardContent,
+          tempStorageYn: board.tempStorageYN,
+          fontSize: board.fontSize,
+          fontType: board.fontType,
+        } as S_Board,
         {
           headers: {
             "Content-Type": "application/json;charset=UTF-8",
@@ -32,6 +48,33 @@ const boardApi = () => {
         status:
           response.data.object.status || TF.HTTP_STATUS.FAIL_UNKNOWN_STATUS,
       }));
+  }
+
+  /** 게시글 단건 조회 */
+  async function getBoardById(boardId: string): Promise<Portfolio> {
+    return await axios
+      .get(`${String(import.meta.env.VITE_API_HOST)}/board/${boardId}`)
+      .then((response) => {
+        const board = response.data as S_Portfolio;
+
+        return {
+          boardPid: board.boardPid,
+          userId: board.userId,
+          boardTitle: board.boardTitle,
+          afterLang: board.afterLang,
+          beforeLang: board.beforeLang,
+          boardSubTitle: board.boardSubTitle,
+          boardDescription: board.boardDescription,
+          highCtg: board.highCtg,
+          lowCtg: board.lowCtg,
+          boardAuthor: board.boardAuthor,
+          boardContent: board.boardContent,
+          fontSize: board.fontSize,
+          fontType: board.fontType,
+          foldCnt: board.foldCnt,
+          tempStorageYN: board.tempStorageYn === "Y" ? "Y" : "N",
+        };
+      });
   }
 
   /** 홈화면 - 관심분야 게시물 */
@@ -48,6 +91,7 @@ const boardApi = () => {
 
   return {
     createBoard,
+    getBoardById,
     getHomeInterests,
   };
 };

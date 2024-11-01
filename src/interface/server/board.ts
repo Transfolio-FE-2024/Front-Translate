@@ -13,7 +13,7 @@ export interface Board {
   lowCtg: string;
   boardAuthor: string;
   boardContent: string;
-  tempStorageAt: boolean;
+  tempStorageYn: string;
   fontSize: number;
   fontType: string;
 }

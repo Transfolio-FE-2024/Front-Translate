@@ -26,12 +26,12 @@ const profileApi = () => {
         return {
           userId: userInfo.userId,
           email: userInfo.email,
-          foldCnt: userInfo.foldCnt,
+          foldCnt: userInfo.totalFoldCnt,
           userIntrs: {
-            intrsLanguage: userInfo.userIntrs.intrsLanguage,
-            intrsMajor: userInfo.userIntrs.intrsMajor,
-            intrsLiterature: userInfo.userIntrs.intrsLiterature,
-            intrsCorporation: userInfo.userIntrs.intrsCorporation,
+            intrsLanguage: userInfo.intrsLanguage,
+            intrsMajor: userInfo.intrsMajor,
+            intrsLiterature: userInfo.intrsLiterature,
+            intrsCorporation: userInfo.intrsCorporation,
           },
         };
       });
@@ -54,7 +54,23 @@ const profileApi = () => {
       .then((response) => {
         const portfolios = response.data as S_Portfolio[];
 
-        return [...portfolios];
+        return portfolios.map((portfolio) => ({
+          boardPid: portfolio.boardPid,
+          userId: portfolio.userId,
+          boardTitle: portfolio.boardTitle,
+          afterLang: portfolio.afterLang,
+          beforeLang: portfolio.beforeLang,
+          boardSubTitle: portfolio.boardSubTitle,
+          boardDescription: portfolio.boardDescription,
+          highCtg: portfolio.highCtg,
+          lowCtg: portfolio.lowCtg,
+          boardAuthor: portfolio.boardAuthor,
+          boardContent: portfolio.boardContent,
+          fontSize: portfolio.fontSize,
+          fontType: portfolio.fontType,
+          foldCnt: portfolio.foldCnt,
+          tempStorageYN: portfolio.tempStorageYn === "Y" ? "Y" : "N",
+        }));
       });
   }
 

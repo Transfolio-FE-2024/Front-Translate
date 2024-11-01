@@ -52,19 +52,12 @@ export const areaOfInterest = {
 };
 
 export const preDefinedFontSize = ["12pt", "14pt", "16pt", "18pt", "20pt"];
-// export const preDefinedFontFamily: {
-//   [key: string]: string;
-// } = {
-//   Pretendard: "Pretendard",
-//   "Nanum Myeangjo": "NanumMyeongjo",
-//   "Noto Sans": "NotoSans",
-//   "Nanum Barun Gothic": "NanumBarunGothic",
-// };
+
 export const preDefinedFontFamily: {
   [key: string]: string;
 } = {
   Pretendard: "Pretendard",
-  NanumMyeongjo: "Nanum Myeangjo",
+  NanumMyeangjo: "Nanum Myeangjo",
   NotoSans: "Noto Sans",
   NanumBarunGothic: "Nanum Barun Gothic",
 };

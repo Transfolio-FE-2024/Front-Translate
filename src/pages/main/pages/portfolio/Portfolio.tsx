@@ -63,7 +63,9 @@ const Portfolio = () => {
   //
   const { mutate: submitPost } = useMutation({
     mutationFn: (board: Board) => boardApi.createBoard(board),
-    onSuccess: () => navigate("/home/completion"),
+    onSuccess: (data) => {
+      navigate(`/home/completion/${data.result.boardPid}`);
+    },
     onError: (e: Error) => alert(e.message),
   });
 
@@ -149,23 +151,41 @@ const Portfolio = () => {
   const handleClickSubmit = () => saveBoard();
 
   function saveBoard(preSave: boolean = false) {
-    // 필수 입력값 체크
-    const onError = (key: string) => alert(`${key}(을)를 입력하세요.`);
+    // Validation Check #1 - 필수 입력값 체크
+    {
+      const onError = (key: string) => alert(`${key}(을)를 입력하세요.`);
 
-    if (
-      !ValidationUtil.isBlank(
-        { value: title, key: "제목", onError },
-        { value: selectedOriginLanguage || "", key: "원문 언어", onError },
-        { value: selectedTranslatedLanguage || "", key: "번역 언어", onError },
-        {
-          value: selectedMainCatetory?.toString() || "",
-          key: "대분류",
-          onError,
-        },
-        { value: selectedSubCatetory?.toString() || "", key: "소분류", onError }
-      )
-    ) {
-      return;
+      if (
+        !ValidationUtil.isBlank(
+          { value: title, key: "제목", onError },
+          { value: selectedOriginLanguage || "", key: "원문 언어", onError },
+          {
+            value: selectedTranslatedLanguage || "",
+            key: "번역 언어",
+            onError,
+          },
+          {
+            value: selectedMainCatetory?.toString() || "",
+            key: "대분류",
+            onError,
+          },
+          {
+            value: selectedSubCatetory?.toString() || "",
+            key: "소분류",
+            onError,
+          }
+        )
+      ) {
+        return;
+      }
+    }
+
+    // Validation Check #2 - 원문 언어와 번역 언어가 같은 경우 등록 불가
+    {
+      if (selectedOriginLanguage === selectedTranslatedLanguage) {
+        alert("같은 언어는 선택할 수 없습니다.");
+        return;
+      }
     }
 
     const token = JwtManager.decodeJwt(
@@ -183,13 +203,15 @@ const Portfolio = () => {
         highCtg: selectedMainCatetory ? selectedMainCatetory.toString() : "",
         lowCtg: selectedSubCatetory ? selectedSubCatetory.toString() : "",
         boardAuthor: author,
-        boardContent: JSON.stringify(contents),
-        tempStorageAt: preSave,
-        fontSize: Number(selectedFontSize || "12"),
+        boardContent: contents
+          .map((content) => [content.original, content.translated].join("/"))
+          .join("$"),
+        fontSize: Number(selectedFontSize.replace("pt", "") || "12"),
         fontType: preDefinedFontFamily[selectedFontFamily],
+        tempStorageYN: preSave ? "Y" : "N",
       });
     } else {
-      alert("오류가 발생했습니다.");
+      alert("로그인 정보가 바르지 않습니다.");
     }
   }
 

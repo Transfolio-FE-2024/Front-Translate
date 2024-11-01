@@ -2,72 +2,88 @@ import { Link, useParams } from "react-router-dom";
 import styles from "./Content.module.scss";
 import PageTitle from "@/components/page-title/PageTitle";
 import { VscArrowSwap } from "react-icons/vsc";
-import { TF } from "@/util/const";
-import { className, getCategoryColor } from "@/util";
+import {
+  className,
+  getCategoryColor,
+  getFontFamilyByDisplayName,
+} from "@/util";
 import ThumbnailCardUnfolderable from "@/components/thumbnail-card/thumbnail-card-unfolderable/ThumbnailCardUnfolderable";
-import { posts } from "@/util/sample-data";
+import { useEffect, useState } from "react";
+import boardApi from "@/api/boardApi";
+import { Portfolio } from "@/interface/client/profile";
 
 const Content = () => {
   const { contentId = "" } = useParams();
+  const [board, setBoard] = useState<Portfolio>();
 
-  const post = posts.find((post) => post.id === contentId);
+  useEffect(() => {
+    if (!contentId) {
+      alert("잘못된 접근입니다.");
+      return;
+    }
 
-  // FIXME
-  if (!post) {
-    const err = new Error();
-    err.name = TF.PAGE_ERROR.NOT_FOUND;
-    throw err;
-  }
-
-  const preSave = post.status === "tmp";
+    boardApi
+      .getBoardById(contentId)
+      .then((board) => setBoard(board))
+      .catch((e) => {
+        console.warn("[Transfolio] ", e);
+        alert("데이터를 가져오는 도중 오류가 발생했습니다.");
+      });
+  }, []);
 
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <PageTitle mainTitle={"Translator"} subTitle={post.translator.major} />
+        {/* FIXME - 사용자 한 줄 소개 API 필요 (GET, POST/PUT) */}
+        <PageTitle mainTitle={"Translator"} subTitle={"기능 미구현"} />
         <div className={styles.thumbnailSection}>
           <div className={styles.thumbnailCardSection}>
             <ThumbnailCardUnfolderable
-              original={post.title}
-              color={getCategoryColor(post.category.major)}
-              fontStyle={post.style.fontFamily}
+              original={board?.boardTitle || ""}
+              color={getCategoryColor(board?.highCtg || "")}
+              fontStyle={board?.fontType}
             />
           </div>
           <div className={styles.thumbnailInfoSection}>
             <div className={styles.titleDateSection}>
-              {post.lastUpdatedDate}
+              {/* FIXME - /board/{boardPid} API 수정 필요 - 포트폴리오의 최종 수정일 */}
+              {"기능 미구현"}
             </div>
             <div className={styles.languageSection}>
-              <div className={styles.language}>{post.language.original}</div>
+              <div className={styles.language}>{board?.beforeLang}</div>
               <VscArrowSwap className={styles.arrowIcon} />
-              <div className={styles.language}>{post.language.translated}</div>
+              <div className={styles.language}>{board?.afterLang}</div>
             </div>
-            <div className={styles.descriptionSection}>{post.description}</div>
+            <div className={styles.descriptionSection}>
+              {board?.boardDescription}
+            </div>
             <div className={styles.etcWrapper}>
               <div
                 className={styles.etcItemContainer}
                 style={{ marginRight: "48px" }}
               >
                 <div className={styles.etcItemTitle}>대분류</div>
-                <div className={styles.etcItemContent}>
-                  {post.category.major}
-                </div>
+                <div className={styles.etcItemContent}>{board?.highCtg}</div>
               </div>
               <div className={styles.etcItemContainer}>
                 <div className={styles.etcItemTitle}>소분류</div>
-                <div className={styles.etcItemContent}>{post.category.sub}</div>
+                <div className={styles.etcItemContent}>{board?.lowCtg}</div>
               </div>
               <div className={styles.etcItemContainer}>
                 <div className={styles.etcItemTitle}>작가</div>
-                <div className={styles.etcItemContent}>{post.author}</div>
+                <div className={styles.etcItemContent}>
+                  {board?.boardAuthor}
+                </div>
               </div>
               <div className={styles.editButtonWrapper}>
-                <Link
-                  to={`/home/edit/${post.id}`}
-                  className={styles.editButtonContainer}
-                >
-                  <div className={styles.editButton}>수정하기</div>
-                </Link>
+                {board && board.boardPid && (
+                  <Link
+                    to={`/home/edit/${board?.boardPid || ""}`}
+                    className={styles.editButtonContainer}
+                  >
+                    <div className={styles.editButton}>수정하기</div>
+                  </Link>
+                )}
               </div>
             </div>
           </div>
@@ -75,30 +91,37 @@ const Content = () => {
 
         <div className={styles.mainContentSection}>
           <div className={styles.mainContent}>
-            {post.content.map((content, index) => (
-              <div
-                className={styles.mainContentRow}
-                key={index}
-                style={{
-                  fontFamily: post.style.fontFamily,
-                  fontSize: post.style.fontSize,
-                }}
-              >
-                <div
-                  className={className(
-                    styles.mainContentRowOriginal,
-                    content.translated === "" || preSave
-                      ? styles.greenColor
-                      : styles.orangeColor
-                  )}
-                >
-                  {content.original}
-                </div>
-                <div className={styles.mainContentRowTranslation}>
-                  {content.translated}
-                </div>
-              </div>
-            ))}
+            {board
+              ? board.boardContent
+                  .split("$") // 컨텐츠 예시: "Hello/안녕하세요$My name is Hong Gil-dong/저는 홍길동입니다",
+                  .map((contentBlock) => contentBlock.split("/"))
+                  .map((content, index) => (
+                    <div
+                      className={styles.mainContentRow}
+                      key={index}
+                      style={{
+                        fontFamily: getFontFamilyByDisplayName(board.fontType),
+                        fontSize: `${board.fontSize || "12"}pt`,
+                      }}
+                    >
+                      <div
+                        className={className(
+                          styles.mainContentRowOriginal,
+                          // CHECK & FIXME - 임시 저장글인 경우 초록색
+                          // 번역된 글이 비어있을 경우 초록색
+                          content[1] === "" || board.tempStorageYN === "Y"
+                            ? styles.greenColor
+                            : styles.orangeColor
+                        )}
+                      >
+                        {content[0]}
+                      </div>
+                      <div className={styles.mainContentRowTranslation}>
+                        {content[1]}
+                      </div>
+                    </div>
+                  ))
+              : null}
           </div>
         </div>
       </div>

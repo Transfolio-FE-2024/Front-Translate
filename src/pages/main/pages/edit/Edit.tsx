@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./Edit.module.scss";
 import PageTitle from "@/components/page-title/PageTitle";
@@ -14,67 +14,109 @@ import {
   TF,
 } from "@/util/const";
 import { MainCategoryType, ContentType } from "@/types/index";
-import { posts } from "@/util/sample-data";
-import { className, getCategoryColor } from "@/util";
+import {
+  className,
+  CookieManager,
+  getCategoryColor,
+  getFontFamilyByDisplayName,
+  ValidationUtil,
+} from "@/util";
 import ThumbnailCardUnfolderable from "@/components/thumbnail-card/thumbnail-card-unfolderable/ThumbnailCardUnfolderable";
 import DropdownButton from "../portfolio/component/dropdown-button/DropdownButton";
 import WritingContent from "../portfolio/component/writing-content/WritingContent";
+import { Portfolio } from "@/interface/client/profile";
+import boardApi from "@/api/boardApi";
+import { useMutation } from "@tanstack/react-query";
+import { Board } from "@/interface/client/board";
+import JwtManager from "@/util/jwtManager";
 
 const Edit = () => {
   const { contentId = "" } = useParams();
   const navigate = useNavigate();
-
-  const post = posts.find((post) => post.id === contentId);
-
-  // FIXME
-  if (!post) {
-    const err = new Error();
-    err.name = TF.PAGE_ERROR.NOT_FOUND;
-    throw err;
-  }
-
   const indexRef = useRef<number>(1);
-  const [contents, setContents] = useState<ContentType[]>(
-    post.content.length === 0
-      ? [
-          {
-            id: indexRef.current++,
-            focused: true,
-            original: "",
-            translated: "",
-          } as ContentType,
-        ]
-      : post.content.map(
-          (_content, index) =>
-            ({
-              id: index,
-              focused: index === 0,
-              original: _content.original,
-              translated: _content.translated,
-            } as ContentType)
-        )
-  );
-  const [title, setTitle] = useState(post.title);
-  const [information, setInformation] = useState(post.description);
+  const [board, setBoard] = useState<Portfolio>();
+  const [title, setTitle] = useState<string>("");
+  const [information, setInformation] = useState<string>("");
   const [selectedOriginLanguage, setSelectedOriginLanguage] = useState<
     undefined | string
-  >(post.language.original);
+  >();
   const [selectedTranslatedLanguage, setSelectedTranslatedLanguage] = useState<
     undefined | string
-  >(post.language.translated);
+  >();
   const [selectedMainCatetory, setSelectedMainCategory] = useState<
     MainCategoryType | undefined
-  >(post.category.major as MainCategoryType);
+  >();
   const [selectedSubCatetory, setSelectedSubCategory] = useState<
     string | undefined
-  >(post.category.sub);
-  const [author, setAuthor] = useState(post.author);
+  >();
+  const [author, setAuthor] = useState<string>("");
   const [selectedFontSize, setSelectedFontSize] = useState<string>(
-    post.style.fontSize
+    preDefinedFontSize[0]
   );
   const [selectedFontFamily, setSelectedFontFamily] = useState<string>(
-    post.style.fontFamily
+    Object.keys(preDefinedFontFamily)[0]
   );
+  const [contents, setContents] = useState<ContentType[]>([]);
+  //
+  const { mutate: submitPost } = useMutation({
+    mutationFn: (board: Board) => boardApi.createBoard(board),
+    onSuccess: (data) => {
+      navigate(`/home/completion/${data.result.boardPid}`);
+    },
+    onError: (e: Error) => alert(e.message),
+  });
+
+  useEffect(() => {
+    if (!contentId) {
+      alert("잘못된 접근입니다.");
+      return;
+    }
+
+    boardApi
+      .getBoardById(contentId)
+      .then((board) => setBoard(board))
+      .catch((e) => {
+        console.warn("[Transfolio] ", e);
+        alert("데이터를 가져오는 도중 오류가 발생했습니다.");
+      });
+  }, []);
+
+  useEffect(() => {
+    if (!board) return;
+
+    setTitle(board.boardTitle);
+    setInformation(board.boardDescription);
+    setSelectedOriginLanguage(board.beforeLang);
+    setSelectedTranslatedLanguage(board.afterLang);
+    setSelectedMainCategory(board.highCtg as MainCategoryType);
+    setSelectedSubCategory(board.lowCtg);
+    setAuthor(board.boardAuthor);
+    setSelectedFontSize(`${board.fontSize}pt`);
+    setSelectedFontFamily(getFontFamilyByDisplayName(board.fontType));
+    setContents(
+      board.boardContent.length === 0
+        ? [
+            {
+              id: indexRef.current++,
+              focused: true,
+              original: "",
+              translated: "",
+            } as ContentType,
+          ]
+        : board.boardContent
+            .split("$") // 컨텐츠 예시: "Hello/안녕하세요$My name is Hong Gil-dong/저는 홍길동입니다",
+            .map((contentBlock) => contentBlock.split("/"))
+            .map(
+              (content, index) =>
+                ({
+                  id: index,
+                  focused: index === 0,
+                  original: content[0],
+                  translated: content[1],
+                } as ContentType)
+            )
+    );
+  }, [board]);
 
   const offFocus = useCallback(() => {
     setContents((_contents) =>
@@ -161,16 +203,85 @@ const Edit = () => {
     setAuthor(_author);
   }, []);
 
+  const handleClickPreSave = () => saveBoard(true);
+
+  const handleClickSubmit = () => saveBoard();
+
+  function saveBoard(preSave: boolean = false) {
+    // Validation Check #1 - 필수 입력값 체크
+    {
+      const onError = (key: string) => alert(`${key}(을)를 입력하세요.`);
+
+      if (
+        !ValidationUtil.isBlank(
+          { value: title, key: "제목", onError },
+          { value: selectedOriginLanguage || "", key: "원문 언어", onError },
+          {
+            value: selectedTranslatedLanguage || "",
+            key: "번역 언어",
+            onError,
+          },
+          {
+            value: selectedMainCatetory?.toString() || "",
+            key: "대분류",
+            onError,
+          },
+          {
+            value: selectedSubCatetory?.toString() || "",
+            key: "소분류",
+            onError,
+          }
+        )
+      ) {
+        return;
+      }
+    }
+
+    // Validation Check #2 - 원문 언어와 번역 언어가 같은 경우 등록 불가
+    {
+      if (selectedOriginLanguage === selectedTranslatedLanguage) {
+        alert("같은 언어는 선택할 수 없습니다.");
+        return;
+      }
+    }
+
+    const token = JwtManager.decodeJwt(
+      CookieManager.get(document, TF.KEY.COOKIE.TOKEN) || ""
+    );
+    const loginId = token ? token[TF.KEY.JWT.LOGIN_ID] : "";
+
+    if (loginId) {
+      submitPost({
+        boardTitle: title,
+        boardSubTitle: title,
+        beforeLang: selectedOriginLanguage || "",
+        afterLang: selectedTranslatedLanguage || "",
+        boardDescription: information,
+        highCtg: selectedMainCatetory ? selectedMainCatetory.toString() : "",
+        lowCtg: selectedSubCatetory ? selectedSubCatetory.toString() : "",
+        boardAuthor: author,
+        boardContent: contents
+          .map((content) => [content.original, content.translated].join("/"))
+          .join("$"),
+        fontSize: Number(selectedFontSize.replace("pt", "") || "12"),
+        fontType: preDefinedFontFamily[selectedFontFamily],
+        tempStorageYN: preSave ? "Y" : "N",
+      });
+    } else {
+      alert("로그인 정보가 바르지 않습니다.");
+    }
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <PageTitle mainTitle={"Translator"} subTitle={post.translator.major} />
-
+        {/* FIXME - 사용자 한 줄 소개 API 필요 (GET, POST/PUT) */}
+        <PageTitle mainTitle={"Translator"} subTitle={"기능 미구현"} />
         <div className={styles.thumbnailSection}>
           <div className={styles.thumbnailCardSection}>
             <ThumbnailCardUnfolderable
-              original={post.title}
-              color={getCategoryColor(post.category.major)}
+              original={title}
+              color={getCategoryColor(selectedMainCatetory || "")}
               fontStyle={selectedFontFamily}
               isEditMode
             />
@@ -182,7 +293,10 @@ const Edit = () => {
                 onChange={changeTitle}
                 placeholder="제목을 입력해주세요"
               />
-              <div className={styles.titleDateSection}>2024.07.01</div>
+              <div className={styles.titleDateSection}>
+                {/* FIXME - /board/{boardPid} API 수정 필요 - 포트폴리오의 최종 수정일 */}
+                {"기능 미구현"}
+              </div>
             </div>
             <div className={styles.selectLanguageSection}>
               <div className={className(styles.dropdownSection, styles.lang)}>
@@ -383,16 +497,13 @@ const Edit = () => {
             <div className={styles.mainButtonSection}>
               <button
                 className={styles.btnPreSave}
-                onClick={() => alert("임시 저장 기능 미구현")}
+                onClick={handleClickPreSave}
               >
                 임시저장
               </button>
             </div>
             <div className={styles.mainButtonSection}>
-              <button
-                className={styles.btnSubmit}
-                onClick={() => navigate("/home/completion")}
-              >
+              <button className={styles.btnSubmit} onClick={handleClickSubmit}>
                 제출하기
               </button>
             </div>

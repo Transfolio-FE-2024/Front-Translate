@@ -1,4 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { preDefinedFontFamily } from "./const";
+
 // util
 export const SessionStorageManager = (() => {
   function get(window: Window, key: string) {
@@ -188,4 +191,17 @@ export function getCategoryColor(category: string): CategoryColor {
 
 export function className(...args: string[]) {
   return args.join(" ").trim();
+}
+
+/**
+ * displayName을 값으로 갖는 key를 반환한다. (e.g. "Nanum Myeangjo" 대입 시, "NanumMyeangjo" 반환)
+ * 존재하지 않는 경우, 기본 폰트 타입인 "Pretendard"를 반환한다.
+ * @param displayName 서버에 저장되는 폰트 타입이자, 사용자에게 표시되는 폰트명
+ */
+export function getFontFamilyByDisplayName(displayName: string): string {
+  return (
+    Object.keys(preDefinedFontFamily).find(
+      (key) => String(preDefinedFontFamily[key]) === displayName
+    ) || preDefinedFontFamily[0]
+  );
 }
