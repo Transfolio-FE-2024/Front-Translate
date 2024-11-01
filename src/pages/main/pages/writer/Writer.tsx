@@ -79,6 +79,8 @@ const Writer = () => {
     } else {
       headerMenuContext.setButtons();
     }
+
+    return () => headerMenuContext.setButtons();
   }, [editMode, headerMenuContext]); // WHY? headerMenuContext 추가하지 않으면 버튼이 바뀌지 않음
 
   const buttonClickHandler = (index: number) => {
