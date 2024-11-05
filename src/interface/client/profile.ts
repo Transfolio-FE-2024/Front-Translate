@@ -33,3 +33,9 @@ export interface Portfolio {
   foldCnt: string;
   tempStorageYN: "Y" | "N";
 }
+
+export interface Career {
+  careerTitle: string;
+  careerContent: string;
+  careerDate: string;
+}

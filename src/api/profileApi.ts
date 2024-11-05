@@ -1,8 +1,9 @@
 import {
   UserInfo as S_UserInfo,
   Portfolio as S_Portfolio,
+  Career as S_Career,
 } from "@/interface/server/profile";
-import { UserInfo, Portfolio } from "@/interface/client/profile";
+import { UserInfo, Portfolio, Career } from "@/interface/client/profile";
 import axios from "axios";
 
 const profileApi = () => {
@@ -74,9 +75,35 @@ const profileApi = () => {
       });
   }
 
+  /** 프로필 - 경력 조회 */
+  async function getMyCareer(userId: string): Promise<Career[]> {
+    return await axios
+      .post(
+        `${String(import.meta.env.VITE_API_HOST)}/profile/career`,
+        {
+          userId,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json;charset=UTF-8",
+          },
+        }
+      )
+      .then((response) => {
+        const careers = response.data as S_Career[];
+
+        return careers.map((career) => ({
+          careerTitle: career.careerTitle,
+          careerContent: career.careerContent,
+          careerDate: career.careerDate,
+        }));
+      });
+  }
+
   return {
     getMyInfo,
     getPortfolio,
+    getMyCareer,
   };
 };
 

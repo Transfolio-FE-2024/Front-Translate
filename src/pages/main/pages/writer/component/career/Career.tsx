@@ -1,41 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Career.module.scss";
-import { className } from "@/util";
+import { Career as ICareer } from "@/interface/client/profile";
+import profileApi from "@/api/profileApi";
+import { useParams } from "react-router-dom";
 
 const Career: React.FC = () => {
+  const { writerId = "" } = useParams();
+  const [careerList, setCareerList] = useState<ICareer[]>();
+
+  useEffect(() => {
+    profileApi
+      .getMyCareer(writerId)
+      .then((items) => setCareerList(items))
+      .catch((e) => {
+        console.warn("[Transfolio] ", e);
+        alert("프로필 정보를 가져오는 도중 오류가 발생했습니다.");
+      });
+  }, []);
+
   return (
     <div className={styles.container}>
-      {/* design */}
-      <div className={styles.centerLine}>
-        <div className={styles.bottomNot}></div>
-      </div>
-      {/* content */}
-      <div className={styles.cardContainer}>
-        <div className={styles.cardWrapper}>
-          <div className={styles.card}>
-            <div className={styles.date}>2024.01.01</div>
-            <div className={styles.mainText}>センチメンタル・レディー</div>
-            <div className={styles.rightArea}>
-              <div className={styles.subText}>센티멘탈 레이디 번역</div>
-              <div className={styles.writer}>야마</div>
-            </div>
-            <div className={styles.corner}></div>
+      {careerList && !!careerList.length && (
+        <>
+          {/* design */}
+          <div className={styles.centerLine}>
+            <div className={styles.bottomNot}></div>
           </div>
-          <div className={styles.trophy}></div>
-        </div>
-        <div className={styles.cardWrapper}>
-          <div className={styles.card}>
-            <div className={styles.date}>2024.01.01</div>
-            <div className={styles.mainText}>数年前の光景だって</div>
-            <div className={styles.rightArea}>
-              <div className={styles.subText}>러브레터 번역</div>
-              <div className={styles.writer}>야마</div>
-            </div>
-            <div className={className(styles.corner, styles.folded)}></div>
+          {/* content */}
+          <div className={styles.cardContainer}>
+            {careerList.map((career) => (
+              <div className={styles.cardWrapper}>
+                <div className={styles.card}>
+                  <div className={styles.date}>{career.careerDate}</div>
+                  <div className={styles.mainText}>{career.careerTitle}</div>
+                  <div className={styles.rightArea}>
+                    <div className={styles.subText}>{career.careerContent}</div>
+                    <div className={styles.writer}>작가명 미구현</div>
+                  </div>
+                  <div className={styles.corner}></div>
+                </div>
+                <div className={styles.trophy}></div>
+              </div>
+            ))}
           </div>
-          <div className={className(styles.trophy, styles.achieved)}></div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 };
