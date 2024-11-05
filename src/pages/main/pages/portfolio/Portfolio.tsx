@@ -39,6 +39,7 @@ const Portfolio = () => {
     },
   ]);
   const navigate = useNavigate();
+  const [thumbnail, setThumbnail] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [information, setInformation] = useState<string>("");
   const [selectedOriginLanguage, setSelectedOriginLanguage] = useState<
@@ -157,6 +158,7 @@ const Portfolio = () => {
 
       if (
         !ValidationUtil.isBlank(
+          { value: thumbnail, key: "썸네일", onError },
           { value: title, key: "제목", onError },
           { value: selectedOriginLanguage || "", key: "원문 언어", onError },
           {
@@ -195,7 +197,7 @@ const Portfolio = () => {
 
     if (loginId) {
       submitPost({
-        boardTitle: title,
+        boardTitle: thumbnail,
         boardSubTitle: title,
         beforeLang: selectedOriginLanguage || "",
         afterLang: selectedTranslatedLanguage || "",
@@ -225,10 +227,11 @@ const Portfolio = () => {
         <div className={styles.thumbnailSection}>
           <div className={styles.thumbnailCardSection}>
             <ThumbnailCardUnfolderable
-              original={title}
+              content={thumbnail}
               color={getCategoryColor(selectedMainCatetory || "")}
               fontStyle={selectedFontFamily}
               isEditMode
+              onChangeContent={setThumbnail}
             />
           </div>
           <div className={styles.thumbnailInfoSection}>

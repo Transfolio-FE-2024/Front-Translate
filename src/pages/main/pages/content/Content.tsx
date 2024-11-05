@@ -39,15 +39,18 @@ const Content = () => {
         <div className={styles.thumbnailSection}>
           <div className={styles.thumbnailCardSection}>
             <ThumbnailCardUnfolderable
-              original={board?.boardTitle || ""}
+              content={board?.boardTitle || ""}
               color={getCategoryColor(board?.highCtg || "")}
               fontStyle={board?.fontType}
             />
           </div>
           <div className={styles.thumbnailInfoSection}>
             <div className={styles.titleDateSection}>
-              {/* FIXME - /board/{boardPid} API 수정 필요 - 포트폴리오의 최종 수정일 */}
-              {"기능 미구현"}
+              <div className={styles.titleSection}>{board?.boardSubTitle}</div>
+              <div className={styles.dateSection}>
+                {/* FIXME - /board/{boardPid} API 수정 필요 - 포트폴리오의 최종 수정일 */}
+                {"기능 미구현"}
+              </div>
             </div>
             <div className={styles.languageSection}>
               <div className={styles.language}>{board?.beforeLang}</div>
