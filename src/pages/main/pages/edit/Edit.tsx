@@ -240,7 +240,15 @@ const Edit = () => {
       }
     }
 
-    // Validation Check #2 - 원문 언어와 번역 언어가 같은 경우 등록 불가
+    // Validation Check #2 - 제목 최대 30자 제한
+    {
+      if (title.length > 30) {
+        alert("제목은 최대 30자까지만 입력 가능합니다.");
+        return;
+      }
+    }
+
+    // Validation Check #3 - 원문 언어와 번역 언어가 같은 경우 등록 불가
     {
       if (selectedOriginLanguage === selectedTranslatedLanguage) {
         alert("같은 언어는 선택할 수 없습니다.");
