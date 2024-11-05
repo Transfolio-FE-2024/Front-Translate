@@ -77,22 +77,35 @@ const boardApi = () => {
       });
   }
 
-  /** 홈화면 - 관심분야 게시물 */
-  async function getHomeInterests() {
+  /** 홈화면 - 오늘의 번역 */
+  async function getTodaysTranslator(): Promise<Portfolio[]> {
     return await axios
-      .get(`${String(import.meta.env.VITE_API_HOST)}/homeIntrs`)
-      // .then((response) => ({
-      //   message: response.data.message,
-      //   result: response.data.result,
-      //   status: response.data.status || TF.HTTP_STATUS.FAIL_UNKNOWN_STATUS,
-      // }));
-      .then((response) => console.log(response)); // FIXME - BE와 인터페이스 맞추기
+      .get(`${String(import.meta.env.VITE_API_HOST)}/todaysTranslator`)
+      .then((response) =>
+        (response.data as S_Portfolio[]).map((board) => ({
+          boardPid: board.boardPid,
+          userId: board.userId,
+          boardTitle: board.boardTitle,
+          afterLang: board.afterLang,
+          beforeLang: board.beforeLang,
+          boardSubTitle: board.boardSubTitle,
+          boardDescription: board.boardDescription,
+          highCtg: board.highCtg,
+          lowCtg: board.lowCtg,
+          boardAuthor: board.boardAuthor,
+          boardContent: board.boardContent,
+          fontSize: board.fontSize,
+          fontType: board.fontType,
+          foldCnt: board.foldCnt,
+          tempStorageYN: board.tempStorageYn === "Y" ? "Y" : "N",
+        }))
+      );
   }
 
   return {
     createBoard,
     getBoardById,
-    getHomeInterests,
+    getTodaysTranslator,
   };
 };
 

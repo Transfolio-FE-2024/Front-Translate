@@ -59,9 +59,15 @@ interface IThumbnailTitle {
 }
 
 function ThumbnailTitle({ interest }: IThumbnailTitle) {
-  const randomNum = Math.floor(Math.random() * list[interest].length);
+  try {
+    const randomNum = Math.floor(Math.random() * list[interest].length);
 
-  return <div className={styles.textWrapper}>{list[interest][randomNum]}</div>;
+    return (
+      <div className={styles.textWrapper}>{list[interest][randomNum]}</div>
+    );
+  } catch (e) {
+    return <div className={styles.textWrapper}>임의 텍스트입니다</div>; // FIXME
+  }
 }
 
 export default ThumbnailTitle;

@@ -3,16 +3,19 @@ import Slider, { Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ThumbnailCardFolderable from "@/components/thumbnail-card/thumbnail-card-folderable/ThumbnailCardFolderable";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import ThumbnailTitle from "@/components/thumbnail-title/ThumbnailTitle";
 import { posts } from "@/util/sample-data";
 import { className, getCategoryColor } from "@/util";
+import { Portfolio } from "@/interface/client/profile";
+import boardApi from "@/api/boardApi";
 
 const ContentSlider = () => {
   const isMobile = useMediaQuery({ maxWidth: "767px" });
   const sliderNumber = isMobile ? 1 : 3;
   const [pageIndex, setPageIndex] = useState<number>(0);
+  const [todayList, setTodayList] = useState<Portfolio[]>();
   const slickRef = useRef<Slider>(null);
   const sliderSettings: Settings = {
     dots: true,
@@ -47,30 +50,44 @@ const ContentSlider = () => {
     slickRef.current!.slickNext();
   };
 
+  useEffect(() => {
+    boardApi
+      .getTodaysTranslator()
+      .then((items) => setTodayList(items))
+      .catch((e) => {
+        console.warn("[Transfolio] ", e);
+        alert("데이터를 가져오는 도중 오류가 발생했습니다.");
+      });
+  }, []);
+
   return (
     <div className={styles.container}>
-      <Slider {...sliderSettings} ref={slickRef}>
-        {posts.map((post) => {
-          return (
-            <div className={styles.thumbnailContainer} key={post.id}>
-              <div className={styles.thumbnailTitleSection}>
-                <ThumbnailTitle interest={post.category.major} />
+      {todayList ? (
+        <Slider {...sliderSettings} ref={slickRef}>
+          {todayList.map((post) => {
+            return (
+              <div className={styles.thumbnailContainer} key={post.boardPid}>
+                <div className={styles.thumbnailTitleSection}>
+                  <ThumbnailTitle interest={post.highCtg} />
+                </div>
+                <div className={styles.thumbnailSection}>
+                  <ThumbnailCardFolderable
+                    original={post.boardTitle}
+                    major={"기능 미구현"}
+                    writer={`@${post.userId}`}
+                    picked={Number(post.foldCnt || 0)}
+                    color={getCategoryColor(post.highCtg)}
+                    href={`/home/content/${post.boardPid}`}
+                    fontStyle={post.fontType}
+                  />
+                </div>
               </div>
-              <div className={styles.thumbnailSection}>
-                <ThumbnailCardFolderable
-                  original={post.title}
-                  major={post.translator.major}
-                  writer={`@${post.translator.nickName}`}
-                  picked={109}
-                  color={getCategoryColor(post.category.major)}
-                  href={`/home/content/${post.id}`}
-                  fontStyle={post.style.fontFamily}
-                />
-              </div>
-            </div>
-          );
-        })}
-      </Slider>
+            );
+          })}
+        </Slider>
+      ) : (
+        <div>Loading</div>
+      )}
     </div>
   );
 };
