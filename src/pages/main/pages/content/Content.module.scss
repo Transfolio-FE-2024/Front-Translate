@@ -237,22 +237,89 @@
 }
 
 .mainContentSection {
-  padding: 52px 50px;
-  background-color: rgb(255, 255, 255);
-  box-sizing: var(--box-shadow-card);
+  padding: 46px 39px;
+  background-color: rgba(255, 255, 255, 0.26);
+  box-shadow: var(--box-shadow-card);
 
-  .mainContent {
+  &:not(.temp) {
+    .mainContent {
+      .mainContentRow {
+        font-family: var(--font-pretend);
+        font-weight: var(--font-medium);
+        font-size: 18pt;
+        letter-spacing: 0.125em;
+        line-height: 150%;
+
+        &:not(:last-child) {
+          margin-bottom: 20px;
+        }
+
+        .mainContentRowOriginal {
+          font-family: inherit;
+          font-weight: var(--font-regular);
+          font-size: inherit;
+          letter-spacing: inherit;
+          line-height: inherit;
+
+          border-radius: 8px;
+          background-color: white;
+          padding: 8px 10px;
+          margin-bottom: 11px;
+          box-shadow: var(--box-shadow-small);
+        }
+
+        .mainContentRowTranslation {
+          font-family: inherit;
+          font-weight: var(--font-regular);
+          font-size: inherit;
+          letter-spacing: inherit;
+          line-height: inherit;
+
+          border-radius: 8px;
+          background-color: white;
+          padding: 8px 10px;
+          box-shadow: var(--box-shadow-small);
+        }
+      }
+    }
   }
 
-  .mainContentRow {
-    font-family: var(--font-pretend);
-    font-weight: var(--font-medium);
-    font-size: 12pt;
-    letter-spacing: 0em;
-    line-height: 117.5%;
+  &.temp {
+    padding: 52px 50px;
+    background-color: white;
 
-    margin-bottom: 29px;
-    border-bottom: 1px solid var(--color-light-gray);
+    .mainContent {
+      .mainContentRow {
+        font-family: var(--font-pretend);
+        font-weight: var(--font-medium);
+        font-size: 12pt;
+        letter-spacing: 0em;
+        line-height: 117.5%;
+
+        margin-bottom: 29px;
+        border-bottom: 1px solid var(--color-light-gray);
+
+        .mainContentRowOriginal {
+          font-family: inherit;
+          font-weight: var(--font-bold);
+          font-size: inherit;
+          letter-spacing: inherit;
+          line-height: inherit;
+
+          margin: 0 3px 12px;
+        }
+
+        .mainContentRowTranslation {
+          font-family: inherit;
+          font-weight: inherit;
+          font-size: inherit;
+          letter-spacing: inherit;
+          line-height: inherit;
+
+          margin: 0 3px 6px;
+        }
+      }
+    }
   }
 
   .orangeColor {
@@ -261,25 +328,5 @@
 
   .greenColor {
     color: var(--color-green-2);
-  }
-
-  .mainContentRowOriginal {
-    font-family: inherit;
-    font-weight: var(--font-bold);
-    font-size: inherit;
-    letter-spacing: inherit;
-    line-height: inherit;
-
-    margin: 0 3px 12px;
-  }
-
-  .mainContentRowTranslation {
-    font-family: inherit;
-    font-weight: inherit;
-    font-size: inherit;
-    letter-spacing: inherit;
-    line-height: inherit;
-
-    margin: 0 3px 6px;
   }
 }

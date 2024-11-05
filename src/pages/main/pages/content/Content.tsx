@@ -89,41 +89,46 @@ const Content = () => {
           </div>
         </div>
 
-        <div className={styles.mainContentSection}>
-          <div className={styles.mainContent}>
-            {board
-              ? board.boardContent
-                  .split("$") // 컨텐츠 예시: "Hello/안녕하세요$My name is Hong Gil-dong/저는 홍길동입니다",
-                  .map((contentBlock) => contentBlock.split("/"))
-                  .map((content, index) => (
+        {board && (
+          <div
+            className={className(
+              styles.mainContentSection,
+              board.tempStorageYN === "Y" ? styles.temp : ""
+            )}
+          >
+            <div className={styles.mainContent}>
+              {board.boardContent
+                .split("$") // 컨텐츠 예시: "Hello/안녕하세요$My name is Hong Gil-dong/저는 홍길동입니다",
+                .map((contentBlock) => contentBlock.split("/"))
+                .map((content, index) => (
+                  <div
+                    className={styles.mainContentRow}
+                    key={index}
+                    style={{
+                      fontFamily: getFontFamilyByDisplayName(board.fontType),
+                      fontSize: `${board.fontSize || "12"}pt`,
+                    }}
+                  >
                     <div
-                      className={styles.mainContentRow}
-                      key={index}
-                      style={{
-                        fontFamily: getFontFamilyByDisplayName(board.fontType),
-                        fontSize: `${board.fontSize || "12"}pt`,
-                      }}
+                      className={className(
+                        styles.mainContentRowOriginal,
+                        // CHECK & FIXME - 임시 저장글인 경우 초록색
+                        // 번역된 글이 비어있을 경우 초록색
+                        content[1] === "" || board.tempStorageYN === "Y"
+                          ? styles.greenColor
+                          : styles.orangeColor
+                      )}
                     >
-                      <div
-                        className={className(
-                          styles.mainContentRowOriginal,
-                          // CHECK & FIXME - 임시 저장글인 경우 초록색
-                          // 번역된 글이 비어있을 경우 초록색
-                          content[1] === "" || board.tempStorageYN === "Y"
-                            ? styles.greenColor
-                            : styles.orangeColor
-                        )}
-                      >
-                        {content[0]}
-                      </div>
-                      <div className={styles.mainContentRowTranslation}>
-                        {content[1]}
-                      </div>
+                      {content[0]}
                     </div>
-                  ))
-              : null}
+                    <div className={styles.mainContentRowTranslation}>
+                      {content[1]}
+                    </div>
+                  </div>
+                ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
