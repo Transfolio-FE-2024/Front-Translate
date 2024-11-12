@@ -12,6 +12,7 @@ const ThumbnailCardFolderable: React.FC<{
   color: CategoryColor;
   href?: string;
   fontStyle?: string;
+  onClickBookmark?: () => void;
 }> = ({
   original,
   major,
@@ -21,6 +22,7 @@ const ThumbnailCardFolderable: React.FC<{
   color,
   href = "",
   fontStyle = "Pretendard",
+  onClickBookmark = () => {},
 }) => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
 
@@ -35,54 +37,46 @@ const ThumbnailCardFolderable: React.FC<{
   };
 
   return (
-    <Link
-      to={href}
-      draggable={false}
-      onClick={handleClick}
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-    >
-      <div
-        className={className(
-          styles.container,
-          styles.clickable,
-          preSave ? styles.preSave : ""
-        )}
-      >
-        <div className={styles.indexSection}>
-          <div
-            className={className(
-              styles.index,
-              preSave ? styles.indexInActive : styles[color]
-            )}
-          />
-        </div>
+    <div className={className(styles.container, preSave ? styles.preSave : "")}>
+      <div className={styles.indexSection}>
         <div
-          className={styles.contentSection}
-          style={{ fontFamily: fontStyle }}
-        >
-          {original}
-        </div>
-        <div className={styles.footerSection}>
-          <div className={styles.nameSection}>
-            {major}
-            <br />
-            {writer}
-          </div>
-          {!preSave && (
-            <div className={styles.foldSection}>
-              <div className={styles.pickedNumberContainer}>{picked}</div>
-              <div
-                className={className(
-                  styles.foldContainer,
-                  styles[`borderTop-${color}`]
-                )}
-              ></div>
-            </div>
+          className={className(
+            styles.index,
+            preSave ? styles.indexInActive : styles[color]
           )}
-        </div>
+        />
       </div>
-    </Link>
+      <div className={styles.contentSection} style={{ fontFamily: fontStyle }}>
+        {original}
+      </div>
+      <div className={styles.footerSection}>
+        <div className={styles.nameSection}>
+          {major}
+          <br />
+          {writer}
+        </div>
+        {!preSave && (
+          <div className={styles.foldSection} onMouseUp={onClickBookmark}>
+            <div className={styles.pickedNumberContainer}>{picked}</div>
+            <div
+              className={className(
+                styles.foldContainer,
+                styles[`borderTop-${color}`]
+              )}
+            ></div>
+          </div>
+        )}
+      </div>
+
+      <Link
+        className={styles.link}
+        to={href}
+        draggable={false}
+        onClick={handleClick}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+      ></Link>
+    </div>
   );
 };
 

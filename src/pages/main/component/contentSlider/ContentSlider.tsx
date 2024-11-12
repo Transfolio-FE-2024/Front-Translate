@@ -3,19 +3,18 @@ import Slider, { Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ThumbnailCardFolderable from "@/components/thumbnail-card/thumbnail-card-folderable/ThumbnailCardFolderable";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import ThumbnailTitle from "@/components/thumbnail-title/ThumbnailTitle";
-import { posts } from "@/util/sample-data";
 import { className, getCategoryColor } from "@/util";
-import { Portfolio } from "@/interface/client/profile";
 import boardApi from "@/api/boardApi";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 const ContentSlider = () => {
   const isMobile = useMediaQuery({ maxWidth: "767px" });
   const sliderNumber = isMobile ? 1 : 3;
   const [pageIndex, setPageIndex] = useState<number>(0);
-  const [todayList, setTodayList] = useState<Portfolio[]>();
+  // const [todayList, setTodayList] = useState<Portfolio[]>();
   const slickRef = useRef<Slider>(null);
   const sliderSettings: Settings = {
     dots: true,
@@ -24,8 +23,8 @@ const ContentSlider = () => {
     slidesToShow: sliderNumber,
     slidesToScroll: sliderNumber,
     arrows: false, // FIXME
-    // nextArrow: <Arrow left={false} onClicked={() => next()} />,
-    // prevArrow: <Arrow onClicked={() => previous()} />,
+    // nextArrow: <Arrow left={false} onClicked={() => slickRef.current!.slickNext()} />,
+    // prevArrow: <Arrow onClicked={() => slickRef.current!.slickPrev()} />,
     afterChange: (index: number) => {
       setPageIndex(index);
     },
@@ -42,23 +41,23 @@ const ContentSlider = () => {
     dotsClass: `slick-dots ${styles.customDots}`,
   };
 
-  const previous = () => {
-    slickRef.current!.slickPrev();
-  };
-
-  const next = () => {
-    slickRef.current!.slickNext();
-  };
-
-  useEffect(() => {
-    boardApi
-      .getTodaysTranslator()
-      .then((items) => setTodayList(items))
-      .catch((e) => {
-        console.warn("[Transfolio] ", e);
-        alert("데이터를 가져오는 도중 오류가 발생했습니다.");
-      });
-  }, []);
+  const queryClient = useQueryClient();
+  const { data: todayList } = useQuery({
+    queryKey: ["comp.ContentSlider", "todayList"],
+    queryFn: boardApi.getTodaysTranslator,
+  });
+  const { mutate: handleClickBookmark } = useMutation({
+    mutationFn: (boardID: number) => boardApi.bookmark(boardID),
+    onSuccess: (res) => {
+      if (String(res.status) === "200") {
+        alert(`찜목록에 추가했습니다.`);
+        queryClient.invalidateQueries({
+          queryKey: ["comp.ContentSlider", "todayList"],
+        }); // 데이터 리로드
+      } else throw new Error("오류가 발생했습니다." + ` ${res.message}`);
+    },
+    onError: (e: Error) => alert(e.message),
+  });
 
   return (
     <div className={styles.container}>
@@ -79,6 +78,7 @@ const ContentSlider = () => {
                     color={getCategoryColor(post.highCtg)}
                     href={`/home/content/${post.boardPid}`}
                     fontStyle={post.fontType}
+                    onClickBookmark={() => handleClickBookmark(post.boardPid)}
                   />
                 </div>
               </div>

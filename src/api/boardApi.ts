@@ -101,11 +101,32 @@ const boardApi = () => {
         }))
       );
   }
+  /** 찜하기(접기) */
+  async function bookmark(boardID: number) {
+    return await axios
+      .post(
+        `${String(import.meta.env.VITE_API_HOST)}/board/bookmark`,
+        {
+          boardPid: String(boardID),
+        },
+        {
+          headers: {
+            "Content-Type": "application/json;charset=UTF-8",
+          },
+        }
+      )
+      .then((response) => ({
+        message: response.data.message,
+        result: response.data.result,
+        status: response.data.status || TF.HTTP_STATUS.FAIL_UNKNOWN_STATUS,
+      }));
+  }
 
   return {
     createBoard,
     getBoardById,
     getTodaysTranslator,
+    bookmark,
   };
 };
 

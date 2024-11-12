@@ -5,11 +5,16 @@ import Writers from "../../component/writers/Writers";
 import styles from "./Home.module.scss";
 import Section from "./component/section/Section";
 import ThumbnailCardGallery from "./component/section/thumbnail-card-gallery/ThumbnailCardGallery";
-
-const nickName = "Kimhim";
-const currentUserId = "Kimhim";
+import JwtManager from "@/util/jwtManager";
+import { TF } from "@/util/const";
+import { CookieManager } from "@/util";
 
 const Home = () => {
+  const token = JwtManager.decodeJwt(
+    CookieManager.get(document, TF.KEY.COOKIE.TOKEN) || ""
+  );
+  const currentUserId = token ? token[TF.KEY.JWT.LOGIN_ID] : "";
+
   return (
     <div className={styles.container}>
       <HeaderSlider />
@@ -21,7 +26,7 @@ const Home = () => {
             style={{ marginBottom: "194px" }}
           />
           <Section
-            title={`${nickName}님의 관심분야의 번역들이에요!`}
+            title={`${currentUserId}님의 관심분야의 번역들이에요!`}
             content={<ThumbnailCardGallery />}
             style={{ marginBottom: "198px" }}
           />

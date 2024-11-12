@@ -9,20 +9,11 @@
 
   @include flex-column;
   @include full-container;
-  @include cursor-pointer;
   position: relative;
   background-color: var(--color-white);
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
-}
-
-.clickable {
-  @include cursor-pointer;
-
-  &:hover {
-    @include opacity-0-8;
-  }
 }
 
 .preSave {
@@ -106,15 +97,15 @@
   right: 6px;
   bottom: 0;
   color: var(--color-light-gray);
-  z-index: 3;
+  z-index: 4;
 }
 
 .foldContainer {
   position: relative;
   width: 0;
   height: 0;
-  border-right: 50px solid transparent;
-  z-index: 2;
+  border-right: 50px solid white;
+  z-index: 3;
 }
 
 .borderTop-green {
@@ -139,4 +130,16 @@
 
 .gray {
   background-color: var(--color-light-gray);
+}
+
+a.link {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-color: var(--color-background);
+  opacity: 0;
+
+  &:hover {
+    opacity: 0.2;
+  }
 }
