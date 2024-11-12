@@ -3,6 +3,7 @@ import styles from "./MenuBar.module.scss";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
+import authApi from "@/api/authApi";
 
 const MenuBar: React.FC<{
   setOpen: (value: boolean) => void;
@@ -28,7 +29,17 @@ const MenuBar: React.FC<{
   }, []);
 
   const logoutButtonClickHandler = () => {
-    navigate("/");
+    authApi
+      .signOut()
+      .then((res) => {
+        if (String(res.status) === "200") {
+          navigate("/");
+        } else throw new Error("오류가 발생했습니다." + ` ${res.message}`);
+      })
+      .catch((e) => {
+        console.warn("[TF_ERROR]", e);
+        alert(e.message);
+      });
   };
 
   return (

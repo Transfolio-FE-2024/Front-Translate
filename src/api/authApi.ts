@@ -26,6 +26,26 @@ const authApi = () => {
       }));
   }
 
+  /** 로그아웃 */
+  async function signOut() {
+    return await axios
+      .post(
+        `${String(import.meta.env.VITE_API_HOST)}/user/sign-out`,
+        undefined,
+        {
+          headers: {
+            "Content-Type": "application/json;charset=UTF-8",
+          },
+          withCredentials: true,
+        }
+      )
+      .then((response) => ({
+        message: response.data.message,
+        result: response.data.result,
+        status: response.data.status || TF.HTTP_STATUS.FAIL_UNKNOWN_STATUS,
+      }));
+  }
+
   /** 회원가입 */
   async function signUp(signUpInfo: SignUpInfo): Promise<APIResponse> {
     return await axios
@@ -56,6 +76,7 @@ const authApi = () => {
 
   return {
     signIn,
+    signOut,
     signUp,
     kakaoLogin,
   };
