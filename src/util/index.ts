@@ -205,3 +205,42 @@ export function getFontFamilyByDisplayName(displayName: string): string {
     ) || preDefinedFontFamily[0]
   );
 }
+
+/**
+ * 날짜 객체를 지정된 포맷 형식 문자열로 변환한다.
+ * @param date - 변환할 대상인 Date 객체
+ * @param format - 날짜를 변환할 형식 (예: "YYYY.MM.DD HH:mm:ss") `ISO-8601`
+ *   - **YYYY** : 연도 (4자리)
+ *   - **MM**   : 월 (2자리, 빈자리 0 채움)
+ *   - **DD**   : 일 (2자리, 빈자리 0 채움)
+ *   - **HH**   : 24시간제 형식의 시각 (2자리, 빈자리 0 채움)
+ *   - **hh**   : 12시간제 형식의 시각 (2자리, 빈자리 0 채움)
+ *   - **mm**   : 분 (2자리, 빈자리 0 채움)
+ *   - **ss**   : 초 (2자리, 빈자리 0 채움)
+ *
+ * @returns 포맷에 맞춰 변환된 날짜 문자열
+ *
+ * @createdAt - 2024.11.12
+ * @modifiedAt - 2024.11.12
+ */
+export function formatDate(date: Date, format: string): string {
+  const pad = (num: number, size: number = 2) =>
+    num.toString().padStart(size, "0");
+
+  const hours24 = date.getHours();
+  const hours12 = hours24 % 12;
+  const replacements: { [key: string]: string } = {
+    YYYY: date.getFullYear().toString(),
+    MM: pad(date.getMonth() + 1),
+    DD: pad(date.getDate()),
+    HH: pad(hours24),
+    hh: pad(hours12),
+    mm: pad(date.getMinutes()),
+    ss: pad(date.getSeconds()),
+  };
+
+  return format.replace(
+    /YYYY|MM|DD|HH|hh|mm|ss/g,
+    (match) => replacements[match]
+  );
+}
