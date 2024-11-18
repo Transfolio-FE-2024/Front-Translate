@@ -36,7 +36,7 @@ const posts: Post[] = [
     },
     style: {
       fontSize: "14pt",
-      fontFamily: "NanumMyeangjo",
+      fontFamily: "NanumMyeongjo",
     },
     content: [
       {
@@ -218,7 +218,7 @@ const posts: Post[] = [
     },
     style: {
       fontSize: "14pt",
-      fontFamily: "NanumMyeoNanumMyeangjongjo",
+      fontFamily: "NanumMyeongjo",
     },
     content: [
       {
@@ -400,7 +400,7 @@ const posts: Post[] = [
     },
     style: {
       fontSize: "14pt",
-      fontFamily: "NanumMyeangjo",
+      fontFamily: "NanumMyeongjo",
     },
     content: [
       {
@@ -683,7 +683,7 @@ const posts: Post[] = [
     },
     style: {
       fontSize: "14pt",
-      fontFamily: "NanumMyeangjo",
+      fontFamily: "NanumMyeongjo",
     },
     content: [
       {
@@ -764,7 +764,7 @@ const posts: Post[] = [
     },
     style: {
       fontSize: "14pt",
-      fontFamily: "NanumMyeangjo",
+      fontFamily: "NanumMyeongjo",
     },
     content: [
       {

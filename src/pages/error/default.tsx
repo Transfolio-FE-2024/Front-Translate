@@ -78,6 +78,10 @@ const ErrorElement_418: React.FC = () => {
 
 //
 const ErrorElement_Unknown: React.FC = () => {
+  const error = useRouteError();
+
+  console.warn("[Transfolio]", error);
+
   return (
     <div className={styles.container}>
       <div className={styles.title}>Something went wrong</div>

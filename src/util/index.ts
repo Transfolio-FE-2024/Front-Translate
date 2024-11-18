@@ -194,7 +194,7 @@ export function className(...args: string[]) {
 }
 
 /**
- * displayName을 값으로 갖는 key를 반환한다. (e.g. "Nanum Myeangjo" 대입 시, "NanumMyeangjo" 반환)
+ * displayName을 값으로 갖는 key를 반환한다. (e.g. "Nanum Myeongjo" 대입 시, "NanumMyeongjo" 반환)
  * 존재하지 않는 경우, 기본 폰트 타입인 "Pretendard"를 반환한다.
  * @param displayName 서버에 저장되는 폰트 타입이자, 사용자에게 표시되는 폰트명
  */

@@ -50,7 +50,6 @@ const ContentSlider = () => {
     mutationFn: (boardID: number) => boardApi.bookmark(boardID),
     onSuccess: (res) => {
       if (String(res.status) === "200") {
-        alert(`찜목록에 추가했습니다.`);
         queryClient.invalidateQueries({
           queryKey: ["comp.ContentSlider", "todayList"],
         }); // 데이터 리로드

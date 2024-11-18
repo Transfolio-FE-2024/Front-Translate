@@ -57,7 +57,7 @@ export const preDefinedFontFamily: {
   [key: string]: string;
 } = {
   Pretendard: "Pretendard",
-  NanumMyeangjo: "Nanum Myeangjo",
+  NanumMyeongjo: "Nanum Myeongjo",
   NotoSans: "Noto Sans",
   NanumBarunGothic: "Nanum Barun Gothic",
 };
