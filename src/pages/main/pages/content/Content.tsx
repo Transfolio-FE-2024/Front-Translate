@@ -23,7 +23,7 @@ const Content = () => {
     queryFn: () => boardApi.getBoardById(contentId),
   });
 
-  if (error) throw new Error("오류발생!!");
+  if (error) throw new Error("오류가 발생했습니다.");
 
   return (
     <div className={styles.container}>
@@ -83,14 +83,16 @@ const Content = () => {
                 </div>
               </div>
               <div className={styles.editButtonWrapper}>
-                {board && board.portfolio.boardPid && (
-                  <Link
-                    to={`/home/edit/${board?.portfolio.boardPid || ""}`}
-                    className={styles.editButtonContainer}
-                  >
-                    <div className={styles.editButton}>수정하기</div>
-                  </Link>
-                )}
+                {board &&
+                  board.portfolio.boardPid &&
+                  board.isAuthorYN === "Y" && (
+                    <Link
+                      to={`/home/edit/${board.portfolio.boardPid || ""}`}
+                      className={styles.editButtonContainer}
+                    >
+                      <div className={styles.editButton}>수정하기</div>
+                    </Link>
+                  )}
               </div>
             </div>
           </div>
