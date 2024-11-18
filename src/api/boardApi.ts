@@ -51,28 +51,36 @@ const boardApi = () => {
   }
 
   /** 게시글 단건 조회 */
-  async function getBoardById(boardId: string): Promise<Portfolio> {
+  async function getBoardById(
+    boardId: string
+  ): Promise<{ portfolio: Portfolio; isAuthorYN: "Y" | "N" }> {
     return await axios
       .get(`${String(import.meta.env.VITE_API_HOST)}/board/${boardId}`)
       .then((response) => {
-        const board = response.data as S_Portfolio;
+        const board = response.data as {
+          boardDto: S_Portfolio;
+          isAuthorYn: boolean;
+        };
 
         return {
-          boardPid: board.boardPid,
-          userId: board.userId,
-          boardTitle: board.boardTitle,
-          afterLang: board.afterLang,
-          beforeLang: board.beforeLang,
-          boardSubTitle: board.boardSubTitle,
-          boardDescription: board.boardDescription,
-          highCtg: board.highCtg,
-          lowCtg: board.lowCtg,
-          boardAuthor: board.boardAuthor,
-          boardContent: board.boardContent,
-          fontSize: board.fontSize,
-          fontType: board.fontType,
-          foldCnt: board.foldCnt,
-          tempStorageYN: board.tempStorageYn === "Y" ? "Y" : "N",
+          portfolio: {
+            boardPid: board.boardDto.boardPid,
+            userId: board.boardDto.userId,
+            boardTitle: board.boardDto.boardTitle,
+            afterLang: board.boardDto.afterLang,
+            beforeLang: board.boardDto.beforeLang,
+            boardSubTitle: board.boardDto.boardSubTitle,
+            boardDescription: board.boardDto.boardDescription,
+            highCtg: board.boardDto.highCtg,
+            lowCtg: board.boardDto.lowCtg,
+            boardAuthor: board.boardDto.boardAuthor,
+            boardContent: board.boardDto.boardContent,
+            fontSize: board.boardDto.fontSize,
+            fontType: board.boardDto.fontType,
+            foldCnt: board.boardDto.foldCnt,
+            tempStorageYN: board.boardDto.tempStorageYn === "Y" ? "Y" : "N",
+          },
+          isAuthorYN: board.isAuthorYn ? "Y" : "N",
         };
       });
   }

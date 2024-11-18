@@ -24,17 +24,16 @@ import {
 import ThumbnailCardUnfolderable from "@/components/thumbnail-card/thumbnail-card-unfolderable/ThumbnailCardUnfolderable";
 import DropdownButton from "../portfolio/component/dropdown-button/DropdownButton";
 import WritingContent from "../portfolio/component/writing-content/WritingContent";
-import { Portfolio } from "@/interface/client/profile";
 import boardApi from "@/api/boardApi";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { Board } from "@/interface/client/board";
 import JwtManager from "@/util/jwtManager";
+import DefaultLoading from "@/components/loading/default-loading/DefaultLoading";
 
 const Edit = () => {
   const { contentId = "" } = useParams();
   const navigate = useNavigate();
   const indexRef = useRef<number>(1);
-  const [board, setBoard] = useState<Portfolio>();
   const [thumbnail, setThumbnail] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [information, setInformation] = useState<string>("");
@@ -59,44 +58,39 @@ const Edit = () => {
   );
   const [contents, setContents] = useState<ContentType[]>([]);
   //
+  const {
+    data: board,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ["page.edit", "board", contentId],
+    queryFn: () => boardApi.getBoardById(contentId),
+  });
   const { mutate: submitPost } = useMutation({
-    mutationFn: (board: Board) => boardApi.createBoard(board),
+    mutationFn: (board: Board) => boardApi.createBoard(board), // FIXME 게시글 수정 api로 변경
     onSuccess: (data) => {
       navigate(`/home/completion/${data.result.boardPid}`);
     },
     onError: (e: Error) => alert(e.message),
   });
 
-  useEffect(() => {
-    if (!contentId) {
-      alert("잘못된 접근입니다.");
-      return;
-    }
-
-    boardApi
-      .getBoardById(contentId)
-      .then((board) => setBoard(board))
-      .catch((e) => {
-        console.warn("[Transfolio] ", e);
-        alert("데이터를 가져오는 도중 오류가 발생했습니다.");
-      });
-  }, []);
+  if (error) throw new Error("오류발생!!");
 
   useEffect(() => {
     if (!board) return;
 
-    setThumbnail(board.boardTitle);
-    setTitle(board.boardSubTitle);
-    setInformation(board.boardDescription);
-    setSelectedOriginLanguage(board.beforeLang);
-    setSelectedTranslatedLanguage(board.afterLang);
-    setSelectedMainCategory(board.highCtg as MainCategoryType);
-    setSelectedSubCategory(board.lowCtg);
-    setAuthor(board.boardAuthor);
-    setSelectedFontSize(`${board.fontSize}pt`);
-    setSelectedFontFamily(getFontFamilyByDisplayName(board.fontType));
+    setThumbnail(board.portfolio.boardTitle);
+    setTitle(board.portfolio.boardSubTitle);
+    setInformation(board.portfolio.boardDescription);
+    setSelectedOriginLanguage(board.portfolio.beforeLang);
+    setSelectedTranslatedLanguage(board.portfolio.afterLang);
+    setSelectedMainCategory(board.portfolio.highCtg as MainCategoryType);
+    setSelectedSubCategory(board.portfolio.lowCtg);
+    setAuthor(board.portfolio.boardAuthor);
+    setSelectedFontSize(`${board.portfolio.fontSize}pt`);
+    setSelectedFontFamily(getFontFamilyByDisplayName(board.portfolio.fontType));
     setContents(
-      board.boardContent.length === 0
+      board.portfolio.boardContent.length === 0
         ? [
             {
               id: indexRef.current++,
@@ -105,7 +99,7 @@ const Edit = () => {
               translated: "",
             } as ContentType,
           ]
-        : board.boardContent
+        : board.portfolio.boardContent
             .split("$") // 컨텐츠 예시: "Hello/안녕하세요$My name is Hong Gil-dong/저는 홍길동입니다",
             .map((contentBlock) => contentBlock.split("/"))
             .map(
@@ -421,7 +415,10 @@ const Edit = () => {
                           : selectedSubCatetory
                       }
                       dropdownOptions={
-                        selectedMainCatetory !== undefined
+                        selectedMainCatetory !== undefined &&
+                        Object.keys(areaOfInterest).includes(
+                          selectedMainCatetory
+                        )
                           ? areaOfInterest[selectedMainCatetory]
                           : []
                       }
@@ -522,6 +519,7 @@ const Edit = () => {
           </div>
         </div>
       </div>
+      {isLoading && <DefaultLoading />}
     </div>
   );
 };

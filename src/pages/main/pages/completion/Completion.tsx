@@ -26,7 +26,7 @@ const Completion = (): JSX.Element => {
 
     boardApi
       .getBoardById(contentId)
-      .then((board) => setTitle(board.boardTitle))
+      .then((board) => setTitle(board.portfolio.boardTitle))
       .catch((e) => {
         console.warn("[Transfolio] ", e);
         alert("데이터를 가져오는 도중 오류가 발생했습니다.");

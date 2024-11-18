@@ -350,7 +350,8 @@ const Portfolio = () => {
                       : selectedSubCatetory
                   }
                   dropdownOptions={
-                    selectedMainCatetory !== undefined
+                    selectedMainCatetory !== undefined &&
+                    Object.keys(areaOfInterest).includes(selectedMainCatetory)
                       ? areaOfInterest[selectedMainCatetory]
                       : []
                   }
