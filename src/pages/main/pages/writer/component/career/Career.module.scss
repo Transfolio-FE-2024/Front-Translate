@@ -41,7 +41,9 @@ $corner-size: 25px;
       &.add {
         .card {
           .top {
-            .date {
+            .dateWrapper {
+              .date {
+              }
             }
 
             .mainText {
@@ -78,16 +80,38 @@ $corner-size: 25px;
           justify-content: flex-start;
           margin: 0 24px 15px;
 
-          .date {
-            font-family: var(--font-pretend);
-            font-weight: var(--font-medium);
-            font-size: 14px;
-            letter-spacing: 0em;
-            line-height: 229.5%;
-
-            color: var(--color-light-gray);
+          .dateWrapper {
             flex-shrink: 0;
             margin-right: 34px;
+            position: relative;
+            width: 76px;
+            height: 32px;
+
+            .date {
+              font-family: var(--font-pretend);
+              font-weight: var(--font-medium);
+              font-size: 14px;
+              letter-spacing: 0em;
+              line-height: 229.5%;
+
+              color: var(--color-light-gray);
+            }
+
+            input.date {
+              position: absolute;
+              left: -17px;
+              top: 0;
+              width: 100px;
+              text-align: center;
+              background-color: white;
+              box-shadow: var(--box-shadow-small);
+            }
+
+            div.date {
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              overflow: hidden;
+            }
           }
 
           .mainText {

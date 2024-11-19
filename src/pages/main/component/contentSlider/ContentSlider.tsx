@@ -50,9 +50,10 @@ const ContentSlider = () => {
     mutationFn: (boardID: number) => boardApi.bookmark(boardID),
     onSuccess: (res) => {
       if (String(res.status) === "200") {
+        // 데이터 리로드
         queryClient.invalidateQueries({
           queryKey: ["comp.ContentSlider", "todayList"],
-        }); // 데이터 리로드
+        });
       } else throw new Error("오류가 발생했습니다." + ` ${res.message}`);
     },
     onError: (e: Error) => alert(e.message),
