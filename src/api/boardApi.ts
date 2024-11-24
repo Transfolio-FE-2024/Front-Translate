@@ -50,6 +50,48 @@ const boardApi = () => {
       }));
   }
 
+  /** 게시글 수정 */
+  async function updateBoard(board: { boardPid: string; boardData: Board }) {
+    const loginId = JwtManager.decodeJwt(
+      CookieManager.get(document, TF.KEY.COOKIE.TOKEN) || ""
+    )?.[TF.KEY.JWT.LOGIN_ID];
+
+    if (!loginId) {
+      throw new Error("로그인 정보가 유효하지 않음");
+    }
+
+    return await axios
+      .put(
+        `${String(import.meta.env.VITE_API_HOST)}/board/edit/${board.boardPid}`,
+        {
+          userId: loginId,
+          boardTitle: board.boardData.boardTitle,
+          boardSubTitle: board.boardData.boardSubTitle,
+          beforeLang: board.boardData.beforeLang,
+          afterLang: board.boardData.afterLang,
+          boardDescription: board.boardData.boardDescription,
+          highCtg: board.boardData.highCtg,
+          lowCtg: board.boardData.lowCtg,
+          boardAuthor: board.boardData.boardAuthor,
+          boardContent: board.boardData.boardContent,
+          tempStorageYn: board.boardData.tempStorageYN,
+          fontSize: board.boardData.fontSize,
+          fontType: board.boardData.fontType,
+        } as S_Board,
+        {
+          headers: {
+            "Content-Type": "application/json;charset=UTF-8",
+          },
+        }
+      )
+      .then((response) => ({
+        message: response.data.object.message,
+        result: response.data.object.result,
+        status:
+          response.data.object.status || TF.HTTP_STATUS.FAIL_UNKNOWN_STATUS,
+      }));
+  }
+
   /** 게시글 단건 조회 */
   async function getBoardById(
     boardId: string
@@ -132,6 +174,7 @@ const boardApi = () => {
 
   return {
     createBoard,
+    updateBoard,
     getBoardById,
     getTodaysTranslator,
     bookmark,

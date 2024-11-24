@@ -67,7 +67,8 @@ const Edit = () => {
     queryFn: () => boardApi.getBoardById(contentId),
   });
   const { mutate: submitPost } = useMutation({
-    mutationFn: (board: Board) => boardApi.createBoard(board), // FIXME 게시글 수정 api로 변경
+    mutationFn: (board: Board) =>
+      boardApi.updateBoard({ boardPid: contentId, boardData: board }),
     onSuccess: (data) => {
       navigate(`/home/completion/${data.result.boardPid}`);
     },
