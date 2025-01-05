@@ -61,8 +61,9 @@ const ThumbnailCardFolderable: React.FC<{
             <div
               className={className(
                 styles.foldContainer,
-                styles[`borderTop-${color}`]
+                styles[`foldTriangle-${color}`]
               )}
+              title="접기"
             ></div>
           </div>
         )}
@@ -75,6 +76,7 @@ const ThumbnailCardFolderable: React.FC<{
         onClick={handleClick}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
+        title="게시물로 이동"
       ></Link>
     </div>
   );

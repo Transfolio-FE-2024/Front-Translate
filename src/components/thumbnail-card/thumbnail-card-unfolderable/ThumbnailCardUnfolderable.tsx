@@ -46,9 +46,8 @@ const ThumbnailCardUnfolderable: React.FC<{
           <textarea
             className={styles.editableContent}
             onChange={handleChangeValue}
-          >
-            {content}
-          </textarea>
+            value={content}
+          />
         ) : (
           <div className={styles.editableContent}>{content}</div>
         )}

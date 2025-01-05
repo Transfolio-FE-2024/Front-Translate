@@ -197,7 +197,7 @@ const Career: React.FC = () => {
                       placeholder="경력이나 프로젝트 관련 경험을 간략히 작성해주세요. (180자 이내)"
                       onChange={handleChangeNewCareerContent}
                       value={newCareerObj.careerContent}
-                    ></textarea>
+                    />
                   </div>
                 </div>
                 <div className={styles.trophy}></div>
@@ -261,7 +261,7 @@ const Career: React.FC = () => {
                         <textarea
                           className={styles.content}
                           placeholder="경력이나 프로젝트 관련 경험을 간략히 작성해주세요. (180자 이내)"
-                        ></textarea>
+                        />
                       ) : (
                         <div className={styles.content}>
                           {career.careerContent}

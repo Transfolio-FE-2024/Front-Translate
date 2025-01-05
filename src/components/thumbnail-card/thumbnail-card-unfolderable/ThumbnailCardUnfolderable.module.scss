@@ -19,16 +19,17 @@
   border-radius: 100%;
 }
 
-.orange {
-  background-color: var(--color-orange);
-}
-
-.green {
-  background-color: var(--color-green-2);
-}
-
-.gray {
-  background-color: var(--color-light-gray);
+// 반복처리
+$colors: (
+  orange: var(--color-orange),
+  green: var(--color-green-2),
+  white: white,
+  gray: var(--color-light-gray),
+);
+@each $name, $color in $colors {
+  .#{"" + $name} {
+    background-color: $color;
+  }
 }
 
 .contentSection {
