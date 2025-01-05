@@ -2,13 +2,14 @@
 import { APIResponse, SignUpInfo } from "@/interface";
 import { TF } from "@/util/const";
 import axios from "axios";
+import transfolioAxios from "./transfolioAxios";
 
 const authApi = () => {
   /** 로그인 */
   async function signIn(userId: string, password: string) {
-    return await axios
+    return await transfolioAxios
       .post(
-        `${String(import.meta.env.VITE_API_HOST)}/user/sign-in`,
+        "/user/sign-in",
         {
           userId,
           password,
@@ -28,17 +29,12 @@ const authApi = () => {
 
   /** 로그아웃 */
   async function signOut() {
-    return await axios
-      .post(
-        `${String(import.meta.env.VITE_API_HOST)}/user/sign-out`,
-        undefined,
-        {
-          headers: {
-            "Content-Type": "application/json;charset=UTF-8",
-          },
-          withCredentials: true,
-        }
-      )
+    return await transfolioAxios
+      .post("/user/sign-out", undefined, {
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+      })
       .then((response) => ({
         message: response.data.message,
         result: response.data.result,
@@ -48,9 +44,9 @@ const authApi = () => {
 
   /** 회원가입 */
   async function signUp(signUpInfo: SignUpInfo): Promise<APIResponse> {
-    return await axios
+    return await transfolioAxios
       .post(
-        `${String(import.meta.env.VITE_API_HOST)}/user/sign-up`,
+        "/user/sign-up",
         {
           ...signUpInfo,
         },

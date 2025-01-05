@@ -4,14 +4,14 @@ import {
   Career as S_Career,
 } from "@/interface/server/profile";
 import { UserInfo, Portfolio, Career } from "@/interface/client/profile";
-import axios from "axios";
+import transfolioAxios from "./transfolioAxios";
 
 const profileApi = () => {
   /** 프로필 - 사용자 프로필 정보 조회 */
   async function getMyInfo(userId: string): Promise<UserInfo> {
-    return await axios
+    return await transfolioAxios
       .post(
-        `${String(import.meta.env.VITE_API_HOST)}/profile/myInfo`,
+        "/profile/myInfo",
         {
           userId,
         },
@@ -40,9 +40,9 @@ const profileApi = () => {
 
   /** 프로필 - 포트폴리오 조회 */
   async function getPortfolio(userId: string): Promise<Portfolio[]> {
-    return await axios
+    return await transfolioAxios
       .post(
-        `${String(import.meta.env.VITE_API_HOST)}/profile/portfolio`,
+        "/profile/portfolio",
         {
           userId,
         },
@@ -77,9 +77,9 @@ const profileApi = () => {
 
   /** 프로필 - 경력 조회 */
   async function getMyCareer(userId: string): Promise<Career[]> {
-    return await axios
+    return await transfolioAxios
       .post(
-        `${String(import.meta.env.VITE_API_HOST)}/profile/career`,
+        "/profile/career",
         {
           userId,
         },

@@ -1,26 +1,15 @@
 import { Career as S_Career } from "@/interface/server/profile";
 import { Career } from "@/interface/client/profile";
-import axios from "axios";
-import JwtManager from "@/util/jwtManager";
-import { CookieManager } from "@/util";
-import { TF } from "@/util/const";
+import transfolioAxios from "./transfolioAxios";
 
 const careerApi = () => {
   /** 경력 - 경력 등록 */
   async function createCareer(
     career: Career
   ): Promise<{ career: Career; careerId: string }> {
-    const loginId = JwtManager.decodeJwt(
-      CookieManager.get(document, TF.KEY.COOKIE.TOKEN) || ""
-    )?.[TF.KEY.JWT.LOGIN_ID];
-
-    if (!loginId) {
-      throw new Error("로그인 정보가 유효하지 않음");
-    }
-
-    return await axios
+    return await transfolioAxios
       .post(
-        `${String(import.meta.env.VITE_API_HOST)}/career/regist`,
+        "/career/regist",
         {
           careerPid: null,
           careerTitle: career.careerTitle,
@@ -28,7 +17,7 @@ const careerApi = () => {
           careerDate: career.careerDate,
           updatedAt: null,
           createdAt: null,
-          userId: loginId,
+          userId: "프론트에서전달불가",
         },
         {
           headers: {

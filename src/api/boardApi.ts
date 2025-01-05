@@ -2,27 +2,17 @@ import { Board } from "@/interface/client/board";
 import { Board as S_Board } from "@/interface/server/board";
 import { Portfolio } from "@/interface/client/profile";
 import { Portfolio as S_Portfolio } from "@/interface/server/profile";
-import { CookieManager } from "@/util";
 import { TF } from "@/util/const";
-import JwtManager from "@/util/jwtManager";
-import axios from "axios";
+import transfolioAxios from "./transfolioAxios";
 
 const boardApi = () => {
   /** 게시글 등록 */
   async function createBoard(board: Board) {
-    const loginId = JwtManager.decodeJwt(
-      CookieManager.get(document, TF.KEY.COOKIE.TOKEN) || ""
-    )?.[TF.KEY.JWT.LOGIN_ID];
-
-    if (!loginId) {
-      throw new Error("로그인 정보가 유효하지 않음");
-    }
-
-    return await axios
+    return await transfolioAxios
       .post(
-        `${String(import.meta.env.VITE_API_HOST)}/board/regist`,
+        "/board/regist",
         {
-          userId: loginId,
+          userId: "프론트에서전달불가",
           boardTitle: board.boardTitle,
           boardSubTitle: board.boardSubTitle,
           beforeLang: board.beforeLang,
@@ -52,19 +42,11 @@ const boardApi = () => {
 
   /** 게시글 수정 */
   async function updateBoard(board: { boardPid: string; boardData: Board }) {
-    const loginId = JwtManager.decodeJwt(
-      CookieManager.get(document, TF.KEY.COOKIE.TOKEN) || ""
-    )?.[TF.KEY.JWT.LOGIN_ID];
-
-    if (!loginId) {
-      throw new Error("로그인 정보가 유효하지 않음");
-    }
-
-    return await axios
+    return await transfolioAxios
       .put(
-        `${String(import.meta.env.VITE_API_HOST)}/board/edit/${board.boardPid}`,
+        `/board/edit/${board.boardPid}`,
         {
-          userId: loginId,
+          userId: "프론트에서전달불가",
           boardTitle: board.boardData.boardTitle,
           boardSubTitle: board.boardData.boardSubTitle,
           beforeLang: board.boardData.beforeLang,
@@ -96,66 +78,62 @@ const boardApi = () => {
   async function getBoardById(
     boardId: string
   ): Promise<{ portfolio: Portfolio; isAuthorYN: "Y" | "N" }> {
-    return await axios
-      .get(`${String(import.meta.env.VITE_API_HOST)}/board/${boardId}`)
-      .then((response) => {
-        const board = response.data as {
-          boardDto: S_Portfolio;
-          isAuthorYn: boolean;
-        };
+    return await transfolioAxios.get(`/board/${boardId}`).then((response) => {
+      const board = response.data as {
+        boardDto: S_Portfolio;
+        isAuthorYn: boolean;
+      };
 
-        return {
-          portfolio: {
-            boardPid: board.boardDto.boardPid,
-            userId: board.boardDto.userId,
-            boardTitle: board.boardDto.boardTitle,
-            afterLang: board.boardDto.afterLang,
-            beforeLang: board.boardDto.beforeLang,
-            boardSubTitle: board.boardDto.boardSubTitle,
-            boardDescription: board.boardDto.boardDescription,
-            highCtg: board.boardDto.highCtg,
-            lowCtg: board.boardDto.lowCtg,
-            boardAuthor: board.boardDto.boardAuthor,
-            boardContent: board.boardDto.boardContent,
-            fontSize: board.boardDto.fontSize,
-            fontType: board.boardDto.fontType,
-            foldCnt: board.boardDto.foldCnt,
-            tempStorageYN: board.boardDto.tempStorageYn === "Y" ? "Y" : "N",
-          },
-          isAuthorYN: board.isAuthorYn ? "Y" : "N",
-        };
-      });
+      return {
+        portfolio: {
+          boardPid: board.boardDto.boardPid,
+          userId: board.boardDto.userId,
+          boardTitle: board.boardDto.boardTitle,
+          afterLang: board.boardDto.afterLang,
+          beforeLang: board.boardDto.beforeLang,
+          boardSubTitle: board.boardDto.boardSubTitle,
+          boardDescription: board.boardDto.boardDescription,
+          highCtg: board.boardDto.highCtg,
+          lowCtg: board.boardDto.lowCtg,
+          boardAuthor: board.boardDto.boardAuthor,
+          boardContent: board.boardDto.boardContent,
+          fontSize: board.boardDto.fontSize,
+          fontType: board.boardDto.fontType,
+          foldCnt: board.boardDto.foldCnt,
+          tempStorageYN: board.boardDto.tempStorageYn === "Y" ? "Y" : "N",
+        },
+        isAuthorYN: board.isAuthorYn ? "Y" : "N",
+      };
+    });
   }
 
   /** 홈화면 - 오늘의 번역 */
   async function getTodaysTranslator(): Promise<Portfolio[]> {
-    return await axios
-      .get(`${String(import.meta.env.VITE_API_HOST)}/todaysTranslator`)
-      .then((response) =>
-        (response.data as S_Portfolio[]).map((board) => ({
-          boardPid: board.boardPid,
-          userId: board.userId,
-          boardTitle: board.boardTitle,
-          afterLang: board.afterLang,
-          beforeLang: board.beforeLang,
-          boardSubTitle: board.boardSubTitle,
-          boardDescription: board.boardDescription,
-          highCtg: board.highCtg,
-          lowCtg: board.lowCtg,
-          boardAuthor: board.boardAuthor,
-          boardContent: board.boardContent,
-          fontSize: board.fontSize,
-          fontType: board.fontType,
-          foldCnt: board.foldCnt,
-          tempStorageYN: board.tempStorageYn === "Y" ? "Y" : "N",
-        }))
-      );
+    return await transfolioAxios.get("/todaysTranslator").then((response) =>
+      (response.data as S_Portfolio[]).map((board) => ({
+        boardPid: board.boardPid,
+        userId: board.userId,
+        boardTitle: board.boardTitle,
+        afterLang: board.afterLang,
+        beforeLang: board.beforeLang,
+        boardSubTitle: board.boardSubTitle,
+        boardDescription: board.boardDescription,
+        highCtg: board.highCtg,
+        lowCtg: board.lowCtg,
+        boardAuthor: board.boardAuthor,
+        boardContent: board.boardContent,
+        fontSize: board.fontSize,
+        fontType: board.fontType,
+        foldCnt: board.foldCnt,
+        tempStorageYN: board.tempStorageYn === "Y" ? "Y" : "N",
+      }))
+    );
   }
   /** 찜하기(접기) */
   async function bookmark(boardID: number) {
-    return await axios
+    return await transfolioAxios
       .post(
-        `${String(import.meta.env.VITE_API_HOST)}/board/bookmark`,
+        "/board/bookmark",
         {
           boardPid: String(boardID),
         },
