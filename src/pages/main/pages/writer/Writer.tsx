@@ -5,10 +5,8 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Career, Portfolio } from "./component";
 import { HiOutlinePencil } from "react-icons/hi";
 import { CiSettings } from "react-icons/ci";
-import { className, CookieManager } from "@/util";
+import { className } from "@/util";
 import profileApi from "@/api/profileApi";
-import { TF } from "@/util/const";
-import JwtManager from "@/util/jwtManager";
 import { UserInfo } from "@/interface/client/profile";
 import HeaderMenuContext from "@/components/Header/context/HeaderMenuContext";
 
@@ -49,19 +47,8 @@ const Writer = () => {
   );
 
   useEffect(() => {
-    // 토큰 확인
-    const payload = JwtManager.decodeJwt(
-      CookieManager.get(document, TF.KEY.COOKIE.TOKEN) || ""
-    );
-
-    if (!payload || !writerId || !payload[TF.KEY.JWT.LOGIN_ID]) {
-      alert("잘못된 접근입니다.");
-      navigate(`/signIn?b_url=${encodeURIComponent(location.pathname)}`);
-      return;
-    }
-
-    // 본인 확인
-    if (writerId === payload[TF.KEY.JWT.LOGIN_ID]) setIsMe(true);
+    // FIXME - BE api 수정 필요할듯 (쿠키의 토큰과 글 작성자를 비교해서 글쓴이 본인이면 Y, 아니면 N 이런식으로?)
+    setIsMe(true);
 
     // 프로필 조회
     profileApi

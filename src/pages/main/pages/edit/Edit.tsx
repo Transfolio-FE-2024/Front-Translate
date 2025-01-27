@@ -11,12 +11,10 @@ import {
   preDefinedFontSize,
   preDefinedFontFamily,
   supportedTranslateLanguage,
-  TF,
 } from "@/util/const";
 import { MainCategoryType, ContentType } from "@/types/index";
 import {
   className,
-  CookieManager,
   getCategoryColor,
   getFontFamilyByDisplayName,
   ValidationUtil,
@@ -27,8 +25,8 @@ import WritingContent from "../portfolio/component/writing-content/WritingConten
 import boardApi from "@/api/boardApi";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Board } from "@/interface/client/board";
-import JwtManager from "@/util/jwtManager";
 import DefaultLoading from "@/components/loading/default-loading/DefaultLoading";
+import { AxiosError } from "axios";
 
 const Edit = () => {
   const { contentId = "" } = useParams();
@@ -72,7 +70,13 @@ const Edit = () => {
     onSuccess: (data) => {
       navigate(`/home/completion/${data.result.boardPid}`);
     },
-    onError: (e: Error) => alert(e.message),
+    onError: (e: Error) => {
+      const errMsg =
+        (e as AxiosError<{ message: string }>).response?.data.message ||
+        "오류가 발생했습니다.";
+
+      alert(errMsg);
+    },
   });
 
   if (error) throw new Error("오류가 발생했습니다.");
@@ -251,31 +255,22 @@ const Edit = () => {
       }
     }
 
-    const token = JwtManager.decodeJwt(
-      CookieManager.get(document, TF.KEY.COOKIE.TOKEN) || ""
-    );
-    const loginId = token ? token[TF.KEY.JWT.LOGIN_ID] : "";
-
-    if (loginId) {
-      submitPost({
-        boardTitle: thumbnail,
-        boardSubTitle: title,
-        beforeLang: selectedOriginLanguage || "",
-        afterLang: selectedTranslatedLanguage || "",
-        boardDescription: information,
-        highCtg: selectedMainCatetory ? selectedMainCatetory.toString() : "",
-        lowCtg: selectedSubCatetory ? selectedSubCatetory.toString() : "",
-        boardAuthor: author,
-        boardContent: contents
-          .map((content) => [content.original, content.translated].join("/"))
-          .join("$"),
-        fontSize: Number(selectedFontSize.replace("pt", "") || "12"),
-        fontType: preDefinedFontFamily[selectedFontFamily],
-        tempStorageYN: preSave ? "Y" : "N",
-      });
-    } else {
-      alert("로그인 정보가 바르지 않습니다.");
-    }
+    submitPost({
+      boardTitle: thumbnail,
+      boardSubTitle: title,
+      beforeLang: selectedOriginLanguage || "",
+      afterLang: selectedTranslatedLanguage || "",
+      boardDescription: information,
+      highCtg: selectedMainCatetory ? selectedMainCatetory.toString() : "",
+      lowCtg: selectedSubCatetory ? selectedSubCatetory.toString() : "",
+      boardAuthor: author,
+      boardContent: contents
+        .map((content) => [content.original, content.translated].join("/"))
+        .join("$"),
+      fontSize: Number(selectedFontSize.replace("pt", "") || "12"),
+      fontType: preDefinedFontFamily[selectedFontFamily],
+      tempStorageYN: preSave ? "Y" : "N",
+    });
   }
 
   return (
@@ -377,7 +372,7 @@ const Edit = () => {
                     <DropdownButton
                       title={
                         selectedMainCatetory === undefined
-                          ? "대분류"
+                          ? "선택하기"
                           : selectedMainCatetory
                       }
                       dropdownOptions={Object.keys(areaOfInterest)}
@@ -412,7 +407,7 @@ const Edit = () => {
                     <DropdownButton
                       title={
                         selectedSubCatetory === undefined
-                          ? "소분류"
+                          ? "선택하기"
                           : selectedSubCatetory
                       }
                       dropdownOptions={

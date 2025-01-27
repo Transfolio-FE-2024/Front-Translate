@@ -5,15 +5,12 @@ import Writers from "../../component/writers/Writers";
 import styles from "./Home.module.scss";
 import Section from "./component/section/Section";
 import ThumbnailCardGallery from "./component/section/thumbnail-card-gallery/ThumbnailCardGallery";
-import JwtManager from "@/util/jwtManager";
-import { TF } from "@/util/const";
-import { CookieManager } from "@/util";
+import { useContext } from "react";
+import { AuthContext } from "@/context/AuthContext";
 
 const Home = () => {
-  const token = JwtManager.decodeJwt(
-    CookieManager.get(document, TF.KEY.COOKIE.TOKEN) || ""
-  );
-  const currentUserId = token ? token[TF.KEY.JWT.LOGIN_ID] : "";
+  const authContext = useContext(AuthContext);
+  const currentUserId = authContext.userId;
 
   return (
     <div className={styles.container}>

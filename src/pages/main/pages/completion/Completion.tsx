@@ -2,21 +2,18 @@ import styles from "./Completion.module.scss";
 import trophyImage from "@/assets/images/trophy.png";
 import RankingCard from "./component/rankingCard/RankingCard";
 import { useNavigate, useParams } from "react-router-dom";
-import { className, CookieManager } from "@/util";
-import { useEffect, useState } from "react";
+import { className } from "@/util";
+import { useContext, useEffect, useState } from "react";
 import boardApi from "@/api/boardApi";
-import JwtManager from "@/util/jwtManager";
-import { TF } from "@/util/const";
+import { AuthContext } from "@/context/AuthContext";
 
 const Completion = (): JSX.Element => {
   const { contentId = "" } = useParams();
   const navigate = useNavigate();
+  const authContext = useContext(AuthContext);
   const [title, setTitle] = useState<string>("");
 
-  const token = JwtManager.decodeJwt(
-    CookieManager.get(document, TF.KEY.COOKIE.TOKEN) || ""
-  );
-  const loginId = token ? token[TF.KEY.JWT.LOGIN_ID] : "";
+  const loginId = authContext.userId;
 
   useEffect(() => {
     if (!contentId) {
