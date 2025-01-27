@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import TextField from "../../../components/text-field/TextField";
 import styles from "./SignIn.module.scss";
 import MainButtonRound from "@/components/button/main-button-round/MainButtonRound";
@@ -10,12 +10,14 @@ import { ValidationUtil } from "@/util";
 import { CLIENT_SITE_ADDRESS } from "@/util/const";
 import DefaultLoading from "@/components/loading/default-loading/DefaultLoading";
 import authApi from "@/api/authApi";
+import { AuthContext } from "@/context/AuthContext";
 
 const REDIRECT_URL = CLIENT_SITE_ADDRESS + "oauth/kakaocallback";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const authContext = useContext(AuthContext);
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [showLoading, setShowLoading] = useState<boolean>(false);
@@ -43,8 +45,14 @@ const SignIn = () => {
       .signIn(id, password)
       .then((res) => {
         if (String(res.status) === "200") {
+          // LoginContext 세팅
+          authContext.login({
+            userId: res?.result?.data?.userId,
+            email: res?.result?.data?.email,
+          });
+
           // b_url이 있으면 해당 url로 이동
-          const bURL = searchParams.get("b_url") || "";
+          const bURL = searchParams.get("b_url") ?? "";
           if (bURL) {
             navigate(decodeURIComponent(bURL));
             return;

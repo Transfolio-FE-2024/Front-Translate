@@ -22,7 +22,13 @@ const authApi = () => {
       )
       .then((response) => ({
         message: response.data.message,
-        result: response.data.result,
+        result: {
+          result: response.data.result,
+          data: {
+            userId: response.data.userId,
+            email: response.data.email,
+          },
+        },
         status: response.data.status || TF.HTTP_STATUS.FAIL_UNKNOWN_STATUS,
       }));
   }

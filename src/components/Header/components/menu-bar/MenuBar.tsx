@@ -1,14 +1,16 @@
 import { className } from "@/util";
 import styles from "./MenuBar.module.scss";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import authApi from "@/api/authApi";
+import { AuthContext } from "@/context/AuthContext";
 
 const MenuBar: React.FC<{
   setOpen: (value: boolean) => void;
 }> = ({ setOpen }) => {
   const navigate = useNavigate();
+  const authContext = useContext(AuthContext);
   const [easeout, setEaseout] = useState<boolean>(false);
   const handleClose = () => {
     setEaseout(true);
@@ -33,6 +35,7 @@ const MenuBar: React.FC<{
       .signOut()
       .then((res) => {
         if (String(res.status) === "200") {
+          authContext.logout();
           navigate("/");
         } else throw new Error("오류가 발생했습니다." + ` ${res.message}`);
       })
