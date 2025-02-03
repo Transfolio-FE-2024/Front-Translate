@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import Layout from "@/components/Layout/Layout";
 import { Footer } from "@/components/Footer/Footer";
 import { ReactNode, useState } from "react";
-import HeaderMenuContext from "@/components/Header/context/HeaderMenuContext";
+import HeaderMenuContext from "@/context/HeaderMenuContext";
 
 const Main = () => {
   const [headerButtons, setHeaderButtons] = useState<ReactNode>();

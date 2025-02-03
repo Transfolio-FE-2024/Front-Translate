@@ -5,7 +5,7 @@ import { useState } from "react";
 import MenuBar from "./components/menu-bar/MenuBar";
 import { IoMdClose, IoMdSearch } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
-import HeaderMenuContext from "./context/HeaderMenuContext";
+import HeaderMenuContext from "@/context/HeaderMenuContext";
 
 export const Header = () => {
   const headerMenuContext = useContext(HeaderMenuContext);

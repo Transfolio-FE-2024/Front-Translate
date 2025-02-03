@@ -8,7 +8,7 @@ import { CiSettings } from "react-icons/ci";
 import { className } from "@/util";
 import profileApi from "@/api/profileApi";
 import { UserInfo } from "@/interface/client/profile";
-import HeaderMenuContext from "@/components/Header/context/HeaderMenuContext";
+import HeaderMenuContext from "@/context/HeaderMenuContext";
 
 const tabs = [
   {
