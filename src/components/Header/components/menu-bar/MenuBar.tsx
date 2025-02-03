@@ -62,23 +62,37 @@ const MenuBar: React.FC<{
                 alt="프로필 사진"
               />
             </div>
-            <div className={styles.profileNameSection}>@ Kimhim</div>
+            <div className={styles.profileNameSection}>
+              @{authContext.userId}
+            </div>
             <div className={styles.portfolioSection}>
               <div
                 className={styles.portfolioButton}
                 onClick={() => {
-                  navigate("/home/portfolio");
+                  navigate(`/home/writer/${authContext.userId}`);
                   setOpen(false);
                 }}
               >
                 <div className={styles.portfolioButtonTitle}>포트폴리오</div>
                 <div className={styles.portfolioButtonNumber}>4개</div>
               </div>
-              <div className={styles.portfolioButton}>
+              <div
+                className={styles.portfolioButton}
+                onClick={() => {
+                  navigate(`/home/writer/${authContext.userId}`);
+                  setOpen(false);
+                }}
+              >
                 <div className={styles.portfolioButtonTitle}>경력</div>
                 <div className={styles.portfolioButtonNumber}>6개</div>
               </div>
-              <div className={styles.portfolioButton}>
+              <div
+                className={styles.portfolioButton}
+                onClick={() => {
+                  navigate(`/home/writer/${authContext.userId}`);
+                  setOpen(false);
+                }}
+              >
                 <div className={styles.portfolioButtonTitle}>접음</div>
                 <div className={styles.portfolioButtonNumber}>2개</div>
               </div>
