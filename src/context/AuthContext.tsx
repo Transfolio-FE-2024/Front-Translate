@@ -1,3 +1,4 @@
+import authApi from "@/api/authApi";
 import { SessionStorageManager } from "@/util";
 import { createContext, useState } from "react";
 
@@ -43,12 +44,16 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   function logout() {
-    SessionStorageManager.remove(window, KEY_AUTH_USER_USERID);
-    SessionStorageManager.remove(window, KEY_AUTH_USER_EMAIL);
+    authApi.signOut().then((res) => {
+      if (Number(res.status) === 200) {
+        SessionStorageManager.remove(window, KEY_AUTH_USER_USERID);
+        SessionStorageManager.remove(window, KEY_AUTH_USER_EMAIL);
 
-    setIsSignedIn(false);
-    setUserId("");
-    setEmail("");
+        setIsSignedIn(false);
+        setUserId("");
+        setEmail("");
+      }
+    });
   }
 
   return (

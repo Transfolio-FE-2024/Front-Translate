@@ -31,7 +31,7 @@ const Writers = () => {
             <WriterThumbnail
               key={writer}
               isFolded
-              onClicked={() => navigate("/home/writer/kimhim00")}
+              onClicked={() => navigate("/home/writer/accountTest")}
             />
           </div>
         ))}
