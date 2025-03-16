@@ -13,6 +13,13 @@ export interface UserInterest {
 }
 
 export interface UserInfo {
+  // userId: string;
+  // email: string;
+  // intrsCorporation: string;
+  // intrsLiterature: string;
+  // intrsMajor: string;
+  // intrsLanguage: string;
+  // totalFoldCnt: number;
   userId: string;
   email: string;
   intrsCorporation: string;
@@ -41,6 +48,7 @@ export interface Portfolio {
 }
 
 export interface Career {
+  careerPid: number;
   careerTitle: string;
   careerContent: string;
   careerDate: string;

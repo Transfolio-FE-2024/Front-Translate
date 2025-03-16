@@ -10,7 +10,11 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import careerApi from "@/api/careerApi";
 import { Career as ICareer } from "@/interface/client/profile";
 
-const Career: React.FC = () => {
+interface CareerProps {
+  isMe?: boolean;
+}
+
+const Career: React.FC = ({ isMe = false }: CareerProps) => {
   const { writerId = "" } = useParams();
   const newCareerDateInputRef = useRef<HTMLInputElement>(null);
   const [newCareerObj, setNewCareerObj] = useState<ICareer>({
@@ -38,6 +42,18 @@ const Career: React.FC = () => {
         careerTitle: "",
         careerContent: "",
       });
+
+      // 데이터 리로드
+      queryClient.invalidateQueries({
+        queryKey: ["page.writer", "career", writerId],
+      });
+    },
+    onError: (e: Error) => alert(e.message),
+  });
+  const { mutate: deleteCareer } = useMutation({
+    mutationFn: careerApi.deleteCareer,
+    onSuccess: (res) => {
+      console.log("res", res);
 
       // 데이터 리로드
       queryClient.invalidateQueries({
@@ -109,175 +125,164 @@ const Career: React.FC = () => {
     setModifyingCareerObj(undefined);
   };
 
-  const handleClickDelete = () => {
-    alert("삭제 미구현");
+  const handleClickDelete = (careerPid: number) => {
+    if (confirm(`삭제하시겠습니까? (pid: ${careerPid})`)) {
+      deleteCareer(careerPid);
+    }
   };
 
-  // 토큰 확인
-  const jwtPayload = JwtManager.decodeJwt(
-    CookieManager.get(document, TF.KEY.COOKIE.TOKEN) || ""
-  );
-
   // 본인 확인 - 본인 페이지인 경우
-  if (
-    !!jwtPayload &&
-    !!writerId &&
-    !!jwtPayload[TF.KEY.JWT.LOGIN_ID] &&
-    writerId === jwtPayload[TF.KEY.JWT.LOGIN_ID]
-  )
-    return (
-      <div className={styles.container}>
-        {careerList && careerList.length > 0 && (
-          <>
-            {/* design */}
-            <div className={styles.centerLine}>
-              <div className={styles.bottomNot}></div>
+  return isMe ? (
+    <div className={styles.container}>
+      {careerList && careerList.length > 0 && (
+        <>
+          {/* design */}
+          <div className={styles.centerLine}>
+            <div className={styles.bottomNot}></div>
+          </div>
+          {/* content */}
+          <div className={styles.cardContainer}>
+            {/* 경력 작성 컴포넌트 */}
+            <div className={className(styles.cardWrapper, styles.add)}>
+              <div className={styles.card}>
+                <div className={styles.top}>
+                  <div className={styles.dateWrapper}>
+                    {focusOnNewCareerDate ? (
+                      <input
+                        ref={newCareerDateInputRef}
+                        type="text"
+                        className={styles.date}
+                        placeholder={"YYYYMMDD"}
+                        maxLength={8}
+                        onChange={handleChangeNewCareerDate}
+                        value={newCareerObj.careerDate}
+                        onBlur={() => setFocusOnNewCareerDate(false)}
+                      ></input>
+                    ) : (
+                      <div
+                        className={styles.date}
+                        onClick={() => {
+                          setFocusOnNewCareerDate(true);
+                          setTimeout(
+                            () => newCareerDateInputRef.current?.select(),
+                            100
+                          );
+                        }}
+                      >
+                        {newCareerObj.careerDate.length > 0
+                          ? newCareerObj.careerDate.replace(
+                              // "2024.11.19"와 같은 형식으로 표현
+                              /(\d{1,2})(\d{2})?(\d{2})?$/,
+                              (_, g1, g2, g3) => {
+                                return [g1, g2, g3].filter(Boolean).join(".");
+                              }
+                            )
+                          : formatDate(new Date(), "YYYY.MM.DD")}
+                      </div>
+                    )}
+                  </div>
+                  <input
+                    type="text"
+                    className={styles.mainText}
+                    placeholder="경력 제목을 작성해주세요."
+                    maxLength={30}
+                    onChange={handleChangeNewCareerTitle}
+                    value={newCareerObj.careerTitle}
+                  ></input>
+                  <div className={styles.buttons}>
+                    <button
+                      className={styles.add}
+                      title="등록"
+                      onClick={handleClickRegist}
+                    ></button>
+                  </div>
+                </div>
+                <div className={styles.hr}></div>
+                <div className={styles.bottom}>
+                  <textarea
+                    className={styles.content}
+                    placeholder="경력이나 프로젝트 관련 경험을 간략히 작성해주세요. (180자 이내)"
+                    onChange={handleChangeNewCareerContent}
+                    value={newCareerObj.careerContent}
+                  />
+                </div>
+              </div>
+              <div className={styles.trophy}></div>
             </div>
-            {/* content */}
-            <div className={styles.cardContainer}>
-              {/* 경력 작성 컴포넌트 */}
-              <div className={className(styles.cardWrapper, styles.add)}>
+            {/* 경력 목록 */}
+            {careerList.map((career, idx) => (
+              <div className={styles.cardWrapper} key={idx}>
                 <div className={styles.card}>
                   <div className={styles.top}>
                     <div className={styles.dateWrapper}>
-                      {focusOnNewCareerDate ? (
+                      {/* FIXME 2024.11.19 */}
+                      {false && (
                         <input
-                          ref={newCareerDateInputRef}
                           type="text"
                           className={styles.date}
                           placeholder={"YYYYMMDD"}
                           maxLength={8}
-                          onChange={handleChangeNewCareerDate}
-                          value={newCareerObj.careerDate}
-                          onBlur={() => setFocusOnNewCareerDate(false)}
                         ></input>
-                      ) : (
-                        <div
-                          className={styles.date}
-                          onClick={() => {
-                            setFocusOnNewCareerDate(true);
-                            setTimeout(
-                              () => newCareerDateInputRef.current?.select(),
-                              100
-                            );
-                          }}
-                        >
-                          {newCareerObj.careerDate.length > 0
-                            ? newCareerObj.careerDate.replace(
-                                // "2024.11.19"와 같은 형식으로 표현
-                                /(\d{1,2})(\d{2})?(\d{2})?$/,
-                                (_, g1, g2, g3) => {
-                                  return [g1, g2, g3].filter(Boolean).join(".");
-                                }
-                              )
-                            : formatDate(new Date(), "YYYY.MM.DD")}
-                        </div>
                       )}
+                      {/* FIXME 2024.11.19 */}
+                      <div className={styles.date}>{career.careerDate}</div>
                     </div>
-                    <input
-                      type="text"
-                      className={styles.mainText}
-                      placeholder="경력 제목을 작성해주세요."
-                      maxLength={30}
-                      onChange={handleChangeNewCareerTitle}
-                      value={newCareerObj.careerTitle}
-                    ></input>
+                    {modifyingCareerObj?.idx === idx ? (
+                      <input
+                        type="text"
+                        className={styles.mainText}
+                        placeholder="경력 제목을 작성해주세요."
+                        maxLength={30}
+                      ></input>
+                    ) : (
+                      <div className={styles.mainText}>
+                        {career.careerTitle}
+                      </div>
+                    )}
                     <div className={styles.buttons}>
+                      {modifyingCareerObj?.idx === idx ? (
+                        <button
+                          className={styles.save}
+                          title="저장"
+                          onClick={() => handleClickSave(idx)}
+                        >
+                          <FaCheck />
+                        </button>
+                      ) : (
+                        <button
+                          className={styles.mod}
+                          title="수정"
+                          onClick={() => handleClickModify(idx, career)}
+                        ></button>
+                      )}
                       <button
-                        className={styles.add}
-                        title="등록"
-                        onClick={handleClickRegist}
+                        className={styles.del}
+                        title="삭제"
+                        onClick={() => handleClickDelete(career.careerPid)}
                       ></button>
                     </div>
                   </div>
                   <div className={styles.hr}></div>
                   <div className={styles.bottom}>
-                    <textarea
-                      className={styles.content}
-                      placeholder="경력이나 프로젝트 관련 경험을 간략히 작성해주세요. (180자 이내)"
-                      onChange={handleChangeNewCareerContent}
-                      value={newCareerObj.careerContent}
-                    />
+                    {modifyingCareerObj?.idx === idx ? (
+                      <textarea
+                        className={styles.content}
+                        placeholder="경력이나 프로젝트 관련 경험을 간략히 작성해주세요. (180자 이내)"
+                      />
+                    ) : (
+                      <div className={styles.content}>
+                        {career.careerContent}
+                      </div>
+                    )}
                   </div>
                 </div>
-                <div className={styles.trophy}></div>
               </div>
-              {/* 경력 목록 */}
-              {careerList.map((career, idx) => (
-                <div className={styles.cardWrapper} key={idx}>
-                  <div className={styles.card}>
-                    <div className={styles.top}>
-                      <div className={styles.dateWrapper}>
-                        {/* FIXME 2024.11.19 */}
-                        {false && (
-                          <input
-                            type="text"
-                            className={styles.date}
-                            placeholder={"YYYYMMDD"}
-                            maxLength={8}
-                          ></input>
-                        )}
-                        {/* FIXME 2024.11.19 */}
-                        <div className={styles.date}>{career.careerDate}</div>
-                      </div>
-                      {modifyingCareerObj?.idx === idx ? (
-                        <input
-                          type="text"
-                          className={styles.mainText}
-                          placeholder="경력 제목을 작성해주세요."
-                          maxLength={30}
-                        ></input>
-                      ) : (
-                        <div className={styles.mainText}>
-                          {career.careerTitle}
-                        </div>
-                      )}
-                      <div className={styles.buttons}>
-                        {modifyingCareerObj?.idx === idx ? (
-                          <button
-                            className={styles.save}
-                            title="저장"
-                            onClick={() => handleClickSave(idx)}
-                          >
-                            <FaCheck />
-                          </button>
-                        ) : (
-                          <button
-                            className={styles.mod}
-                            title="수정"
-                            onClick={() => handleClickModify(idx, career)}
-                          ></button>
-                        )}
-                        <button
-                          className={styles.del}
-                          title="삭제"
-                          onClick={handleClickDelete}
-                        ></button>
-                      </div>
-                    </div>
-                    <div className={styles.hr}></div>
-                    <div className={styles.bottom}>
-                      {modifyingCareerObj?.idx === idx ? (
-                        <textarea
-                          className={styles.content}
-                          placeholder="경력이나 프로젝트 관련 경험을 간략히 작성해주세요. (180자 이내)"
-                        />
-                      ) : (
-                        <div className={styles.content}>
-                          {career.careerContent}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </>
-        )}
-      </div>
-    );
-
-  return (
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  ) : (
     <div className={styles.container}>
       {careerList && !!careerList.length && (
         <>

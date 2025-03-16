@@ -14,6 +14,7 @@ export interface UserInfo {
   email: string;
   foldCnt: number;
   userIntrs: UserInterest;
+  isAuthorYn: boolean;
 }
 
 export interface Portfolio {
@@ -35,6 +36,7 @@ export interface Portfolio {
 }
 
 export interface Career {
+  careerPid: number;
   careerTitle: string;
   careerContent: string;
   careerDate: string;

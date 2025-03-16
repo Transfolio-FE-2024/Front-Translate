@@ -74,6 +74,16 @@ const boardApi = () => {
       }));
   }
 
+  /** 게시글 삭제 */
+  async function deleteBoard(boardPid: string) {
+    return await transfolioAxios
+      .delete(`/board/delete/${boardPid}`)
+      .then((response) => {
+        // FIXME - 응답형식 확인 필요
+        return null;
+      });
+  }
+
   /** 게시글 단건 조회 */
   async function getBoardById(
     boardId: string
@@ -129,6 +139,7 @@ const boardApi = () => {
       }))
     );
   }
+
   /** 찜하기(접기) */
   async function bookmark(boardID: number) {
     return await transfolioAxios
@@ -150,12 +161,38 @@ const boardApi = () => {
       }));
   }
 
+  /** 게시글 저장 완료 화면 - top3 번역가 */
+  async function getTop3Translators(
+    highCtg: string,
+    lowCtg: string
+  ): Promise<{ userId: string; email: string }[]> {
+    return transfolioAxios
+      .post(
+        "/board/top3-translators",
+        {
+          highCtg,
+          lowCtg,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json;charset=UTF-8",
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        return [];
+      });
+  }
+
   return {
     createBoard,
     updateBoard,
+    deleteBoard,
     getBoardById,
     getTodaysTranslator,
     bookmark,
+    getTop3Translators,
   };
 };
 

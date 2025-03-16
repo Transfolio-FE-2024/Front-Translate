@@ -22,7 +22,12 @@ const profileApi = () => {
         }
       )
       .then((response) => {
-        const userInfo = response.data as S_UserInfo;
+        const userInfo = response?.data?.userInfoDto as S_UserInfo;
+        const isAuthorYn = !!response?.data?.isAuthorYn;
+
+        if (!userInfo) {
+          throw new Error("[Transfolio] userInfo is undefined.");
+        }
 
         return {
           userId: userInfo.userId,
@@ -34,6 +39,7 @@ const profileApi = () => {
             intrsLiterature: userInfo.intrsLiterature,
             intrsCorporation: userInfo.intrsCorporation,
           },
+          isAuthorYn,
         };
       });
   }
@@ -90,9 +96,11 @@ const profileApi = () => {
         }
       )
       .then((response) => {
+        console.log(response);
         const careers = response.data as S_Career[];
 
         return careers.map((career) => ({
+          careerPid: career.careerPid,
           careerTitle: career.careerTitle,
           careerContent: career.careerContent,
           careerDate: career.careerDate,

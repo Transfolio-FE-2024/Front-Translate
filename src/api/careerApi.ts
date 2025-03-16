@@ -31,6 +31,7 @@ const careerApi = () => {
 
         return {
           career: {
+            careerPid: createdCareer.careerPid,
             careerTitle: createdCareer.careerTitle,
             careerContent: createdCareer.careerContent,
             careerDate: createdCareer.careerDate,
@@ -40,8 +41,30 @@ const careerApi = () => {
       });
   }
 
+  /** 경력 - 경력 삭제 */
+  async function deleteCareer(careerId: number): Promise<boolean> {
+    if (careerId) {
+      return await transfolioAxios
+        .delete(`/career/delete/${careerId}`, {
+          headers: {
+            "Content-Type": "application/json;charset=UTF-8",
+          },
+        })
+        .then((response) => {
+          if (response.status === 204) {
+            return true;
+          }
+
+          return false;
+        });
+    }
+
+    return false;
+  }
+
   return {
     createCareer,
+    deleteCareer,
   };
 };
 

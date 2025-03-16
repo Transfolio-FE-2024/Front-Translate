@@ -13,7 +13,7 @@ import HeaderMenuContext from "@/context/HeaderMenuContext";
 const tabs = [
   {
     buttonTitle: "포트폴리오",
-    component: (
+    component: () => (
       <div className={styles.topSpace}>
         <Portfolio></Portfolio>
       </div>
@@ -21,13 +21,14 @@ const tabs = [
   },
   {
     buttonTitle: "경력",
-    component: <Career></Career>,
+    component: (props: any) => <Career {...props}></Career>,
   },
   {
     buttonTitle: "접음",
-    component: <div className={styles.topSpace}>준비중입니다.</div>,
+    component: () => <div className={styles.topSpace}>준비중입니다.</div>,
   },
 ];
+
 const Writer = () => {
   const headerMenuContext = useContext(HeaderMenuContext);
   const navigate = useNavigate();
@@ -35,7 +36,6 @@ const Writer = () => {
   const { writerId = "" } = useParams();
   const [selectedButtonIndex, setSelectedButtonIndex] = useState<number>(0);
   const [editMode, setEditMode] = useState<boolean>(false); // 프로필 편집 모드 토글
-  const [isMe, setIsMe] = useState<boolean>(false);
   const [userInfo, setUserInfo] = useState<UserInfo>();
   const doneEditButton = useMemo(
     () => (
@@ -47,9 +47,6 @@ const Writer = () => {
   );
 
   useEffect(() => {
-    // FIXME - BE api 수정 필요할듯 (쿠키의 토큰과 글 작성자를 비교해서 글쓴이 본인이면 Y, 아니면 N 이런식으로?)
-    setIsMe(true);
-
     // 프로필 조회
     profileApi
       .getMyInfo(writerId)
@@ -79,7 +76,7 @@ const Writer = () => {
 
     if (!tabComponent) return <div>오류</div>;
 
-    return tabComponent.component;
+    return tabComponent.component({ isMe: userInfo?.isAuthorYn });
   };
 
   function handleClickDoneEdit() {
@@ -106,7 +103,7 @@ const Writer = () => {
             <div className={styles.profileNameSectionTitle}>
               @{userInfo?.userId}
             </div>
-            {isMe &&
+            {userInfo?.isAuthorYn &&
               (editMode ? (
                 <div
                   className={styles.profileEditButton}
@@ -148,7 +145,7 @@ const Writer = () => {
                         .join(" • ")
                     : "-"}
                 </div>
-                {isMe && editMode && (
+                {userInfo?.isAuthorYn && editMode && (
                   <div
                     className={styles.interestEditButton}
                     onClick={() => alert("관심분야 수정 미구현")}

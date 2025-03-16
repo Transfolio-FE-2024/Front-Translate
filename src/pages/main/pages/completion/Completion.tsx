@@ -16,14 +16,23 @@ const Completion = (): JSX.Element => {
   const loginId = authContext.userId;
 
   useEffect(() => {
-    if (!contentId) {
-      alert("잘못된 접근입니다.");
-      return;
-    }
-
     boardApi
       .getBoardById(contentId)
-      .then((board) => setTitle(board.portfolio.boardTitle))
+      .then((board) => {
+        if (board) {
+          setTitle(board?.portfolio?.boardTitle);
+
+          return boardApi.getTop3Translators(
+            board.portfolio.highCtg,
+            board.portfolio.lowCtg
+          );
+        } else {
+          throw new Error("board is null");
+        }
+      })
+      .then((top3s) => {
+        console.log(top3s);
+      })
       .catch((e) => {
         console.warn("[Transfolio] ", e);
         alert("데이터를 가져오는 도중 오류가 발생했습니다.");
