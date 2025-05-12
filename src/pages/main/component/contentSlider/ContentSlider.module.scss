@@ -43,3 +43,30 @@
 .inActive {
   background-color: var(--color-light-gray);
 }
+
+.transfolioSliderBar {
+  $marginLeft: 10px;
+  $marginRight: 10px;
+
+  margin-top: 30px;
+  margin-left: $marginLeft;
+  margin-right: $marginRight;
+
+  height: 2px;
+  width: calc(100% - $marginLeft - $marginRight);
+  position: relative;
+  background-color: var(--color-light-gray);
+  display: none;
+  &.show {
+    display: block;
+  }
+
+  .transfolioSliderKnob {
+    height: 2px;
+    position: absolute;
+    background-color: transparent;
+    &.active {
+      background-color: var(--color-orange);
+    }
+  }
+}

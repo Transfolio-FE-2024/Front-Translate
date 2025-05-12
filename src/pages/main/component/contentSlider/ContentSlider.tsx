@@ -9,38 +9,9 @@ import ThumbnailTitle from "@/components/thumbnail-title/ThumbnailTitle";
 import { className, getCategoryColor } from "@/util";
 import boardApi from "@/api/boardApi";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import Arrow from "../arrow/Arrow";
 
 const ContentSlider = () => {
-  const isMobile = useMediaQuery({ maxWidth: "767px" });
-  const sliderNumber = isMobile ? 1 : 3;
-  const [pageIndex, setPageIndex] = useState<number>(0);
-  // const [todayList, setTodayList] = useState<Portfolio[]>();
-  const slickRef = useRef<Slider>(null);
-  const sliderSettings: Settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: sliderNumber,
-    slidesToScroll: sliderNumber,
-    arrows: false, // FIXME
-    // nextArrow: <Arrow left={false} onClicked={() => slickRef.current!.slickNext()} />,
-    // prevArrow: <Arrow onClicked={() => slickRef.current!.slickPrev()} />,
-    afterChange: (index: number) => {
-      setPageIndex(index);
-    },
-    customPaging: (index: number) => {
-      return (
-        <div
-          className={className(
-            styles.customDot,
-            index === pageIndex / sliderNumber ? styles.active : styles.inActive
-          )}
-        ></div>
-      );
-    },
-    dotsClass: `slick-dots ${styles.customDots}`,
-  };
-
   const queryClient = useQueryClient();
   const { data: todayList } = useQuery({
     queryKey: ["comp.ContentSlider", "todayList"],
@@ -59,36 +30,77 @@ const ContentSlider = () => {
     onError: (e: Error) => alert(e.message),
   });
 
+  const isMobile = useMediaQuery({ maxWidth: "767px" });
+  const sliderNumber = isMobile ? 1 : 3;
+  const [anchorIndex, setAnchorIndex] = useState<number>(0);
+  const slickRef = useRef<Slider>(null);
+  const sliderSettings: Settings = {
+    dots: false,
+    infinite: todayList?.length ?? 0 < sliderNumber ? false : true,
+    slidesToShow: sliderNumber,
+    slidesToScroll: sliderNumber,
+    nextArrow: (
+      <Arrow left={false} onClicked={() => slickRef.current!.slickNext()} />
+    ),
+    prevArrow: <Arrow onClicked={() => slickRef.current!.slickPrev()} />,
+    afterChange: (index: number) => {
+      setAnchorIndex(index);
+    },
+    dotsClass: `slick-dots ${styles.customDots}`,
+  };
+
   return (
-    <div className={styles.container}>
-      {todayList ? (
-        <Slider {...sliderSettings} ref={slickRef}>
-          {todayList.map((post) => {
-            return (
-              <div className={styles.thumbnailContainer} key={post.boardPid}>
-                <div className={styles.thumbnailTitleSection}>
-                  <ThumbnailTitle interest={post.highCtg} />
+    <>
+      {todayList && (
+        <div className={styles.container}>
+          <Slider {...sliderSettings} ref={slickRef}>
+            {todayList.map((post) => {
+              return (
+                <div className={styles.thumbnailContainer} key={post.boardPid}>
+                  <div className={styles.thumbnailTitleSection}>
+                    <ThumbnailTitle interest={post.highCtg} />
+                  </div>
+                  <div className={styles.thumbnailSection}>
+                    <ThumbnailCardFolderable
+                      original={post.boardTitle}
+                      major={post.highCtg}
+                      writer={`@${post.userId}`}
+                      picked={Number(post.foldCnt || 0)}
+                      color={getCategoryColor(post.highCtg)}
+                      href={`/home/content/${post.boardPid}`}
+                      fontStyle={post.fontType}
+                      onClickBookmark={() => handleClickBookmark(post.boardPid)}
+                    />
+                  </div>
                 </div>
-                <div className={styles.thumbnailSection}>
-                  <ThumbnailCardFolderable
-                    original={post.boardTitle}
-                    major={"기능 미구현"}
-                    writer={`@${post.userId}`}
-                    picked={Number(post.foldCnt || 0)}
-                    color={getCategoryColor(post.highCtg)}
-                    href={`/home/content/${post.boardPid}`}
-                    fontStyle={post.fontType}
-                    onClickBookmark={() => handleClickBookmark(post.boardPid)}
-                  />
-                </div>
-              </div>
-            );
-          })}
-        </Slider>
-      ) : (
-        <div>Loading</div>
+              );
+            })}
+          </Slider>
+          <div
+            className={className(
+              styles.transfolioSliderBar,
+              todayList.length > sliderNumber ? styles.show : ""
+            )}
+          >
+            {todayList.map((_, idx) => (
+              <div
+                key={idx}
+                className={className(
+                  styles.transfolioSliderKnob,
+                  idx >= anchorIndex && idx < anchorIndex + sliderNumber
+                    ? styles.active
+                    : styles.inActive
+                )}
+                style={{
+                  width: `calc(100% / ${todayList.length})`,
+                  transform: `translateX(calc(100% * ${idx}))`,
+                }}
+              ></div>
+            ))}
+          </div>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 
