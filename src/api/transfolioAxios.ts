@@ -11,6 +11,8 @@ transfolioAxios.interceptors.response.use(
     return response;
   },
   (error) => {
+    alert("오류가 발생했습니다."); // TODO - 삭제
+
     if (error.response?.status === 401) {
       alert("로그인이 필요합니다.");
       window.location.href = "/signin";

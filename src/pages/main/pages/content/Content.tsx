@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import styles from "./Content.module.scss";
 import PageTitle from "@/components/page-title/PageTitle";
 import { VscArrowSwap } from "react-icons/vsc";
@@ -6,13 +6,15 @@ import {
   className,
   getCategoryColor,
   getFontFamilyByDisplayName,
+  StringUtils,
 } from "@/util";
 import ThumbnailCardUnfolderable from "@/components/thumbnail-card/thumbnail-card-unfolderable/ThumbnailCardUnfolderable";
 import boardApi from "@/api/boardApi";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import DefaultLoading from "@/components/loading/default-loading/DefaultLoading";
 
 const Content = () => {
+  const navigate = useNavigate();
   const { contentId = "" } = useParams();
   const {
     data: board,
@@ -22,8 +24,23 @@ const Content = () => {
     queryKey: ["page.content", "board", contentId],
     queryFn: () => boardApi.getBoardById(contentId),
   });
+  const { mutate: deleteBoard } = useMutation({
+    mutationFn: () => boardApi.deleteBoard(String(board?.portfolio.boardPid)),
+    onSuccess: (res) => {
+      if (String(res.status) === "204") {
+        navigate(`/home/writer/${board?.portfolio.userId}`);
+      }
+    },
+    onError: (e: Error) => console.error(e.message),
+  });
 
   if (error) throw new Error("오류가 발생했습니다.");
+
+  const handleClickDelete = () => {
+    if (confirm("삭제하시겠습니까?")) {
+      deleteBoard();
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -82,17 +99,25 @@ const Content = () => {
                   {board?.portfolio.boardAuthor}
                 </div>
               </div>
-              <div className={styles.editButtonWrapper}>
+              <div className={styles.buttonWrapper}>
                 {board &&
                   board.portfolio.boardPid &&
-                  board.isAuthorYN === "Y" && (
+                  board.isAuthorYN === "Y" &&
+                  (StringUtils.toBoolean(board.portfolio.tempStorageYN) ? (
+                    <div
+                      className={styles.buttonContainer}
+                      onClick={() => handleClickDelete()}
+                    >
+                      <div className={styles.button}>삭제</div>
+                    </div>
+                  ) : (
                     <Link
                       to={`/home/edit/${board.portfolio.boardPid || ""}`}
-                      className={styles.editButtonContainer}
+                      className={styles.buttonContainer}
                     >
-                      <div className={styles.editButton}>수정하기</div>
+                      <div className={styles.button}>수정하기</div>
                     </Link>
-                  )}
+                  ))}
               </div>
             </div>
           </div>

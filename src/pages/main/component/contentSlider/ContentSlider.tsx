@@ -17,7 +17,7 @@ const ContentSlider = () => {
     queryKey: ["comp.ContentSlider", "todayList"],
     queryFn: boardApi.getTodaysTranslator,
   });
-  const { mutate: handleClickBookmark } = useMutation({
+  const { mutate: toggleBookmark } = useMutation({
     mutationFn: (boardID: number) => boardApi.bookmark(boardID),
     onSuccess: (res) => {
       if (String(res.status) === "200") {
@@ -69,7 +69,7 @@ const ContentSlider = () => {
                       color={getCategoryColor(post.highCtg)}
                       href={`/home/content/${post.boardPid}`}
                       fontStyle={post.fontType}
-                      onClickBookmark={() => handleClickBookmark(post.boardPid)}
+                      onClickBookmark={() => toggleBookmark(post.boardPid)}
                     />
                   </div>
                 </div>

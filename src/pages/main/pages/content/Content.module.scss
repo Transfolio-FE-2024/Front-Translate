@@ -223,25 +223,26 @@
     }
   }
 
-  .editButtonWrapper {
+  .buttonWrapper {
     @include flex;
     align-items: center;
     justify-content: flex-end;
 
-    .editButtonContainer {
+    .buttonContainer {
       @include flex-center;
       border-radius: 5px;
 
-      .editButton {
+      .button {
         color: var(--color-gray);
         font-weight: var(--font-bold);
         padding: 10px 20px;
       }
 
       &:hover {
+        cursor: pointer;
         background-color: var(--color-orange);
 
-        .editButton {
+        .button {
           color: var(--color-white);
         }
       }

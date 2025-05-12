@@ -244,3 +244,17 @@ export function formatDate(date: Date, format: string): string {
     (match) => replacements[match]
   );
 }
+
+export const StringUtils = (function () {
+  function toBoolean(str?: string) {
+    if (!str || ["N", "FALSE", "0"].includes(str.toUpperCase())) {
+      return false;
+    }
+
+    return true;
+  }
+
+  return {
+    toBoolean,
+  };
+})();

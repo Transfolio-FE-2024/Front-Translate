@@ -76,12 +76,15 @@ const boardApi = () => {
 
   /** 게시글 삭제 */
   async function deleteBoard(boardPid: string) {
+    if (!boardPid) {
+      throw new Error("[Transfolio] 필수값 누락 : boardPid");
+    }
+
     return await transfolioAxios
       .delete(`/board/delete/${boardPid}`)
-      .then((response) => {
-        // FIXME - 응답형식 확인 필요
-        return null;
-      });
+      .then((response) => ({
+        status: response.status || TF.HTTP_STATUS.FAIL_UNKNOWN_STATUS,
+      }));
   }
 
   /** 게시글 단건 조회 */
